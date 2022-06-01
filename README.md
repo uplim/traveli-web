@@ -25,11 +25,11 @@ frontのコンテナを起動しておく必要があります。
  $ docker compose up front
 ```
 
+以下の URL にブラウザからアクセスできるか確認してください。
+- http://localhost:3000
+
 ### Formatting
 pushする前に、自身でフォーマットしてください
 ```bash
  $ docker compose run --rm front yarn format
 ```
-
-以下の URL にブラウザからアクセスできるか確認してください。
-- http://localhost:3000
