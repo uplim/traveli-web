@@ -11,10 +11,7 @@
 ```
 
 ### Install Packages
-frontのコンテナを起動しておく必要があります。
-
 ```bash
- $ docker compose up front
  $ docker compose run --rm front yarn install
  # node_modulesをローカルにコピー
  $ docker cp traveli-web_front_1:/home/app/node_modules/ ./front/
@@ -32,4 +29,10 @@ frontのコンテナを起動しておく必要があります。
 pushする前に、自身でフォーマットしてください
 ```bash
  $ docker compose run --rm front yarn format
+```
+
+### コンテナに入る
+```bash
+ $ docker compose run --rm front sh
+ # お好きにどうぞ！
 ```
