@@ -2,15 +2,15 @@ version: "3.8"
 
 services:
   front:
-      build:
-        context: ./front
-        dockerfile: Dockerfile
-      ports:
-        - "3000:3000"
-      volumes:
-        - ./front:/home/app
-        - node_modules_volume:/home/app/node_modules:delegated
-        - build_volume:/home/app/build:nocopy
+    build:
+      context: ./front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./front:/home/app
+      - node_modules_volume:/home/app/node_modules:delegated
+      - build_volume:/home/app/build:nocopy
 
 volumes:
   node_modules_volume:
