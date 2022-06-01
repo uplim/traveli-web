@@ -1,9 +1,0 @@
-FROM node:16.14-alpine
-ENV APP_ROOT /home/app
-
-RUN apk update
-WORKDIR $APP_ROOT
-
-COPY . $APP_ROOT
-
-EXPOSE 3000

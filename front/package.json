@@ -1,0 +1,61 @@
+{
+  "name": "front",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build && next export",
+    "start": "next start",
+    "lint": "next lint -d ./ --ignore-path .gitignore",
+    "lint:fix": "next lint -d ./ --fix --ignore-path .gitignore",
+    "lint-warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
+    "type-check": "tsc --pretty --noEmit",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "export": "next export",
+    "storybook": "start-storybook -s ./public -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^1.8.7",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@hookform/resolvers": "^2.8.8",
+    "@reduxjs/toolkit": "^1.8.1",
+    "framer-motion": "^3.1.1",
+    "next": "^12.1.0",
+    "next-auth": "^4.3.1",
+    "prettier": "^2.6.0",
+    "qrcode.react": "^3.0.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-hook-form": "^7.30.0",
+    "react-icons": "^4.3.1",
+    "react-redux": "^8.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@storybook/addon-actions": "^6.4.20",
+    "@storybook/addon-essentials": "^6.4.20",
+    "@storybook/addon-interactions": "^6.4.20",
+    "@storybook/addon-links": "^6.4.20",
+    "@storybook/builder-webpack5": "^6.4.20",
+    "@storybook/manager-webpack5": "^6.4.20",
+    "@storybook/react": "^6.4.20",
+    "@storybook/testing-library": "^0.0.9",
+    "@types/node": "^17.0.21",
+    "@types/qrcode.react": "^1.0.2",
+    "@types/react": "^17.0.40",
+    "@typescript-eslint/eslint-plugin": "^5.18.0",
+    "babel-loader": "^8.2.4",
+    "eslint": "^8.0.0",
+    "eslint-config-next": "^12.1.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "typescript": "^4.6.2",
+    "webpack": "^5.54.0"
+  },
+  "resolutions": {
+    "@types/react": "17.0.2",
+    "@types/react-dom": "17.0.2"
+  }
+}
