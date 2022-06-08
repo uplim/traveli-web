@@ -1,5 +1,5 @@
 const Index = () => {
   return <>indexページ</>
 }
-  
-  export default Index
+
+export default Index
