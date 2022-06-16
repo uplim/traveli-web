@@ -9,6 +9,11 @@ const Index = () => {
           <p>/signin</p>
         </a>
       </Link>
+      <Link href="/signup" passHref>
+        <a href="replace">
+          <p>/signup</p>
+        </a>
+      </Link>
     </>
   )
 }
