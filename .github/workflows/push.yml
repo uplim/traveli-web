@@ -1,4 +1,4 @@
-name: test and lint
+name: check lint and format
 
 on:
   push:
