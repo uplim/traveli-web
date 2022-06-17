@@ -1,6 +1,9 @@
 name: test and lint
 
-on: [push]
+on:
+  push:
+    paths:
+      - front/**
 
 jobs:
   lint:
