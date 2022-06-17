@@ -7,7 +7,7 @@ const Home = () => {
       <Link href="/create" passHref>
         <a href="replace">
           <p>/create</p>
-        </a> 
+        </a>
       </Link>
       <Link href="/user" passHref>
         <a href="replace">
