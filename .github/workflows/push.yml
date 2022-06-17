@@ -16,11 +16,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.15.0'
-      - name: yarn install, test and lint
+      - name: yarn install, check lint and format
         working-directory: ./front
         run: |
           yarn install --frozen-lockfile
           yarn type-check
-          yarn lint-warnings
-          yarn test
+          yarn lint
           yarn format-check
