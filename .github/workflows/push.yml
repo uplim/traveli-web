@@ -17,6 +17,7 @@ jobs:
         with:
           node-version: '16.15.0'
       - name: yarn install, test and lint
+        working-directory: ./front
         run: |
           yarn install --frozen-lockfile
           yarn type-check
