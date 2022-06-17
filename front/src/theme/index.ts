@@ -5,6 +5,7 @@ import { sizes } from '@/theme/sizes'
 
 export const customTheme = extendTheme({
   fonts: {
+    // TODO: フォントは後で対応
     body: `sans-serif`,
     heading: `sans-serif`
   },
