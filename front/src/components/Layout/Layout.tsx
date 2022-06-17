@@ -7,8 +7,8 @@ type LayoutProps = {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <Flex minH={'100vh'} direction={'column'} bgColor={'base'}>
-      <Container as={'main'} maxW={'container.md'} px={'1.6rem'}>
+    <Flex minH={'100vh'} direction={'column'} bgColor={'base'} overflowX={'scroll'}>
+      <Container as={'main'} maxW={'container.md'} minW={'container.sm'} px={'1.6rem'}>
         {children}
       </Container>
     </Flex>
