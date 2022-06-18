@@ -1,6 +1,6 @@
 import firestore from 'firebase/firestore'
 
-export type User = firestore.DocumentData & {
+export type CurrentUser = firestore.DocumentData & {
   uid: string
-  isAnonymouse: boolean
+  isAnonymous: boolean
 }

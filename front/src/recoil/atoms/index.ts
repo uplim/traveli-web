@@ -1,1 +1,1 @@
-export { userState } from '@/recoil/atoms/user'
+export { currentUserState } from '@/recoil/atoms/user'

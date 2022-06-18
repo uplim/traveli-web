@@ -1,3 +1,3 @@
 export enum AtomKeys {
-  USER_STATE = 'userState'
+  CURRENT_USER_STATE = 'userState'
 }
