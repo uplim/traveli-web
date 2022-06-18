@@ -34,6 +34,11 @@ const AppInit = () => {
   }
 
   useEffect(() => {
+    // 認証不要ページで認証確認しない
+    if (router.pathname === '/') return
+    if (router.pathname === '/signin') return
+    if (router.pathname === '/signup') return
+
     checkAuth()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
