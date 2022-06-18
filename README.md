@@ -8,10 +8,11 @@
 ```sh
   # build
     docker compose build front
-  # install packages
-    docker compose run --rm front yarn install
-  # copy modules to local
-    docker cp traveli-web_front_1:/home/app/node_modules/ ./front/
+    docker compose up front
+  # install packages (frontを起動した状態で打ってください)
+    docker compose exec front yarn install
+  # copy modules to local (windowsでは管理者権限が必要です)
+    docker cp traveli-web-front:/home/app/node_modules/ ./front/
 ```
 
 ## 💫 Start Node
@@ -26,12 +27,13 @@
 - http://localhost:3000
 
 ## 🧸 Other Commands
+全て、traveli-web-frontを起動した状態で打ってください。  
 ```sh
   # enter in a docker container
-    docker compose run --rm front sh
+    docker compose exec front sh
   # install packages
-    docker compose run --rm front yarn install
-    docker cp traveli-web_front_1:/home/app/node_modules/ ./front/
+    docker compose exec front yarn install
+    docker cp traveli-web-front:/home/app/node_modules/ ./front/
   # formatting
-    docker compose run --rm front yarn format
+    docker compose exec front yarn format
 ```

@@ -5,6 +5,7 @@ services:
     build:
       context: ./front
       dockerfile: Dockerfile
+    container_name: traveli-web-front
     ports:
       - "3000:3000"
     volumes:
