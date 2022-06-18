@@ -18,6 +18,8 @@
 ```sh
   # 起動
     docker compose up front
+  # 落とす
+    docker compose down front
 ```
 
 以下の URL にブラウザからアクセスできるか確認してください。
