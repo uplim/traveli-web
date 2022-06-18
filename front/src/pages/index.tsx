@@ -1,6 +1,9 @@
 import Link from 'next/link'
+import { useSignInAnonymously } from '@/hooks/auth'
 
 const Index = () => {
+  const signInAnonymously = useSignInAnonymously
+
   return (
     <>
       <p>indexページ</p>
@@ -14,6 +17,7 @@ const Index = () => {
           <p>/signup</p>
         </a>
       </Link>
+      <button onClick={() => signInAnonymously()}>ゲストログイン</button>
     </>
   )
 }
