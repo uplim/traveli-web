@@ -1,0 +1,25 @@
+name: check lint and format
+
+on:
+  push:
+    paths:
+      - front/**
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.15.0'
+      - name: yarn install, check lint and format
+        working-directory: ./front
+        run: |
+          yarn install --frozen-lockfile
+          yarn type-check
+          yarn lint
+          yarn format-check

@@ -11,6 +11,7 @@
     "lint-warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
+    "format-check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "export": "next export"
   },
   "dependencies": {
