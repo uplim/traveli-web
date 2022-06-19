@@ -3,7 +3,7 @@ import { useSignInAnonymously } from '@/hooks/auth'
 import { Button } from '@chakra-ui/react'
 
 const Index = () => {
-  const { onSubmit, disabled } = useSignInAnonymously()
+  const { signInAnonymouslyHandler, disabled } = useSignInAnonymously()
 
   return (
     <>
@@ -21,9 +21,9 @@ const Index = () => {
       <Button
         bgColor={'brandBlue'}
         disabled={disabled}
-        onClick={() => onSubmit()}
+        onClick={() => signInAnonymouslyHandler()}
       >
-        匿名で使い始める
+        登録せず利用
       </Button>
     </>
   )

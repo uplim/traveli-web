@@ -29,7 +29,7 @@ export const useSignInAnonymously = () => {
     })
   }
 
-  const onSubmit = async () => {
+  const signInAnonymouslyHandler = async () => {
     const auth = getAuth()
     setDisabled.on()
     try {
@@ -51,5 +51,5 @@ export const useSignInAnonymously = () => {
       setDisabled.off()
     }
   }
-  return { onSubmit, disabled }
+  return { signInAnonymouslyHandler, disabled }
 }
