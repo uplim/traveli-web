@@ -1,3 +1,10 @@
 module.exports = {
   distDir: "build",
+  webpackDevMiddleware: config => {
+    config.watchOptions = {
+      poll: 800,
+      aggregateTimeout: 300,
+    }
+    return config
+  },
 };
