@@ -23,7 +23,7 @@ const Index = () => {
         disabled={disabled}
         onClick={() => onSubmit()}
       >
-        ゲストログイン
+        匿名で使い始める
       </Button>
     </>
   )
