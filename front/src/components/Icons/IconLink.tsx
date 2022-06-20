@@ -1,9 +1,8 @@
-import { colors } from '@/theme/colors'
 import { Box } from '@chakra-ui/react'
 
-const IconLink = () => {
+export const IconLink = () => {
   return (
-    <Box w="3rem" color={colors.black}>
+    <Box w="3rem" color={'black'}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
@@ -19,5 +18,3 @@ const IconLink = () => {
     </Box>
   )
 }
-
-export default IconLink

@@ -1,9 +1,8 @@
-import { colors } from '@/theme/colors'
 import { Box } from '@chakra-ui/react'
 
-const IconCamera = () => {
+export const IconCamera = () => {
   return (
-    <Box w="3rem" color={colors.black}>
+    <Box w="3rem" color={'black'}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6"
@@ -26,5 +25,3 @@ const IconCamera = () => {
     </Box>
   )
 }
-
-export default IconCamera

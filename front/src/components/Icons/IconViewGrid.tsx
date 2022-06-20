@@ -1,9 +1,8 @@
-import { colors } from '@/theme/colors'
 import { Box } from '@chakra-ui/react'
 
-const IconViewGrid = () => {
+export const IconViewGrid = () => {
   return (
-    <Box w="3rem" color={colors.black}>
+    <Box w="3rem" color={'black'}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-5 w-5"
@@ -15,5 +14,3 @@ const IconViewGrid = () => {
     </Box>
   )
 }
-
-export default IconViewGrid

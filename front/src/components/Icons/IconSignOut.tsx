@@ -1,9 +1,8 @@
 import { Box } from '@chakra-ui/react'
-import { colors } from '@/theme/colors'
 
-const IconSignOut = () => {
+export const IconSignOut = () => {
   return (
-    <Box w="3rem" color={colors.black}>
+    <Box w="3rem" color={'black'}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6"
@@ -21,5 +20,3 @@ const IconSignOut = () => {
     </Box>
   )
 }
-
-export default IconSignOut
