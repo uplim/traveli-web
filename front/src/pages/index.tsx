@@ -1,6 +1,10 @@
 import Link from 'next/link'
+import { useSignInAnonymously } from '@/hooks/auth'
+import { Button } from '@chakra-ui/react'
 
 const Index = () => {
+  const { signInAnonymouslyHandler, disabled } = useSignInAnonymously()
+
   return (
     <>
       <p>indexページ</p>
@@ -14,6 +18,13 @@ const Index = () => {
           <p>/signup</p>
         </a>
       </Link>
+      <Button
+        bgColor={'brandBlue'}
+        disabled={disabled}
+        onClick={() => signInAnonymouslyHandler()}
+      >
+        登録せず利用
+      </Button>
     </>
   )
 }
