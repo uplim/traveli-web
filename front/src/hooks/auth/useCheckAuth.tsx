@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
-import { useGetCurrentUser } from '@/hooks/auth'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 
 type UseCheckAuthProps = {
@@ -12,9 +11,8 @@ type UseCheckAuthProps = {
 const accessibleBeforeSignInPages = ['/', '/signin', '/signup']
 
 export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
-  const setCurrentUser = useSetRecoilState(currentUserState)
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
   const router = useRouter()
-  const { currentUser } = useGetCurrentUser()
 
   const isAccessibleBeforeSignIn = accessibleBeforeSignInPages.includes(
     router.pathname

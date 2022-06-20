@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { useGetCurrentUser } from '@/hooks/auth'
 import { Text } from '@chakra-ui/react'
+import { useRecoilValue } from 'recoil'
+import { currentUserState } from '@/recoil/atoms'
 
 const Home = () => {
-  const { currentUser } = useGetCurrentUser()
+  const currentUser = useRecoilValue(currentUserState)
 
   return (
     <>

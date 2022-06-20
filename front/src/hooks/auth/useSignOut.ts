@@ -13,7 +13,10 @@ export const useSignOut = () => {
     setDisabled.on()
     try {
       const auth = getAuth()
-      if (!currentUser) return
+      if (!currentUser) {
+        setDisabled.off()
+        return
+      }
 
       // 匿名認証は、ログアウトというかアカウント削除に等しいので、一旦見た目上のログアウトということにしたい
       // TODO: 匿名認証の時は、サインアウトの文言をアカウント削除に変えるなどする
