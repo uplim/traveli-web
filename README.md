@@ -9,8 +9,14 @@
   # build
     docker compose build front
     docker compose up front
-  # install packages (frontを起動した状態で打ってください)
-    docker compose exec front yarn install
+  # enter in a docker container (frontを起動した状態で打ってください)
+    docker compose exec sh
+  # install packages
+    yarn install
+  # create .env
+    cp .env.example .env
+  # exit docker container
+    exit
   # copy modules to local (windowsでは管理者権限が必要です)
     docker cp traveli-web-front:/home/app/node_modules/ ./front/
 ```
