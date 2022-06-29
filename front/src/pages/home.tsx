@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { Text } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
+import { IconCamera, IconLink,IconQr,IconHelp,IconMenu } from '@/components/Icons'
 
 const Home = () => {
   const currentUser = useRecoilValue(currentUserState)
@@ -29,6 +30,10 @@ const Home = () => {
               <p>/[id]</p>
             </a>
           </Link>
+          <IconCamera w = {'2rem'} h = {'2rem'} color = {'red'} />
+          <IconQr w = {'2rem'} h = {'2rem'} color = {'red'} />
+          <IconMenu w = {'3rem'} h = {'3rem'} color = {'red'} />
+          <IconHelp w = {'5rem'} h = {'5rem'} color = {'red'} />
         </>
       )}
     </>
