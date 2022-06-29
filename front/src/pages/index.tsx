@@ -1,13 +1,14 @@
 import Link from 'next/link'
 import { useSignInAnonymously } from '@/hooks/auth'
 import { Button } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 
 const Index = () => {
   const { signInAnonymouslyHandler, disabled } = useSignInAnonymously()
 
   return (
     <>
-      <p>indexページ</p>
+      <Text fontWeight="bold">indexページ</Text>
       <Link href="/signin" passHref>
         <a href="replace">
           <p>/signin</p>

@@ -5,9 +5,8 @@ import { sizes } from '@/theme/sizes'
 
 export const customTheme = extendTheme({
   fonts: {
-    // TODO: フォントは後で対応
-    body: `sans-serif`,
-    heading: `sans-serif`
+    body: `'M PLUS 1p', sans-serif`,
+    heading: `'M PLUS 1p', sans-serif`
   },
   colors: colors,
   fontSizes: fontSizes,
@@ -20,7 +19,8 @@ export const customTheme = extendTheme({
       body: {
         fontFamily: 'body',
         lineHeight: 'base',
-        fontSize: 'sm'
+        fontSize: 'sm',
+        transform: 'rotate(0.05deg)'
       },
       a: {
         cursor: 'pointer'
