@@ -10,7 +10,7 @@
     docker compose build front
     docker compose up front
   # enter in a docker container (frontを起動した状態で打ってください)
-    docker compose exec front sh
+    docker compose exec sh
   # install packages
     yarn install
   # create .env
