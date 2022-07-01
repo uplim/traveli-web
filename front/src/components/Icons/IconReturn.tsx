@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
 
-export const IconReturn = ({...props}) => {
+export const IconReturn = ({ ...props }) => {
   return (
     <Box {...props}>
       <svg
