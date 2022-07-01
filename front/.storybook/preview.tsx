@@ -12,4 +12,3 @@ const withChakra = (Story: Story) => {
 }
 
 export const decorators = [withChakra]
-
