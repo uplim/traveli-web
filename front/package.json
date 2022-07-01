@@ -12,7 +12,8 @@
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format-check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
-    "export": "next export"
+    "export": "next export",
+    "storybook": "start-storybook -s ./public -p 6006"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",
@@ -33,6 +34,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/builder-webpack5": "^6.5.9",
+    "@storybook/manager-webpack5": "^6.5.9",
+    "@storybook/react": "^6.5.9",
     "@types/node": "^18.0.0",
     "@types/qrcode.react": "^1.0.2",
     "@types/react": "^18.0.14",
