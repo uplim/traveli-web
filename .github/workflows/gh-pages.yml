@@ -2,11 +2,10 @@
 
 name: github pages
 
-# 確認のため
 on:
   push:
-    paths:
-      - ./
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -32,6 +31,8 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+      - name: 'Build'
+        working-directory: ./front
         run: |
           yarn install --frozen-lockfile
           yarn build:storybook
