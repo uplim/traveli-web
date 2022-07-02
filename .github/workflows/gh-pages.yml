@@ -25,7 +25,6 @@ jobs:
 
       - name: Cache dependencies
         uses: actions/cache@v2
-        working-directory: ./front
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
