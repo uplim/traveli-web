@@ -3,7 +3,7 @@ import type { ButtonProps } from '@chakra-ui/react'
 import { Button } from '@/components/Buttons'
 
 export default {
-  title: 'components/buttons/button',
+  title: 'components/Buttons/Button',
   component: Button
 } as Meta
 
