@@ -1,1 +1,1 @@
-export type { CurrentUser } from '@/types/db/user/user'
+export type { CurrentUser, Profile } from '@/types/db/user/user'

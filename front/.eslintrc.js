@@ -16,5 +16,7 @@ module.exports = {
     'react/jsx-uses-react': 0,
     'react/react-in-jsx-scope': 0,
     '@typescript-eslint/explicit-module-boundary-types': 0,
+    // useEffectの依存関係のエラーを無視する
+    'react-hooks/exhaustive-deps': 'off'
   }
-};
+}
