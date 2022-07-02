@@ -27,7 +27,7 @@ export const ButtonIconRound = forwardRef<
           h={'4rem'}
         >
           {iconType === 'return' && (
-            <IconReturn w={'2.4rem'} h={'2.4rem'} color={'black'} />
+            <IconReturn w={'2.4rem'} h={'2.4rem'} color={'black'} mt={'.4rem'} />
           )}
           {iconType === 'edit' && (
             <IconEdit w={'1.8rem'} h={'1.8rem'} color={'logo-black'} />
