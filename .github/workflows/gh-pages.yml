@@ -2,10 +2,11 @@
 
 name: github pages
 
+# 確認のため
 on:
   push:
-    branches:
-      - main
+    paths:
+      - ./
 
 jobs:
   deploy:
