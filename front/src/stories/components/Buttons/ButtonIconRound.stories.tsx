@@ -3,7 +3,7 @@ import { ButtonIconRound } from '@/components/Buttons'
 import { Box } from '@chakra-ui/react'
 
 export default {
-  title: 'components/buttons/buttonIconRound',
+  title: 'components/Buttons/ButtonIconRound',
   component: ButtonIconRound
 } as Meta
 
