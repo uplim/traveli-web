@@ -8,13 +8,13 @@
     "start": "next start",
     "lint": "next lint -d ./ --ignore-path .gitignore",
     "lint:fix": "next lint -d ./ --fix --ignore-path .gitignore",
-    "lint-warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
+    "lint:warnings": "next lint -d ./ --fix --ignore-path .gitignore --max-warnings=0",
     "type-check": "tsc --pretty --noEmit",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "format-check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "export": "next export",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook -o ./build/storybook/"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.2.1",

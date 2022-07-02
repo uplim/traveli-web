@@ -22,5 +22,5 @@ jobs:
           yarn install --frozen-lockfile
           yarn type-check
           yarn lint
-          yarn lint-warnings
+          yarn lint:warnings
           yarn format-check
