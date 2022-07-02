@@ -10,6 +10,7 @@ type InputProps = {
   label: string
 }
 
+// TODO: フォーカスした時のボーダーの色
 export const Input = forwardRef<ChakraInputProps & InputProps, 'input'>(
   ({ label, ...props }, ref) => {
     return (
