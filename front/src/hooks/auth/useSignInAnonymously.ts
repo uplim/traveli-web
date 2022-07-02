@@ -32,6 +32,7 @@ export const useSignInAnonymously = () => {
   const signInAnonymouslyHandler = async () => {
     setDisabled.on()
     const auth = getAuth()
+
     try {
       await signInAnonymously(auth)
       onAuthStateChanged(auth, (currentUser) => {
