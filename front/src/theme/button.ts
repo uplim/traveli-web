@@ -14,7 +14,8 @@ export const Button = {
       w: '6.4rem',
       h: '6.4rem',
       borderRadius: '50%',
-      bgColor: 'brandBlue'
+      bgColor: 'brandBlue',
+      filter: 'drop-shadow(4px 4px 10px #E4EBEE)'
     }
   }
 }
