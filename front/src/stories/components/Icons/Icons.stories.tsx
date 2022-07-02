@@ -18,7 +18,7 @@ import {
 } from '@/components/Icons'
 
 export default {
-  title: 'utility/icons'
+  title: 'utility/Icons'
 } as Meta
 
 const icons = [
