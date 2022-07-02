@@ -30,6 +30,12 @@ module.exports = {
     'react/display-name': 0,
 
     // underscoreから始まる変数をワーニング対象から外す。
-    '@typescript-eslint/no-unused-vars': [2, {argsIgnorePattern: '^_', varsIgnorePattern: '^_'}]
+    '@typescript-eslint/no-unused-vars': [
+      2,
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+    ],
+
+    // useEffectの依存関係のエラーを無視する
+    'react-hooks/exhaustive-deps': 'off'
   }
-};
+}
