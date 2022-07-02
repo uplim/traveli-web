@@ -44,7 +44,7 @@
 全て、traveli-web-frontを起動した状態で打ってください。  
 ```sh
   # enter in a docker container
-    docker compose exec front sh 
+    docker compose exec front sh
   # install packages
     docker compose exec front yarn install
     docker cp traveli-web-front:/home/app/node_modules/ ./front/
