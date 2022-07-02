@@ -4,8 +4,9 @@ name: github pages
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - ./**
+
 
 jobs:
   deploy:
