@@ -1,4 +1,4 @@
-import { Box, Image, Flex, Heading, Spacer } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from './../components/Icons'
@@ -31,7 +31,8 @@ const Home = () => {
               bgColor={'gray'}
             ></Box>
           </Flex>
-          
+
+          {/* TODO:shadowの色を変数に置き換える */}
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
@@ -64,11 +65,11 @@ const Home = () => {
               2022/05
             </Box>
           </Flex>
+          {/* TODO:shadowの色を変数に置き換える */}
           <Box
             w={'100%'}
             h={'23.9rem'}
             borderRadius={'10'}
-            {/* TODO:shadowの色を変数に置き換える */}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
             bgColor={'white'}
           >
