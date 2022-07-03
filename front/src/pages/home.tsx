@@ -1,9 +1,9 @@
 import { Box, Flex, Heading, Spacer } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
-import { IconLink } from './../components/Icons'
-import dummyImg from '../public/images/dummy.png'
-import traveli from '../public/images/traveli.svg'
+import { IconLink } from '@/components/Icons'
+import dummyImg from '@/public/images/dummy.png'
+import traveli from '@/public/images/traveli.svg'
 
 const Home = () => {
   const currentUser = useRecoilValue(currentUserState)
@@ -15,21 +15,21 @@ const Home = () => {
       ) : (
         <>
           <Flex marginTop={'1.2rem'}>
-            <Box w={'4rem'}></Box>
+            <Box w={'4rem'} />
             <Spacer />
             <Flex
               bgImage={traveli.src}
               marginTop={'1rem'}
               w={'7.7rem'}
               h={'1.8rem'}
-            ></Flex>
+             />
             <Spacer />
             <Box
               w={'4rem'}
               h={'4rem'}
               borderRadius={'50%'}
               bgColor={'gray'}
-            ></Box>
+             />
           </Flex>
 
           {/* TODO:shadowの色を変数に置き換える */}
@@ -104,7 +104,7 @@ const Home = () => {
                     h={'2.4rem'}
                     borderRadius={'50%'}
                     bgColor={'gray'}
-                  ></Box>
+                   />
                   <Box paddingLeft={'1rem'} fontSize={'md'}>
                     Piyo
                   </Box>
