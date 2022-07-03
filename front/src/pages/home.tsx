@@ -22,14 +22,9 @@ const Home = () => {
               marginTop={'1rem'}
               w={'7.7rem'}
               h={'1.8rem'}
-             />
+            />
             <Spacer />
-            <Box
-              w={'4rem'}
-              h={'4rem'}
-              borderRadius={'50%'}
-              bgColor={'gray'}
-             />
+            <Box w={'4rem'} h={'4rem'} borderRadius={'50%'} bgColor={'gray'} />
           </Flex>
 
           {/* TODO:shadowの色を変数に置き換える */}
@@ -104,7 +99,7 @@ const Home = () => {
                     h={'2.4rem'}
                     borderRadius={'50%'}
                     bgColor={'gray'}
-                   />
+                  />
                   <Box paddingLeft={'1rem'} fontSize={'md'}>
                     Piyo
                   </Box>
