@@ -2,8 +2,6 @@ import { Box, Flex, Heading, Spacer } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
-import dummyImg from '@/public/images/dummy.png'
-import traveli from '@/public/images/traveli.svg'
 
 const Home = () => {
   const currentUser = useRecoilValue(currentUserState)
@@ -18,7 +16,7 @@ const Home = () => {
             <Box w={'4rem'} />
             <Spacer />
             <Flex
-              bgImage={traveli.src}
+              bgImage={'/images/traveli.svg'}
               marginTop={'1rem'}
               w={'7.7rem'}
               h={'1.8rem'}
@@ -69,10 +67,9 @@ const Home = () => {
             bgColor={'white'}
           >
             <Box
-              bgImage={dummyImg.src}
+              bgImage={'/images/dummy.png'}
               h={'12.9rem'}
               borderTopRadius={'10'}
-              bgColor={'gray'}
             />
             <Box
               paddingTop={'1.1rem'}
