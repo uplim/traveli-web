@@ -34,6 +34,13 @@ export const FormCreateLinks = () => {
           {errors.date && errors.date.message}
         </FormErrorMessage>
       </FormControl>
+      <FormControl {...register('thumbnail')} isInvalid={errors.thumbnail ? true : false}>
+        <FormLabel>サムネイル画像（任意）</FormLabel>
+        <Input type={'file'} accept="image/*" />
+        <FormErrorMessage>
+          {errors.date && errors.date.message}
+        </FormErrorMessage>
+      </FormControl>
       <FormControl>
         <List>
           {fields.map((item, index) => {

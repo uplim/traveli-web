@@ -10,6 +10,7 @@ import { useRecoilValue } from 'recoil'
 type Inputs = {
   title: string
   date: string
+  thumbnail: string
   links: {
     url: string
     label: string

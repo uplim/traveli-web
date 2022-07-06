@@ -12,4 +12,5 @@ export type TravelinkRequestType = firestore.DocumentData & {
   updatedAt: string
   id: string
   ownerId: string
+  thumbnail: string
 }
