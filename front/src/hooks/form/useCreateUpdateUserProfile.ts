@@ -12,14 +12,19 @@ import {
 import { Profile } from '@/types/db'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 type Inputs = {
   name: string
-  icon: File | null
 }
 
+const schema = yup.object({
+  name: yup.string().required('名前を入力してください'),
+})
+
 export const useCreateUpdateUserProfile = () => {
-  const { register, handleSubmit } = useForm<Inputs>()
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({ resolver: yupResolver(schema)})
   const currentUser = useRecoilValue(currentUserState)
   const firestorage = getStorage()
   const [image, setImage] = useState<File | null>()
@@ -119,6 +124,7 @@ export const useCreateUpdateUserProfile = () => {
     error,
     iconUrl,
     name,
-    image
+    image,
+    errors
   }
 }

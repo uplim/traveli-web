@@ -4,7 +4,8 @@ import {
   Button,
   FormControl,
   Input,
-  FormLabel
+  FormLabel,
+  FormErrorMessage
 } from '@chakra-ui/react'
 import { useCreateUpdateUserProfile } from '@/hooks/form'
 
@@ -17,7 +18,8 @@ export const FormUserProfile = () => {
     error,
     iconUrl,
     name,
-    image
+    image,
+    errors
   } = useCreateUpdateUserProfile()
 
   return (
@@ -25,9 +27,14 @@ export const FormUserProfile = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {error && <Alert>送信できませんでした</Alert>}
         <p>テストページ</p>
-        <FormControl>
+        <FormControl isInvalid={!!errors.name}>
           <FormLabel htmlFor="name">名前</FormLabel>
           <Input id="name" defaultValue={name} {...register('name')} />
+          <FormErrorMessage>
+            {errors.name && errors.name.message}
+          </FormErrorMessage>
+        </FormControl>
+        <FormControl>
           <FormLabel htmlFor="icon">アイコン</FormLabel>
           <Avatar
             src={image ? URL.createObjectURL(image) : iconUrl}
@@ -40,8 +47,8 @@ export const FormUserProfile = () => {
             accept="image/*"
             onChange={handleChangeIcon}
           />
-          <Button type="submit">Submit</Button>
         </FormControl>
+        <Button type="submit">Submit</Button>
       </form>
     </>
   )
