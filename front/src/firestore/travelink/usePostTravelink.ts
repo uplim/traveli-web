@@ -1,5 +1,3 @@
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
 import {
   collection,
   doc,
@@ -18,16 +16,13 @@ type Inputs = {
   canEdit: boolean
 }
 
-export const usePostTravelink = async (data: Inputs) => {
-  const currentUser = useRecoilValue(currentUserState)
-
-  if (!currentUser) return
+export const usePostTravelink = async (data: Inputs, uid: string) => {
   const db = getFirestore()
   const ref = doc(collection(db, 'travelinks'))
   await setDoc(ref, {
     ...data,
     id: ref.id,
-    ownerId: currentUser.uid,
+    ownerId: uid,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp()
   })

@@ -4,6 +4,8 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
 import { usePostTravelink } from '@/firestore/travelink'
+import { currentUserState } from '@/recoil/atoms'
+import { useRecoilValue } from 'recoil'
 
 type Inputs = {
   title: string
@@ -43,7 +45,9 @@ export const useFormCreateLinks = () => {
   } = useForm<Inputs>({
     resolver: yupResolver(schema)
   })
-  
+
+  const currentUser = useRecoilValue(currentUserState)
+
   const postTravelink = usePostTravelink
 
   const { fields, append } = useFieldArray({
@@ -52,9 +56,11 @@ export const useFormCreateLinks = () => {
   })
 
   const onSubmit = async (data: Inputs) => {
+    if (!currentUser) return
+
     try {
       setDisabled.on()
-      const res = await postTravelink(data)
+      const res = await postTravelink(data, currentUser.uid)
       router.push(router.basePath + res)
     } catch (err) {
       console.error(err)
