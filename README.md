@@ -2,7 +2,7 @@
 “メモ帳以上、旅程表アプリ未満” の旅程管理アプリ  
 
 URL: '未定'  
-Storybook: https://traveli-dev/traveli-web/storybook
+Storybook: https://traveli-dev.github.io/traveli-web/storybook
 
 ## 🔑 Requirements
 - [Docker Desktop](https://www.docker.com/products/docker-desktop)
