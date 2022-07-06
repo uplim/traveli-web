@@ -21,9 +21,12 @@ export const customTheme = extendTheme({
         fontFamily: 'body',
         lineHeight: 'base',
         fontSize: 'sm',
-        transform: 'rotate(0.05deg)'
+        '& p, & span, & dl': {
+          transform: 'rotate(0.03deg)'
+        }
       },
-      a: {
+      'h1,h2,h3,h4,h5,h6,button,input,textarea,a': {
+        transform: 'rotate(0.03deg)',
         cursor: 'pointer'
       }
     }
