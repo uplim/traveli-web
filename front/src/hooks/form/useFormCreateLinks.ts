@@ -1,4 +1,6 @@
 import { useFieldArray, useForm } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 
 type Inputs = {
   links: {
@@ -7,8 +9,30 @@ type Inputs = {
   }[]
 }
 
+const schema = yup.object({
+  links: yup.array().of(
+    yup.object().shape({
+      url: yup
+        .string()
+        .required('urlを入力してください')
+        // urlの正規表現にマッチしなかったら弾く
+        .matches(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/, {
+          messages: '利用可能なURLを入力してください'
+        }),
+      label: yup.string()
+    })
+  )
+})
+
 export const useFormCreateLinks = () => {
-  const { register, control, handleSubmit } = useForm<Inputs>()
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Inputs>({
+    resolver: yupResolver(schema)
+  })
 
   const { fields, append } = useFieldArray({
     name: 'links',
@@ -26,6 +50,7 @@ export const useFormCreateLinks = () => {
     handleSubmit,
     fields,
     append,
-    onSubmit
+    onSubmit,
+    errors
   }
 }

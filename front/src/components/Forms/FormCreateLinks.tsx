@@ -5,12 +5,13 @@ import {
   FormLabel,
   List,
   ListItem,
-  Button
+  Button,
+  FormErrorMessage
 } from '@chakra-ui/react'
 import { useFormCreateLinks } from '@/hooks/form'
 
 export const FormCreateLinks = () => {
-  const { register, handleSubmit, fields, append, onSubmit } =
+  const { register, handleSubmit, fields, append, onSubmit, errors } =
     useFormCreateLinks()
 
   return (
@@ -27,7 +28,13 @@ export const FormCreateLinks = () => {
             return (
               <ListItem key={item.id}>
                 <FormLabel>URL</FormLabel>
-                <Input {...register(`links.${index}.url`)} />
+                <Input
+                  isInvalid={!!errors.links?.[index].url?.message}
+                  {...register(`links.${index}.url`)}
+                />
+                <FormErrorMessage>
+                  {errors.links?.[index] && errors.links?.[index].url?.message}
+                </FormErrorMessage>
                 <FormLabel>ラベル</FormLabel>
                 <Input {...register(`links.${index}.label`)} />
               </ListItem>
