@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { TravelinksType } from '@/types/db'
+import { TravelinkRequestType } from '@/types/db'
 import { collection, getDoc, getFirestore, doc } from 'firebase/firestore'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 export const useGetTravelinks = () => {
   const currentUser = useRecoilValue(currentUserState)
-  const [travelinks, setTravelinks] = useState<TravelinksType>()
+  const [travelinks, setTravelinks] = useState<TravelinkRequestType>()
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -24,7 +24,7 @@ export const useGetTravelinks = () => {
         return
       }
 
-      const getTravelinks = travelinksDoc.data() as TravelinksType
+      const getTravelinks = travelinksDoc.data() as TravelinkRequestType
       setTravelinks(getTravelinks)
     }
 

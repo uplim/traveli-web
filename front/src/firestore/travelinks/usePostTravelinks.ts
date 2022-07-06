@@ -26,8 +26,8 @@ export const usePostTravelinks = async (data: Inputs) => {
   const ref = doc(collection(db, 'travelinks'))
   await setDoc(ref, {
     ...data,
-    traveliId: ref.id,
-    uid: currentUser.uid,
+    id: ref.id,
+    ownerId: currentUser.uid,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp()
   })
