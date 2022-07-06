@@ -20,11 +20,15 @@ type Inputs = {
 }
 
 const schema = yup.object({
-  name: yup.string().required('名前を入力してください'),
+  name: yup.string().required('名前を入力してください')
 })
 
 export const useCreateUpdateUserProfile = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({ resolver: yupResolver(schema)})
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<Inputs>({ resolver: yupResolver(schema) })
   const currentUser = useRecoilValue(currentUserState)
   const firestorage = getStorage()
   const [image, setImage] = useState<File | null>()
