@@ -21,7 +21,7 @@ export const customTheme = extendTheme({
         fontFamily: 'body',
         lineHeight: 'base',
         fontSize: 'sm',
-        '& p, & span, & dl': {
+        '& p, & span, & dl, & form': {
           transform: 'rotate(0.03deg)'
         }
       },
