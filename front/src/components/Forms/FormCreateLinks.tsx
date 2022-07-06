@@ -6,12 +6,13 @@ import {
   List,
   ListItem,
   Button,
-  FormErrorMessage
+  FormErrorMessage,
+  Switch
 } from '@chakra-ui/react'
 import { useFormCreateLinks } from '@/hooks/form'
 
 export const FormCreateLinks = () => {
-  const { register, handleSubmit, fields, append, onSubmit, errors } =
+  const { register, handleSubmit, fields, append, onSubmit, errors, disabled } =
     useFormCreateLinks()
 
   return (
@@ -63,7 +64,15 @@ export const FormCreateLinks = () => {
         >
           append
         </button>
-        <Button onClick={handleSubmit(onSubmit)} variant={'solid'}>
+        <FormControl display={'flex'} alignItems={'center'}>
+          <FormLabel>他のユーザに編集を許可する</FormLabel>
+          <Switch {...register('canEdit')} />
+        </FormControl>
+        <Button
+          disabled={disabled}
+          onClick={handleSubmit(onSubmit)}
+          variant={'solid'}
+        >
           送信する
         </Button>
       </FormControl>

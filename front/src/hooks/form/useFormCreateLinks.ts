@@ -1,6 +1,16 @@
 import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  serverTimestamp
+} from 'firebase/firestore'
+import { useBoolean } from '@chakra-ui/react'
+import { useRecoilValue } from 'recoil'
+import { currentUserState } from '@/recoil/atoms'
 
 type Inputs = {
   title: string
@@ -9,15 +19,12 @@ type Inputs = {
     url: string
     label: string
   }[]
+  canEdit: boolean
 }
 
 const schema = yup.object({
   title: yup.string().required('旅の名前を入力してください'),
-  date: yup
-    .string()
-    .matches(/^[0-9]{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])$/, {
-      message: 'yyyy/mm/ddの形式で入力してください(ex: 2022/06/21)'
-    }),
+  date: yup.string(),
   links: yup.array().of(
     yup.object().shape({
       url: yup
@@ -33,6 +40,7 @@ const schema = yup.object({
 })
 
 export const useFormCreateLinks = () => {
+  const [disabled, setDisabled] = useBoolean()
   const {
     register,
     control,
@@ -42,15 +50,37 @@ export const useFormCreateLinks = () => {
     resolver: yupResolver(schema)
   })
 
+  const currentUser = useRecoilValue(currentUserState)
+
+  const postTravelinks = async (data: Inputs) => {
+    if (!currentUser) return
+    const db = getFirestore()
+    const travelinksCollection = collection(db, 'travelinks')
+    const travelinksRef = doc(travelinksCollection)
+
+    await setDoc(travelinksRef, {
+      ...data,
+      traveliId: travelinksRef.id,
+      uid: currentUser.uid,
+      createdAt: serverTimestamp(),
+      updatedAt: serverTimestamp()
+    })
+  }
+
   const { fields, append } = useFieldArray({
     name: 'links',
     control: control
   })
 
   const onSubmit = (data: Inputs) => {
-    console.log(data)
-
-    return {}
+    try {
+      setDisabled.on()
+      postTravelinks(data)
+    } catch (err) {
+      console.error(err)
+    } finally {
+      setDisabled.off()
+    }
   }
 
   return {
@@ -59,6 +89,7 @@ export const useFormCreateLinks = () => {
     fields,
     append,
     onSubmit,
-    errors
+    errors,
+    disabled
   }
 }
