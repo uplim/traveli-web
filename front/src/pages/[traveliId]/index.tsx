@@ -1,13 +1,27 @@
-import { useRouter } from 'next/router'
 import { Box } from '@chakra-ui/react'
+import { useGetTravelinks } from '@/firestore/travelinks/'
 
 const LinkList = () => {
-  const router = useRouter()
-  const traveliId = router.query.traveliId
+  const { travelinks } = useGetTravelinks()
 
   return (
     <>
-      <Box>{traveliId}のぺーじ！</Box>
+      {!travelinks ? (
+        <>ローディングアイコン</>
+      ) : (
+        <Box>
+          <Box>{travelinks.title}</Box>
+          <Box>{travelinks.date}</Box>
+          <Box>
+            {travelinks.links.map(({ url, label }, index) => (
+              <Box key={index}>
+                <Box>{url}</Box>
+                <Box>{label}</Box>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
     </>
   )
 }
