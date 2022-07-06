@@ -1,9 +1,11 @@
+import { useRouter } from 'next/router'
 import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import {
   getFirestore,
   collection,
+  getDoc,
   doc,
   setDoc,
   serverTimestamp
@@ -11,6 +13,7 @@ import {
 import { useBoolean } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
+import { TravelinksType } from '@/types/db'
 
 type Inputs = {
   title: string
@@ -41,6 +44,7 @@ const schema = yup.object({
 
 export const useFormCreateLinks = () => {
   const [disabled, setDisabled] = useBoolean()
+  const router = useRouter()
   const {
     register,
     control,
@@ -65,6 +69,10 @@ export const useFormCreateLinks = () => {
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     })
+
+    const res = await getDoc(travelinksRef)
+
+    return res.data()
   }
 
   const { fields, append } = useFieldArray({
@@ -72,10 +80,11 @@ export const useFormCreateLinks = () => {
     control: control
   })
 
-  const onSubmit = (data: Inputs) => {
+  const onSubmit = async (data: Inputs) => {
     try {
       setDisabled.on()
-      postTravelinks(data)
+      const res = (await postTravelinks(data)) as TravelinksType
+      router.push(router.basePath + res.traveliId)
     } catch (err) {
       console.error(err)
     } finally {

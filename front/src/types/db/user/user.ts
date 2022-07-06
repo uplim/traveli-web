@@ -10,7 +10,7 @@ export type Profile = firestore.DocumentData & {
   icon: string
 }
 
-export type Travelinks = firestore.DocumentData & {
+export type TravelinksType = firestore.DocumentData & {
   title: string
   date: string
   links: {
