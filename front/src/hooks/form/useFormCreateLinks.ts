@@ -3,6 +3,8 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 
 type Inputs = {
+  title: string
+  date: string
   links: {
     url: string
     label: string
@@ -10,6 +12,8 @@ type Inputs = {
 }
 
 const schema = yup.object({
+  title: yup.string().required('旅の名前を入力してください'),
+  date: yup.string(),
   links: yup.array().of(
     yup.object().shape({
       url: yup

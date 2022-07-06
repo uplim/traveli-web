@@ -16,9 +16,17 @@ export const FormCreateLinks = () => {
 
   return (
     <Box>
-      <FormControl>
+      <FormControl isInvalid={errors.title ? true : false}>
         <FormLabel>旅の名前</FormLabel>
-        <Input placeholder={'例）ともだちとの一泊二日の旅行'} />
+        <Input
+          {...register('title')}
+          placeholder={'例）ともだちとの一泊二日の旅行'}
+        />
+        <FormErrorMessage>
+          {errors.title && errors.title.message}
+        </FormErrorMessage>
+      </FormControl>
+      <FormControl {...register('date')} isInvalid={errors.date ? true : false}>
         <FormLabel>日時（任意）</FormLabel>
         <Input placeholder={'0000/00/00-0000/00/00'} />
       </FormControl>
