@@ -149,17 +149,24 @@ const User = () => {
                 bgColor={'base'}
               >
                 <Avatar
-                as={'button'}
-                onClick={onClickButton}
-                {...register('COLOR')}
-                onChange={handleChange}
-                
-                src={iconUrl} w={'12.9rem'} h={'12.9rem'} />
+                  src={iconUrl}
+                  w={'12.9rem'}
+                  h={'12.9rem'}
+                  as={'button'}
+                  onClick={onClickButton}
+                />
               </Box>
               <Spacer />
             </Flex>
 
-            <VisuallyHiddenInput  ref={inputRef} id="icon" type="file" accept="image/*" />
+            <VisuallyHiddenInput
+              {...register('icon')}
+              onChange={handleChange}
+              ref={inputRef}
+              id="icon"
+              type="file"
+              accept="image/*"
+            />
 
             <FormLabel htmlFor="name" fontSize={'md'}>
               ニックネーム
