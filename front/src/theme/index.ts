@@ -2,6 +2,7 @@ import { extendTheme } from '@chakra-ui/react'
 import { colors } from '@/theme/colors'
 import { fontSizes } from '@/theme/font-sizes'
 import { sizes } from '@/theme/sizes'
+import { Button } from '@/theme/button'
 
 export const customTheme = extendTheme({
   fonts: {
@@ -26,5 +27,8 @@ export const customTheme = extendTheme({
         cursor: 'pointer'
       }
     }
+  },
+  components: {
+    Button
   }
 })
