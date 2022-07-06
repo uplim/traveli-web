@@ -30,7 +30,7 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: 'Build'
+      - name: 'Build and Deploy'
         working-directory: ./front
         run: |
           yarn install --frozen-lockfile
@@ -41,4 +41,4 @@ jobs:
         if: github.ref == 'refs/heads/main'
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./front/build/storybook/
+          publish_dir: ./front/build/
