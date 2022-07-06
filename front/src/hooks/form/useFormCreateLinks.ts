@@ -2,18 +2,8 @@ import { useRouter } from 'next/router'
 import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-import {
-  getFirestore,
-  collection,
-  getDoc,
-  doc,
-  setDoc,
-  serverTimestamp
-} from 'firebase/firestore'
 import { useBoolean } from '@chakra-ui/react'
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
-import { TravelinksType } from '@/types/db'
+import { usePostTravelinks } from '@/firestore/travelinks'
 
 type Inputs = {
   title: string
@@ -44,6 +34,7 @@ const schema = yup.object({
 
 export const useFormCreateLinks = () => {
   const [disabled, setDisabled] = useBoolean()
+  const postTravelinks = usePostTravelinks
   const router = useRouter()
   const {
     register,
@@ -54,27 +45,6 @@ export const useFormCreateLinks = () => {
     resolver: yupResolver(schema)
   })
 
-  const currentUser = useRecoilValue(currentUserState)
-
-  const postTravelinks = async (data: Inputs) => {
-    if (!currentUser) return
-    const db = getFirestore()
-    const travelinksCollection = collection(db, 'travelinks')
-    const travelinksRef = doc(travelinksCollection)
-
-    await setDoc(travelinksRef, {
-      ...data,
-      traveliId: travelinksRef.id,
-      uid: currentUser.uid,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
-    })
-
-    const res = await getDoc(travelinksRef)
-
-    return res.data()
-  }
-
   const { fields, append } = useFieldArray({
     name: 'links',
     control: control
@@ -83,8 +53,8 @@ export const useFormCreateLinks = () => {
   const onSubmit = async (data: Inputs) => {
     try {
       setDisabled.on()
-      const res = (await postTravelinks(data)) as TravelinksType
-      router.push(router.basePath + res.traveliId)
+      const { res } = await postTravelinks(data)
+      router.push(router.basePath + res)
     } catch (err) {
       console.error(err)
     } finally {
