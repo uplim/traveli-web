@@ -28,7 +28,10 @@ export const FormCreateLinks = () => {
       </FormControl>
       <FormControl {...register('date')} isInvalid={errors.date ? true : false}>
         <FormLabel>日時（任意）</FormLabel>
-        <Input placeholder={'0000/00/00-0000/00/00'} />
+        <Input placeholder={'2022/01/23'} />
+        <FormErrorMessage>
+          {errors.date && errors.date.message}
+        </FormErrorMessage>
       </FormControl>
       <FormControl>
         <List>
