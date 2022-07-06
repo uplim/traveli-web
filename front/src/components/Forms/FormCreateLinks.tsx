@@ -4,21 +4,14 @@ import {
   FormControl,
   FormLabel,
   List,
-  ListItem
+  ListItem,
+  Button
 } from '@chakra-ui/react'
-import { useForm, useFieldArray } from 'react-hook-form'
+import { useFormCreateLinks } from '@/hooks/form'
 
 export const FormCreateLinks = () => {
-  const { register, control, handleSubmit } = useForm()
-
-  const { fields, append } = useFieldArray({
-    name: 'links',
-    control: control
-  })
-
-  const onSubmit = () => {
-    return {}
-  }
+  const { register, handleSubmit, fields, append, onSubmit } =
+    useFormCreateLinks()
 
   return (
     <Box>
@@ -28,15 +21,15 @@ export const FormCreateLinks = () => {
         <FormLabel>日時（任意）</FormLabel>
         <Input placeholder={'0000/00/00-0000/00/00'} />
       </FormControl>
-      <FormControl onSubmit={handleSubmit(onSubmit)}>
+      <FormControl>
         <List>
           {fields.map((item, index) => {
             return (
               <ListItem key={item.id}>
                 <FormLabel>URL</FormLabel>
-                <Input {...register(`links[${index}].url`)} />
+                <Input {...register(`links.${index}.url`)} />
                 <FormLabel>ラベル</FormLabel>
-                <Input {...register(`links[${index}].label`)} />
+                <Input {...register(`links.${index}.label`)} />
               </ListItem>
             )
           })}
@@ -44,12 +37,14 @@ export const FormCreateLinks = () => {
         <button
           type="button"
           onClick={() => {
-            append({ links: { url: '', label: '' } })
+            append({ url: '', label: '' })
           }}
         >
           append
         </button>
-        <Input type="submit" />
+        <Button onClick={handleSubmit(onSubmit)} variant={'solid'}>
+          送信する
+        </Button>
       </FormControl>
     </Box>
   )
