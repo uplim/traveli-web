@@ -34,7 +34,6 @@ const schema = yup.object({
 
 export const useFormCreateLinks = () => {
   const [disabled, setDisabled] = useBoolean()
-  const postTravelinks = usePostTravelinks
   const router = useRouter()
   const {
     register,
@@ -44,6 +43,8 @@ export const useFormCreateLinks = () => {
   } = useForm<Inputs>({
     resolver: yupResolver(schema)
   })
+  
+  const postTravelinks = usePostTravelinks
 
   const { fields, append } = useFieldArray({
     name: 'links',
@@ -53,7 +54,7 @@ export const useFormCreateLinks = () => {
   const onSubmit = async (data: Inputs) => {
     try {
       setDisabled.on()
-      const { res } = await postTravelinks(data)
+      const res = await postTravelinks(data)
       router.push(router.basePath + res)
     } catch (err) {
       console.error(err)
