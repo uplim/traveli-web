@@ -30,7 +30,7 @@ export const FormCreateLinks = () => {
                 <FormControl isInvalid={!!errors.links}>
                   <FormLabel>URL</FormLabel>
                   <Input
-                    isInvalid={!!errors.links?.[index].url?.message}
+                    isInvalid={errors.links?.[index] ? true : false}
                     {...register(`links.${index}.url`)}
                   />
                   <FormErrorMessage>
