@@ -13,14 +13,18 @@ import { Profile } from '@/types/db'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 
+type Inputs = {
+  name: string
+  icon: File | null
+}
+
 export const useCreateUpdateUserProfile = () => {
-  const { register, handleSubmit } = useForm<Profile>()
+  const { register, handleSubmit } = useForm<Inputs>()
   const currentUser = useRecoilValue(currentUserState)
   const firestorage = getStorage()
   const [image, setImage] = useState<File | null>()
   const [name, setName] = useState('')
   const [iconUrl, setIconUrl] = useState('')
-  const [data, setData] = useState({})
   const [error, setError] = useState(false)
 
   useEffect(() => {
@@ -38,7 +42,7 @@ export const useCreateUpdateUserProfile = () => {
 
       return data
     }
-    setData(getProfile)
+    getProfile()
   }, [])
 
   const createProfileIfNotFound = async (profile: Profile) => {
@@ -69,17 +73,15 @@ export const useCreateUpdateUserProfile = () => {
     }
   }
 
-  const handleChangeName = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setName(e.target.value)
-  }
-
+  // react-hook-formでinput[type="file"]上手くいかない
+  // https://zenn.dev/akira_miyake/articles/0b08cf732e7c0a
   const handleChangeIcon = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       setImage(e.target.files[0])
     }
   }
 
-  const onSubmit: SubmitHandler<Profile> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
     // TODO: いるかも？
     // event.preventDefault()
 
@@ -96,7 +98,7 @@ export const useCreateUpdateUserProfile = () => {
             createProfileIfNotFound(req)
           })
         })
-      } else if (!image && name) {
+      } else if (!image && data.name) {
         const req = {
           name: data.name,
           icon: ''
@@ -113,11 +115,10 @@ export const useCreateUpdateUserProfile = () => {
     onSubmit,
     handleSubmit,
     register,
-    handleChangeName,
     handleChangeIcon,
     error,
     iconUrl,
     name,
-    data
+    image
   }
 }
