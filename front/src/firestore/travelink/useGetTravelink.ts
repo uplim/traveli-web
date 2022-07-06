@@ -5,9 +5,9 @@ import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { useRouter } from 'next/router'
 
-export const useGetTravelinks = () => {
+export const useGetTravelink = () => {
   const currentUser = useRecoilValue(currentUserState)
-  const [travelinks, setTravelinks] = useState<TravelinkRequestType>()
+  const [travelink, setTravelink] = useState<TravelinkRequestType>()
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -25,11 +25,11 @@ export const useGetTravelinks = () => {
       }
 
       const getTravelinks = travelinksDoc.data() as TravelinkRequestType
-      setTravelinks(getTravelinks)
+      setTravelink(getTravelinks)
     }
 
     loadTravelinks()
   }, [])
 
-  return { travelinks }
+  return { travelink }
 }

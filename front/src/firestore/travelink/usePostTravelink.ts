@@ -18,7 +18,7 @@ type Inputs = {
   canEdit: boolean
 }
 
-export const usePostTravelinks = async (data: Inputs) => {
+export const usePostTravelink = async (data: Inputs) => {
   const currentUser = useRecoilValue(currentUserState)
 
   if (!currentUser) return

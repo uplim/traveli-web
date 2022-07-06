@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
-import { usePostTravelinks } from '@/firestore/travelinks'
+import { usePostTravelink } from '@/firestore/travelink'
 
 type Inputs = {
   title: string
@@ -44,7 +44,7 @@ export const useFormCreateLinks = () => {
     resolver: yupResolver(schema)
   })
   
-  const postTravelinks = usePostTravelinks
+  const postTravelink = usePostTravelink
 
   const { fields, append } = useFieldArray({
     name: 'links',
@@ -54,7 +54,7 @@ export const useFormCreateLinks = () => {
   const onSubmit = async (data: Inputs) => {
     try {
       setDisabled.on()
-      const res = await postTravelinks(data)
+      const res = await postTravelink(data)
       router.push(router.basePath + res)
     } catch (err) {
       console.error(err)
