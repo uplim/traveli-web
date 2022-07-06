@@ -17,7 +17,7 @@ const schema = yup.object({
         .required('urlを入力してください')
         // urlの正規表現にマッチしなかったら弾く
         .matches(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/, {
-          messages: '利用可能なURLを入力してください'
+          message: '利用可能なURLを入力してください'
         }),
       label: yup.string()
     })

@@ -27,14 +27,17 @@ export const FormCreateLinks = () => {
           {fields.map((item, index) => {
             return (
               <ListItem key={item.id}>
-                <FormLabel>URL</FormLabel>
-                <Input
-                  isInvalid={!!errors.links?.[index].url?.message}
-                  {...register(`links.${index}.url`)}
-                />
-                <FormErrorMessage>
-                  {errors.links?.[index] && errors.links?.[index].url?.message}
-                </FormErrorMessage>
+                <FormControl isInvalid={!!errors.links}>
+                  <FormLabel>URL</FormLabel>
+                  <Input
+                    isInvalid={!!errors.links?.[index].url?.message}
+                    {...register(`links.${index}.url`)}
+                  />
+                  <FormErrorMessage>
+                    {errors.links?.[index] &&
+                      errors.links?.[index].url?.message}
+                  </FormErrorMessage>
+                </FormControl>
                 <FormLabel>ラベル</FormLabel>
                 <Input {...register(`links.${index}.label`)} />
               </ListItem>
