@@ -113,7 +113,6 @@ const User = () => {
   }
 
   const inputRef = useRef<HTMLInputElement>(null)
-
   const onClickButton = () => {
     inputRef.current?.click()
   }
@@ -127,6 +126,7 @@ const User = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           {error && <Alert>送信できませんでした</Alert>}
           {/* Header */}
+
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
             <IconReturn w={'2.2rem'} h={'2.2rem'} />
             <Spacer />
@@ -168,6 +168,7 @@ const User = () => {
               accept="image/*"
             />
 
+            {/* name */}
             <FormLabel htmlFor="name" fontSize={'md'}>
               ニックネーム
             </FormLabel>
