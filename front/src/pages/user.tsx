@@ -125,6 +125,7 @@ const User = () => {
       ) : (
         <form onSubmit={handleSubmit(onSubmit)}>
           {error && <Alert>送信できませんでした</Alert>}
+          {/* TODO:FormUserProfileに置き換え */}
           {/* Header */}
 
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
@@ -139,8 +140,8 @@ const User = () => {
 
           <FormControl>
             {/* icon */}
+            {/* TODO:firestore関連のエラー  */}
             <Flex>
-              {/* TODO:shadowのつき方 */}
               <Spacer />
               <Box
                 borderRadius={'50%'}
@@ -190,7 +191,7 @@ const User = () => {
               <Spacer />
             </Flex>
 
-            {/* Button */}
+            {/* SubmitButton */}
             <Flex>
               <Spacer />
               <Flex>
