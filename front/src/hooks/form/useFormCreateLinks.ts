@@ -6,7 +6,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { usePostTravelink } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
-import { useUploadImage } from '../upload/useUploadImage'
+import { useUploadImage } from '@/hooks/upload'
 
 type Inputs = {
   title: string
