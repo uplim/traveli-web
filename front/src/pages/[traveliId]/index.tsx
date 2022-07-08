@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react'
-import { useGetTravelink } from '@/firestore/travelink/'
+import { useGetTravelink } from '@/hooks/firestore'
 
 const LinkList = () => {
   const { travelink } = useGetTravelink()
