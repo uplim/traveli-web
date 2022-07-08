@@ -6,11 +6,11 @@ import { useBoolean } from '@chakra-ui/react'
 import { usePostTravelink } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
+import { useUploadImage } from '../upload/useUploadImage'
 
 type Inputs = {
   title: string
   date: string
-  thumbnail: string
   links: {
     url: string
     label: string
@@ -47,6 +47,9 @@ export const useFormCreateLinks = () => {
     resolver: yupResolver(schema)
   })
 
+  const { downloadUrl, uploadImage, image, handleChangeImage } =
+    useUploadImage()
+
   const currentUser = useRecoilValue(currentUserState)
 
   const postTravelink = usePostTravelink
@@ -61,7 +64,11 @@ export const useFormCreateLinks = () => {
 
     try {
       setDisabled.on()
-      const res = await postTravelink(data, currentUser.uid)
+      if (image) uploadImage(image)
+      const res = await postTravelink(
+        { ...data, thumbnail: downloadUrl },
+        currentUser.uid
+      )
       router.push(router.basePath + res)
     } catch (err) {
       console.error(err)
@@ -77,6 +84,9 @@ export const useFormCreateLinks = () => {
     append,
     onSubmit,
     errors,
-    disabled
+    disabled,
+    downloadUrl,
+    handleChangeImage,
+    image
   }
 }

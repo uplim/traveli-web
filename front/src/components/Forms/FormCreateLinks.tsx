@@ -7,13 +7,24 @@ import {
   ListItem,
   Button,
   FormErrorMessage,
-  Switch
+  Switch,
+  Image
 } from '@chakra-ui/react'
 import { useFormCreateLinks } from '@/hooks/form'
 
 export const FormCreateLinks = () => {
-  const { register, handleSubmit, fields, append, onSubmit, errors, disabled } =
-    useFormCreateLinks()
+  const {
+    register,
+    handleSubmit,
+    fields,
+    append,
+    onSubmit,
+    errors,
+    disabled,
+    downloadUrl,
+    image,
+    handleChangeImage
+  } = useFormCreateLinks()
 
   return (
     <Box>
@@ -27,22 +38,20 @@ export const FormCreateLinks = () => {
           {errors.title && errors.title.message}
         </FormErrorMessage>
       </FormControl>
-      <FormControl {...register('date')} isInvalid={errors.date ? true : false}>
+      <FormControl isInvalid={errors.date ? true : false}>
         <FormLabel>日時（任意）</FormLabel>
-        <Input placeholder={'2022/01/23'} />
+        <Input placeholder={'2022/01/23'} {...register('date')} />
         <FormErrorMessage>
           {errors.date && errors.date.message}
         </FormErrorMessage>
       </FormControl>
-      <FormControl
-        {...register('thumbnail')}
-        isInvalid={errors.thumbnail ? true : false}
-      >
+      <FormControl>
         <FormLabel>サムネイル画像（任意）</FormLabel>
-        <Input type={'file'} accept="image/*" />
-        <FormErrorMessage>
-          {errors.date && errors.date.message}
-        </FormErrorMessage>
+        <Input type={'file'} accept="image/*" onChange={handleChangeImage} />
+        <Image
+          alt={''}
+          src={image ? URL.createObjectURL(image) : downloadUrl}
+        />
       </FormControl>
       <FormControl>
         <List>
