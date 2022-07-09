@@ -47,8 +47,7 @@ export const useFormCreateLinks = () => {
     resolver: yupResolver(schema)
   })
 
-  const { downloadUrl, uploadImage, image, handleChangeImage } =
-    useUploadImage()
+  const { uploadImage, image, handleChangeImage } = useUploadImage()
 
   const currentUser = useRecoilValue(currentUserState)
 
@@ -61,19 +60,18 @@ export const useFormCreateLinks = () => {
 
   const onSubmit = async (data: Inputs) => {
     if (!currentUser) return
+    let downloadUrl = ''
 
     try {
       setDisabled.on()
-      new Promise<void>((resolve) => {
-        if (image) uploadImage(image)
-        resolve()
-      }).then(async () => {
-        const res = await postTravelink(
-          { ...data, thumbnail: downloadUrl },
-          currentUser.uid
-        )
-        router.push(router.basePath + res)
-      })
+      if (image) {
+        downloadUrl = await uploadImage(image)
+      }
+      const res = await postTravelink(
+        { ...data, thumbnail: downloadUrl },
+        currentUser.uid
+      )
+      router.push(router.basePath + res)
     } catch (err) {
       console.error(err)
     } finally {
@@ -89,7 +87,6 @@ export const useFormCreateLinks = () => {
     onSubmit,
     errors,
     disabled,
-    downloadUrl,
     handleChangeImage,
     image
   }

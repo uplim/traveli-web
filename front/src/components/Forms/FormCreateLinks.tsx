@@ -21,7 +21,6 @@ export const FormCreateLinks = () => {
     onSubmit,
     errors,
     disabled,
-    downloadUrl,
     image,
     handleChangeImage
   } = useFormCreateLinks()
@@ -48,10 +47,7 @@ export const FormCreateLinks = () => {
       <FormControl>
         <FormLabel>サムネイル画像（任意）</FormLabel>
         <Input type={'file'} accept="image/*" onChange={handleChangeImage} />
-        <Image
-          alt={''}
-          src={image ? URL.createObjectURL(image) : downloadUrl}
-        />
+        <Image alt={''} src={image ? URL.createObjectURL(image) : ''} />
       </FormControl>
       <FormControl>
         <List>

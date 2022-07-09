@@ -2,17 +2,16 @@ import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useState } from 'react'
 
 export const useUploadImage = () => {
-  const [downloadUrl, setDownloadUrl] = useState('')
   const [image, setImage] = useState<File | null>()
 
   const uploadImage = (imageFile: File) => {
     const firestorage = getStorage()
     const imageRef = ref(firestorage, encodeURI(imageFile.name))
-    uploadBytes(imageRef, imageFile).then(() => {
-      getDownloadURL(imageRef).then((url) => {
-        setDownloadUrl(url)
-      })
+    const downloadUrl = uploadBytes(imageRef, imageFile).then(() => {
+      const url = getDownloadURL(imageRef)
+      return url
     })
+    return downloadUrl
   }
 
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +22,6 @@ export const useUploadImage = () => {
 
   return {
     uploadImage,
-    downloadUrl,
     image,
     handleChangeImage
   }
