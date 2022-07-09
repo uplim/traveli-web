@@ -8,7 +8,7 @@ import {
 } from 'firebase/firestore'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
-import { TravelinkRequestType, Profile } from '@/types/db'
+import { TravelinkRequestType } from '@/types/db'
 
 export const useGetTravelinkList = () => {
   const currentUser = useRecoilValue(currentUserState)

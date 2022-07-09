@@ -8,7 +8,6 @@ const Home = () => {
   const currentUser = useRecoilValue(currentUserState)
   const { travelinkList } = useGetTravelinkList()
   const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
-  console.log('op:', ownerProfile)
 
   return (
     <>
@@ -34,6 +33,7 @@ const Home = () => {
           </Flex>
 
           {/* TODO:shadowの色を変数に置き換える */}
+          {/* TODO: date-pickerのstartでええ感じにsortする */}
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
@@ -89,6 +89,7 @@ const Home = () => {
                 borderBottomRadius={'10'}
               >
                 <Box fontSize={'xs'} color={'gray'}>
+                  {/* TODO: date-pickerのstartとendで表示する */}
                   {travelink.date}~0000/00/00
                 </Box>
                 <Box>
@@ -102,7 +103,11 @@ const Home = () => {
                 </Box>
                 <Flex alignContent={'baseline'}>
                   <Flex>
-                    <Avatar w={'2.4rem'} h={'2.4rem'} src={travelink.ownerIcon} />
+                    <Avatar
+                      w={'2.4rem'}
+                      h={'2.4rem'}
+                      src={travelink.ownerIcon}
+                    />
 
                     <Box paddingLeft={'1rem'} fontSize={'md'}>
                       {travelink.ownerName}

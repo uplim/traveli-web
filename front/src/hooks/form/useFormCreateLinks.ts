@@ -79,7 +79,6 @@ export const useFormCreateLinks = () => {
       if (image) {
         downloadUrl = await uploadImage(image)
       }
-      // if (!ownerProfile) return
       const res = await createTravelink(
         {
           ...data,
