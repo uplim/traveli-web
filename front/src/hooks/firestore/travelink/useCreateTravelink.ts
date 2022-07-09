@@ -17,7 +17,7 @@ type Inputs = {
   canEdit: boolean
 }
 
-export const usePostTravelink = async (data: Inputs, uid: string) => {
+export const useCreateTravelink = async (data: Inputs, uid: string) => {
   const db = getFirestore()
   const ref = doc(collection(db, 'travelinks'))
   await setDoc(ref, {
