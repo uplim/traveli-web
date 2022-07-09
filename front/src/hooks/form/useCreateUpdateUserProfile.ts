@@ -114,6 +114,9 @@ export const useCreateUpdateUserProfile = () => {
         }
 
         createProfileIfNotFound(req)
+
+        // TODO: アラートをいい感じに表示する
+        alert('保存されました')
       }
     } catch (err) {
       setError(true)
