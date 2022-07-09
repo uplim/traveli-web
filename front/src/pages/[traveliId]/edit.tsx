@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-const LinkList = () => {
+const LinkEdit = () => {
   return (
     <>
-      <p>LinkListページ</p>
+      <p>Traevelink編集ページ！</p>
       <Link href="/edit" passHref>
         <a href="replace">
           <p>/edit</p>
@@ -13,4 +13,4 @@ const LinkList = () => {
   )
 }
 
-export default LinkList
+export default LinkEdit
