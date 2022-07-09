@@ -53,7 +53,7 @@ export const useFormCreateLinks = () => {
 
   const postTravelink = usePostTravelink
 
-  const { fields, append } = useFieldArray({
+  const { fields, append, remove } = useFieldArray({
     name: 'links',
     control: control
   })
@@ -84,6 +84,7 @@ export const useFormCreateLinks = () => {
     handleSubmit,
     fields,
     append,
+    remove,
     onSubmit,
     errors,
     disabled,

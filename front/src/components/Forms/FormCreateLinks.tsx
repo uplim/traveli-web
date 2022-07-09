@@ -18,6 +18,7 @@ export const FormCreateLinks = () => {
     handleSubmit,
     fields,
     append,
+    remove,
     onSubmit,
     errors,
     disabled,
@@ -78,6 +79,14 @@ export const FormCreateLinks = () => {
           }}
         >
           append
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            remove(1)
+          }}
+        >
+          remove
         </button>
         <FormControl display={'flex'} alignItems={'center'}>
           <FormLabel>他のユーザに編集を許可する</FormLabel>
