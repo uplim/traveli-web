@@ -1,14 +1,18 @@
-import { Box, Flex, Heading, Spacer } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
+import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 
 const Home = () => {
   const currentUser = useRecoilValue(currentUserState)
+  const { travelinkList } = useGetTravelinkList()
+  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
+  console.log('op:', ownerProfile)
 
   return (
     <>
-      {!currentUser ? (
+      {!currentUser && !ownerProfile ? (
         <>ローディングアイコン</>
       ) : (
         <>
@@ -22,7 +26,11 @@ const Home = () => {
               h={'1.8rem'}
             />
             <Spacer />
-            <Box w={'4rem'} h={'4rem'} borderRadius={'50%'} bgColor={'gray'} />
+            <Avatar
+              w={'4rem'}
+              h={'4rem'}
+              src={ownerProfile ? ownerProfile.icon : ''}
+            />
           </Flex>
 
           {/* TODO:shadowの色を変数に置き換える */}
@@ -59,54 +67,58 @@ const Home = () => {
             </Box>
           </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
-          <Box
-            w={'100%'}
-            h={'23.9rem'}
-            borderRadius={'10'}
-            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-            bgColor={'white'}
-          >
+          {travelinkList.map((travelink, i) => (
             <Box
-              bgImage={'/images/dummy.png'}
-              h={'12.9rem'}
-              borderTopRadius={'10'}
-            />
-            <Box
-              paddingTop={'1.1rem'}
-              paddingLeft={'1.8rem'}
-              paddingRight={'1.8rem'}
-              borderBottomRadius={'10'}
+              w={'100%'}
+              h={'23.9rem'}
+              borderRadius={'10'}
+              filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+              bgColor={'white'}
+              key={i}
             >
-              <Box fontSize={'xs'} color={'gray'}>
-                0000/00/00~0000/00/00
-              </Box>
-              <Box>
-                <Heading
-                  paddingTop={'0.6rem'}
-                  paddingBottom={'1.4rem'}
-                  fontSize={'lg'}
-                >
-                  いつメンで東京旅行
-                </Heading>
-              </Box>
-              <Flex alignContent={'baseline'}>
-                <Flex>
-                  <Box
-                    w={'2.4rem'}
-                    h={'2.4rem'}
-                    borderRadius={'50%'}
-                    bgColor={'gray'}
-                  />
-                  <Box paddingLeft={'1rem'} fontSize={'md'}>
-                    Piyo
-                  </Box>
-                </Flex>
+              <Box
+                bgImage={travelink.thumbnail}
+                h={'12.9rem'}
+                borderTopRadius={'10'}
+              />
+              <Box
+                paddingTop={'1.1rem'}
+                paddingLeft={'1.8rem'}
+                paddingRight={'1.8rem'}
+                borderBottomRadius={'10'}
+              >
+                <Box fontSize={'xs'} color={'gray'}>
+                  {travelink.date}~0000/00/00
+                </Box>
+                <Box>
+                  <Heading
+                    paddingTop={'0.6rem'}
+                    paddingBottom={'1.4rem'}
+                    fontSize={'lg'}
+                  >
+                    {travelink.title}
+                  </Heading>
+                </Box>
+                <Flex alignContent={'baseline'}>
+                  <Flex>
+                    <Avatar
+                      w={'2.4rem'}
+                      h={'2.4rem'}
+                      src={ownerProfile ? ownerProfile.icon : ''}
+                    />
 
-                <Spacer />
-                <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-              </Flex>
+                    <Box paddingLeft={'1rem'} fontSize={'md'}>
+                      {ownerProfile ? ownerProfile.name : ''}
+                    </Box>
+                  </Flex>
+
+                  <Spacer />
+
+                  <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
+                </Flex>
+              </Box>
             </Box>
-          </Box>
+          ))}
         </>
       )}
     </>
