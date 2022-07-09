@@ -102,14 +102,10 @@ const Home = () => {
                 </Box>
                 <Flex alignContent={'baseline'}>
                   <Flex>
-                    <Avatar
-                      w={'2.4rem'}
-                      h={'2.4rem'}
-                      src={ownerProfile ? ownerProfile.icon : ''}
-                    />
+                    <Avatar w={'2.4rem'} h={'2.4rem'} src={travelink.ownerIcon} />
 
                     <Box paddingLeft={'1rem'} fontSize={'md'}>
-                      {ownerProfile ? ownerProfile.name : ''}
+                      {travelink.ownerName}
                     </Box>
                   </Flex>
 

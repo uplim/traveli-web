@@ -3,15 +3,15 @@ import {
   doc,
   getFirestore,
   setDoc,
-  getDoc,
   serverTimestamp
 } from 'firebase/firestore'
-import { useGetOwnerProfile } from './useGetOwnerProfile'
 
 type Inputs = {
   title: string
   date: string
   thumbnail: string
+  ownerName: string
+  ownerIcon: string
   links: {
     url: string
     label: string
@@ -20,8 +20,6 @@ type Inputs = {
 }
 
 export const useCreateTravelink = async (data: Inputs, uid: string) => {
-  const ownerProfile = useGetOwnerProfile(uid)
-  if (!ownerProfile) return
   const db = getFirestore()
   const ref = doc(collection(db, 'travelinks'))
 
@@ -29,7 +27,6 @@ export const useCreateTravelink = async (data: Inputs, uid: string) => {
     ...data,
     id: ref.id,
     ownerId: uid,
-    ...ownerProfile,
     createdAt: serverTimestamp(),
     updatedAt: serverTimestamp()
   })

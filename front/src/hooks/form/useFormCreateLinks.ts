@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
-import { useCreateTravelink } from '@/hooks/firestore'
+import { useCreateTravelink, useGetOwnerProfile } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
@@ -60,6 +60,8 @@ export const useFormCreateLinks = () => {
 
   const currentUser = useRecoilValue(currentUserState)
 
+  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
+
   const createTravelink = useCreateTravelink
 
   const { fields, append, remove } = useFieldArray({
@@ -69,6 +71,7 @@ export const useFormCreateLinks = () => {
 
   const onSubmit = async (data: Inputs) => {
     if (!currentUser) return
+    if (!ownerProfile) return
     let downloadUrl = ''
 
     try {
@@ -76,8 +79,14 @@ export const useFormCreateLinks = () => {
       if (image) {
         downloadUrl = await uploadImage(image)
       }
+      // if (!ownerProfile) return
       const res = await createTravelink(
-        { ...data, thumbnail: downloadUrl },
+        {
+          ...data,
+          thumbnail: downloadUrl,
+          ownerIcon: ownerProfile?.icon,
+          ownerName: ownerProfile?.name
+        },
         currentUser.uid
       )
       router.push(router.basePath + res)

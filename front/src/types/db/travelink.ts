@@ -10,9 +10,11 @@ export type TravelinkRequestType = firestore.DocumentData & {
   canEdit: boolean
   createdAt: string
   updatedAt: string
-  name:string
-  icon:string
+  name: string
+  icon: string
   id: string
   ownerId: string
+  // ownerName: string
+  // ownerIcon: string
   thumbnail: string
 }
