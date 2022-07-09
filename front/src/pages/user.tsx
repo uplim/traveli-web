@@ -123,7 +123,7 @@ const User = () => {
         //TODO: 画像のちらつき
         <>ローディングicon</>
       ) : (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <Box as={'form'} height={'100vh'} onSubmit={handleSubmit(onSubmit)} position={'relative'}>
           {error && <Alert>送信できませんでした</Alert>}
           {/* TODO:FormUserProfileに置き換え */}
           {/* Header */}
@@ -150,7 +150,7 @@ const User = () => {
                 bgColor={'base'}
               >
                 <Avatar
-                  src={iconUrl}
+                  src={image ? URL.createObjectURL(image) : iconUrl}
                   w={'12.9rem'}
                   h={'12.9rem'}
                   as={'button'}
@@ -192,17 +192,13 @@ const User = () => {
             </Flex>
 
             {/* SubmitButton */}
-            <Flex>
-              <Spacer />
-              <Flex>
-                <Button marginTop={'29.9rem'} type={'submit'} variant={'round'}>
+          </FormControl>
+ 
+                <Button
+                position={'absolute'} bottom={'12.9rem'} right={'50%'} transform={'translateX(50%)'}  type={'submit'} variant={'round'}>
                   決定
                 </Button>
-              </Flex>
-              <Spacer />
-            </Flex>
-          </FormControl>
-        </form>
+        </Box>
       )}
     </>
   )
