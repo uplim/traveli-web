@@ -64,12 +64,16 @@ export const useFormCreateLinks = () => {
 
     try {
       setDisabled.on()
-      if (image) uploadImage(image)
-      const res = await postTravelink(
-        { ...data, thumbnail: downloadUrl },
-        currentUser.uid
-      )
-      router.push(router.basePath + res)
+      new Promise<void>((resolve) => {
+        if (image) uploadImage(image)
+        resolve()
+      }).then(async () => {
+        const res = await postTravelink(
+          { ...data, thumbnail: downloadUrl },
+          currentUser.uid
+        )
+        router.push(router.basePath + res)
+      })
     } catch (err) {
       console.error(err)
     } finally {
