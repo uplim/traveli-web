@@ -23,7 +23,7 @@ export const FormUserProfile = () => {
     error,
     iconUrl,
     name,
-    image,
+    image
   } = useCreateUpdateUserProfile()
 
   const inputRef = useRef<HTMLInputElement>(null)
