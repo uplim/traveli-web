@@ -75,6 +75,7 @@ const Home = () => {
               filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
               bgColor={'white'}
               key={i}
+              marginBottom={'2.2rem'}
             >
               <Box
                 bgImage={travelink.thumbnail}
