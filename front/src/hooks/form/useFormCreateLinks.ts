@@ -44,7 +44,16 @@ export const useFormCreateLinks = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>({
-    resolver: yupResolver(schema)
+    resolver: yupResolver(schema),
+    // 初めにからのfield一つ表示されるようにする
+    defaultValues: {
+      links: [
+        {
+          url: '',
+          label: ''
+        }
+      ]
+    }
   })
 
   const { uploadImage, image, handleChangeImage } = useUploadImage()
