@@ -927,7 +927,7 @@ function _interopRequireWildcard(obj) {
 }
 let detectDomainLocale;
 if (false) {}
-const basePath =  false || "";
+const basePath = "/home" || 0;
 function buildCancellationError() {
     return Object.assign(new Error("Route Cancelled"), {
         cancelled: true

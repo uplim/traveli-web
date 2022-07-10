@@ -8,16 +8,62 @@ exports.modules = {
 
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "h": () => (/* reexport safe */ _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_1__.h),
-/* harmony export */   "n": () => (/* reexport safe */ _hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__.n)
+/* harmony export */   "O_": () => (/* reexport safe */ _hooks_firestore_travelink_useGetTravelinkList__WEBPACK_IMPORTED_MODULE_1__.O),
+/* harmony export */   "h0": () => (/* reexport safe */ _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_2__.h),
+/* harmony export */   "mw": () => (/* reexport safe */ _hooks_firestore_profile_useGetOwnerProfile__WEBPACK_IMPORTED_MODULE_3__.m),
+/* harmony export */   "no": () => (/* reexport safe */ _hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__.n)
 /* harmony export */ });
 /* harmony import */ var _hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9675);
-/* harmony import */ var _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6980);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__, _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_1__]);
-([_hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__, _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_1__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _hooks_firestore_travelink_useGetTravelinkList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9001);
+/* harmony import */ var _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6980);
+/* harmony import */ var _hooks_firestore_profile_useGetOwnerProfile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8323);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__, _hooks_firestore_travelink_useGetTravelinkList__WEBPACK_IMPORTED_MODULE_1__, _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_2__, _hooks_firestore_profile_useGetOwnerProfile__WEBPACK_IMPORTED_MODULE_3__]);
+([_hooks_firestore_travelink_useGetTravelink__WEBPACK_IMPORTED_MODULE_0__, _hooks_firestore_travelink_useGetTravelinkList__WEBPACK_IMPORTED_MODULE_1__, _hooks_firestore_travelink_useCreateTravelink__WEBPACK_IMPORTED_MODULE_2__, _hooks_firestore_profile_useGetOwnerProfile__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 // travelink
 
 
+
+
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 8323:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "m": () => (/* binding */ useGetOwnerProfile)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1492);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_firestore__WEBPACK_IMPORTED_MODULE_1__]);
+firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+const useGetOwnerProfile = (uid)=>{
+    const { 0: ownerProfile , 1: setOwnerProfile  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        const loadOwnerProfile = async ()=>{
+            if (!uid) return;
+            const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
+            const ownerProfileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(db, "profiles", uid);
+            const ownerProfileDoc = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(ownerProfileRef);
+            if (!ownerProfileDoc.exists()) {
+                return;
+            }
+            const getOwnerProfile = ownerProfileDoc.data();
+            setOwnerProfile(getOwnerProfile);
+        };
+        loadOwnerProfile();
+    }, []);
+    return {
+        ownerProfile
+    };
+};
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
@@ -83,20 +129,66 @@ const useGetTravelink = ()=>{
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
         if (!currentUser) return;
         if (!traveliId) return;
-        const loadTravelinks = async ()=>{
+        const loadTravelink = async ()=>{
             const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
             const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "travelinks"), traveliId);
             const travelinksDoc = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(ref);
             if (!travelinksDoc.exists()) {
                 return;
             }
-            const getTravelinks = travelinksDoc.data();
-            setTravelink(getTravelinks);
+            const getTravelink = travelinksDoc.data();
+            setTravelink(getTravelink);
         };
-        loadTravelinks();
+        loadTravelink();
     }, []);
     return {
         travelink
+    };
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 9001:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "O": () => (/* binding */ useGetTravelinkList)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1492);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9755);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3125);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_firestore__WEBPACK_IMPORTED_MODULE_1__]);
+firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+
+const useGetTravelinkList = ()=>{
+    const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
+    const { 0: travelinkList , 1: setTravelinkList  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        if (!currentUser) return;
+        const loadTravelinkList = async ()=>{
+            const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
+            const travelinksRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "travelinks");
+            const travelinksQuery = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.query)(travelinksRef, (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.where)("ownerId", "==", currentUser.uid));
+            const travelinksSnapshot = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDocs)(travelinksQuery);
+            const getTravelinkList = travelinksSnapshot.docs.map((doc)=>{
+                return doc.data();
+            });
+            setTravelinkList(getTravelinkList);
+        };
+        loadTravelinkList();
+    }, []);
+    return {
+        travelinkList
     };
 };
 

@@ -158,63 +158,128 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7658);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_2__]);
-_hooks_form__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5456);
+/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_5__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_3__]);
+_hooks_form__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
 
 
 
 const FormUserProfile = ()=>{
-    const { onSubmit , handleSubmit , register , handleChangeIcon , error , iconUrl , name , image , errors  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_2__/* .useCreateUpdateUserProfile */ .t)();
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_5__.useRouter)();
+    console.log(router);
+    console.log("+", router.basePath, "/create");
+    console.log(router.asPath);
+    const { onSubmit , handleSubmit , register , handleChangeIcon , error , iconUrl , name , image  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useCreateUpdateUserProfile */ .t)();
+    const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_4__.useRef)(null);
+    const onClickButton = ()=>{
+        inputRef.current?.click();
+    };
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("form", {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+            as: "form",
+            height: "100vh",
             onSubmit: handleSubmit(onSubmit),
+            position: "relative",
             children: [
                 error && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Alert, {
                     children: "\u9001\u4FE1\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F"
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("p", {
-                    children: "\u30C6\u30B9\u30C8\u30DA\u30FC\u30B8"
-                }),
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
-                    isInvalid: !!errors.name,
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                    w: "100%",
+                    h: "6.3rem",
+                    justify: "center",
+                    align: "center",
                     children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
-                            htmlFor: "name",
-                            children: "\u540D\u524D"
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
+                            href: router.basePath + "/home",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.IconButton, {
+                                "aria-label": "return",
+                                size: "lg",
+                                icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_2__/* .IconReturn */ .BK, {
+                                    w: "2.2rem",
+                                    h: "2.2rem"
+                                })
+                            })
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-                            id: "name",
-                            defaultValue: name,
-                            ...register("name")
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Spacer, {}),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                            color: "black",
+                            fontSize: "md",
+                            fontWeight: "bold",
+                            children: "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB"
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormErrorMessage, {
-                            children: errors.name && errors.name.message
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Spacer, {}),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                            w: "2.2rem",
+                            h: "2.2rem"
                         })
                     ]
                 }),
                 /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
                     children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
-                            htmlFor: "icon",
-                            children: "\u30A2\u30A4\u30B3\u30F3"
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                            align: "center",
+                            justify: "center",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                borderRadius: "50%",
+                                filter: "drop-shadow(4px 4px 10px #E4EBEE);",
+                                marginBottom: "2.4rem",
+                                bgColor: "base",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
+                                    src: image ? URL.createObjectURL(image) : iconUrl,
+                                    w: "12.9rem",
+                                    h: "12.9rem",
+                                    as: "button",
+                                    onClick: onClickButton
+                                })
+                            })
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Avatar, {
-                            src: image ? URL.createObjectURL(image) : iconUrl,
-                            w: "6rem",
-                            h: "6rem"
-                        }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.VisuallyHiddenInput, {
+                            onChange: handleChangeIcon,
+                            ref: inputRef,
                             id: "icon",
                             type: "file",
-                            accept: "image/*",
-                            onChange: handleChangeIcon
+                            accept: "image/*"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                            htmlFor: "name",
+                            fontSize: "md",
+                            children: "\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0"
+                        }),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                            align: "center",
+                            justify: "center",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+                                variant: "filled",
+                                w: "34.4rem",
+                                h: "4.6rem",
+                                borderRightRadius: "10rem",
+                                borderLeftRadius: "10rem",
+                                bgColor: "white",
+                                filter: "drop-shadow(4px 4px 10px #E4EBEE)",
+                                id: "name",
+                                defaultValue: name,
+                                ...register("name")
+                            })
                         })
                     ]
                 }),
                 /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                    position: "absolute",
+                    bottom: "12.9rem",
+                    right: "50%",
+                    transform: "translateX(50%)",
                     type: "submit",
-                    children: "Submit"
+                    variant: "round",
+                    children: "\u6C7A\u5B9A"
                 })
             ]
         })
@@ -376,6 +441,8 @@ const useCreateUpdateUserProfile = ()=>{
                     icon: ""
                 };
                 createProfileIfNotFound(req);
+                // TODO: アラートをいい感じに表示する
+                alert("\u4FDD\u5B58\u3055\u308C\u307E\u3057\u305F");
             }
         } catch (err) {
             setError(true);
@@ -458,13 +525,15 @@ const useFormCreateLinks = ()=>{
     });
     const { uploadImage , image , handleChangeImage  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_8__/* .useUploadImage */ .H)();
     const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_7__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_6__/* .currentUserState */ .y);
-    const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateTravelink */ .h;
+    const { ownerProfile  } = (0,_hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useGetOwnerProfile */ .mw)(currentUser?.uid);
+    const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateTravelink */ .h0;
     const { fields , append , remove  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useFieldArray)({
         name: "links",
         control: control
     });
     const onSubmit = async (data)=>{
         if (!currentUser) return;
+        if (!ownerProfile) return;
         let downloadUrl = "";
         try {
             setDisabled.on();
@@ -473,7 +542,9 @@ const useFormCreateLinks = ()=>{
             }
             const res = await createTravelink({
                 ...data,
-                thumbnail: downloadUrl
+                thumbnail: downloadUrl,
+                ownerIcon: ownerProfile?.icon,
+                ownerName: ownerProfile?.name
             }, currentUser.uid);
             router.push(router.basePath + res);
         } catch (err) {
