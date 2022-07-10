@@ -1,10 +1,13 @@
-import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Avatar, Link } from '@chakra-ui/react'
+import NextLink from 'next/link'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
+import { useRouter } from 'next/router'
 
 const Home = () => {
+  const router = useRouter()
   const currentUser = useRecoilValue(currentUserState)
   const { travelinkList } = useGetTravelinkList()
   const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
@@ -68,58 +71,60 @@ const Home = () => {
           </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
           {travelinkList.map((travelink, i) => (
-            <Box
-              w={'100%'}
-              h={'23.9rem'}
-              borderRadius={'10'}
-              filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-              bgColor={'white'}
-              key={i}
-              marginBottom={'2.2rem'}
-            >
+            <NextLink href={router.basePath + travelink.id} key={i}>
               <Box
-                bgImage={travelink.thumbnail}
-                h={'12.9rem'}
-                borderTopRadius={'10'}
-              />
-              <Box
-                paddingTop={'1.1rem'}
-                paddingLeft={'1.8rem'}
-                paddingRight={'1.8rem'}
-                borderBottomRadius={'10'}
+                w={'100%'}
+                h={'23.9rem'}
+                borderRadius={'10'}
+                filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+                bgColor={'white'}
+                marginBottom={'2.2rem'}
               >
-                <Box fontSize={'xs'} color={'gray'}>
-                  {/* TODO: date-pickerのstartとendで表示する */}
-                  {travelink.date}~0000/00/00
-                </Box>
-                <Box>
-                  <Heading
-                    paddingTop={'0.6rem'}
-                    paddingBottom={'1.4rem'}
-                    fontSize={'lg'}
-                  >
-                    {travelink.title}
-                  </Heading>
-                </Box>
-                <Flex alignContent={'baseline'}>
-                  <Flex>
-                    <Avatar
-                      w={'2.4rem'}
-                      h={'2.4rem'}
-                      src={travelink.ownerIcon}
-                    />
+                <Box
+                  bgImage={travelink.thumbnail}
+                  h={'12.9rem'}
+                  borderTopRadius={'10'}
+                />
+                <Box
+                  paddingTop={'1.1rem'}
+                  paddingLeft={'1.8rem'}
+                  paddingRight={'1.8rem'}
+                  borderBottomRadius={'10'}
+                >
+                  <Box fontSize={'xs'} color={'gray'}>
+                    {/* TODO: date-pickerのstartとendで表示する */}
+                    {travelink.date}~0000/00/00
+                  </Box>
+                  <Box>
+                    <Heading
+                      paddingTop={'0.6rem'}
+                      paddingBottom={'1.4rem'}
+                      fontSize={'lg'}
+                    >
+                      {travelink.title}
+                    </Heading>
+                  </Box>
+                  <Flex alignContent={'baseline'}>
+                    <Flex>
+                      <Avatar
+                        w={'2.4rem'}
+                        h={'2.4rem'}
+                        src={travelink.ownerIcon}
+                      />
 
-                    <Box paddingLeft={'1rem'} fontSize={'md'}>
-                      {travelink.ownerName}
-                    </Box>
+                      <Box paddingLeft={'1rem'} fontSize={'md'}>
+                        {travelink.ownerName}
+                      </Box>
+                    </Flex>
+
+                    <Spacer />
+                    <NextLink href={router.basePath + '/user'}>
+                      <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
+                    </NextLink>
                   </Flex>
-
-                  <Spacer />
-
-                  <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-                </Flex>
+                </Box>
               </Box>
-            </Box>
+            </NextLink>
           ))}
         </>
       )}

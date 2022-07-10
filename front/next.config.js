@@ -1,5 +1,6 @@
 module.exports = {
   distDir: 'build',
+  basePath: '/home',
   optimizeFonts: true,
   webpackDevMiddleware: (config) => {
     config.watchOptions = {
