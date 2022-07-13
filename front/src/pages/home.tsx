@@ -5,6 +5,7 @@ import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
+import { ButtonIconRound } from '@/components/Buttons/ButtonIconRound'
 
 const Home = () => {
   const router = useRouter()
@@ -34,7 +35,19 @@ const Home = () => {
               src={ownerProfile ? ownerProfile.icon : ''}
             />
           </Flex>
-
+          
+          <ButtonIconRound
+            position={'absolute'}
+            marginBottom={'4.8rem'}
+            bottom={0}
+            right={'1.6rem'}
+            iconType={'plus'}
+            w={'6.4rem'}
+            h={'6.4rem'}
+            color={'brandBlue'}
+            zIndex={1}
+            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+          />
           {/* TODO:shadowの色を変数に置き換える */}
           {/* TODO: date-pickerのstartでええ感じにsortする */}
           <Box
