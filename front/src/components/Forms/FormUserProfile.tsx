@@ -9,9 +9,9 @@ import {
   Flex,
   Spacer,
   VisuallyHiddenInput,
-  Link,
   IconButton
 } from '@chakra-ui/react'
+import Link from 'next/link'
 import { IconReturn } from '@/components/Icons'
 import { useCreateUpdateUserProfile } from '@/hooks/form'
 import { useRef } from 'react'
@@ -19,9 +19,6 @@ import { useRouter } from 'next/router'
 
 export const FormUserProfile = () => {
   const router = useRouter()
-  console.log(router)
-  console.log('+', router.basePath, '/create')
-  console.log(router.asPath)
 
   const {
     onSubmit,
@@ -52,7 +49,10 @@ export const FormUserProfile = () => {
         {/* Header */}
 
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-          <Link href={router.basePath + '/home'}>
+          <Link href={router.basePath + '/home'} passHref>
+            {/* TODO:Warningエラー出てる */}
+            {/* 原因解決：https://zenn.dev/hiro__dev/scraps/d4b531165ad335 */}
+
             <IconButton
               aria-label="return"
               size="lg"
