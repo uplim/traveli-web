@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Spacer, Avatar, Link } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
 import NextLink from 'next/link'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
@@ -35,7 +35,7 @@ const Home = () => {
               src={ownerProfile ? ownerProfile.icon : ''}
             />
           </Flex>
-          
+
           <ButtonIconRound
             position={'absolute'}
             marginBottom={'4.8rem'}
