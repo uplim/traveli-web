@@ -38,9 +38,21 @@ const Home = () => {
 
           {/* TODO:shadowの色を変数に置き換える */}
           {/* TODO: date-pickerのstartでええ感じにsortする */}
-          <CardLink icon={''} label={'じゃらん'} url={'https://www.jalan.net/news/article/100005/'} />
-          <CardLink icon={''} label={'じゃらんじゃらんじゃらん'} url={'https://www.jalan.net/news/article/100005/'} />
-          <CardLink icon={''} label={'じゃらんじゃらんじゃらんじゃらんじゃらん'} url={'https://www.jalan.net/news/article/100005/'} />
+          <CardLink
+            icon={''}
+            label={'じゃらん'}
+            url={'https://www.jalan.net/news/article/100005/'}
+          />
+          <CardLink
+            icon={''}
+            label={'じゃらんじゃらんじゃらん'}
+            url={'https://www.jalan.net/news/article/100005/'}
+          />
+          <CardLink
+            icon={''}
+            label={'じゃらんじゃらんじゃらんじゃらんじゃらん'}
+            url={'https://www.jalan.net/news/article/100005/'}
+          />
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}

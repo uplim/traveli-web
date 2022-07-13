@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Spacer, Text } from '@chakra-ui/react'
+import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
 type CardLinkProps = {
@@ -23,9 +23,17 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
       >
         {/* TODO: 長文のラベルの最後の文字を...に */}
         {/* TODO: アイコンPropsの受け取り */}
-        <Image alt={''} w={'3.7rem'} h={'3.7rem'} position={'absolute'} marginLeft={'0.8rem'} />
+        <Image
+          alt={''}
+          w={'3.7rem'}
+          h={'3.7rem'}
+          position={'absolute'}
+          marginLeft={'0.8rem'}
+        />
         <Box w={'70.8%'} mx={'auto'}>
-            <Text textAlign={'center'} fontSize={'md'}>{label}</Text>
+          <Text textAlign={'center'} fontSize={'md'}>
+            {label}
+          </Text>
         </Box>
       </Flex>
     </Link>
