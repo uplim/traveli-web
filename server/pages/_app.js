@@ -210,8 +210,7 @@ const customTheme = (0,react_.extendTheme)({
                 }
             },
             "h1,h2,h3,h4,h5,h6,button,input,textarea,a,label,div": {
-                transform: "rotate(0.03deg)",
-                cursor: "pointer"
+                transform: "rotate(0.03deg)"
             }
         }
     },

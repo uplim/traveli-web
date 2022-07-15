@@ -177,7 +177,7 @@ _hooks_form__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_async_dependencies__.then 
 
 const FormUserProfile = ()=>{
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_6__.useRouter)();
-    const { onSubmit , handleSubmit , register , handleChangeIcon , error , iconUrl , name , image  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_4__/* .useCreateUpdateUserProfile */ .t)();
+    const { onSubmit , handleSubmit , register , handleChangeIcon , error , iconUrl , name , image , disabled  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_4__/* .useCreateUpdateUserProfile */ .t)();
     const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_5__.useRef)(null);
     const onClickButton = ()=>{
         inputRef.current?.click();
@@ -186,7 +186,6 @@ const FormUserProfile = ()=>{
         children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
             as: "form",
             height: "100vh",
-            onSubmit: handleSubmit(onSubmit),
             position: "relative",
             children: [
                 error && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Alert, {
@@ -238,7 +237,6 @@ const FormUserProfile = ()=>{
                                     src: image ? URL.createObjectURL(image) : iconUrl,
                                     w: "12.9rem",
                                     h: "12.9rem",
-                                    as: "button",
                                     onClick: onClickButton
                                 })
                             })
@@ -278,8 +276,9 @@ const FormUserProfile = ()=>{
                     bottom: "12.9rem",
                     right: "50%",
                     transform: "translateX(50%)",
-                    type: "submit",
+                    disabled: disabled,
                     variant: "round",
+                    onClick: handleSubmit(onSubmit),
                     children: "\u6C7A\u5B9A"
                 })
             ]
@@ -350,8 +349,11 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5609);
 /* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1908);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, firebase_storage__WEBPACK_IMPORTED_MODULE_2__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__]);
 ([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, firebase_storage__WEBPACK_IMPORTED_MODULE_2__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -373,6 +375,7 @@ const useCreateUpdateUserProfile = ()=>{
     const { 0: name , 1: setName  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
     const { 0: iconUrl , 1: setIconUrl  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
     const { 0: error , 1: setError  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__.useBoolean)();
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
         const getProfile = async ()=>{
             if (!currentUser) return;
@@ -425,6 +428,7 @@ const useCreateUpdateUserProfile = ()=>{
         // TODO: いるかも？
         // event.preventDefault()
         try {
+            setDisabled.on();
             if (image) {
                 const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.ref)(firestorage, encodeURI(image.name));
                 (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.uploadBytes)(imageRef, image).then(()=>{
@@ -447,6 +451,8 @@ const useCreateUpdateUserProfile = ()=>{
             }
         } catch (err) {
             setError(true);
+        } finally{
+            setDisabled.off();
         }
     };
     return {
@@ -458,7 +464,8 @@ const useCreateUpdateUserProfile = ()=>{
         iconUrl,
         name,
         image,
-        errors
+        errors,
+        disabled
     };
 };
 
