@@ -3,11 +3,10 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
-import { useCreateTravelink, useGetTravelink } from '@/hooks/firestore'
+import { useCreateTravelink } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
-import { useEffect } from 'react'
 import { TravelinkRequestType } from '@/types/db'
 
 type Inputs = {
