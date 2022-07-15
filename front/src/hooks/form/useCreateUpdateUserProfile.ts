@@ -30,7 +30,7 @@ export const useCreateUpdateUserProfile = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>({ resolver: yupResolver(schema) })
-  
+
   const currentUser = useRecoilValue(currentUserState)
   const firestorage = getStorage()
   const [image, setImage] = useState<File | null>()
@@ -123,7 +123,7 @@ export const useCreateUpdateUserProfile = () => {
       }
     } catch (err) {
       setError(true)
-    }finally{
+    } finally {
       setDisabled.off()
     }
   }
