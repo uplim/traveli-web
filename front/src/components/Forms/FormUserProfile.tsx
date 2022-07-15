@@ -28,7 +28,8 @@ export const FormUserProfile = () => {
     error,
     iconUrl,
     name,
-    image
+    image,
+    disabled
   } = useCreateUpdateUserProfile()
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -38,12 +39,7 @@ export const FormUserProfile = () => {
 
   return (
     <>
-      <Box
-        as={'form'}
-        height={'100vh'}
-        onSubmit={handleSubmit(onSubmit)}
-        position={'relative'}
-      >
+      <Box as={'form'} height={'100vh'} position={'relative'}>
         {error && <Alert>送信できませんでした</Alert>}
         {/* TODO:FormUserProfileに置き換え */}
         {/* Header */}
@@ -57,7 +53,7 @@ export const FormUserProfile = () => {
               aria-label="return"
               size="lg"
               icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
-            ></IconButton>
+            />
           </Link>
           <Spacer />
           <Box color={'black'} fontSize={'md'} fontWeight={'bold'}>
@@ -81,7 +77,6 @@ export const FormUserProfile = () => {
                 src={image ? URL.createObjectURL(image) : iconUrl}
                 w={'12.9rem'}
                 h={'12.9rem'}
-                as={'button'}
                 onClick={onClickButton}
               />
             </Box>
@@ -120,8 +115,9 @@ export const FormUserProfile = () => {
           bottom={'12.9rem'}
           right={'50%'}
           transform={'translateX(50%)'}
-          type={'submit'}
+          disabled={disabled}
           variant={'round'}
+          onClick={handleSubmit(onSubmit)}
         >
           決定
         </Button>
