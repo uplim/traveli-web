@@ -15,8 +15,9 @@ export const useRoleEdit = () => {
     setIsLoading.on()
     if (!travelink) return
     if (!currentUser) return
+    // ownerではない、編集可能でもない場合は、404に飛ばす
     if (currentUser.uid !== travelink.ownerId && !travelink.canEdit)
-      router.push('/')
+      router.push('/404')
     else setIsLoading.off()
   }, [travelink])
 
