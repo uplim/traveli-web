@@ -1,5 +1,9 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
+<<<<<<< HEAD
 import NextLink from 'next/link'
+=======
+import Link from 'next/link'
+>>>>>>> cbfeacd6587f1bd826bd4994406f966634a04260
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
@@ -85,7 +89,8 @@ const Home = () => {
           </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
           {travelinkList.map((travelink, i) => (
-            <NextLink href={router.basePath + travelink.id} key={i}>
+            <Link href={router.basePath + travelink.id} key={i} passHref>
+              {/* <a href="replace"> */}
               <Box
                 w={'100%'}
                 h={'23.9rem'}
@@ -132,13 +137,14 @@ const Home = () => {
                     </Flex>
 
                     <Spacer />
-                    <NextLink href={router.basePath + '/user'}>
+                    <Link href={router.basePath + '/user'} passHref>
                       <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-                    </NextLink>
+                    </Link>
                   </Flex>
                 </Box>
               </Box>
-            </NextLink>
+              {/* </a> */}
+            </Link>
           ))}
         </>
       )}
