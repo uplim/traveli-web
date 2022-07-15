@@ -1,16 +1,17 @@
-import Link from 'next/link'
+import { FormUpdateLinks } from '@/components/Forms/FormUpdateLinks'
+import { useGetTravelink } from '@/hooks/firestore'
 
-const LinkEdit = () => {
+const LinkList = () => {
+  const { travelink } = useGetTravelink()
   return (
     <>
-      <p>Traevelink編集ページ！</p>
-      <Link href="/edit" passHref>
-        <a href="replace">
-          <p>/edit</p>
-        </a>
-      </Link>
+      {!travelink ? (
+        <>ローディングアイコン</>
+      ) : (
+        <FormUpdateLinks data={travelink} />
+      )}
     </>
   )
 }
 
-export default LinkEdit
+export default LinkList
