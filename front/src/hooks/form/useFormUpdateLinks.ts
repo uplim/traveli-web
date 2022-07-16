@@ -3,7 +3,7 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
-import { useCreateTravelink } from '@/hooks/firestore'
+import { useUpdateTravelink } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
@@ -39,6 +39,8 @@ const schema = yup.object({
 export const useFormUpdateLinks = (data: TravelinkRequestType) => {
   const [disabled, setDisabled] = useBoolean()
   const router = useRouter()
+  const { traveliId } = router.query
+
   const {
     register,
     control,
@@ -51,11 +53,11 @@ export const useFormUpdateLinks = (data: TravelinkRequestType) => {
     }
   })
 
-  const { uploadImage, image, handleChangeImage } = useUploadImage()
+  const { uploadImage, image, handleChangeImage, isImageChanged } = useUploadImage()
 
   const currentUser = useRecoilValue(currentUserState)
 
-  const createTravelink = useCreateTravelink
+  const updateTravelink = useUpdateTravelink
 
   const { fields, append, remove } = useFieldArray({
     name: 'links',
@@ -64,18 +66,19 @@ export const useFormUpdateLinks = (data: TravelinkRequestType) => {
 
   const onSubmit = async (data: Inputs) => {
     if (!currentUser) return
-    let downloadUrl = ''
+
+    const req = data as TravelinkRequestType
 
     try {
       setDisabled.on()
-      if (image) {
-        downloadUrl = await uploadImage(image)
+
+      // 画像に変更が入っていたらrequest bodyに画像を含める
+      if (image && isImageChanged) {
+        const downloadUrl = await uploadImage(image)
+        req.thumbnail = downloadUrl
       }
-      const res = await createTravelink(
-        { ...data, thumbnail: downloadUrl },
-        currentUser.uid
-      )
-      router.push(router.basePath + res)
+
+      await updateTravelink(req, traveliId as string)
     } catch (err) {
       console.error(err)
     } finally {
