@@ -108,7 +108,7 @@ export const FormCreateUpdateLinks = ({
         >
           remove
         </button>
-        {isOwner && (
+        {(isOwner || formType === 'create') && (
           <FormControl display={'flex'} alignItems={'center'}>
             <FormLabel>他のユーザに編集を許可する</FormLabel>
             <Switch
