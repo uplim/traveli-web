@@ -9,7 +9,7 @@ type CardLinkProps = {
 
 export const CardLink = ({ label, url }: CardLinkProps) => {
   return (
-    <Link href={url}>
+    <a href={url} target="_blank" rel="noreferrer">
       <Flex
         position={'relative'}
         top={0}
@@ -41,6 +41,6 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
           {label}
         </Text>
       </Flex>
-    </Link>
+    </a>
   )
 }
