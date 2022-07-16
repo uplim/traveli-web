@@ -10,9 +10,22 @@ import {
   Switch,
   Image
 } from '@chakra-ui/react'
-import { useFormCreateLinks } from '@/hooks/form'
+import { useFormCreateUpdateLinks } from '@/hooks/form'
+import { TravelinkRequestType, Profile } from '@/types/db'
 
-export const FormCreateLinks = () => {
+type FormCreateUpdateLinksProps = {
+  formType: 'create' | 'update'
+  travelinkData?: TravelinkRequestType
+  ownerProfile?: Profile
+  isOwner?: boolean
+}
+
+export const FormCreateUpdateLinks = ({
+  formType,
+  travelinkData,
+  ownerProfile,
+  isOwner
+}: FormCreateUpdateLinksProps) => {
   const {
     register,
     handleSubmit,
@@ -24,7 +37,7 @@ export const FormCreateLinks = () => {
     disabled,
     image,
     handleChangeImage
-  } = useFormCreateLinks()
+  } = useFormCreateUpdateLinks(formType, travelinkData, ownerProfile)
 
   return (
     <Box>
@@ -48,7 +61,10 @@ export const FormCreateLinks = () => {
       <FormControl>
         <FormLabel>サムネイル画像（任意）</FormLabel>
         <Input type={'file'} accept="image/*" onChange={handleChangeImage} />
-        <Image alt={''} src={image ? URL.createObjectURL(image) : ''} />
+        <Image
+          alt={''}
+          src={image ? URL.createObjectURL(image) : travelinkData?.thumbnail}
+        />
       </FormControl>
       <FormControl>
         <List>
@@ -60,6 +76,7 @@ export const FormCreateLinks = () => {
                   <Input
                     isInvalid={errors.links?.[index] ? true : false}
                     {...register(`links.${index}.url`)}
+                    defaultValue={item.url}
                   />
                   <FormErrorMessage>
                     {errors.links?.[index] &&
@@ -67,7 +84,10 @@ export const FormCreateLinks = () => {
                   </FormErrorMessage>
                 </FormControl>
                 <FormLabel>ラベル</FormLabel>
-                <Input {...register(`links.${index}.label`)} />
+                <Input
+                  {...register(`links.${index}.label`)}
+                  defaultValue={item.label}
+                />
               </ListItem>
             )
           })}
@@ -88,10 +108,15 @@ export const FormCreateLinks = () => {
         >
           remove
         </button>
-        <FormControl display={'flex'} alignItems={'center'}>
-          <FormLabel>他のユーザに編集を許可する</FormLabel>
-          <Switch {...register('canEdit')} />
-        </FormControl>
+        {(isOwner || formType === 'create') && (
+          <FormControl display={'flex'} alignItems={'center'}>
+            <FormLabel>他のユーザに編集を許可する</FormLabel>
+            <Switch
+              {...register('canEdit')}
+              defaultChecked={travelinkData?.canEdit}
+            />
+          </FormControl>
+        )}
         <Button
           disabled={disabled}
           onClick={handleSubmit(onSubmit)}

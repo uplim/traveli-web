@@ -1,7 +1,5 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
 import Link from 'next/link'
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
@@ -9,13 +7,12 @@ import { CardLink } from '@/components/Cards/CardLink'
 
 const Home = () => {
   const router = useRouter()
-  const currentUser = useRecoilValue(currentUserState)
   const { travelinkList } = useGetTravelinkList()
-  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
+  const { ownerProfile } = useGetOwnerProfile()
 
   return (
     <>
-      {!currentUser && !ownerProfile ? (
+      {!ownerProfile ? (
         <>ローディングアイコン</>
       ) : (
         <>
