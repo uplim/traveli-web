@@ -17,12 +17,14 @@ type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
   travelinkData?: TravelinkRequestType
   ownerProfile?: Profile
+  isOwner?: boolean
 }
 
 export const FormCreateUpdateLinks = ({
   formType,
   travelinkData,
-  ownerProfile
+  ownerProfile,
+  isOwner
 }: FormCreateUpdateLinksProps) => {
   const {
     register,
@@ -106,13 +108,15 @@ export const FormCreateUpdateLinks = ({
         >
           remove
         </button>
-        <FormControl display={'flex'} alignItems={'center'}>
-          <FormLabel>他のユーザに編集を許可する</FormLabel>
-          <Switch
-            {...register('canEdit')}
-            defaultChecked={travelinkData?.canEdit}
-          />
-        </FormControl>
+        {isOwner && (
+          <FormControl display={'flex'} alignItems={'center'}>
+            <FormLabel>他のユーザに編集を許可する</FormLabel>
+            <Switch
+              {...register('canEdit')}
+              defaultChecked={travelinkData?.canEdit}
+            />
+          </FormControl>
+        )}
         <Button
           disabled={disabled}
           onClick={handleSubmit(onSubmit)}

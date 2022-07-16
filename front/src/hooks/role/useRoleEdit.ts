@@ -7,6 +7,7 @@ import { useRecoilValue } from 'recoil'
 
 export const useRoleEdit = () => {
   const [isLoading, setIsLoading] = useBoolean()
+  const [isOwner, setIsOwner] = useBoolean()
   const { travelink } = useGetTravelink()
   const currentUser = useRecoilValue(currentUserState)
   const router = useRouter()
@@ -15,6 +16,7 @@ export const useRoleEdit = () => {
     setIsLoading.on()
     if (!travelink) return
     if (!currentUser) return
+    if (currentUser.uid === travelink.ownerId) setIsOwner.on()
     // ownerではない、編集可能でもない場合は、404に飛ばす
     if (currentUser.uid !== travelink.ownerId && !travelink.canEdit)
       router.push('/404')
@@ -23,6 +25,7 @@ export const useRoleEdit = () => {
 
   return {
     isLoading,
-    travelink
+    travelink,
+    isOwner
   }
 }
