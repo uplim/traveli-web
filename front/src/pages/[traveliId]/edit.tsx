@@ -1,4 +1,4 @@
-import { FormUpdateLinks } from '@/components/Forms/FormUpdateLinks'
+import { FormCreateUpdateLinks } from '@/components/Forms'
 import { useRoleEdit } from '@/hooks/role/'
 
 const Edit = () => {
@@ -9,7 +9,7 @@ const Edit = () => {
       {!travelink || isLoading ? (
         <>ローディングアイコン</>
       ) : (
-        <FormUpdateLinks data={travelink} />
+        <FormCreateUpdateLinks formType={'update'} travelinkData={travelink} />
       )}
     </>
   )
