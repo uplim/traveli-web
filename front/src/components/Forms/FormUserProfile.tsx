@@ -9,9 +9,9 @@ import {
   Flex,
   Spacer,
   VisuallyHiddenInput,
-  Link,
   IconButton
 } from '@chakra-ui/react'
+import Link from 'next/link'
 import { IconReturn } from '@/components/Icons'
 import { useCreateUpdateUserProfile } from '@/hooks/form'
 import { useRef } from 'react'
@@ -19,9 +19,6 @@ import { useRouter } from 'next/router'
 
 export const FormUserProfile = () => {
   const router = useRouter()
-  console.log(router)
-  console.log('+', router.basePath, '/create')
-  console.log(router.asPath)
 
   const {
     onSubmit,
@@ -31,7 +28,8 @@ export const FormUserProfile = () => {
     error,
     iconUrl,
     name,
-    image
+    image,
+    disabled
   } = useCreateUpdateUserProfile()
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -41,23 +39,21 @@ export const FormUserProfile = () => {
 
   return (
     <>
-      <Box
-        as={'form'}
-        height={'100vh'}
-        onSubmit={handleSubmit(onSubmit)}
-        position={'relative'}
-      >
+      <Box as={'form'} height={'100vh'} position={'relative'}>
         {error && <Alert>送信できませんでした</Alert>}
         {/* TODO:FormUserProfileに置き換え */}
         {/* Header */}
 
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-          <Link href={router.basePath + '/home'}>
+          <Link href={router.basePath + '/home'} passHref>
+            {/* TODO:Warningエラー出てる */}
+            {/* 原因解決：https://zenn.dev/hiro__dev/scraps/d4b531165ad335 */}
+
             <IconButton
               aria-label="return"
               size="lg"
               icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
-            ></IconButton>
+            />
           </Link>
           <Spacer />
           <Box color={'black'} fontSize={'md'} fontWeight={'bold'}>
@@ -81,7 +77,6 @@ export const FormUserProfile = () => {
                 src={image ? URL.createObjectURL(image) : iconUrl}
                 w={'12.9rem'}
                 h={'12.9rem'}
-                as={'button'}
                 onClick={onClickButton}
               />
             </Box>
@@ -120,8 +115,9 @@ export const FormUserProfile = () => {
           bottom={'12.9rem'}
           right={'50%'}
           transform={'translateX(50%)'}
-          type={'submit'}
+          disabled={disabled}
           variant={'round'}
+          onClick={handleSubmit(onSubmit)}
         >
           決定
         </Button>
