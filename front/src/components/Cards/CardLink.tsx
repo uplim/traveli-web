@@ -1,4 +1,4 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Text } from '@chakra-ui/react'
 import Link from 'next/link'
 
 type CardLinkProps = {
@@ -21,20 +21,25 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
         filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
         align={'center'}
       >
-        {/* TODO: 長文のラベルの最後の文字を...に */}
         {/* TODO: アイコンPropsの受け取り */}
-        <Image
-          alt={''}
-          w={'3.7rem'}
-          h={'3.7rem'}
-          position={'absolute'}
-          marginLeft={'0.8rem'}
+        <Box
+          backgroundColor={'gray'}
+          borderRadius={'100%'}
+          w={'3.8rem'}
+          h={'3.8rem'}
+          marginLeft={'0.7rem'}
         />
-        <Box w={'70.8%'} mx={'auto'}>
-          <Text textAlign={'center'} fontSize={'md'}>
-            {label}
-          </Text>
-        </Box>
+        <Text
+          w={'80%'}
+          textAlign={'center'}
+          fontSize={'md'}
+          overflow={'hidden'}
+          whiteSpace={'nowrap'}
+          textOverflow={'ellipsis'}
+          margin={'0 1.6rem'}
+        >
+          {label}
+        </Text>
       </Flex>
     </Link>
   )
