@@ -1,5 +1,5 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
@@ -50,6 +50,19 @@ const Home = () => {
           />
           {/* TODO:shadowの色を変数に置き換える */}
           {/* TODO: date-pickerのstartでええ感じにsortする */}
+          <ButtonIconRound
+            position={'absolute'}
+            marginBottom={'4.8rem'}
+            bottom={0}
+            right={'1.6rem'}
+            iconType={'plus'}
+            w={'6.4rem'}
+            h={'6.4rem'}
+            color={'brandBlue'}
+            zIndex={1}
+            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+          />
+
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
@@ -84,7 +97,8 @@ const Home = () => {
           </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
           {travelinkList.map((travelink, i) => (
-            <NextLink href={router.basePath + travelink.id} key={i}>
+            <Link href={router.basePath + travelink.id} key={i} passHref>
+              {/* <a href="replace"> */}
               <Box
                 w={'100%'}
                 h={'23.9rem'}
@@ -131,13 +145,14 @@ const Home = () => {
                     </Flex>
 
                     <Spacer />
-                    <NextLink href={router.basePath + '/user'}>
+                    <Link href={router.basePath + '/user'} passHref>
                       <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-                    </NextLink>
+                    </Link>
                   </Flex>
                 </Box>
               </Box>
-            </NextLink>
+              {/* </a> */}
+            </Link>
           ))}
         </>
       )}
