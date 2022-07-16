@@ -15,7 +15,7 @@ export const useGetTravelink = () => {
     if (!currentUser) return
     if (!traveliId) return
 
-    const loadTravelinks = async () => {
+    const loadTravelink = async () => {
       const db = getFirestore()
       const ref = doc(collection(db, 'travelinks'), traveliId)
       const travelinksDoc = await getDoc(ref)
@@ -24,11 +24,11 @@ export const useGetTravelink = () => {
         return
       }
 
-      const getTravelinks = travelinksDoc.data() as TravelinkRequestType
-      setTravelink(getTravelinks)
+      const getTravelink = travelinksDoc.data() as TravelinkRequestType
+      setTravelink(getTravelink)
     }
 
-    loadTravelinks()
+    loadTravelink()
   }, [])
 
   return { travelink }

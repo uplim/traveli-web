@@ -1,14 +1,20 @@
-import { Box, Flex, Heading, Spacer } from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
+import Link from 'next/link'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
+import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
+import { useRouter } from 'next/router'
 
 const Home = () => {
+  const router = useRouter()
   const currentUser = useRecoilValue(currentUserState)
+  const { travelinkList } = useGetTravelinkList()
+  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
 
   return (
     <>
-      {!currentUser ? (
+      {!currentUser && !ownerProfile ? (
         <>ローディングアイコン</>
       ) : (
         <>
@@ -22,10 +28,15 @@ const Home = () => {
               h={'1.8rem'}
             />
             <Spacer />
-            <Box w={'4rem'} h={'4rem'} borderRadius={'50%'} bgColor={'gray'} />
+            <Avatar
+              w={'4rem'}
+              h={'4rem'}
+              src={ownerProfile ? ownerProfile.icon : ''}
+            />
           </Flex>
 
           {/* TODO:shadowの色を変数に置き換える */}
+          {/* TODO: date-pickerのstartでええ感じにsortする */}
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
@@ -59,54 +70,64 @@ const Home = () => {
             </Box>
           </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
-          <Box
-            w={'100%'}
-            h={'23.9rem'}
-            borderRadius={'10'}
-            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-            bgColor={'white'}
-          >
-            <Box
-              bgImage={'/images/dummy.png'}
-              h={'12.9rem'}
-              borderTopRadius={'10'}
-            />
-            <Box
-              paddingTop={'1.1rem'}
-              paddingLeft={'1.8rem'}
-              paddingRight={'1.8rem'}
-              borderBottomRadius={'10'}
-            >
-              <Box fontSize={'xs'} color={'gray'}>
-                0000/00/00~0000/00/00
-              </Box>
-              <Box>
-                <Heading
-                  paddingTop={'0.6rem'}
-                  paddingBottom={'1.4rem'}
-                  fontSize={'lg'}
+          {travelinkList.map((travelink, i) => (
+            <Link href={router.basePath + travelink.id} key={i} passHref>
+              {/* <a href="replace"> */}
+              <Box
+                w={'100%'}
+                h={'23.9rem'}
+                borderRadius={'10'}
+                filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+                bgColor={'white'}
+                marginBottom={'2.2rem'}
+              >
+                <Box
+                  bgImage={travelink.thumbnail}
+                  h={'12.9rem'}
+                  borderTopRadius={'10'}
+                />
+                <Box
+                  paddingTop={'1.1rem'}
+                  paddingLeft={'1.8rem'}
+                  paddingRight={'1.8rem'}
+                  borderBottomRadius={'10'}
                 >
-                  いつメンで東京旅行
-                </Heading>
-              </Box>
-              <Flex alignContent={'baseline'}>
-                <Flex>
-                  <Box
-                    w={'2.4rem'}
-                    h={'2.4rem'}
-                    borderRadius={'50%'}
-                    bgColor={'gray'}
-                  />
-                  <Box paddingLeft={'1rem'} fontSize={'md'}>
-                    Piyo
+                  <Box fontSize={'xs'} color={'gray'}>
+                    {/* TODO: date-pickerのstartとendで表示する */}
+                    {travelink.date}~0000/00/00
                   </Box>
-                </Flex>
+                  <Box>
+                    <Heading
+                      paddingTop={'0.6rem'}
+                      paddingBottom={'1.4rem'}
+                      fontSize={'lg'}
+                    >
+                      {travelink.title}
+                    </Heading>
+                  </Box>
+                  <Flex alignContent={'baseline'}>
+                    <Flex>
+                      <Avatar
+                        w={'2.4rem'}
+                        h={'2.4rem'}
+                        src={travelink.ownerIcon}
+                      />
 
-                <Spacer />
-                <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-              </Flex>
-            </Box>
-          </Box>
+                      <Box paddingLeft={'1rem'} fontSize={'md'}>
+                        {travelink.ownerName}
+                      </Box>
+                    </Flex>
+
+                    <Spacer />
+                    <Link href={router.basePath + '/user'} passHref>
+                      <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
+                    </Link>
+                  </Flex>
+                </Box>
+              </Box>
+              {/* </a> */}
+            </Link>
+          ))}
         </>
       )}
     </>
