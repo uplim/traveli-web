@@ -46,4 +46,4 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TRAVELI_27497 }}"
           channelId: live
           projectId: traveli-27497
-          args: cd front && deploy --only hosting
+          entryPoint: ./front
