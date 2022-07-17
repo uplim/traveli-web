@@ -1,11 +1,10 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
-import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
-import { ButtonIconRound } from '@/components/Buttons/ButtonIconRound'
+import { ButtonIconRound } from '@/components/Buttons'
 
 const Home = () => {
   const router = useRouter()
