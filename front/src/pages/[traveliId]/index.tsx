@@ -13,13 +13,7 @@ import {
 import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import {
-  IconQr,
-  IconSave,
-  IconShare,
-  IconViewGrid,
-  IconViewList
-} from '@/components/Icons'
+import { IconQr, IconSave, IconShare } from '@/components/Icons'
 import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 

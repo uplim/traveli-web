@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
-import { CardLink } from '@/components/Cards/CardLink'
 
 const Home = () => {
   const router = useRouter()
