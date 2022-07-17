@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
+import { InputDate } from '@/components/Inputs/InputDate'
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
@@ -32,6 +33,7 @@ export const FormCreateUpdateLinks = ({
     fields,
     append,
     remove,
+    control,
     onSubmit,
     errors,
     disabled,
@@ -53,10 +55,7 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
       <FormControl isInvalid={errors.date ? true : false}>
         <FormLabel>日時（任意）</FormLabel>
-        <Input placeholder={'2022/01/23 ~ 2022/01/25'} {...register('date')} />
-        <FormErrorMessage>
-          {errors.date && errors.date.message}
-        </FormErrorMessage>
+        <InputDate control={control} name={'date'} />
       </FormControl>
       <FormControl>
         <FormLabel>サムネイル画像（任意）</FormLabel>
