@@ -1,8 +1,10 @@
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import { useState } from 'react'
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { useBoolean } from '@chakra-ui/react'
 
 export const useUploadImage = () => {
   const [image, setImage] = useState<File | null>()
+  const [isImageChanged, setIsChanged] = useBoolean()
 
   const uploadImage = (imageFile: File) => {
     const firestorage = getStorage()
@@ -17,12 +19,14 @@ export const useUploadImage = () => {
   const handleChangeImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files !== null) {
       setImage(e.target.files[0])
+      setIsChanged.on()
     }
   }
 
   return {
     uploadImage,
     image,
-    handleChangeImage
+    handleChangeImage,
+    isImageChanged
   }
 }

@@ -14,6 +14,7 @@ import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useBoolean } from '@chakra-ui/react'
 
 type Inputs = {
   name: string
@@ -29,12 +30,14 @@ export const useCreateUpdateUserProfile = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>({ resolver: yupResolver(schema) })
+
   const currentUser = useRecoilValue(currentUserState)
   const firestorage = getStorage()
   const [image, setImage] = useState<File | null>()
   const [name, setName] = useState('')
   const [iconUrl, setIconUrl] = useState('')
   const [error, setError] = useState(false)
+  const [disabled, setDisabled] = useBoolean()
 
   useEffect(() => {
     const getProfile = async () => {
@@ -93,8 +96,8 @@ export const useCreateUpdateUserProfile = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // TODO: いるかも？
     // event.preventDefault()
-
     try {
+      setDisabled.on()
       if (image) {
         const imageRef = ref(firestorage, encodeURI(image.name))
 
@@ -120,6 +123,8 @@ export const useCreateUpdateUserProfile = () => {
       }
     } catch (err) {
       setError(true)
+    } finally {
+      setDisabled.off()
     }
   }
 
@@ -132,6 +137,7 @@ export const useCreateUpdateUserProfile = () => {
     iconUrl,
     name,
     image,
-    errors
+    errors,
+    disabled
   }
 }

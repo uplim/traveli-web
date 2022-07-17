@@ -13,11 +13,24 @@ import {
   Spacer,
   VisuallyHiddenInput
 } from '@chakra-ui/react'
-import { useFormCreateLinks } from '@/hooks/form'
-import { IconReturn } from '@/components/Icons'
-import { useRef } from 'react'
 
-export const FormCreateLinks = () => {
+import { useRef } from 'react'
+import { useFormCreateUpdateLinks } from '@/hooks/form'
+import { TravelinkRequestType, Profile } from '@/types/db'
+
+type FormCreateUpdateLinksProps = {
+  formType: 'create' | 'update'
+  travelinkData?: TravelinkRequestType
+  ownerProfile?: Profile
+  isOwner?: boolean
+}
+
+export const FormCreateUpdateLinks = ({
+  formType,
+  travelinkData,
+  ownerProfile,
+  isOwner
+}: FormCreateUpdateLinksProps) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +42,7 @@ export const FormCreateLinks = () => {
     disabled,
     image,
     handleChangeImage
-  } = useFormCreateLinks()
+  } = useFormCreateUpdateLinks(formType, travelinkData, ownerProfile)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const onClickButton = () => {
@@ -115,6 +128,7 @@ export const FormCreateLinks = () => {
                   <Input
                     isInvalid={errors.links?.[index] ? true : false}
                     {...register(`links.${index}.url`)}
+                    defaultValue={item.url}
                   />
                   <FormErrorMessage>
                     {errors.links?.[index] &&
@@ -123,7 +137,10 @@ export const FormCreateLinks = () => {
                 </FormControl>
 
                 <FormLabel>ラベル</FormLabel>
-                <Input {...register(`links.${index}.label`)} />
+                <Input
+                  {...register(`links.${index}.label`)}
+                  defaultValue={item.label}
+                />
               </ListItem>
             )
           })}
@@ -144,10 +161,15 @@ export const FormCreateLinks = () => {
         >
           remove
         </button>
-        <FormControl display={'flex'} alignItems={'center'}>
-          <FormLabel>他のユーザに編集を許可する</FormLabel>
-          <Switch {...register('canEdit')} />
-        </FormControl>
+        {(isOwner || formType === 'create') && (
+          <FormControl display={'flex'} alignItems={'center'}>
+            <FormLabel>他のユーザに編集を許可する</FormLabel>
+            <Switch
+              {...register('canEdit')}
+              defaultChecked={travelinkData?.canEdit}
+            />
+          </FormControl>
+        )}
         <Button
           disabled={disabled}
           onClick={handleSubmit(onSubmit)}
