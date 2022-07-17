@@ -36,36 +36,12 @@ const Home = () => {
             />
           </Flex>
 
-          <ButtonIconRound
-            position={'absolute'}
-            marginBottom={'4.8rem'}
-            bottom={0}
-            right={'1.6rem'}
-            iconType={'plus'}
-            w={'6.4rem'}
-            h={'6.4rem'}
-            color={'brandBlue'}
-            zIndex={1}
-            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-          />
           {/* TODO:shadowの色を変数に置き換える */}
           {/* TODO: date-pickerのstartでええ感じにsortする */}
-          <ButtonIconRound
-            position={'absolute'}
-            marginBottom={'4.8rem'}
-            bottom={0}
-            right={'1.6rem'}
-            iconType={'plus'}
-            w={'6.4rem'}
-            h={'6.4rem'}
-            color={'brandBlue'}
-            zIndex={1}
-            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-          />
 
           <Box
             marginTop={'2.2rem'}
-            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+            filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
             w={'100%'}
             h={'11.4rem'}
             borderRadius={'1rem'}
@@ -103,7 +79,7 @@ const Home = () => {
                 w={'100%'}
                 h={'23.9rem'}
                 borderRadius={'10'}
-                filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
+                filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
                 bgColor={'white'}
                 marginBottom={'2.2rem'}
               >
@@ -154,6 +130,19 @@ const Home = () => {
               {/* </a> */}
             </Link>
           ))}
+          <ButtonIconRound
+            iconType={'plus'}
+            position={'fixed'}
+            top={'calc(100vh - 6.4rem - 4.8rem)'}
+            right={'1.6rem'}
+            zIndex={1}
+            w={'6.4rem'}
+            h={'6.4rem'}
+            sx={{
+              filter: 'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))',
+              'box-shadow': '0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'
+            }}
+          />
         </>
       )}
     </>
