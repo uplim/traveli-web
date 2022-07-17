@@ -6,8 +6,6 @@ import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
 import { ButtonIconRound } from '@/components/Buttons'
 
-
-
 const Home = () => {
   const router = useRouter()
   const { travelinkList } = useGetTravelinkList()
