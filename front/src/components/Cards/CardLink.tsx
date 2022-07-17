@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
 
 type CardLinkProps = {
-  icon: string
+  // icon: string
   label: string
   url: string
 }

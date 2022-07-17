@@ -20,7 +20,6 @@ import { CardLink } from '@/components/Cards'
 const LinkList = () => {
   const router = useRouter()
   const { travelink } = useGetTravelink()
-  console.log(travelink)
 
   return (
     <>
