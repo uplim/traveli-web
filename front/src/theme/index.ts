@@ -25,11 +25,10 @@ export const customTheme = extendTheme(
           '& p, & span, & dl, & form': {
             transform: 'rotate(0.03deg)'
           }
-        
+        },
+        'h1,h2,h3,h4,h5,h6,button,input,textarea,a,label': {
+          transform: 'rotate(0.03deg)'
         }
-      },
-      'h1,h2,h3,h4,h5,h6,button,input,textarea,a,label': {
-        transform: 'rotate(0.03deg)'
       }
     },
     components: {
