@@ -13,6 +13,7 @@ import {
 import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { format } from 'date-fns'
 import { IconQr, IconSave, IconShare } from '@/components/Icons'
 import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
@@ -112,9 +113,15 @@ const LinkList = () => {
             >
               {travelink.title}
             </Text>
-            <Text fontSize={'1.2rem'} color={'gray'} textAlign={'center'}>
-              {travelink.date}
-            </Text>
+            {travelink.date[0] && (
+              <Text fontSize={'1.2rem'} color={'gray'} textAlign={'center'}>
+                {travelink.date[0] &&
+                  format(travelink.date[0].toDate(), 'yyyy/MM/dd')}
+                ~
+                {travelink.date[1] &&
+                  format(travelink.date[1].toDate(), 'yyyy/MM/dd')}
+              </Text>
+            )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
               <Box>
                 <IconSave w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />

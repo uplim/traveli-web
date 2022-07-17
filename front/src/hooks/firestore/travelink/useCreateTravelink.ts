@@ -3,12 +3,13 @@ import {
   doc,
   getFirestore,
   setDoc,
-  serverTimestamp
+  serverTimestamp,
+  Timestamp
 } from 'firebase/firestore'
 
 type Inputs = {
   title: string
-  date: string
+  date: [Timestamp | null, Timestamp | null]
   thumbnail: string
   ownerName: string
   ownerIcon: string
