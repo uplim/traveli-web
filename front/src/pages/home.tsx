@@ -139,7 +139,6 @@ const Home = () => {
             position={'fixed'}
             top={'calc(100vh - 6.4rem - 4.8rem)'}
             right={'1.6rem'}
-            zIndex={1}
             w={'6.4rem'}
             h={'6.4rem'}
             sx={{
