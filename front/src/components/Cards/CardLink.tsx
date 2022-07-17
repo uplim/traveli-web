@@ -1,15 +1,14 @@
 import { Box, Flex, Text } from '@chakra-ui/react'
-import Link from 'next/link'
 
 type CardLinkProps = {
-  icon: string
+  // icon: string
   label: string
   url: string
 }
 
 export const CardLink = ({ label, url }: CardLinkProps) => {
   return (
-    <Link href={url}>
+    <a href={url} target="_blank" rel="noreferrer">
       <Flex
         position={'relative'}
         top={0}
@@ -20,6 +19,7 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
         bgColor={'white'}
         filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
         align={'center'}
+        marginBottom={'1rem'}
       >
         {/* TODO: アイコンPropsの受け取り */}
         <Box
@@ -41,6 +41,6 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
           {label}
         </Text>
       </Flex>
-    </Link>
+    </a>
   )
 }

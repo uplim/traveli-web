@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
-import { CardLink } from '@/components/Cards/CardLink'
 
 const Home = () => {
   const router = useRouter()
@@ -35,21 +34,7 @@ const Home = () => {
 
           {/* TODO:shadowの色を変数に置き換える */}
           {/* TODO: date-pickerのstartでええ感じにsortする */}
-          <CardLink
-            icon={''}
-            label={'じゃらん'}
-            url={'https://www.jalan.net/news/article/100005/'}
-          />
-          <CardLink
-            icon={''}
-            label={'じゃらんじゃらんじゃらん'}
-            url={'https://www.jalan.net/news/article/100005/'}
-          />
-          <CardLink
-            icon={''}
-            label={'じゃらんじゃらんじゃらんじゃらんじゃらん'}
-            url={'https://www.jalan.net/news/article/100005/'}
-          />
+
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
