@@ -1,4 +1,3 @@
-"use strict";
 exports.id = 205;
 exports.ids = [205];
 exports.modules = {
@@ -6,6 +5,7 @@ exports.modules = {
 /***/ 1751:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "E": () => (/* binding */ FormCreateUpdateLinks)
@@ -15,13 +15,15 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7658);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_2__]);
-_hooks_form__WEBPACK_IMPORTED_MODULE_2__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(628);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_2__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__]);
+([_hooks_form__WEBPACK_IMPORTED_MODULE_2__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
 const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwner  })=>{
-    const { register , handleSubmit , fields , append , remove , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_2__/* .useFormCreateUpdateLinks */ .j)(formType, travelinkData, ownerProfile);
+    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_2__/* .useFormCreateUpdateLinks */ .j)(formType, travelinkData, ownerProfile);
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
@@ -45,12 +47,9 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
                         children: "\u65E5\u6642\uFF08\u4EFB\u610F\uFF09"
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-                        placeholder: "2022/01/23 ~ 2022/01/25",
-                        ...register("date")
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormErrorMessage, {
-                        children: errors.date && errors.date.message
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__/* .InputDate */ .U, {
+                        control: control,
+                        name: "date"
                     })
                 ]
             }),
@@ -153,6 +152,7 @@ __webpack_async_result__();
 /***/ 1619:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "r": () => (/* binding */ FormUserProfile)
@@ -297,6 +297,7 @@ __webpack_async_result__();
 /***/ 1205:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "E": () => (/* reexport safe */ _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__.E),
@@ -314,9 +315,57 @@ __webpack_async_result__();
 
 /***/ }),
 
+/***/ 628:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "U": () => (/* binding */ InputDate)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5994);
+/* harmony import */ var react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_datepicker_dist_react_datepicker_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5641);
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(983);
+/* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_4__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_3__]);
+react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+
+
+const InputDate = ({ name , control  })=>{
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_hook_form__WEBPACK_IMPORTED_MODULE_3__.Controller, {
+        control: control,
+        name: name,
+        render: ({ field: { onChange , value  }  })=>{
+            const v = value;
+            return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react_datepicker__WEBPACK_IMPORTED_MODULE_4___default()), {
+                selectsRange: true,
+                dateFormat: "yyyy/MM/dd",
+                onChange: onChange,
+                startDate: v[0],
+                endDate: v[1],
+                withPortal: true
+            });
+        }
+    });
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
 /***/ 7658:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "j": () => (/* reexport safe */ _hooks_form_useFormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__.j),
@@ -337,6 +386,7 @@ __webpack_async_result__();
 /***/ 5881:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "t": () => (/* binding */ useCreateUpdateUserProfile)
@@ -480,6 +530,7 @@ __webpack_async_result__();
 /***/ 3007:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "j": () => (/* binding */ useFormCreateUpdateLinks)
@@ -510,7 +561,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([reac
 
 const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
     title: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u65C5\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
-    date: yup__WEBPACK_IMPORTED_MODULE_2__.string(),
+    date: yup__WEBPACK_IMPORTED_MODULE_2__.array(),
     links: yup__WEBPACK_IMPORTED_MODULE_2__.array().of(yup__WEBPACK_IMPORTED_MODULE_2__.object().shape({
         url: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("url\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")// urlの正規表現にマッチしなかったら弾く
         .matches(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/, {
@@ -523,9 +574,15 @@ const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.useBoolean)();
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
     const traveliId1 = router.query.traveliId;
+    const formatedDate = travelinkData?.date.map((item)=>{
+        return item ? item.toDate() : null;
+    });
     const { register , control , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useForm)({
         resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__.yupResolver)(schema),
-        defaultValues: travelinkData
+        defaultValues: {
+            ...travelinkData,
+            date: formatedDate
+        }
     });
     const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_8__/* .useUploadImage */ .H)();
     const currentUser1 = (0,recoil__WEBPACK_IMPORTED_MODULE_7__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_6__/* .currentUserState */ .y);
@@ -571,6 +628,7 @@ const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
         fields,
         append,
         remove,
+        control,
         onSubmit,
         errors,
         disabled,
@@ -587,6 +645,7 @@ __webpack_async_result__();
 /***/ 8456:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "H": () => (/* reexport safe */ _hooks_upload_useUploadImage__WEBPACK_IMPORTED_MODULE_0__.H)
@@ -604,6 +663,7 @@ __webpack_async_result__();
 /***/ 7108:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "H": () => (/* binding */ useUploadImage)
@@ -646,6 +706,13 @@ const useUploadImage = ()=>{
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 5994:
+/***/ (() => {
+
+
 
 /***/ })
 
