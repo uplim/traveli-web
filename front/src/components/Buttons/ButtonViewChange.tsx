@@ -1,7 +1,7 @@
 import { IconViewGrid, IconViewList } from '../Icons'
 import { useBoolean } from '@chakra-ui/react'
 
-export const ButtonViewChange = () => {
+export const ButtonViewChange = ({ ...props }) => {
   const [isListView, setIsListView] = useBoolean(false)
 
   const onSubmit = () => {
@@ -15,9 +15,9 @@ export const ButtonViewChange = () => {
   return (
     <>
       {isListView ? (
-        <IconViewList w={'2.5rem'} h={'2.5rem'} onClick={onSubmit}/>
+        <IconViewList {...props} w={'2.5rem'} h={'2.5rem'} onClick={onSubmit} />
       ) : (
-        <IconViewGrid w={'2.5rem'} h={'2.5rem'} onClick={onSubmit}/>
+        <IconViewGrid {...props} w={'2.5rem'} h={'2.5rem'} onClick={onSubmit} />
       )}
     </>
   )

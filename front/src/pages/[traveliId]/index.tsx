@@ -1,4 +1,15 @@
-import { Flex, Image, Text, Spacer, Box } from '@chakra-ui/react'
+import {
+  Flex,
+  Image,
+  Text,
+  Spacer,
+  Box,
+  TabList,
+  Tab,
+  Tabs,
+  TabPanel,
+  TabPanels
+} from '@chakra-ui/react'
 import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -31,7 +42,6 @@ const LinkList = () => {
             left={'0'}
             w={'100vw'}
             bgImage={travelink.thumbnail}
-            // w={'auto'}
             h={'24rem'}
           />
           <Box
@@ -39,10 +49,45 @@ const LinkList = () => {
             top={'18rem'}
             left={'0'}
             w={'100vw'}
-            h={'30%'}
+            h={'19rem'}
             bgColor={'white'}
             borderRadius={'3.0rem 3.0rem 0 0'}
           />
+
+          {/* TODO：UI通りにしたい */}
+          <Tabs
+            isFitted
+            colorScheme={'brandPink'}
+            color={'black'}
+            position={'absolute'}
+            top={'37rem'}
+            left={'0'}
+            w={'100vw'}
+            h={'30%'}
+          >
+            <TabList bgColor={'white'}>
+              <Tab>全て</Tab>
+              <Tab>食べ物</Tab>
+              <Tab>場所</Tab>
+              <Tab>その他</Tab>
+            </TabList>
+            <TabPanels>
+              <TabPanel>
+                {travelink.links.map(({ url, label }, index) => (
+                  <CardLink label={label} url={url} key={index} />
+                ))}
+              </TabPanel>
+              <TabPanel>
+                <p>たべもの</p>
+              </TabPanel>
+              <TabPanel>
+                <p>場所</p>
+              </TabPanel>
+              <TabPanel>
+                <p>その他</p>
+              </TabPanel>
+            </TabPanels>
+          </Tabs>
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
             <Link href={router.basePath + '/home'}>
               <ButtonIconRound iconType="return" />
@@ -59,7 +104,13 @@ const LinkList = () => {
               margin={'6rem auto 0 auto'}
               border={'solid white 0.4rem'}
             />
-            {/* <ButtonViewChange /> */}
+            <ButtonViewChange
+              position={'absolute'}
+              top={'8rem'}
+              right={'1rem'}
+              w={'100vw'}
+              h={'19rem'}
+            />
             <Text
               fontSize={'2rem'}
               fontWeight={'bold'}
@@ -87,11 +138,8 @@ const LinkList = () => {
                 <Text>共有</Text>
               </Box>
             </Flex>
-            <Box>
-              {travelink.links.map(({ url, label }, index) => (
-                <CardLink label={label} url={url} key ={index}/>
-              ))}
-            </Box>
+
+            <Box></Box>
           </Box>
         </>
       )}
