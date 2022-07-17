@@ -1,16 +1,22 @@
-import Link from 'next/link'
+import { FormCreateUpdateLinks } from '@/components/Forms'
+import { useRoleEdit } from '@/hooks/role/'
 
-const LinkEdit = () => {
+const Edit = () => {
+  const { travelink, isLoading, isOwner } = useRoleEdit()
+
   return (
     <>
-      <p>Traevelink編集ページ！</p>
-      <Link href="/edit" passHref>
-        <a href="replace">
-          <p>/edit</p>
-        </a>
-      </Link>
+      {!travelink || isLoading ? (
+        <>ローディングアイコン</>
+      ) : (
+        <FormCreateUpdateLinks
+          formType={'update'}
+          travelinkData={travelink}
+          isOwner={isOwner}
+        />
+      )}
     </>
   )
 }
 
-export default LinkEdit
+export default Edit
