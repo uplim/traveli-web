@@ -1,1 +1,1 @@
-export {CardLink}from '@/components/Cards/CardLink'
+export { CardLink } from '@/components/Cards/CardLink'
