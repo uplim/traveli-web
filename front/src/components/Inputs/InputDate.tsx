@@ -22,6 +22,7 @@ export const InputDate = <T,>({ name, control }: Props<T>) => {
             onChange={onChange}
             startDate={v[0]}
             endDate={v[1]}
+            withPortal
           />
         )
       }}
