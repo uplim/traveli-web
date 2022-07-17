@@ -45,6 +45,10 @@ export const useFormCreateUpdateLinks = (
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
+  const formatedDate = travelinkData?.date.map((item) => {
+    return item ? item.toDate() : null
+  })
+
   const {
     register,
     control,
@@ -54,7 +58,7 @@ export const useFormCreateUpdateLinks = (
     resolver: yupResolver(schema),
     defaultValues: {
       ...travelinkData,
-      date: [null, null]
+      date: formatedDate as [Date | null, Date | null]
     }
   })
 
