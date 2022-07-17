@@ -1,25 +1,17 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
-<<<<<<< HEAD
-import NextLink from 'next/link'
-=======
 import Link from 'next/link'
->>>>>>> cbfeacd6587f1bd826bd4994406f966634a04260
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
-import { ButtonIconRound } from '@/components/Buttons/ButtonIconRound'
 
 const Home = () => {
   const router = useRouter()
-  const currentUser = useRecoilValue(currentUserState)
   const { travelinkList } = useGetTravelinkList()
-  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
+  const { ownerProfile } = useGetOwnerProfile()
 
   return (
     <>
-      {!currentUser && !ownerProfile ? (
+      {!ownerProfile ? (
         <>ローディングアイコン</>
       ) : (
         <>
@@ -42,18 +34,6 @@ const Home = () => {
 
           {/* TODO:shadowの色を変数に置き換える */}
           {/* TODO: date-pickerのstartでええ感じにsortする */}
-          <ButtonIconRound
-            position={'absolute'}
-            marginBottom={'4.8rem'}
-            bottom={0}
-            right={'1.6rem'}
-            iconType={'plus'}
-            w={'6.4rem'}
-            h={'6.4rem'}
-            color={'brandBlue'}
-            zIndex={1}
-            filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-          />
 
           <Box
             marginTop={'2.2rem'}

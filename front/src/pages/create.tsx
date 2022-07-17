@@ -1,8 +1,21 @@
-import { NextPage } from 'next'
-import { FormCreateLinks } from '@/components/Forms'
+import { FormCreateUpdateLinks } from '@/components/Forms'
+import { useGetOwnerProfile } from '@/hooks/firestore'
 
-const Create: NextPage = () => {
-  return <FormCreateLinks />
+const Create = () => {
+  const { ownerProfile } = useGetOwnerProfile()
+
+  return (
+    <>
+      {!ownerProfile ? (
+        <>ローディングアイコン</>
+      ) : (
+        <FormCreateUpdateLinks
+          formType={'create'}
+          ownerProfile={ownerProfile}
+        />
+      )}
+    </>
+  )
 }
 
 export default Create
