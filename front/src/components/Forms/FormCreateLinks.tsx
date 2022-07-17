@@ -8,9 +8,14 @@ import {
   Button,
   FormErrorMessage,
   Switch,
-  Image
+  Image,
+  Flex,
+  Spacer,
+  VisuallyHiddenInput
 } from '@chakra-ui/react'
 import { useFormCreateLinks } from '@/hooks/form'
+import { IconReturn } from '@/components/Icons'
+import { useRef } from 'react'
 
 export const FormCreateLinks = () => {
   const {
@@ -26,12 +31,33 @@ export const FormCreateLinks = () => {
     handleChangeImage
   } = useFormCreateLinks()
 
+  const inputRef = useRef<HTMLInputElement>(null)
+  const onClickButton = () => {
+    inputRef.current?.click()
+  }
+
   return (
     <Box>
+      <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
+        <IconReturn w={'2.2rem'} h={'2.2rem'} />
+        <Spacer />
+        <Box color={'black'} fontSize={'md'} fontWeight={'bold'}>
+          新しいトラベリンクを作成
+        </Box>
+        <Spacer />
+        <Box w={'2.2rem'} h={'2.2rem'} />
+      </Flex>
 
       <FormControl isInvalid={errors.title ? true : false}>
         <FormLabel>旅の名前</FormLabel>
         <Input
+          variant={'filled'}
+          w={'34.4rem'}
+          h={'4.6rem'}
+          borderRightRadius={'10rem'}
+          borderLeftRadius={'10rem'}
+          bgColor={'white'}
+          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
           {...register('title')}
           placeholder={'例）ともだちとの一泊二日の旅行'}
         />
@@ -39,10 +65,21 @@ export const FormCreateLinks = () => {
           {errors.title && errors.title.message}
         </FormErrorMessage>
       </FormControl>
-      
+
       <FormControl isInvalid={errors.date ? true : false}>
         <FormLabel>日時（任意）</FormLabel>
-        <Input placeholder={'2022/01/23 ~ 2022/01/25'} {...register('date')} />
+        <Input
+          variant={'filled'}
+          w={'34.4rem'}
+          h={'4.6rem'}
+          borderRightRadius={'10rem'}
+          borderLeftRadius={'10rem'}
+          bgColor={'white'}
+          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE);'}
+          {...register('title')}
+          placeholder={'2022/01/23 ~ 2022/01/25'}
+          {...register('date')}
+        />
         <FormErrorMessage>
           {errors.date && errors.date.message}
         </FormErrorMessage>
@@ -50,8 +87,22 @@ export const FormCreateLinks = () => {
 
       <FormControl>
         <FormLabel>サムネイル画像（任意）</FormLabel>
-        <Input type={'file'} accept="image/*" onChange={handleChangeImage} />
-        <Image alt={''} src={image ? URL.createObjectURL(image) : ''} />
+        <VisuallyHiddenInput
+          ref={inputRef}
+          type={'file'}
+          accept="image/*"
+          onChange={handleChangeImage}
+        />
+        <Image
+          alt={''}
+          src={image ? URL.createObjectURL(image) : ''}
+          onClick={onClickButton}
+          w={'100%'}
+          h={'12.9rem'}
+          borderRadius={'1rem'}
+          bgColor={'gray'}
+          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
+        />
       </FormControl>
 
       <FormControl>
@@ -59,7 +110,6 @@ export const FormCreateLinks = () => {
           {fields.map((item, index) => {
             return (
               <ListItem key={item.id}>
-
                 <FormControl isInvalid={!!errors.links}>
                   <FormLabel>URL</FormLabel>
                   <Input
@@ -71,7 +121,7 @@ export const FormCreateLinks = () => {
                       errors.links?.[index].url?.message}
                   </FormErrorMessage>
                 </FormControl>
-                
+
                 <FormLabel>ラベル</FormLabel>
                 <Input {...register(`links.${index}.label`)} />
               </ListItem>
@@ -106,7 +156,6 @@ export const FormCreateLinks = () => {
           送信する
         </Button>
       </FormControl>
-      
     </Box>
   )
 }
