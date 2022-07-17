@@ -25,6 +25,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Build to Static file Export
+        working-directory: ./front
         run: npm run build
       - name: Firebase Hosting Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
