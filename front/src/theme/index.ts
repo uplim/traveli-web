@@ -26,7 +26,7 @@ export const customTheme = extendTheme(
             transform: 'rotate(0.03deg)'
           }
         },
-        'h1,h2,h3,h4,h5,h6,button,input,textarea,a,label,div': {
+        'h1,h2,h3,h4,h5,h6,input,textarea,a,label': {
           transform: 'rotate(0.03deg)'
         }
       }

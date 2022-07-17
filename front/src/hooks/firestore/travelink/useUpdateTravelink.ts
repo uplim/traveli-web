@@ -3,12 +3,13 @@ import {
   doc,
   getFirestore,
   updateDoc,
-  serverTimestamp
+  serverTimestamp,
+  Timestamp
 } from 'firebase/firestore'
 
 type Inputs = Partial<{
   title: string
-  date: string
+  date: [Timestamp | null, Timestamp | null]
   thumbnail: string
   links: {
     url: string

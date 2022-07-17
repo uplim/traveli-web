@@ -11,7 +11,7 @@ import { CurrentUser, Profile, TravelinkRequestType } from '@/types/db'
 
 type Inputs = {
   title: string
-  date: string
+  date: [Date | null, Date | null]
   links: {
     url: string
     label: string
@@ -21,7 +21,7 @@ type Inputs = {
 
 const schema = yup.object({
   title: yup.string().required('旅の名前を入力してください'),
-  date: yup.string(),
+  date: yup.array(),
   links: yup.array().of(
     yup.object().shape({
       url: yup
@@ -45,6 +45,10 @@ export const useFormCreateUpdateLinks = (
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
+  const formatedDate = travelinkData?.date.map((item) => {
+    return item ? item.toDate() : null
+  })
+
   const {
     register,
     control,
@@ -52,7 +56,10 @@ export const useFormCreateUpdateLinks = (
     formState: { errors }
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
-    defaultValues: travelinkData
+    defaultValues: {
+      ...travelinkData,
+      date: formatedDate as [Date | null, Date | null]
+    }
   })
 
   const { uploadImage, image, handleChangeImage, isImageChanged } =
@@ -117,6 +124,7 @@ export const useFormCreateUpdateLinks = (
     fields,
     append,
     remove,
+    control,
     onSubmit,
     errors,
     disabled,
