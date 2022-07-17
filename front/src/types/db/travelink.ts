@@ -2,7 +2,7 @@ import firestore from 'firebase/firestore'
 
 export type TravelinkRequestType = firestore.DocumentData & {
   title: string
-  date: string
+  date: [firestore.Timestamp | null, firestore.Timestamp | null]
   links: {
     url: string
     label: string

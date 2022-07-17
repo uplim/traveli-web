@@ -3,14 +3,15 @@ import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
-import { useCreateTravelink, useGetOwnerProfile } from '@/hooks/firestore'
+import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
+import { CurrentUser, Profile, TravelinkRequestType } from '@/types/db'
 
 type Inputs = {
   title: string
-  date: string
+  date: [Date | null, Date | null]
   links: {
     url: string
     label: string
@@ -20,7 +21,7 @@ type Inputs = {
 
 const schema = yup.object({
   title: yup.string().required('旅の名前を入力してください'),
-  date: yup.string(),
+  date: yup.array(),
   links: yup.array().of(
     yup.object().shape({
       url: yup
@@ -35,9 +36,19 @@ const schema = yup.object({
   )
 })
 
-export const useFormCreateLinks = () => {
+export const useFormCreateUpdateLinks = (
+  formType: 'create' | 'update',
+  travelinkData?: TravelinkRequestType,
+  ownerProfile?: Profile
+) => {
   const [disabled, setDisabled] = useBoolean()
   const router = useRouter()
+  const traveliId = router.query.traveliId as string
+
+  const formatedDate = travelinkData?.date.map((item) => {
+    return item ? item.toDate() : null
+  })
+
   const {
     register,
     control,
@@ -45,24 +56,19 @@ export const useFormCreateLinks = () => {
     formState: { errors }
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
-    // 初めにからのfield一つ表示されるようにする
     defaultValues: {
-      links: [
-        {
-          url: '',
-          label: ''
-        }
-      ]
+      ...travelinkData,
+      date: formatedDate as [Date | null, Date | null]
     }
   })
 
-  const { uploadImage, image, handleChangeImage } = useUploadImage()
+  const { uploadImage, image, handleChangeImage, isImageChanged } =
+    useUploadImage()
 
   const currentUser = useRecoilValue(currentUserState)
 
-  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
-
   const createTravelink = useCreateTravelink
+  const updateTravelink = useUpdateTravelink
 
   const { fields, append, remove } = useFieldArray({
     name: 'links',
@@ -71,29 +77,45 @@ export const useFormCreateLinks = () => {
 
   const onSubmit = async (data: Inputs) => {
     if (!currentUser) return
-    if (!ownerProfile) return
-    let downloadUrl = ''
+
+    const req = data as TravelinkRequestType
 
     try {
       setDisabled.on()
-      if (image) {
-        downloadUrl = await uploadImage(image)
+      // 画像に変更が入っていたらrequest bodyに画像を含める
+      if (image && isImageChanged) {
+        const downloadUrl = await uploadImage(image)
+        req.thumbnail = downloadUrl
       }
-      const res = await createTravelink(
-        {
-          ...data,
-          thumbnail: downloadUrl,
-          ownerIcon: ownerProfile?.icon,
-          ownerName: ownerProfile?.name
-        },
-        currentUser.uid
-      )
-      router.push(router.basePath + res)
+
+      formType === 'create' ? create(req, currentUser) : update(req, traveliId)
     } catch (err) {
       console.error(err)
     } finally {
       setDisabled.off()
     }
+  }
+
+  const create = async (
+    data: TravelinkRequestType,
+    currentUser: CurrentUser
+  ) => {
+    if (!ownerProfile) return
+
+    const res = await createTravelink(
+      {
+        ...data,
+        ownerIcon: ownerProfile.icon,
+        ownerName: ownerProfile.name
+      },
+      currentUser.uid
+    )
+    router.push(window.location.origin + res)
+  }
+
+  const update = async (data: TravelinkRequestType, traveliId: string) => {
+    await updateTravelink(data, traveliId)
+    router.push(window.location.origin + traveliId)
   }
 
   return {
@@ -102,6 +124,7 @@ export const useFormCreateLinks = () => {
     fields,
     append,
     remove,
+    control,
     onSubmit,
     errors,
     disabled,

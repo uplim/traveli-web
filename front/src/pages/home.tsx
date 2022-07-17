@@ -1,7 +1,7 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
+import { format } from 'date-fns'
 import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
@@ -9,13 +9,12 @@ import { ButtonIconRound } from '@/components/Buttons/ButtonIconRound'
 
 const Home = () => {
   const router = useRouter()
-  const currentUser = useRecoilValue(currentUserState)
   const { travelinkList } = useGetTravelinkList()
-  const { ownerProfile } = useGetOwnerProfile(currentUser?.uid)
+  const { ownerProfile } = useGetOwnerProfile()
 
   return (
     <>
-      {!currentUser && !ownerProfile ? (
+      {!ownerProfile ? (
         <>ローディングアイコン</>
       ) : (
         <>
@@ -94,10 +93,16 @@ const Home = () => {
                   paddingRight={'1.8rem'}
                   borderBottomRadius={'10'}
                 >
-                  <Box fontSize={'xs'} color={'gray'}>
-                    {/* TODO: date-pickerのstartとendで表示する */}
-                    {travelink.date}~0000/00/00
-                  </Box>
+                  {travelink.date[0] && (
+                    <Box fontSize={'xs'} color={'gray'}>
+                      {/* TODO: date-pickerのstartとendで表示する */}
+                      {travelink.date[0] &&
+                        format(travelink.date[0].toDate(), 'yyyy/MM/dd')}
+                      ~
+                      {travelink.date[1] &&
+                        format(travelink.date[1].toDate(), 'yyyy/MM/dd')}
+                    </Box>
+                  )}
                   <Box>
                     <Heading
                       paddingTop={'0.6rem'}
