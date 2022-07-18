@@ -1,4 +1,3 @@
-import { currentUserState } from '@/recoil/atoms'
 import { TravelinkRequestType } from '@/types/db'
 import {
   collection,
@@ -9,13 +8,13 @@ import {
   getDoc,
   setDoc
 } from 'firebase/firestore'
-import { useRecoilValue } from 'recoil'
 
-export const useUpdateBookmark = async (data: TravelinkRequestType) => {
-  const currentUser = useRecoilValue(currentUserState)
-  if (!currentUser) return
+export const useUpdateBookmark = async (
+  data: TravelinkRequestType,
+  uid: string
+) => {
   const db = getFirestore()
-  const ref = doc(collection(db, 'bookmark'), currentUser.uid)
+  const ref = doc(collection(db, 'bookmark'), uid)
   const document = await getDoc(ref)
 
   if (document.exists()) {
@@ -24,7 +23,9 @@ export const useUpdateBookmark = async (data: TravelinkRequestType) => {
         thumbnail: data.thumbnail,
         date: data.date,
         title: data.title,
-        id: data.id
+        id: data.id,
+        ownerIcon: data.ownerIcon,
+        ownerName: data.ownerName
       })
     })
   } else {
@@ -33,7 +34,9 @@ export const useUpdateBookmark = async (data: TravelinkRequestType) => {
         thumbnail: data.thumbnail,
         date: data.date,
         title: data.title,
-        id: data.id
+        id: data.id,
+        ownerIcon: data.ownerIcon,
+        ownerName: data.ownerName
       })
     })
   }

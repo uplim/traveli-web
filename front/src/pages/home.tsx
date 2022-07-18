@@ -1,14 +1,11 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
-import Link from 'next/link'
-import { format } from 'date-fns'
-import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
 import { ButtonIconRound } from '@/components/Buttons'
 import { useGetBookmark } from '@/hooks/firestore/bookmark/useGetBookmark'
+import { CardHome } from '@/components/Cards'
 
 const Home = () => {
-  const router = useRouter()
   const { travelinkList } = useGetTravelinkList()
   const { ownerProfile } = useGetOwnerProfile()
   const { bookmark, bookmarkExists } = useGetBookmark()
@@ -72,69 +69,14 @@ const Home = () => {
             </Box>
           </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
-          {travelinkList.map((travelink, i) => (
-            <Link href={router.basePath + travelink.id} key={i} passHref>
-              {/* <a href="replace"> */}
-              <Box
-                w={'100%'}
-                h={'23.9rem'}
-                borderRadius={'10'}
-                filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
-                bgColor={'white'}
-                marginBottom={'2.2rem'}
-              >
-                <Box
-                  bgImage={travelink.thumbnail}
-                  h={'12.9rem'}
-                  borderTopRadius={'10'}
-                />
-                <Box
-                  paddingTop={'1.1rem'}
-                  paddingLeft={'1.8rem'}
-                  paddingRight={'1.8rem'}
-                  borderBottomRadius={'10'}
-                >
-                  {travelink.date[0] && (
-                    <Box fontSize={'xs'} color={'gray'}>
-                      {/* TODO: date-pickerのstartとendで表示する */}
-                      {travelink.date[0] &&
-                        format(travelink.date[0].toDate(), 'yyyy/MM/dd')}
-                      ~
-                      {travelink.date[1] &&
-                        format(travelink.date[1].toDate(), 'yyyy/MM/dd')}
-                    </Box>
-                  )}
-                  <Box>
-                    <Heading
-                      paddingTop={'0.6rem'}
-                      paddingBottom={'1.4rem'}
-                      fontSize={'lg'}
-                    >
-                      {travelink.title}
-                    </Heading>
-                  </Box>
-                  <Flex alignContent={'baseline'}>
-                    <Flex>
-                      <Avatar
-                        w={'2.4rem'}
-                        h={'2.4rem'}
-                        src={travelink.ownerIcon}
-                      />
-
-                      <Box paddingLeft={'1rem'} fontSize={'md'}>
-                        {travelink.ownerName}
-                      </Box>
-                    </Flex>
-
-                    <Spacer />
-                    <Link href={router.basePath + '/user'} passHref>
-                      <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-                    </Link>
-                  </Flex>
-                </Box>
-              </Box>
-              {/* </a> */}
-            </Link>
+          {travelinkList.map((travelink) => (
+            <CardHome data={travelink} key={travelink.id} />
+          ))}
+          <Heading paddingRight={'0.8rem'} fontSize={'2xl'} fontWeight={'bold'}>
+            保存済みリンク
+          </Heading>
+          {bookmark.items.map((item) => (
+            <CardHome data={item} key={item.id} />
           ))}
           <ButtonIconRound
             iconType={'plus'}
