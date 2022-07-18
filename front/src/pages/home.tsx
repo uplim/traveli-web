@@ -141,10 +141,8 @@ const Home = () => {
             right={'1.6rem'}
             w={'6.4rem'}
             h={'6.4rem'}
-            sx={{
-              filter: 'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))',
-              'box-shadow': '0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'
-            }}
+            boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
+            filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'}
           />
         </>
       )}
