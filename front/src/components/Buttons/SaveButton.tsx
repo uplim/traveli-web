@@ -7,16 +7,21 @@ import { IconSave } from '@/components/Icons'
 
 type SaveButtonProps = {
   data: TravelinkRequestType
+  isChecked: boolean
 }
 
-export const SaveButton = ({ data }: SaveButtonProps) => {
+export const SaveButton = ({ data, isChecked }: SaveButtonProps) => {
   const updateBookmark = useUpdateBookmark
   const currentUser = useRecoilValue(currentUserState)
 
   return (
-    <Box onClick={() => currentUser && updateBookmark(data, currentUser.uid)}>
+    <Box
+      onClick={() =>
+        !isChecked && currentUser && updateBookmark(data, currentUser.uid)
+      }
+    >
       <IconSave w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-      <Text>保存</Text>
+      <Text>{isChecked ? '保存済み' : '保存'}</Text>
     </Box>
   )
 }

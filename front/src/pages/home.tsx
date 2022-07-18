@@ -1,8 +1,7 @@
 import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
-import { useRouter } from 'next/router'
 import { ButtonIconRound } from '@/components/Buttons'
-import { useGetBookmark } from '@/hooks/firestore/bookmark/useGetBookmark'
+import { useGetBookmark } from '@/hooks/firestore'
 import { CardHome } from '@/components/Cards'
 
 const Home = () => {

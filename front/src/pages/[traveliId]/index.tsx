@@ -21,10 +21,12 @@ import {
   SaveButton
 } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
+import { useCheckBookmarked } from '@/hooks/firestore'
 
 const LinkList = () => {
   const router = useRouter()
   const { travelink } = useGetTravelink()
+  const { isChecked } = useCheckBookmarked()
 
   return (
     <>
@@ -127,7 +129,7 @@ const LinkList = () => {
               </Text>
             )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
-              <SaveButton data={travelink} />
+              <SaveButton isChecked={isChecked} data={travelink} />
               <Spacer />
               <Box>
                 <IconQr w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />

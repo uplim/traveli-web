@@ -19,6 +19,7 @@ export const useUpdateBookmark = async (
 
   if (document.exists()) {
     await updateDoc(ref, {
+      saved: arrayUnion(data.id),
       items: arrayUnion({
         thumbnail: data.thumbnail,
         date: data.date,
@@ -30,6 +31,7 @@ export const useUpdateBookmark = async (
     })
   } else {
     setDoc(ref, {
+      saved: arrayUnion(data.id),
       items: arrayUnion({
         thumbnail: data.thumbnail,
         date: data.date,

@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { BookmarkType } from '@/types/db'
 import { collection, getDoc, getFirestore, doc } from 'firebase/firestore'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { useBoolean } from '@chakra-ui/react'
+import { useRouter } from 'next/router'
 
-export const useGetBookmark = () => {
+export const useCheckBookmarked = () => {
+  const router = useRouter()
+  const [isChecked, setIsChecked] = useBoolean()
+  const traveliId = router.query.traveliId as string
   const currentUser = useRecoilValue(currentUserState)
-  const [bookmark, setBookmark] = useState<Pick<BookmarkType, 'items'>>({
-    items: []
-  })
-  const [bookmarkExists, setBookmarkExists] = useBoolean()
 
   useEffect(() => {
     if (!currentUser) return
@@ -21,17 +21,16 @@ export const useGetBookmark = () => {
       const document = await getDoc(ref)
 
       if (!document.exists()) {
-        setBookmarkExists.off()
         return
       }
 
-      const getBookmark = document.data() as BookmarkType
-      setBookmark(getBookmark)
-      setBookmarkExists.on()
+      const data = document.data() as BookmarkType
+      const isSaved = data.saved.indexOf(traveliId)
+      isSaved !== -1 ? setIsChecked.on() : setIsChecked.off()
     }
 
     loadTravelink()
   }, [])
 
-  return { bookmark, bookmarkExists }
+  return { isChecked }
 }
