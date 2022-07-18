@@ -67,10 +67,11 @@ export const FormCreateUpdateLinks = ({
       </Flex>
 
       <FormControl isInvalid={errors.title ? true : false}>
-        <FormLabel>旅の名前</FormLabel>
+        <FormLabel marginTop={'1.5rem'}>旅の名前</FormLabel>
         <Input
           variant={'filled'}
           h={'4.6rem'}
+          marginTop={'0.8rem'}
           borderRightRadius={'10rem'}
           borderLeftRadius={'10rem'}
           bgColor={'white'}
@@ -100,33 +101,35 @@ export const FormCreateUpdateLinks = ({
           {errors.date && errors.date.message}
         </FormErrorMessage> */}
 
+        {/* TODO:　スタイルどうにかする */}
         <InputDate control={control} name={'date'} />
       </FormControl>
 
       <FormControl>
-        <FormLabel>サムネイル画像（任意）</FormLabel>
+        <FormLabel marginTop={'1.6rem'}>サムネイル画像（任意）</FormLabel>
         <VisuallyHiddenInput
           ref={inputRef}
           type={'file'}
           accept="image/*"
           onChange={handleChangeImage}
         />
-          <Box
-            bgImage={image ? URL.createObjectURL(image) : ''}
-            onClick={onClickButton}
-            w={'100%'}
-            h={'12.9rem'}
-            borderRadius={'1rem'}
-            bgColor={'gray'}
-            filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
-          >
-            <Flex align={'center'} justify={'center'}>
+        <Box
+          marginTop={'0.8rem'}
+          bgImage={image ? URL.createObjectURL(image) : ''}
+          onClick={onClickButton}
+          w={'100%'}
+          h={'12.9rem'}
+          borderRadius={'1rem'}
+          bgColor={'gray'}
+          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
+        >
+          <Flex align={'center'} justify={'center'}>
             <IconCamera zIndex={1} w={'4.8rem'} h={'4.8rem'} color={'white'} />
-            </Flex>
-          </Box>
+          </Flex>
+        </Box>
       </FormControl>
 
-      <Box>リンク</Box>
+      <Box margin={'1.6rem 0 1.6rem 0'}>リンク</Box>
       <CardLink
         label={'ぷるりく'}
         url={'https://github.com/traveli-dev/traveli-web/pull/96'}
@@ -138,6 +141,7 @@ export const FormCreateUpdateLinks = ({
 
       <FormControl>
         <Box
+          marginTop={'0.4rem'}
           padding={'2.4rem 1.6rem 2.5rem 1.6rem'}
           w={'100%'}
           h={'20.1rem'}
@@ -148,6 +152,7 @@ export const FormCreateUpdateLinks = ({
           <List>
             <FormLabel>URL</FormLabel>
             <Input
+              margin={'0.8rem 0 1.6rem 0'}
               variant={'outline'}
               color={'#ACC1CA'}
               h={'4.4rem'}
@@ -156,6 +161,7 @@ export const FormCreateUpdateLinks = ({
             />
             <FormLabel>ラベル</FormLabel>
             <Input
+              marginTop={'0.8rem'}
               variant={'outline'}
               color={'#ACC1CA'}
               h={'4.4rem'}
@@ -169,6 +175,7 @@ export const FormCreateUpdateLinks = ({
                   <FormControl isInvalid={!!errors.links}>
                     <FormLabel>URL</FormLabel>
                     <Input
+                      margin={'0.8rem 0 1.6rem 0'}
                       variant={'outline'}
                       color={'#ACC1CA'}
                       w={'31.1rem'}
@@ -187,6 +194,7 @@ export const FormCreateUpdateLinks = ({
 
                   <FormLabel>ラベル</FormLabel>
                   <Input
+                    marginTop={'0.8rem'}
                     variant={'outline'}
                     color={'#ACC1CA'}
                     w={'31.1rem'}
@@ -201,10 +209,11 @@ export const FormCreateUpdateLinks = ({
             })}
           </List>
         </Box>
+        {/* Add List */}
         <Flex
           align={'center'}
           justify={'center'}
-          paddingTop={'1.6rem'}
+          marginTop={'1.6rem'}
           color={'brandBlue'}
         >
           <Box fontSize={'md'}> + リストの追加</Box>
@@ -234,26 +243,17 @@ export const FormCreateUpdateLinks = ({
             <Switch
               paddingRight={'2.2rem'}
               size={'lg'}
+              color={'brandBlue'}
               {...register('canEdit')}
               defaultChecked={travelinkData?.canEdit}
             />
             <FormLabel>他のユーザに編集を許可する</FormLabel>
           </FormControl>
         )}
-        <Button
-          disabled={disabled}
-          onClick={handleSubmit(onSubmit)}
-          variant={'solid'}
-        >
-          送信する
-        </Button>
       </FormControl>
 
       <Button
-        position={'absolute'}
-        // bottom={'12.9rem'}
-        right={'50%'}
-        transform={'translateX(50%)'}
+        marginTop={'3rem'}
         disabled={disabled}
         variant={'round'}
         onClick={handleSubmit(onSubmit)}
