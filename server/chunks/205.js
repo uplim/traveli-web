@@ -343,7 +343,10 @@ const InputDate = ({ name , control  })=>{
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_hook_form__WEBPACK_IMPORTED_MODULE_3__.Controller, {
         control: control,
         name: name,
-        render: ({ field: { onChange , value  }  })=>{
+        render: ({ field: { onChange , value =[
+            null,
+            null
+        ]  }  })=>{
             const v = value;
             return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react_datepicker__WEBPACK_IMPORTED_MODULE_4___default()), {
                 selectsRange: true,

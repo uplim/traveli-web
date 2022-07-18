@@ -221,7 +221,7 @@ const customTheme = (0,react_.extendTheme)({
                     transform: "rotate(0.03deg)"
                 }
             },
-            "h1,h2,h3,h4,h5,h6,input,textarea,a,label": {
+            "h1,h2,h3,h4,h5,h6,input,textarea,img,svg,a,label": {
                 transform: "rotate(0.03deg)"
             }
         }
@@ -229,9 +229,7 @@ const customTheme = (0,react_.extendTheme)({
     components: {
         Button: Button
     }
-}, (0,react_.withDefaultColorScheme)({
-    colorScheme: "brandPink"
-}));
+});
 
 
 /***/ }),
