@@ -13,7 +13,7 @@ export const InputDate = <T,>({ name, control }: Props<T>) => {
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value } }) => {
+      render={({ field: { onChange, value = [null, null] } }) => {
         const v = value as [Date | null, Date | null]
         return (
           <DatePicker
