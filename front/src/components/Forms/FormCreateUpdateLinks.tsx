@@ -20,7 +20,6 @@ import { TravelinkRequestType, Profile } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconPlus, IconReturn } from '@/components/Icons'
 import { CardLink } from '@/components/Cards'
-import { colors } from '@/theme/colors'
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
@@ -67,7 +66,9 @@ export const FormCreateUpdateLinks = ({
       </Flex>
 
       <FormControl isInvalid={errors.title ? true : false}>
-        <FormLabel marginTop={'1.5rem'}>旅の名前</FormLabel>
+        <FormLabel marginTop={'1.5rem'} fontSize={'sm'} color={'#2D2D2D'}>
+          旅の名前
+        </FormLabel>
         <Input
           variant={'filled'}
           h={'4.6rem'}
@@ -85,7 +86,9 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <FormControl isInvalid={errors.date ? true : false}>
-        <FormLabel>日時（任意）</FormLabel>
+        <FormLabel marginTop={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
+          日時（任意）
+        </FormLabel>
         {/* <Input
           variant={'filled'}
           h={'4.6rem'}
@@ -101,12 +104,14 @@ export const FormCreateUpdateLinks = ({
           {errors.date && errors.date.message}
         </FormErrorMessage> */}
 
-        {/* TODO:　スタイルどうにかする */}
+        {/* TODO:　どうにかする */}
         <InputDate control={control} name={'date'} />
       </FormControl>
 
       <FormControl>
-        <FormLabel marginTop={'1.6rem'}>サムネイル画像（任意）</FormLabel>
+        <FormLabel marginTop={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
+          サムネイル画像（任意）
+        </FormLabel>
         <VisuallyHiddenInput
           ref={inputRef}
           type={'file'}
@@ -120,16 +125,16 @@ export const FormCreateUpdateLinks = ({
           w={'100%'}
           h={'12.9rem'}
           borderRadius={'1rem'}
-          bgColor={'gray'}
+          bgColor={'#D2D6E1'}
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
         >
-          <Flex align={'center'} justify={'center'}>
+          <Flex h={'12.9rem'} align={'center'} justify={'center'}>
             <IconCamera zIndex={1} w={'4.8rem'} h={'4.8rem'} color={'white'} />
           </Flex>
         </Box>
       </FormControl>
 
-      <Box margin={'1.6rem 0 1.6rem 0'}>リンク</Box>
+      <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
       <CardLink
         label={'ぷるりく'}
         url={'https://github.com/traveli-dev/traveli-web/pull/96'}
@@ -142,7 +147,7 @@ export const FormCreateUpdateLinks = ({
       <FormControl>
         <Box
           marginTop={'0.4rem'}
-          padding={'2.4rem 1.6rem 2.5rem 1.6rem'}
+          padding={'2.4rem 1.6rem 0 1.6rem'}
           w={'100%'}
           h={'20.1rem'}
           borderRadius={'1.5rem'}
@@ -150,41 +155,27 @@ export const FormCreateUpdateLinks = ({
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
         >
           <List>
-            <FormLabel>URL</FormLabel>
-            <Input
-              margin={'0.8rem 0 1.6rem 0'}
-              variant={'outline'}
-              color={'#ACC1CA'}
-              h={'4.4rem'}
-              borderRightRadius={'10rem'}
-              borderLeftRadius={'10rem'}
-            />
-            <FormLabel>ラベル</FormLabel>
-            <Input
-              marginTop={'0.8rem'}
-              variant={'outline'}
-              color={'#ACC1CA'}
-              h={'4.4rem'}
-              borderRightRadius={'10rem'}
-              borderLeftRadius={'10rem'}
-            />
 
             {fields.map((item, index) => {
               return (
                 <ListItem key={item.id}>
                   <FormControl isInvalid={!!errors.links}>
-                    <FormLabel>URL</FormLabel>
+                  <FormLabel h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
+              URL
+            </FormLabel>
                     <Input
-                      margin={'0.8rem 0 1.6rem 0'}
+                      marginTop={'0.3rem'}
+                      marginBottom={'1.6rem'}
                       variant={'outline'}
-                      color={'#ACC1CA'}
-                      w={'31.1rem'}
+                      borderColor={'#ACC1CA'}
+                      w={'100%'}
                       h={'4.4rem'}
                       borderRightRadius={'10rem'}
                       borderLeftRadius={'10rem'}
                       isInvalid={errors.links?.[index] ? true : false}
                       {...register(`links.${index}.url`)}
                       defaultValue={item.url}
+                      placeholder={'https://'}
                     />
                     <FormErrorMessage>
                       {errors.links?.[index] &&
@@ -192,23 +183,33 @@ export const FormCreateUpdateLinks = ({
                     </FormErrorMessage>
                   </FormControl>
 
-                  <FormLabel>ラベル</FormLabel>
+                  <FormLabel
+              display={'flex'}
+              h={'1.6rem'}
+              fontSize={'sm'}
+              color={'#2D2D2D'}
+            >
+              <Box>ラベル</Box>
+              <Box color={'gray'}>（任意）</Box>
+            </FormLabel>
                   <Input
-                    marginTop={'0.8rem'}
+                    marginTop={'0.3rem'}
                     variant={'outline'}
-                    color={'#ACC1CA'}
-                    w={'31.1rem'}
+                    borderColor={'#ACC1CA'}
+                    w={'100%'}
                     h={'4.4rem'}
                     borderRightRadius={'10rem'}
                     borderLeftRadius={'10rem'}
                     {...register(`links.${index}.label`)}
                     defaultValue={item.label}
+                    placeholder={'例）宿泊先'}
                   />
                 </ListItem>
               )
             })}
           </List>
         </Box>
+
         {/* Add List */}
         <Flex
           align={'center'}
@@ -216,7 +217,12 @@ export const FormCreateUpdateLinks = ({
           marginTop={'1.6rem'}
           color={'brandBlue'}
         >
-          <Box fontSize={'md'}> + リストの追加</Box>
+          <Box
+          bgImage={'/images/plus.svg'}
+          w={'2.4rem'}
+          h={'2.4rem'}
+          />
+            <Box fontSize={'md'}>リストの追加</Box>
         </Flex>
         <button
           type="button"
@@ -243,7 +249,7 @@ export const FormCreateUpdateLinks = ({
             <Switch
               paddingRight={'2.2rem'}
               size={'lg'}
-              color={'brandBlue'}
+              colorScheme={'brandBlue-switch'}
               {...register('canEdit')}
               defaultChecked={travelinkData?.canEdit}
             />
@@ -252,14 +258,15 @@ export const FormCreateUpdateLinks = ({
         )}
       </FormControl>
 
+        <Flex justify={'center'} margin={'3rem 0 3.5rem 0'}>
       <Button
-        marginTop={'3rem'}
         disabled={disabled}
         variant={'round'}
         onClick={handleSubmit(onSubmit)}
       >
         作成する
       </Button>
+      </Flex>
     </Box>
   )
 }
