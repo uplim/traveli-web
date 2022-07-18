@@ -34,6 +34,5 @@ export const customTheme = extendTheme(
     components: {
       Button
     }
-  },
-  withDefaultColorScheme({ colorScheme: 'brandPink' })
+  }
 )
