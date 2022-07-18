@@ -14,8 +14,12 @@ import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
-import { IconQr, IconSave, IconShare } from '@/components/Icons'
-import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
+import { IconQr, IconShare } from '@/components/Icons'
+import {
+  ButtonIconRound,
+  ButtonViewChange,
+  SaveButton
+} from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 
 const LinkList = () => {
@@ -123,10 +127,7 @@ const LinkList = () => {
               </Text>
             )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
-              <Box>
-                <IconSave w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-                <Text>保存</Text>
-              </Box>
+              <SaveButton data={travelink} />
               <Spacer />
               <Box>
                 <IconQr w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
