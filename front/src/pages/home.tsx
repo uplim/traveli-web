@@ -5,15 +5,17 @@ import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
 import { ButtonIconRound } from '@/components/Buttons'
+import { useGetBookmark } from '@/hooks/firestore/bookmark/useGetBookmark'
 
 const Home = () => {
   const router = useRouter()
   const { travelinkList } = useGetTravelinkList()
   const { ownerProfile } = useGetOwnerProfile()
+  const { bookmark, bookmarkExists } = useGetBookmark()
 
   return (
     <>
-      {!ownerProfile ? (
+      {!ownerProfile || (bookmarkExists && !bookmark) ? (
         <>ローディングアイコン</>
       ) : (
         <>

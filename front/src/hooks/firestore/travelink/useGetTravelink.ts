@@ -31,5 +31,5 @@ export const useGetTravelink = () => {
     loadTravelink()
   }, [])
 
-  return { travelink, currentUser }
+  return { travelink }
 }
