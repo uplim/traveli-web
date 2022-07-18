@@ -18,7 +18,9 @@ import { useRef } from 'react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
-import { IconReturn } from '@/components/Icons';
+import { IconCamera, IconPlus, IconReturn } from '@/components/Icons'
+import { CardLink } from '@/components/Cards'
+import { colors } from '@/theme/colors'
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
@@ -68,7 +70,6 @@ export const FormCreateUpdateLinks = ({
         <FormLabel>旅の名前</FormLabel>
         <Input
           variant={'filled'}
-          w={'34.4rem'}
           h={'4.6rem'}
           borderRightRadius={'10rem'}
           borderLeftRadius={'10rem'}
@@ -86,7 +87,6 @@ export const FormCreateUpdateLinks = ({
         <FormLabel>日時（任意）</FormLabel>
         {/* <Input
           variant={'filled'}
-          w={'34.4rem'}
           h={'4.6rem'}
           borderRightRadius={'10rem'}
           borderLeftRadius={'10rem'}
@@ -111,45 +111,104 @@ export const FormCreateUpdateLinks = ({
           accept="image/*"
           onChange={handleChangeImage}
         />
-        <Image
-          alt={''}
-          src={image ? URL.createObjectURL(image) : ''}
-          onClick={onClickButton}
-          w={'100%'}
-          h={'12.9rem'}
-          borderRadius={'1rem'}
-          bgColor={'gray'}
-          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
-        />
+          <Box
+            bgImage={image ? URL.createObjectURL(image) : ''}
+            onClick={onClickButton}
+            w={'100%'}
+            h={'12.9rem'}
+            borderRadius={'1rem'}
+            bgColor={'gray'}
+            filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
+          >
+            <Flex align={'center'} justify={'center'}>
+            <IconCamera zIndex={1} w={'4.8rem'} h={'4.8rem'} color={'white'} />
+            </Flex>
+          </Box>
       </FormControl>
 
-      <FormControl>
-        <List>
-          {fields.map((item, index) => {
-            return (
-              <ListItem key={item.id}>
-                <FormControl isInvalid={!!errors.links}>
-                  <FormLabel>URL</FormLabel>
-                  <Input
-                    isInvalid={errors.links?.[index] ? true : false}
-                    {...register(`links.${index}.url`)}
-                    defaultValue={item.url}
-                  />
-                  <FormErrorMessage>
-                    {errors.links?.[index] &&
-                      errors.links?.[index].url?.message}
-                  </FormErrorMessage>
-                </FormControl>
+      <Box>リンク</Box>
+      <CardLink
+        label={'ぷるりく'}
+        url={'https://github.com/traveli-dev/traveli-web/pull/96'}
+      />
+      <CardLink
+        label={'ぷるりく'}
+        url={'https://github.com/traveli-dev/traveli-web/pull/96'}
+      />
 
-                <FormLabel>ラベル</FormLabel>
-                <Input
-                  {...register(`links.${index}.label`)}
-                  defaultValue={item.label}
-                />
-              </ListItem>
-            )
-          })}
-        </List>
+      <FormControl>
+        <Box
+          padding={'2.4rem 1.6rem 2.5rem 1.6rem'}
+          w={'100%'}
+          h={'20.1rem'}
+          borderRadius={'1.5rem'}
+          bgColor={'white'}
+          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
+        >
+          <List>
+            <FormLabel>URL</FormLabel>
+            <Input
+              variant={'outline'}
+              color={'#ACC1CA'}
+              h={'4.4rem'}
+              borderRightRadius={'10rem'}
+              borderLeftRadius={'10rem'}
+            />
+            <FormLabel>ラベル</FormLabel>
+            <Input
+              variant={'outline'}
+              color={'#ACC1CA'}
+              h={'4.4rem'}
+              borderRightRadius={'10rem'}
+              borderLeftRadius={'10rem'}
+            />
+
+            {fields.map((item, index) => {
+              return (
+                <ListItem key={item.id}>
+                  <FormControl isInvalid={!!errors.links}>
+                    <FormLabel>URL</FormLabel>
+                    <Input
+                      variant={'outline'}
+                      color={'#ACC1CA'}
+                      w={'31.1rem'}
+                      h={'4.4rem'}
+                      borderRightRadius={'10rem'}
+                      borderLeftRadius={'10rem'}
+                      isInvalid={errors.links?.[index] ? true : false}
+                      {...register(`links.${index}.url`)}
+                      defaultValue={item.url}
+                    />
+                    <FormErrorMessage>
+                      {errors.links?.[index] &&
+                        errors.links?.[index].url?.message}
+                    </FormErrorMessage>
+                  </FormControl>
+
+                  <FormLabel>ラベル</FormLabel>
+                  <Input
+                    variant={'outline'}
+                    color={'#ACC1CA'}
+                    w={'31.1rem'}
+                    h={'4.4rem'}
+                    borderRightRadius={'10rem'}
+                    borderLeftRadius={'10rem'}
+                    {...register(`links.${index}.label`)}
+                    defaultValue={item.label}
+                  />
+                </ListItem>
+              )
+            })}
+          </List>
+        </Box>
+        <Flex
+          align={'center'}
+          justify={'center'}
+          paddingTop={'1.6rem'}
+          color={'brandBlue'}
+        >
+          <Box fontSize={'md'}> + リストの追加</Box>
+        </Flex>
         <button
           type="button"
           onClick={() => {
@@ -167,12 +226,18 @@ export const FormCreateUpdateLinks = ({
           remove
         </button>
         {(isOwner || formType === 'create') && (
-          <FormControl display={'flex'} alignItems={'center'}>
-            <FormLabel>他のユーザに編集を許可する</FormLabel>
+          <FormControl
+            display={'flex'}
+            alignItems={'center'}
+            paddingTop={'3rem'}
+          >
             <Switch
+              paddingRight={'2.2rem'}
+              size={'lg'}
               {...register('canEdit')}
               defaultChecked={travelinkData?.canEdit}
             />
+            <FormLabel>他のユーザに編集を許可する</FormLabel>
           </FormControl>
         )}
         <Button
@@ -183,6 +248,18 @@ export const FormCreateUpdateLinks = ({
           送信する
         </Button>
       </FormControl>
+
+      <Button
+        position={'absolute'}
+        // bottom={'12.9rem'}
+        right={'50%'}
+        transform={'translateX(50%)'}
+        disabled={disabled}
+        variant={'round'}
+        onClick={handleSubmit(onSubmit)}
+      >
+        作成する
+      </Button>
     </Box>
   )
 }
