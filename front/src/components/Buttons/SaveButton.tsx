@@ -3,7 +3,7 @@ import { currentUserState } from '@/recoil/atoms'
 import { TravelinkRequestType } from '@/types/db'
 import { Box, Text } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
-import { IconSave } from '../Icons'
+import { IconSave } from '@/components/Icons'
 
 type SaveButtonProps = {
   data: TravelinkRequestType
