@@ -17,6 +17,8 @@ import {
 import { useRef } from 'react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
+import { InputDate } from '@/components/Inputs/InputDate'
+import { IconReturn } from '@/components/Icons';
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
@@ -37,6 +39,7 @@ export const FormCreateUpdateLinks = ({
     fields,
     append,
     remove,
+    control,
     onSubmit,
     errors,
     disabled,
@@ -81,7 +84,7 @@ export const FormCreateUpdateLinks = ({
 
       <FormControl isInvalid={errors.date ? true : false}>
         <FormLabel>日時（任意）</FormLabel>
-        <Input
+        {/* <Input
           variant={'filled'}
           w={'34.4rem'}
           h={'4.6rem'}
@@ -95,7 +98,9 @@ export const FormCreateUpdateLinks = ({
         />
         <FormErrorMessage>
           {errors.date && errors.date.message}
-        </FormErrorMessage>
+        </FormErrorMessage> */}
+
+        <InputDate control={control} name={'date'} />
       </FormControl>
 
       <FormControl>
