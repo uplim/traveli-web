@@ -13,6 +13,7 @@ type Inputs = {
   title: string
   date: [Date | null, Date | null]
   links: {
+    category:string
     url: string
     label: string
   }[]

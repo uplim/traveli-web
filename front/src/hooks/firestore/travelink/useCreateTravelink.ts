@@ -14,6 +14,7 @@ type Inputs = {
   ownerName: string
   ownerIcon: string
   links: {
+    category: string
     url: string
     label: string
   }[]

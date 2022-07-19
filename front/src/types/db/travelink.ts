@@ -4,6 +4,7 @@ export type TravelinkRequestType = firestore.DocumentData & {
   title: string
   date: [firestore.Timestamp | null, firestore.Timestamp | null]
   links: {
+    category:string
     url: string
     label: string
   }[]
