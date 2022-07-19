@@ -42,7 +42,7 @@ export const FormCreateUpdateLinks = ({
     handleChangeImage
   } = useFormCreateUpdateLinks(formType, travelinkData, ownerProfile)
 
-  const RadioCard = (props: any) => {
+  const RadioCard = (props) => {
     const { getInputProps, getCheckboxProps } = useRadio(props)
 
     const input = getInputProps()
@@ -123,7 +123,7 @@ export const FormCreateUpdateLinks = ({
                       const radio = getRadioProps({ value })
 
                       return (
-                        <RadioCard key={value} index={index} {...radio}>
+                        <RadioCard key={value} {...radio}>
                           {value}
                         </RadioCard>
                       )
