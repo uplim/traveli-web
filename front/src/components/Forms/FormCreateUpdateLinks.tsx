@@ -14,7 +14,6 @@ import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { useRadio, useRadioGroup, HStack } from '@chakra-ui/react'
-import { useState } from 'react'
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
