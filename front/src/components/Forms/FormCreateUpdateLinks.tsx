@@ -8,7 +8,8 @@ import {
   Button,
   FormErrorMessage,
   Switch,
-  Image
+  Image,
+  UseRadioProps
 } from '@chakra-ui/react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
@@ -42,16 +43,21 @@ export const FormCreateUpdateLinks = ({
     handleChangeImage
   } = useFormCreateUpdateLinks(formType, travelinkData, ownerProfile)
 
-  const RadioCard = (props) => {
-    const { getInputProps, getCheckboxProps } = useRadio(props)
+  type RadioCardProps = {
+    index: number
+    radio: UseRadioProps
+    children: React.ReactNode | string
+  }
+
+  const RadioCard = ({ index, radio, children }: RadioCardProps) => {
+    const { getInputProps, getCheckboxProps } = useRadio(radio)
 
     const input = getInputProps()
-
     const checkbox = getCheckboxProps()
 
     return (
       <Box as="label">
-        <Input {...input} />
+        <Input {...input} {...register(`links.${index}.category`)} />
         <Box
           {...checkbox}
           cursor="pointer"
@@ -70,7 +76,7 @@ export const FormCreateUpdateLinks = ({
           px={5}
           py={3}
         >
-          {props.children}
+          {children}
         </Box>
       </Box>
     )
@@ -119,11 +125,10 @@ export const FormCreateUpdateLinks = ({
                 <FormControl isInvalid={!!errors.links}>
                   <FormLabel>カテゴリー</FormLabel>
                   <HStack {...group}>
-                    {categoryOptions.map((value) => {
+                    {categoryOptions.map((value, index) => {
                       const radio = getRadioProps({ value })
-
                       return (
-                        <RadioCard key={value} {...radio}>
+                        <RadioCard key={value} index={index} radio={radio}>
                           {value}
                         </RadioCard>
                       )
