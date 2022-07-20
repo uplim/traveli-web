@@ -1,10 +1,4 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Spacer,
-  Avatar,
-} from '@chakra-ui/react'
+import { Box, Flex, Heading, Spacer, Avatar } from '@chakra-ui/react'
 import Link from 'next/link'
 import { format } from 'date-fns'
 import { IconLink } from '@/components/Icons'
