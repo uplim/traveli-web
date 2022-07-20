@@ -4,7 +4,6 @@ import {
   Heading,
   Spacer,
   Avatar,
-  useDisclosure
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import { format } from 'date-fns'
