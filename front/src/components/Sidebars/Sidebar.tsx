@@ -1,14 +1,10 @@
 import {
   Avatar,
   Box,
-  Button,
-  chakra,
   Drawer,
   DrawerContent,
   DrawerOverlay,
-  Fade,
   Flex,
-  Slide,
   useDisclosure
 } from '@chakra-ui/react'
 import { IconUser } from './../Icons/IconUser'
