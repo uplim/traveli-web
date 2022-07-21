@@ -53,7 +53,8 @@ const Home = () => {
             alignItems={'baseline'}
           >
             <Box paddingRight={'0.8rem'} fontSize={'2xl'} fontWeight={'bold'}>
-              00
+              00{' '}
+            </Box>
             <Box
               w={'1.8rem'}
               h={'1.8rem'}
