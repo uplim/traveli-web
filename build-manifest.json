@@ -5,9 +5,9 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/Nuvoet8gimIFHyS3noPv9/_buildManifest.js",
-    "static/Nuvoet8gimIFHyS3noPv9/_ssgManifest.js",
-    "static/Nuvoet8gimIFHyS3noPv9/_middlewareManifest.js"
+    "static/yvM0sPRTYlH_x4-vfj4Ip/_buildManifest.js",
+    "static/yvM0sPRTYlH_x4-vfj4Ip/_ssgManifest.js",
+    "static/yvM0sPRTYlH_x4-vfj4Ip/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
@@ -15,7 +15,7 @@
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f65e66e62fc5ca80.js",
       "static/chunks/664-41844e7ff48658f9.js",
-      "static/chunks/pages/index-18af55ba1d6ddcf5.js"
+      "static/chunks/pages/index-832cd8ec97883292.js"
     ],
     "/[traveliId]": [
       "static/chunks/webpack-42cdea76c8170223.js",
