@@ -8,17 +8,20 @@ import {
   Button,
   FormErrorMessage,
   Switch,
-  Image,
   Flex,
   Spacer,
-  VisuallyHiddenInput
+  VisuallyHiddenInput,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList
 } from '@chakra-ui/react'
 
 import { useRef } from 'react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
-import { IconCamera, IconPlus, IconReturn } from '@/components/Icons'
+import { IconCamera, IconReturn } from '@/components/Icons'
 import { CardLink } from '@/components/Cards'
 
 type FormCreateUpdateLinksProps = {
@@ -147,22 +150,80 @@ export const FormCreateUpdateLinks = ({
       <FormControl>
         <Box
           marginTop={'0.4rem'}
-          padding={'2.4rem 1.6rem 0 1.6rem'}
+          padding={'1.4rem 1.6rem 0 1.6rem'}
           w={'100%'}
-          h={'20.1rem'}
+          h={'27.4rem'}
           borderRadius={'1.5rem'}
           bgColor={'white'}
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
         >
-          <List>
+          <Menu>
+            <Flex>
+              <Spacer />
+              <MenuButton>
+                <Flex
+                  bgColor={'#E8ECF0'}
+                  borderRadius={'full'}
+                  w={'3.6rem'}
+                  h={'3.6rem'}
+                  align={'center'}
+                  justify={'center'}
+                >
+                  <Box
+                    bgImage={'/images/menuButton.svg'}
+                    w={'2.4rem'}
+                    h={'2.4rem'}
+                  />
+                </Flex>
+              </MenuButton>
+            </Flex>
 
+            <MenuList
+              padding={'1.35rem 0 0 2.4rem'}
+              w={'16.8rem'}
+              h={'8.8rem'}
+              borderColor={'#CBD5E0'}
+              borderRadius={'1.5rem'}
+              boxShadow={0}
+            >
+              <MenuItem display={'flex'} padding={'0 0 1.35rem 0'}>
+                <Box
+                  bgImage={'/images/closeMenu.svg'}
+                  w={'1.5rem'}
+                  h={'1.5rem'}
+                  marginRight={'1.6rem'}
+                />
+                <Box fontSize={'sm'}>表示を最小化</Box>
+              </MenuItem>
+              <MenuItem display={'flex'} padding={0}>
+                <Box
+                  bgImage={'/images/trash.svg'}
+                  w={'1.68rem'}
+                  h={'1.68rem'}
+                  marginRight={'1.6rem'}
+                />
+                <Box
+                  as={'button'}
+                  fontSize={'sm'}
+                  color={'#FF4D4D'}
+                  type="button"
+                  onClick={() => {
+                    remove(1)
+                  }}
+                >
+                  削除する
+                </Box>
+              </MenuItem>
+            </MenuList>
+          </Menu>
+          <List>
             {fields.map((item, index) => {
               return (
                 <ListItem key={item.id}>
                   <FormControl isInvalid={!!errors.links}>
-                  <FormLabel h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
-              URL
-            </FormLabel>
+                    <FormLabel h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
+                      URL
+                    </FormLabel>
                     <Input
                       marginTop={'0.3rem'}
                       marginBottom={'1.6rem'}
@@ -184,14 +245,14 @@ export const FormCreateUpdateLinks = ({
                   </FormControl>
 
                   <FormLabel
-              display={'flex'}
-              h={'1.6rem'}
-              fontSize={'sm'}
-              color={'#2D2D2D'}
-            >
-              <Box>ラベル</Box>
-              <Box color={'gray'}>（任意）</Box>
-            </FormLabel>
+                    display={'flex'}
+                    h={'1.6rem'}
+                    fontSize={'sm'}
+                    color={'#2D2D2D'}
+                  >
+                    <Box>ラベル</Box>
+                    <Box color={'gray'}>（任意）</Box>
+                  </FormLabel>
                   <Input
                     marginTop={'0.3rem'}
                     variant={'outline'}
@@ -217,29 +278,18 @@ export const FormCreateUpdateLinks = ({
           marginTop={'1.6rem'}
           color={'brandBlue'}
         >
+          <Box bgImage={'/images/plus.svg'} w={'2.4rem'} h={'2.4rem'} />
           <Box
-          bgImage={'/images/plus.svg'}
-          w={'2.4rem'}
-          h={'2.4rem'}
-          />
-            <Box fontSize={'md'}>リストの追加</Box>
+            as={'button'}
+            fontSize={'md'}
+            type="button"
+            onClick={() => {
+              append({ url: '', label: '' })
+            }}
+          >
+            リストの追加
+          </Box>
         </Flex>
-        <button
-          type="button"
-          onClick={() => {
-            append({ url: '', label: '' })
-          }}
-        >
-          append
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            remove(1)
-          }}
-        >
-          remove
-        </button>
         {(isOwner || formType === 'create') && (
           <FormControl
             display={'flex'}
@@ -258,14 +308,14 @@ export const FormCreateUpdateLinks = ({
         )}
       </FormControl>
 
-        <Flex justify={'center'} margin={'3rem 0 3.5rem 0'}>
-      <Button
-        disabled={disabled}
-        variant={'round'}
-        onClick={handleSubmit(onSubmit)}
-      >
-        作成する
-      </Button>
+      <Flex justify={'center'} margin={'3rem 0 3.5rem 0'}>
+        <Button
+          disabled={disabled}
+          variant={'round'}
+          onClick={handleSubmit(onSubmit)}
+        >
+          作成する
+        </Button>
       </Flex>
     </Box>
   )
