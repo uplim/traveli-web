@@ -92,22 +92,8 @@ export const FormCreateUpdateLinks = ({
         <FormLabel marginTop={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
           日時（任意）
         </FormLabel>
-        {/* <Input
-          variant={'filled'}
-          h={'4.6rem'}
-          borderRightRadius={'10rem'}
-          borderLeftRadius={'10rem'}
-          bgColor={'white'}
-          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE);'}
-          {...register('title')}
-          placeholder={'2022/01/23 ~ 2022/01/25'}
-          {...register('date')}
-        />
-        <FormErrorMessage>
-          {errors.date && errors.date.message}
-        </FormErrorMessage> */}
 
-        {/* TODO:　どうにかする */}
+        {/* TODO:InputDateの見た目変える */}
         <InputDate control={control} name={'date'} />
       </FormControl>
 
@@ -157,6 +143,9 @@ export const FormCreateUpdateLinks = ({
           bgColor={'white'}
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
         >
+          <Box>カテゴリ</Box>
+          {/* TODO:RadioButton実装 */}
+
           <Menu>
             <Flex>
               <Spacer />
