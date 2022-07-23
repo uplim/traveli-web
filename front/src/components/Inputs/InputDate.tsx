@@ -19,15 +19,15 @@ export const InputDate = <T,>({ name, control }: Props<T>) => {
       render={({ field: { onChange, value = [null, null] } }) => {
         const v = value as [Date | null, Date | null]
         return (
-            <DatePicker
-              locale={ja}
-              selectsRange={true}
-              dateFormat={'yyyy/MM/dd'}
-              onChange={onChange}
-              startDate={v[0]}
-              endDate={v[1]}
-              withPortal
-            />
+          <DatePicker
+            locale={ja}
+            selectsRange={true}
+            dateFormat={'yyyy/MM/dd'}
+            onChange={onChange}
+            startDate={v[0]}
+            endDate={v[1]}
+            withPortal
+          />
         )
       }}
     />
