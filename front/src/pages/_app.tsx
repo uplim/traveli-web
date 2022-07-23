@@ -6,7 +6,7 @@ import { customTheme } from '@/theme'
 import { Layout } from '@/components/Layout'
 import '@/lib/firebase'
 import { UseCheckAuth } from '@/hooks/auth/useCheckAuth'
-import '../styles/date-picker.css'
+import '@/components/Inputs/date-picker.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
