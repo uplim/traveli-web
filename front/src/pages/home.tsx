@@ -44,31 +44,10 @@ const Home = () => {
             w={'100%'}
             h={'11.4rem'}
             borderRadius={'1rem'}
-            bgColor={'white'}
+            bgColor={'white'}  
           >
             banner
           </Box>
-          <Flex
-            paddingTop={'1.6rem'}
-            paddingBottom={'1.6rem'}
-            alignItems={'baseline'}
-          >
-            <Box paddingRight={'0.8rem'} fontSize={'2xl'} fontWeight={'bold'}>
-              00
-            <Box
-              w={'1.8rem'}
-              h={'1.8rem'}
-              borderRadius={'50%'}
-              textAlign={'center'}
-              bgColor={'white'}
-              fontSize={'xs'}
-            >
-              土
-            </Box>
-            <Box paddingLeft={'0.8rem'} fontSize={'sm'}>
-              2022/05
-            </Box>
-          </Flex>
           {/* TODO:shadowの色を変数に置き換える */}
           {travelinkList.map((travelink, i) => (
             <Link href={router.basePath + travelink.id} key={i} passHref>
@@ -79,7 +58,7 @@ const Home = () => {
                 borderRadius={'10'}
                 filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
                 bgColor={'white'}
-                marginBottom={'2.2rem'}
+                marginTop={'2.2rem'}
               >
                 <Box
                   bgImage={travelink.thumbnail}
