@@ -5,6 +5,7 @@ import { IconLink } from '@/components/Icons'
 import { useGetTravelinkList, useGetOwnerProfile } from '@/hooks/firestore'
 import { useRouter } from 'next/router'
 import { ButtonIconRound } from '@/components/Buttons'
+import { Sidebar } from '@/components/Sidebars/Sidebar'
 
 const Home = () => {
   const router = useRouter()
@@ -27,10 +28,10 @@ const Home = () => {
               h={'1.8rem'}
             />
             <Spacer />
-            <Avatar
-              w={'4rem'}
-              h={'4rem'}
-              src={ownerProfile ? ownerProfile.icon : ''}
+
+            <Sidebar
+              icon={ownerProfile ? ownerProfile.icon : ''}
+              name={ownerProfile ? ownerProfile.name : ''}
             />
           </Flex>
 
