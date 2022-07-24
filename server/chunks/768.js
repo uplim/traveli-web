@@ -29,8 +29,8 @@ const Button = (0,react_.forwardRef)(({ children , ...props }, ref)=>{
     });
 });
 
-// EXTERNAL MODULE: ./src/components/Icons/index.ts + 14 modules
-var Icons = __webpack_require__(5456);
+// EXTERNAL MODULE: ./src/components/Icons/index.ts + 11 modules
+var Icons = __webpack_require__(553);
 ;// CONCATENATED MODULE: ./src/components/Buttons/ButtonIconRound.tsx
 
 

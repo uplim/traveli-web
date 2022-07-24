@@ -14,25 +14,70 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7658);
-/* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(628);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_2__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__]);
-([_hooks_form__WEBPACK_IMPORTED_MODULE_2__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
+/* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(628);
+/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(553);
+/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5751);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__]);
+([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
 
 
 
 
 const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwner  })=>{
-    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_2__/* .useFormCreateUpdateLinks */ .j)(formType, travelinkData, ownerProfile);
+    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useFormCreateUpdateLinks */ .j)(formType, travelinkData, ownerProfile);
+    const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_2__.useRef)(null);
+    const onClickButton = ()=>{
+        inputRef.current?.click();
+    };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
         children: [
+            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                w: "100%",
+                h: "6.3rem",
+                justify: "center",
+                align: "center",
+                children: [
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_5__/* .IconReturn */ .BK, {
+                        w: "2.2rem",
+                        h: "2.2rem"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Spacer, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                        color: "black",
+                        fontSize: "md",
+                        fontWeight: "bold",
+                        children: "\u65B0\u3057\u3044\u30C8\u30E9\u30D9\u30EA\u30F3\u30AF\u3092\u4F5C\u6210"
+                    }),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Spacer, {}),
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                        w: "2.2rem",
+                        h: "2.2rem"
+                    })
+                ]
+            }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
                 isInvalid: errors.title ? true : false,
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                        marginTop: "1.5rem",
+                        fontSize: "sm",
+                        color: "#2D2D2D",
                         children: "\u65C5\u306E\u540D\u524D"
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+                        variant: "filled",
+                        h: "4.6rem",
+                        marginTop: "0.8rem",
+                        borderRightRadius: "10rem",
+                        borderLeftRadius: "10rem",
+                        bgColor: "white",
+                        filter: "drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)",
                         ...register("title"),
                         placeholder: "\u4F8B\uFF09\u3068\u3082\u3060\u3061\u3068\u306E\u4E00\u6CCA\u4E8C\u65E5\u306E\u65C5\u884C"
                     }),
@@ -45,9 +90,12 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
                 isInvalid: errors.date ? true : false,
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                        marginTop: "1.6rem",
+                        fontSize: "sm",
+                        color: "#2D2D2D",
                         children: "\u65E5\u6642\uFF08\u4EFB\u610F\uFF09"
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_3__/* .InputDate */ .U, {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__/* .InputDate */ .U, {
                         control: control,
                         name: "date"
                     })
@@ -56,89 +104,256 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                        marginTop: "1.6rem",
+                        fontSize: "sm",
+                        color: "#2D2D2D",
                         children: "\u30B5\u30E0\u30CD\u30A4\u30EB\u753B\u50CF\uFF08\u4EFB\u610F\uFF09"
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.VisuallyHiddenInput, {
+                        ref: inputRef,
                         type: "file",
                         accept: "image/*",
                         onChange: handleChangeImage
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Image, {
-                        alt: "",
-                        src: image ? URL.createObjectURL(image) : travelinkData?.thumbnail
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                        marginTop: "0.8rem",
+                        bgImage: image ? URL.createObjectURL(image) : "",
+                        onClick: onClickButton,
+                        w: "100%",
+                        h: "12.9rem",
+                        borderRadius: "1rem",
+                        bgColor: "#D2D6E1",
+                        filter: "drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                            h: "12.9rem",
+                            align: "center",
+                            justify: "center",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_5__/* .IconCamera */ .Lj, {
+                                zIndex: 1,
+                                w: "4.8rem",
+                                h: "4.8rem",
+                                color: "white"
+                            })
+                        })
                     })
                 ]
             }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                margin: "1.6rem 0 0.8rem 0",
+                children: "\u30EA\u30F3\u30AF"
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Cards__WEBPACK_IMPORTED_MODULE_6__/* .CardLink */ .Y, {
+                label: "\u3077\u308B\u308A\u304F",
+                url: "https://github.com/traveli-dev/traveli-web/pull/96"
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Cards__WEBPACK_IMPORTED_MODULE_6__/* .CardLink */ .Y, {
+                label: "\u3077\u308B\u308A\u304F",
+                url: "https://github.com/traveli-dev/traveli-web/pull/96"
+            }),
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
                 children: [
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.List, {
-                        children: fields.map((item, index)=>{
-                            return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ListItem, {
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                        marginTop: "0.4rem",
+                        padding: "1.4rem 1.6rem 0 1.6rem",
+                        w: "100%",
+                        h: "27.4rem",
+                        borderRadius: "1.5rem",
+                        bgColor: "white",
+                        filter: "drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                children: "\u30AB\u30C6\u30B4\u30EA"
+                            }),
+                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Menu, {
                                 children: [
-                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
-                                        isInvalid: !!errors.links,
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
                                         children: [
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
-                                                children: "URL"
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-                                                isInvalid: errors.links?.[index] ? true : false,
-                                                ...register(`links.${index}.url`),
-                                                defaultValue: item.url
-                                            }),
-                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormErrorMessage, {
-                                                children: errors.links?.[index] && errors.links?.[index].url?.message
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Spacer, {}),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.MenuButton, {
+                                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                                                    bgColor: "#E8ECF0",
+                                                    borderRadius: "full",
+                                                    w: "3.6rem",
+                                                    h: "3.6rem",
+                                                    align: "center",
+                                                    justify: "center",
+                                                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        bgImage: "/images/menuButton.svg",
+                                                        w: "2.4rem",
+                                                        h: "2.4rem"
+                                                    })
+                                                })
                                             })
                                         ]
                                     }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
-                                        children: "\u30E9\u30D9\u30EB"
-                                    }),
-                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-                                        ...register(`links.${index}.label`),
-                                        defaultValue: item.label
+                                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.MenuList, {
+                                        padding: "1.35rem 0 0 2.4rem",
+                                        w: "16.8rem",
+                                        h: "8.8rem",
+                                        borderColor: "#CBD5E0",
+                                        borderRadius: "1.5rem",
+                                        boxShadow: 0,
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
+                                                display: "flex",
+                                                padding: "0 0 1.35rem 0",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        bgImage: "/images/closeMenu.svg",
+                                                        w: "1.5rem",
+                                                        h: "1.5rem",
+                                                        marginRight: "1.6rem"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        fontSize: "sm",
+                                                        children: "\u8868\u793A\u3092\u6700\u5C0F\u5316"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.MenuItem, {
+                                                display: "flex",
+                                                padding: 0,
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        bgImage: "/images/trash.svg",
+                                                        w: "1.68rem",
+                                                        h: "1.68rem",
+                                                        marginRight: "1.6rem"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        as: "button",
+                                                        fontSize: "sm",
+                                                        color: "#FF4D4D",
+                                                        type: "button",
+                                                        onClick: ()=>{
+                                                            remove(1);
+                                                        },
+                                                        children: "\u524A\u9664\u3059\u308B"
+                                                    })
+                                                ]
+                                            })
+                                        ]
                                     })
                                 ]
-                            }, item.id);
-                        })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.List, {
+                                children: fields.map((item, index)=>{
+                                    return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.ListItem, {
+                                        children: [
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
+                                                isInvalid: !!errors.links,
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                                                        h: "1.6rem",
+                                                        fontSize: "sm",
+                                                        color: "#2D2D2D",
+                                                        children: "URL"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+                                                        marginTop: "0.3rem",
+                                                        marginBottom: "1.6rem",
+                                                        variant: "outline",
+                                                        borderColor: "#ACC1CA",
+                                                        w: "100%",
+                                                        h: "4.4rem",
+                                                        borderRightRadius: "10rem",
+                                                        borderLeftRadius: "10rem",
+                                                        isInvalid: errors.links?.[index] ? true : false,
+                                                        ...register(`links.${index}.url`),
+                                                        defaultValue: item.url,
+                                                        placeholder: "https://"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormErrorMessage, {
+                                                        children: errors.links?.[index] && errors.links?.[index].url?.message
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                                                display: "flex",
+                                                h: "1.6rem",
+                                                fontSize: "sm",
+                                                color: "#2D2D2D",
+                                                children: [
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        children: "\u30E9\u30D9\u30EB"
+                                                    }),
+                                                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                                        color: "gray",
+                                                        children: "\uFF08\u4EFB\u610F\uFF09"
+                                                    })
+                                                ]
+                                            }),
+                                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+                                                marginTop: "0.3rem",
+                                                variant: "outline",
+                                                borderColor: "#ACC1CA",
+                                                w: "100%",
+                                                h: "4.4rem",
+                                                borderRightRadius: "10rem",
+                                                borderLeftRadius: "10rem",
+                                                ...register(`links.${index}.label`),
+                                                defaultValue: item.label,
+                                                placeholder: "\u4F8B\uFF09\u5BBF\u6CCA\u5148"
+                                            })
+                                        ]
+                                    }, item.id);
+                                })
+                            })
+                        ]
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                        type: "button",
-                        onClick: ()=>{
-                            append({
-                                url: "",
-                                label: ""
-                            });
-                        },
-                        children: "append"
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("button", {
-                        type: "button",
-                        onClick: ()=>{
-                            remove(1);
-                        },
-                        children: "remove"
+                    /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                        align: "center",
+                        justify: "center",
+                        marginTop: "1.6rem",
+                        color: "brandBlue",
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                bgImage: "/images/plus.svg",
+                                w: "2.4rem",
+                                h: "2.4rem"
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
+                                as: "button",
+                                fontSize: "md",
+                                type: "button",
+                                onClick: ()=>{
+                                    append({
+                                        url: "",
+                                        label: ""
+                                    });
+                                },
+                                children: "\u30EA\u30B9\u30C8\u306E\u8FFD\u52A0"
+                            })
+                        ]
                     }),
                     (isOwner || formType === "create") && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormControl, {
                         display: "flex",
                         alignItems: "center",
+                        paddingTop: "3rem",
                         children: [
-                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
-                                children: "\u4ED6\u306E\u30E6\u30FC\u30B6\u306B\u7DE8\u96C6\u3092\u8A31\u53EF\u3059\u308B"
-                            }),
                             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Switch, {
+                                paddingRight: "2.2rem",
+                                size: "lg",
+                                colorScheme: "brandBlue-switch",
                                 ...register("canEdit"),
                                 defaultChecked: travelinkData?.canEdit
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.FormLabel, {
+                                children: "\u4ED6\u306E\u30E6\u30FC\u30B6\u306B\u7DE8\u96C6\u3092\u8A31\u53EF\u3059\u308B"
                             })
                         ]
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
-                        disabled: disabled,
-                        onClick: handleSubmit(onSubmit),
-                        variant: "solid",
-                        children: "\u9001\u4FE1\u3059\u308B"
                     })
                 ]
+            }),
+            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Flex, {
+                justify: "center",
+                margin: "3rem 0 3.5rem 0",
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
+                    disabled: disabled,
+                    variant: "round",
+                    onClick: handleSubmit(onSubmit),
+                    children: "\u4F5C\u6210\u3059\u308B"
+                })
             })
         ]
     });
@@ -163,7 +378,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5456);
+/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(553);
 /* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7658);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
