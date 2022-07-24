@@ -21,6 +21,7 @@ export const useGetTravelink = () => {
       const travelinksDoc = await getDoc(ref)
 
       if (!travelinksDoc.exists()) {
+        await router.push('/404')
         return
       }
 
