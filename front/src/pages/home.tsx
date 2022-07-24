@@ -28,7 +28,11 @@ const Home = () => {
               h={'1.8rem'}
             />
             <Spacer />
-            <Sidebar iconSrc={ownerProfile ? ownerProfile.icon : ''} />
+
+            <Sidebar
+              icon={ownerProfile ? ownerProfile.icon : ''}
+              name={ownerProfile ? ownerProfile.name : ''}
+            />
           </Flex>
 
           {/* TODO:shadowの色を変数に置き換える */}

@@ -10,18 +10,22 @@ import {
 import { IconUser } from './../Icons/IconUser'
 import { IconHelp } from './../Icons/IconHelp'
 import { IconSignOut } from './../Icons/IconSignOut'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 type SidebarProps = {
-  iconSrc: string
+  icon: string
+  name: string
 }
 
-export const Sidebar = ({ iconSrc }: SidebarProps) => {
+export const Sidebar = ({ icon, name }: SidebarProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
+  const router = useRouter()
 
   return (
     // Back
     <Box>
-      <Avatar w={'4rem'} h={'4rem'} src={iconSrc} onClick={onOpen} />
+      <Avatar w={'4rem'} h={'4rem'} src={icon} onClick={onOpen} />
 
       <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay onClick={onClose} />
@@ -41,11 +45,11 @@ export const Sidebar = ({ iconSrc }: SidebarProps) => {
                 marginRight={'2rem'}
                 w={'4.6rem'}
                 h={'4.6rem'}
-                src={iconSrc}
+                src={icon}
                 bgColor={'gray'}
               />
               <Box fontSize={'md'} fontWeight={'bold'}>
-                Piyo
+                {name}
               </Box>
             </Flex>
 
@@ -56,9 +60,11 @@ export const Sidebar = ({ iconSrc }: SidebarProps) => {
                 marginRight={'1.7rem'}
                 color={'logoBlack'}
               />
-              <Box color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
-                プロフィール
-              </Box>
+              <Link href={router.basePath + '/user'} passHref>
+                <Box color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
+                  プロフィール
+                </Box>
+              </Link>
             </Flex>
 
             <Box
