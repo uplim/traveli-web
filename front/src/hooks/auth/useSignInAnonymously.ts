@@ -46,7 +46,7 @@ export const useSignInAnonymously = () => {
           setCurrentUser(null)
         }
       })
-      router.push('/home')
+      router.push('/user')
     } catch (err) {
       console.error(err)
       setDisabled.off()
