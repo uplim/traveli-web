@@ -44,7 +44,7 @@ const Home = () => {
             w={'100%'}
             h={'11.4rem'}
             borderRadius={'1rem'}
-            bgColor={'white'}  
+            bgColor={'white'}
           >
             banner
           </Box>
