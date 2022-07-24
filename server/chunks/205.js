@@ -332,6 +332,8 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5641);
 /* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(983);
 /* harmony import */ var react_datepicker__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_datepicker__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5564);
+/* harmony import */ var date_fns_locale__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(date_fns_locale__WEBPACK_IMPORTED_MODULE_5__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_3__]);
 react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
@@ -339,6 +341,8 @@ react_hook_form__WEBPACK_IMPORTED_MODULE_3__ = (__webpack_async_dependencies__.t
 
 
 
+
+(0,react_datepicker__WEBPACK_IMPORTED_MODULE_4__.registerLocale)("ja", date_fns_locale__WEBPACK_IMPORTED_MODULE_5__.ja);
 const InputDate = ({ name , control  })=>{
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_hook_form__WEBPACK_IMPORTED_MODULE_3__.Controller, {
         control: control,
@@ -349,6 +353,7 @@ const InputDate = ({ name , control  })=>{
         ]  }  })=>{
             const v = value;
             return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react_datepicker__WEBPACK_IMPORTED_MODULE_4___default()), {
+                locale: date_fns_locale__WEBPACK_IMPORTED_MODULE_5__.ja,
                 selectsRange: true,
                 dateFormat: "yyyy/MM/dd",
                 onChange: onChange,
