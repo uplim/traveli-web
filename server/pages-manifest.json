@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/404": "pages/404.html",
   "/[traveliId]/edit": "pages/[traveliId]/edit.html",
   "/[traveliId]": "pages/[traveliId].html",
   "/create": "pages/create.html",
@@ -9,6 +10,5 @@
   "/": "pages/index.html",
   "/signin": "pages/signin.html",
   "/signup": "pages/signup.html",
-  "/user": "pages/user.html",
-  "/404": "pages/404.html"
+  "/user": "pages/user.html"
 }

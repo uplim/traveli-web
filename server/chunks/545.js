@@ -31,7 +31,8 @@ firebase_auth__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dependencies__.the
 const accessibleBeforeSignInPages = [
     "/",
     "/signin",
-    "/signup"
+    "/signup",
+    "/404"
 ];
 const UseCheckAuth = ({ children  })=>{
     const [currentUser1, setCurrentUser] = (0,recoil__WEBPACK_IMPORTED_MODULE_3__.useRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_4__/* .currentUserState */ .y);

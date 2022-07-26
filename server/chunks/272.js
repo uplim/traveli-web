@@ -536,6 +536,7 @@ const useGetTravelink = ()=>{
             const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "travelinks"), traveliId);
             const travelinksDoc = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(ref);
             if (!travelinksDoc.exists()) {
+                await router.push("/404");
                 return;
             }
             const getTravelink = travelinksDoc.data();
