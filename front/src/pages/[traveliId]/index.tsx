@@ -8,7 +8,8 @@ import {
   Tab,
   Tabs,
   TabPanel,
-  TabPanels
+  TabPanels,
+  Button
 } from '@chakra-ui/react'
 import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
@@ -17,10 +18,13 @@ import { format } from 'date-fns'
 import { IconQr, IconSave, IconShare } from '@/components/Icons'
 import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
+import { ModalQrCode } from '@/components/Modals'
+import { useDisclosure } from '@chakra-ui/react'
 
 const LinkList = () => {
   const router = useRouter()
   const { travelink } = useGetTravelink()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -128,18 +132,28 @@ const LinkList = () => {
                 <Text>保存</Text>
               </Box>
               <Spacer />
-              <Box>
-                <IconQr w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
+              <Button onClick={onOpen} display={'inline'} h={'auto'}>
+                <IconQr
+                  w={'2.5rem'}
+                  h={'2.5rem'}
+                  margin={'0.2rem auto 0 auto'}
+                />
                 <Text>QRコード</Text>
-              </Box>
+              </Button>
+              <ModalQrCode
+                thumbnail={travelink.thumbnail}
+                title={travelink.title}
+                date={travelink.date}
+                router={router.asPath}
+                isOpen={isOpen}
+                onClose={onClose}
+              />
               <Spacer />
               <Box>
                 <IconShare w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
                 <Text>共有</Text>
               </Box>
             </Flex>
-
-            <Box></Box>
           </Box>
         </>
       )}
