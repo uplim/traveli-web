@@ -10,7 +10,14 @@ export const useCreateBookmark = async (
   const subColRef = doc(collection(db, 'profiles', uid, 'bookmark'), traveliId)
 
   try {
-    await setDoc(subColRef, data)
+    await setDoc(subColRef, {
+      thumbnail: data.thumbnail,
+      date: data.date,
+      title: data.title,
+      id: data.id,
+      ownerIcon: data.ownerIcon,
+      ownerName: data.ownerName
+    })
   } catch {
     console.error('保存できませんでした')
   }
