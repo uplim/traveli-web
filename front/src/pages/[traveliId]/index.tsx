@@ -11,24 +11,47 @@ import {
   TabPanels,
   Button
 } from '@chakra-ui/react'
-import { useCreateBookmark, useGetTravelink } from '@/hooks/firestore'
+import {
+  useCheckBookmarked,
+  useCreateBookmark,
+  useDeleteBookmark,
+  useGetTravelink
+} from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
-import { IconQr, IconSave, IconShare } from '@/components/Icons'
+import { IconQr, IconShare } from '@/components/Icons'
 import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
 import { useDisclosure } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
+import { CurrentUser, TravelinkRequestType } from '@/types/db'
 
 const LinkList = () => {
   const router = useRouter()
   const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { isBookmarked, setIsBookmarked } = useCheckBookmarked()
   const createBookmark = useCreateBookmark
+  const deleteBookmark = useDeleteBookmark
+
+  const onClickBookmark = async (
+    currentUser: CurrentUser | null | undefined,
+    travelink: TravelinkRequestType
+  ) => {
+    if (!currentUser) return console.log('ログインしてください')
+
+    if (isBookmarked) {
+      await createBookmark(currentUser.uid, travelink.id, travelink)
+      setIsBookmarked.on()
+    } else {
+      await deleteBookmark(currentUser.uid, travelink.id)
+      setIsBookmarked.off()
+    }
+  }
 
   return (
     <>
@@ -131,14 +154,30 @@ const LinkList = () => {
               </Text>
             )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
-              <Box
-                onClick={() =>
-                  currentUser &&
-                  createBookmark(currentUser.uid, travelink.id, travelink)
-                }
-              >
-                <IconSave w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-                <Text>保存</Text>
+              <Box onClick={() => onClickBookmark(currentUser, travelink)}>
+                {isBookmarked ? (
+                  <>
+                    <Image
+                      alt={''}
+                      src={'/images/icons/bookmark-outline.svg'}
+                      w={'2.5rem'}
+                      h={'2.5rem'}
+                      margin={'0 auto'}
+                    />
+                    <Text>保存する</Text>
+                  </>
+                ) : (
+                  <>
+                    <Image
+                      alt={''}
+                      src={'/images/icons/bookmark-solid.svg'}
+                      w={'2.5rem'}
+                      h={'2.5rem'}
+                      margin={'0 auto'}
+                    />
+                    <Text>保存済み</Text>
+                  </>
+                )}
               </Box>
               <Spacer />
               <Button onClick={onOpen} display={'inline'} h={'auto'}>
