@@ -10,3 +10,4 @@ export { useGetOwnerProfile } from '@/hooks/firestore/profile/useGetOwnerProfile
 // bookmark
 export { useCreateBookmark } from '@/hooks/firestore/bookmark/useCreateBookmark'
 export { useGetBookmarkList } from '@/hooks/firestore/bookmark/useGetBookmarkList'
+export { useCheckBookmarked } from '@/hooks/firestore/bookmark/useCheckBookmarked'
