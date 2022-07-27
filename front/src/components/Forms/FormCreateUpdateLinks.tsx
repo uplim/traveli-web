@@ -1,20 +1,15 @@
+import React from 'react'
 import {
   Input,
   Box,
   FormControl,
   FormLabel,
-  List,
-  ListItem,
   Button,
   FormErrorMessage,
   Switch,
   Flex,
   Spacer,
-  VisuallyHiddenInput,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList
+  VisuallyHiddenInput
 } from '@chakra-ui/react'
 
 import { useRef } from 'react'
@@ -124,142 +119,25 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
-      <CardLink
-        label={'ぷるりく'}
-        url={'https://github.com/traveli-dev/traveli-web/pull/96'}
-      />
-      <CardLink
-        label={'ぷるりく'}
-        url={'https://github.com/traveli-dev/traveli-web/pull/96'}
-      />
+
+      {/* CardLinkコンポーネント生成場所 */}
 
       <FormControl>
-        <Box
-          marginTop={'0.4rem'}
-          padding={'1.4rem 1.6rem 0 1.6rem'}
-          w={'100%'}
-          h={'27.4rem'}
-          borderRadius={'1.5rem'}
-          bgColor={'white'}
-          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
-        >
-          <Box>カテゴリ</Box>
-          {/* TODO:RadioButton実装 */}
-
-          <Menu>
-            <Flex>
-              <Spacer />
-              <MenuButton>
-                <Flex
-                  bgColor={'#E8ECF0'}
-                  borderRadius={'full'}
-                  w={'3.6rem'}
-                  h={'3.6rem'}
-                  align={'center'}
-                  justify={'center'}
-                >
-                  <Box
-                    bgImage={'/images/menuButton.svg'}
-                    w={'2.4rem'}
-                    h={'2.4rem'}
-                  />
-                </Flex>
-              </MenuButton>
-            </Flex>
-
-            <MenuList
-              padding={'1.35rem 0 0 2.4rem'}
-              w={'16.8rem'}
-              h={'8.8rem'}
-              borderColor={'#CBD5E0'}
-              borderRadius={'1.5rem'}
-              boxShadow={0}
-            >
-              <MenuItem display={'flex'} padding={'0 0 1.35rem 0'}>
-                {/* TODO:表示の最小化の実装 */}
-                <Box
-                  bgImage={'/images/closeMenu.svg'}
-                  w={'1.5rem'}
-                  h={'1.5rem'}
-                  marginRight={'1.6rem'}
-                />
-                <Box fontSize={'sm'}>表示を最小化</Box>
-              </MenuItem>
-              <MenuItem display={'flex'} padding={0}>
-                <Box
-                  bgImage={'/images/trash.svg'}
-                  w={'1.68rem'}
-                  h={'1.68rem'}
-                  marginRight={'1.6rem'}
-                />
-                <Box
-                  as={'button'}
-                  fontSize={'sm'}
-                  color={'#FF4D4D'}
-                  type="button"
-                  onClick={() => {
-                    remove(1)
-                  }}
-                >
-                  削除する
-                </Box>
-              </MenuItem>
-            </MenuList>
-          </Menu>
-          <List>
-            {fields.map((item, index) => {
-              return (
-                <ListItem key={item.id}>
-                  <FormControl isInvalid={!!errors.links}>
-                    <FormLabel h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
-                      URL
-                    </FormLabel>
-                    <Input
-                      marginTop={'0.3rem'}
-                      marginBottom={'1.6rem'}
-                      variant={'outline'}
-                      borderColor={'#ACC1CA'}
-                      w={'100%'}
-                      h={'4.4rem'}
-                      borderRightRadius={'10rem'}
-                      borderLeftRadius={'10rem'}
-                      isInvalid={errors.links?.[index] ? true : false}
-                      {...register(`links.${index}.url`)}
-                      defaultValue={item.url}
-                      placeholder={'https://'}
-                    />
-                    <FormErrorMessage>
-                      {errors.links?.[index] &&
-                        errors.links?.[index].url?.message}
-                    </FormErrorMessage>
-                  </FormControl>
-
-                  <FormLabel
-                    display={'flex'}
-                    h={'1.6rem'}
-                    fontSize={'sm'}
-                    color={'#2D2D2D'}
-                  >
-                    <Box>ラベル</Box>
-                    <Box color={'gray'}>（任意）</Box>
-                  </FormLabel>
-                  <Input
-                    marginTop={'0.3rem'}
-                    variant={'outline'}
-                    borderColor={'#ACC1CA'}
-                    w={'100%'}
-                    h={'4.4rem'}
-                    borderRightRadius={'10rem'}
-                    borderLeftRadius={'10rem'}
-                    {...register(`links.${index}.label`)}
-                    defaultValue={item.label}
-                    placeholder={'例）宿泊先'}
-                  />
-                </ListItem>
-              )
-            })}
-          </List>
-        </Box>
+        {fields.map((item, index) => {
+          return (
+            <React.Fragment key={item.id}>
+              <CardLink
+                label={item.label}
+                url={item.url}
+                index={index}
+                formType={'create'}
+                onClick={() => {
+                  remove(index)
+                }}
+              />
+            </React.Fragment>
+          )
+        })}
 
         {/* Add List */}
         <Flex
@@ -287,8 +165,13 @@ export const FormCreateUpdateLinks = ({
             paddingTop={'3rem'}
           >
             <Switch
-              paddingRight={'2.2rem'}
-              size={'lg'}
+              sx={{
+                '--switch-track-width': '3.8rem',
+                '--switch-track-height': '2rem'
+              }}
+              backgroundColor={'#e3e4e5'}
+              borderRadius={'full'}
+              marginRight={'2.2rem'}
               colorScheme={'brandBlue-switch'}
               {...register('canEdit')}
               defaultChecked={travelinkData?.canEdit}
