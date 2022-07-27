@@ -9,7 +9,8 @@ import {
   Tabs,
   TabPanel,
   TabPanels,
-  Button
+  Button,
+  useBoolean
 } from '@chakra-ui/react'
 import {
   useCheckBookmarked,
@@ -30,6 +31,7 @@ import { currentUserState } from '@/recoil/atoms'
 import { CurrentUser, TravelinkRequestType } from '@/types/db'
 
 const LinkList = () => {
+  const [disabled, setDisabled] = useBoolean()
   const router = useRouter()
   const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
@@ -43,14 +45,15 @@ const LinkList = () => {
     travelink: TravelinkRequestType
   ) => {
     if (!currentUser) return console.log('ログインしてください')
-
-    if (isBookmarked) {
+    setDisabled.on()
+    if (!isBookmarked) {
       await createBookmark(currentUser.uid, travelink.id, travelink)
       setIsBookmarked.on()
     } else {
       await deleteBookmark(currentUser.uid, travelink.id)
       setIsBookmarked.off()
     }
+    setDisabled.off()
   }
 
   return (
@@ -154,8 +157,13 @@ const LinkList = () => {
               </Text>
             )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
-              <Box onClick={() => onClickBookmark(currentUser, travelink)}>
-                {isBookmarked ? (
+              <Button
+                disabled={disabled}
+                display={'inline'}
+                h={'auto'}
+                onClick={() => onClickBookmark(currentUser, travelink)}
+              >
+                {!isBookmarked ? (
                   <>
                     <Image
                       alt={''}
@@ -178,7 +186,7 @@ const LinkList = () => {
                     <Text>保存済み</Text>
                   </>
                 )}
-              </Box>
+              </Button>
               <Spacer />
               <Button onClick={onOpen} display={'inline'} h={'auto'}>
                 <IconQr
@@ -197,10 +205,10 @@ const LinkList = () => {
                 onClose={onClose}
               />
               <Spacer />
-              <Box>
+              <Button display={'inline'} h={'auto'}>
                 <IconShare w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
                 <Text>共有</Text>
-              </Box>
+              </Button>
             </Flex>
           </Box>
         </>
