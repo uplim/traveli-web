@@ -9,15 +9,9 @@ import {
   Tabs,
   TabPanel,
   TabPanels,
-  Button,
-  useBoolean
+  Button
 } from '@chakra-ui/react'
-import {
-  useCheckBookmarked,
-  useCreateBookmark,
-  useDeleteBookmark,
-  useGetTravelink
-} from '@/hooks/firestore'
+import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
@@ -28,33 +22,14 @@ import { ModalQrCode } from '@/components/Modals'
 import { useDisclosure } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
-import { CurrentUser, TravelinkRequestType } from '@/types/db'
+import { useButtonBookmark } from '@/hooks/button'
 
 const LinkList = () => {
-  const [disabled, setDisabled] = useBoolean()
   const router = useRouter()
   const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { isBookmarked, setIsBookmarked } = useCheckBookmarked()
-  const createBookmark = useCreateBookmark
-  const deleteBookmark = useDeleteBookmark
-
-  const onClickBookmark = async (
-    currentUser: CurrentUser | null | undefined,
-    travelink: TravelinkRequestType
-  ) => {
-    if (!currentUser) return console.log('ログインしてください')
-    setDisabled.on()
-    if (!isBookmarked) {
-      await createBookmark(currentUser.uid, travelink.id, travelink)
-      setIsBookmarked.on()
-    } else {
-      await deleteBookmark(currentUser.uid, travelink.id)
-      setIsBookmarked.off()
-    }
-    setDisabled.off()
-  }
+  const { onClickBookmark, disabled, isBookmarked } = useButtonBookmark()
 
   return (
     <>
@@ -207,7 +182,7 @@ const LinkList = () => {
               <Spacer />
               <Button display={'inline'} h={'auto'}>
                 <IconShare w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-                <Text>共有</Text>
+                <Text>共有する</Text>
               </Button>
             </Flex>
           </Box>
