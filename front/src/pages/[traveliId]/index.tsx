@@ -11,7 +11,7 @@ import {
   TabPanels,
   Button
 } from '@chakra-ui/react'
-import { useGetTravelink } from '@/hooks/firestore'
+import { useCreateBookmark, useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
@@ -20,11 +20,15 @@ import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
 import { useDisclosure } from '@chakra-ui/react'
+import { useRecoilValue } from 'recoil'
+import { currentUserState } from '@/recoil/atoms'
 
 const LinkList = () => {
   const router = useRouter()
+  const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const createBookmark = useCreateBookmark
 
   return (
     <>
@@ -127,7 +131,12 @@ const LinkList = () => {
               </Text>
             )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
-              <Box>
+              <Box
+                onClick={() =>
+                  currentUser &&
+                  createBookmark(currentUser.uid, travelink.id, travelink)
+                }
+              >
                 <IconSave w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
                 <Text>保存</Text>
               </Box>
