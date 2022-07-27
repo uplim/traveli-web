@@ -13,10 +13,8 @@ export const useGetBookmarkList = () => {
 
     const loadBookmarkList = async () => {
       const db = getFirestore()
-      const ref = collection(db, 'travelinks', currentUser.uid, 'bookmark')
-
+      const ref = collection(db, 'profiles', currentUser.uid, 'bookmark')
       const snapshot = await getDocs(ref)
-
       const getBookmarkList = snapshot.docs.map((doc) => {
         return doc.data() as BookmarkType
       })
