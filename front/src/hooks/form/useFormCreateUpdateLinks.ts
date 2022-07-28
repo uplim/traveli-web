@@ -88,7 +88,7 @@ export const useFormCreateUpdateLinks = (
         req.thumbnail = downloadUrl
       }
 
-      formType === 'create' ? create(req, currentUser) : update(req, traveliId)
+      formType === 'create' ? await create(req, currentUser) : await update(req, traveliId)
     } catch (err) {
       console.error(err)
     } finally {
@@ -110,12 +110,12 @@ export const useFormCreateUpdateLinks = (
       },
       currentUser.uid
     )
-    router.push(window.location.origin + res)
+    router.push(`/${res}`)
   }
 
   const update = async (data: TravelinkRequestType, traveliId: string) => {
     await updateTravelink(data, traveliId)
-    router.push(window.location.origin + traveliId)
+    router.push(`/${traveliId}`)
   }
 
   return {
