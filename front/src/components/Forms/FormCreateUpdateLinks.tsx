@@ -4,7 +4,6 @@ import {
   Box,
   FormControl,
   FormLabel,
-  Button,
   FormErrorMessage,
   Switch,
   Flex,
@@ -18,6 +17,7 @@ import { TravelinkRequestType, Profile } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
 import { CardEditWrapper } from '@/components/Cards'
+import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
@@ -52,7 +52,7 @@ export const FormCreateUpdateLinks = ({
   }
 
   return (
-    <Box>
+    <Box as={'form'} onSubmit={handleSubmit(onSubmit)}>
       <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
         <IconReturn w={'2.2rem'} h={'2.2rem'} />
         <Spacer />
@@ -130,7 +130,8 @@ export const FormCreateUpdateLinks = ({
                 label={item.label}
                 url={item.url}
                 index={index}
-                formType={'create'}
+                register={register}
+                errors={errors.links}
                 remove={() => {
                   remove(index)
                 }}
@@ -182,11 +183,7 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Flex justify={'center'} margin={'3rem 0 3.5rem 0'}>
-        <Button
-          disabled={disabled}
-          variant={'round'}
-          onClick={handleSubmit(onSubmit)}
-        >
+        <Button disabled={disabled} variant={'round'} type={'submit'}>
           作成する
         </Button>
       </Flex>

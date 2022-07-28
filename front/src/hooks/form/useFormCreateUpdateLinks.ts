@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
 import { CurrentUser, Profile, TravelinkRequestType } from '@/types/db'
 
-type Inputs = {
+export type Inputs = {
   title: string
   date: [Date | null, Date | null]
   links: {

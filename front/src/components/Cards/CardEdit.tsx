@@ -1,4 +1,3 @@
-import { useFormCreateUpdateLinks } from '@/hooks/form'
 import {
   Box,
   Flex,
@@ -15,16 +14,21 @@ import {
   Spacer
 } from '@chakra-ui/react'
 import { Dispatch, SetStateAction } from 'react'
-import { TravelinkRequestType, Profile } from '@/types/db'
+import { UseFormRegister, FieldError } from 'react-hook-form'
+import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
 type CardEditProps = {
   label: string
   url: string
   index: number
-  formType: 'create' | 'update'
-  travelinkData?: TravelinkRequestType
-  ownerProfile?: Profile
+  register: UseFormRegister<Inputs>
   remove: () => void
+  errors?:
+    | {
+        url?: FieldError | undefined
+        label?: FieldError | undefined
+      }[]
+    | undefined
   setCurrentLabel: Dispatch<SetStateAction<string>>
   setCurrentURL: Dispatch<SetStateAction<string>>
   setState: () => void
@@ -34,20 +38,13 @@ export const CardEdit = ({
   label,
   url,
   index,
-  formType,
-  travelinkData,
-  ownerProfile,
+  register,
   remove,
+  errors,
   setCurrentLabel,
   setCurrentURL,
   setState
 }: CardEditProps) => {
-  const { register, errors } = useFormCreateUpdateLinks(
-    formType,
-    travelinkData,
-    ownerProfile
-  )
-
   return (
     <>
       <Box>
@@ -132,7 +129,7 @@ export const CardEdit = ({
 
           <List>
             <ListItem>
-              <FormControl isInvalid={!!errors.links}>
+              <FormControl isInvalid={!!errors}>
                 <FormLabel h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
                   URL
                 </FormLabel>
@@ -145,7 +142,7 @@ export const CardEdit = ({
                   h={'4.4rem'}
                   borderRightRadius={'10rem'}
                   borderLeftRadius={'10rem'}
-                  isInvalid={errors.links?.[index] ? true : false}
+                  isInvalid={errors?.[index] ? true : false}
                   {...register(`links.${index}.url`)}
                   defaultValue={url}
                   onChange={(u: React.ChangeEvent<HTMLInputElement>) => {
@@ -154,7 +151,7 @@ export const CardEdit = ({
                   placeholder={'https://'}
                 />
                 <FormErrorMessage>
-                  {errors.links?.[index] && errors.links?.[index].url?.message}
+                  {errors?.[index] && errors?.[index].url?.message}
                 </FormErrorMessage>
               </FormControl>
 
