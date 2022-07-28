@@ -14,7 +14,6 @@ type CardEditWrapperProps = {
   remove: () => void
 }
 
-
 export const CardEditWrapper = ({
   label,
   url,
