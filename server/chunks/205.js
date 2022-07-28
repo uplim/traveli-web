@@ -690,7 +690,7 @@ const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
                 const downloadUrl = await uploadImage(image);
                 req.thumbnail = downloadUrl;
             }
-            formType === "create" ? create(req, currentUser1) : update(req, traveliId1);
+            formType === "create" ? await create(req, currentUser1) : await update(req, traveliId1);
         } catch (err) {
             console.error(err);
         } finally{
@@ -704,11 +704,11 @@ const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
             ownerIcon: ownerProfile.icon,
             ownerName: ownerProfile.name
         }, currentUser.uid);
-        router.push(window.location.origin + res);
+        router.push(`/${res}`);
     };
     const update = async (data, traveliId)=>{
         await updateTravelink(data, traveliId);
-        router.push(window.location.origin + traveliId);
+        router.push(`/${traveliId}`);
     };
     return {
         register,
