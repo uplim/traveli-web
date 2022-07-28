@@ -52,7 +52,7 @@ export const FormCreateUpdateLinks = ({
   }
 
   return (
-    <Box as={'form'} onSubmit={handleSubmit(onSubmit)}>
+    <Box>
       <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
         <IconReturn w={'2.2rem'} h={'2.2rem'} />
         <Spacer />
@@ -183,7 +183,11 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Flex justify={'center'} margin={'3rem 0 3.5rem 0'}>
-        <Button disabled={disabled} variant={'round'} type={'submit'}>
+        <Button
+          disabled={disabled}
+          variant={'round'}
+          onClick={handleSubmit(onSubmit)}
+        >
           作成する
         </Button>
       </Flex>
