@@ -121,7 +121,10 @@ export const CardEdit = ({
                   h={'1.68rem'}
                   marginRight={'1.6rem'}
                 />
-                <Box fontSize={'sm'} color={'#FF4D4D'}>
+                <Box
+                  fontSize={'sm'}
+                  color={'#FF4D4D'}
+                >
                   削除する
                 </Box>
               </MenuItem>
