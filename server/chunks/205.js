@@ -39,8 +39,6 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
         inputRef.current?.click();
     };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
-        as: "form",
-        onSubmit: handleSubmit(onSubmit),
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                 w: "100%",
@@ -218,7 +216,7 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
                 children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Buttons__WEBPACK_IMPORTED_MODULE_7__/* .Button */ .zx, {
                     disabled: disabled,
                     variant: "round",
-                    type: "submit",
+                    onClick: handleSubmit(onSubmit),
                     children: "\u4F5C\u6210\u3059\u308B"
                 })
             })
