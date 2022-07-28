@@ -19,9 +19,11 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
 /* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(628);
 /* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(553);
-/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3340);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__, _components_Cards__WEBPACK_IMPORTED_MODULE_6__]);
-([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__, _components_Cards__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9468);
+/* harmony import */ var _components_Buttons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7768);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__]);
+([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -37,6 +39,8 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
         inputRef.current?.click();
     };
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
+        as: "form",
+        onSubmit: handleSubmit(onSubmit),
         children: [
             /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                 w: "100%",
@@ -151,7 +155,8 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
                                 label: item.label,
                                 url: item.url,
                                 index: index,
-                                formType: "create",
+                                register: register,
+                                errors: errors.links,
                                 remove: ()=>{
                                     remove(index);
                                 }
@@ -210,10 +215,10 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                 justify: "center",
                 margin: "3rem 0 3.5rem 0",
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Buttons__WEBPACK_IMPORTED_MODULE_7__/* .Button */ .zx, {
                     disabled: disabled,
                     variant: "round",
-                    onClick: handleSubmit(onSubmit),
+                    type: "submit",
                     children: "\u4F5C\u6210\u3059\u308B"
                 })
             })
@@ -440,6 +445,353 @@ const InputDate = ({ name , control  })=>{
             });
         }
     });
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 7658:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "j": () => (/* reexport safe */ _hooks_form_useFormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__.j),
+/* harmony export */   "t": () => (/* reexport safe */ _hooks_form_useCreateUpdateUserProfile__WEBPACK_IMPORTED_MODULE_0__.t)
+/* harmony export */ });
+/* harmony import */ var _hooks_form_useCreateUpdateUserProfile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5881);
+/* harmony import */ var _hooks_form_useFormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3007);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form_useCreateUpdateUserProfile__WEBPACK_IMPORTED_MODULE_0__, _hooks_form_useFormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__]);
+([_hooks_form_useCreateUpdateUserProfile__WEBPACK_IMPORTED_MODULE_0__, _hooks_form_useFormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 5881:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "t": () => (/* binding */ useCreateUpdateUserProfile)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5641);
+/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3392);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1492);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9755);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3125);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5609);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1908);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, firebase_storage__WEBPACK_IMPORTED_MODULE_2__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__]);
+([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, firebase_storage__WEBPACK_IMPORTED_MODULE_2__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+
+
+
+
+const schema = yup__WEBPACK_IMPORTED_MODULE_6__.object({
+    name: yup__WEBPACK_IMPORTED_MODULE_6__.string().required("\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")
+});
+const useCreateUpdateUserProfile = ()=>{
+    const { register , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+        resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__.yupResolver)(schema)
+    });
+    const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_4__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_5__/* .currentUserState */ .y);
+    const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.getStorage)();
+    const { 0: image , 1: setImage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    const { 0: name , 1: setName  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+    const { 0: iconUrl , 1: setIconUrl  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+    const { 0: error , 1: setError  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__.useBoolean)();
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        const getProfile = async ()=>{
+            if (!currentUser) return;
+            const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getFirestore)();
+            const profilesCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(db, "profiles");
+            const profileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(profilesCollection, currentUser.uid);
+            const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(profileRef);
+            const data = document.data();
+            if (!data) return;
+            setIconUrl(data.icon);
+            setName(data.name);
+            return data;
+        };
+        getProfile();
+    }, []);
+    const createProfileIfNotFound = async (profile)=>{
+        if (!currentUser) return;
+        const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getFirestore)();
+        const profilesCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(db, "profiles");
+        const profileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(profilesCollection, currentUser.uid);
+        if (profile.name == "" && profile.icon) {
+            setIconUrl(profile.icon);
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(profileRef, {
+                icon: profile.icon
+            });
+        } else if (profile.name && profile.icon == "") {
+            setName(profile.name);
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(profileRef, {
+                name: profile.name
+            });
+        } else if (profile.name && profile.icon) {
+            setIconUrl(profile.icon);
+            setName(profile.name);
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.setDoc)(profileRef, {
+                name: profile.name,
+                icon: profile.icon
+            });
+        } else {
+            return;
+        }
+    };
+    // react-hook-formでinput[type="file"]上手くいかない
+    // https://zenn.dev/akira_miyake/articles/0b08cf732e7c0a
+    const handleChangeIcon = (e)=>{
+        if (e.target.files !== null) {
+            setImage(e.target.files[0]);
+        }
+    };
+    const onSubmit = (data)=>{
+        // TODO: いるかも？
+        // event.preventDefault()
+        try {
+            setDisabled.on();
+            if (image) {
+                const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.ref)(firestorage, encodeURI(image.name));
+                (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.uploadBytes)(imageRef, image).then(()=>{
+                    (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.getDownloadURL)(imageRef).then((url)=>{
+                        const req = {
+                            name: data.name,
+                            icon: url
+                        };
+                        createProfileIfNotFound(req);
+                    });
+                });
+            } else if (!image && data.name) {
+                const req = {
+                    name: data.name,
+                    icon: ""
+                };
+                createProfileIfNotFound(req);
+                // TODO: アラートをいい感じに表示する
+                alert("\u4FDD\u5B58\u3055\u308C\u307E\u3057\u305F");
+            }
+        } catch (err) {
+            setError(true);
+        } finally{
+            setDisabled.off();
+        }
+    };
+    return {
+        onSubmit,
+        handleSubmit,
+        register,
+        handleChangeIcon,
+        error,
+        iconUrl,
+        name,
+        image,
+        errors,
+        disabled
+    };
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 3007:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "j": () => (/* binding */ useFormCreateUpdateLinks)
+/* harmony export */ });
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5641);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5609);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1908);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3125);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9755);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8456);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_8__]);
+([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
+
+
+
+
+
+
+const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
+    title: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u65C5\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
+    date: yup__WEBPACK_IMPORTED_MODULE_2__.array(),
+    links: yup__WEBPACK_IMPORTED_MODULE_2__.array().of(yup__WEBPACK_IMPORTED_MODULE_2__.object().shape({
+        url: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("url\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")// urlの正規表現にマッチしなかったら弾く
+        .matches(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/, {
+            message: "\u5229\u7528\u53EF\u80FD\u306AURL\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
+        }),
+        label: yup__WEBPACK_IMPORTED_MODULE_2__.string()
+    }))
+});
+const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
+    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.useBoolean)();
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
+    const traveliId1 = router.query.traveliId;
+    const formatedDate = travelinkData?.date.map((item)=>{
+        return item ? item.toDate() : null;
+    });
+    const { register , control , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useForm)({
+        resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__.yupResolver)(schema),
+        defaultValues: {
+            ...travelinkData,
+            date: formatedDate
+        }
+    });
+    const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_8__/* .useUploadImage */ .H)();
+    const currentUser1 = (0,recoil__WEBPACK_IMPORTED_MODULE_7__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_6__/* .currentUserState */ .y);
+    const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateTravelink */ .h0;
+    const updateTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useUpdateTravelink */ .pz;
+    const { fields , append , remove  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useFieldArray)({
+        name: "links",
+        control: control
+    });
+    const onSubmit = async (data)=>{
+        if (!currentUser1) return;
+        const req = data;
+        try {
+            setDisabled.on();
+            // 画像に変更が入っていたらrequest bodyに画像を含める
+            if (image && isImageChanged) {
+                const downloadUrl = await uploadImage(image);
+                req.thumbnail = downloadUrl;
+            }
+            formType === "create" ? create(req, currentUser1) : update(req, traveliId1);
+        } catch (err) {
+            console.error(err);
+        } finally{
+            setDisabled.off();
+        }
+    };
+    const create = async (data, currentUser)=>{
+        if (!ownerProfile) return;
+        const res = await createTravelink({
+            ...data,
+            ownerIcon: ownerProfile.icon,
+            ownerName: ownerProfile.name
+        }, currentUser.uid);
+        router.push(window.location.origin + res);
+    };
+    const update = async (data, traveliId)=>{
+        await updateTravelink(data, traveliId);
+        router.push(window.location.origin + traveliId);
+    };
+    return {
+        register,
+        handleSubmit,
+        fields,
+        append,
+        remove,
+        control,
+        onSubmit,
+        errors,
+        disabled,
+        handleChangeImage,
+        image
+    };
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 8456:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "H": () => (/* reexport safe */ _hooks_upload_useUploadImage__WEBPACK_IMPORTED_MODULE_0__.H)
+/* harmony export */ });
+/* harmony import */ var _hooks_upload_useUploadImage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(7108);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_upload_useUploadImage__WEBPACK_IMPORTED_MODULE_0__]);
+_hooks_upload_useUploadImage__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 7108:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "H": () => (/* binding */ useUploadImage)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3392);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_storage__WEBPACK_IMPORTED_MODULE_1__]);
+firebase_storage__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+const useUploadImage = ()=>{
+    const { 0: image , 1: setImage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    const [isImageChanged, setIsChanged] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.useBoolean)();
+    const uploadImage = (imageFile)=>{
+        const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.getStorage)();
+        const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.ref)(firestorage, encodeURI(imageFile.name));
+        const downloadUrl = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.uploadBytes)(imageRef, imageFile).then(()=>{
+            const url = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.getDownloadURL)(imageRef);
+            return url;
+        });
+        return downloadUrl;
+    };
+    const handleChangeImage = (e)=>{
+        if (e.target.files !== null) {
+            setImage(e.target.files[0]);
+            setIsChanged.on();
+        }
+    };
+    return {
+        uploadImage,
+        image,
+        handleChangeImage,
+        isImageChanged
+    };
 };
 
 __webpack_async_result__();
