@@ -17,7 +17,7 @@ import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, Profile } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
-import { CardEditWrapper } from '@/components/Cards'
+import { CardLink } from '@/components/Cards'
 
 type FormCreateUpdateLinksProps = {
   formType: 'create' | 'update'
@@ -126,12 +126,12 @@ export const FormCreateUpdateLinks = ({
         {fields.map((item, index) => {
           return (
             <React.Fragment key={item.id}>
-              <CardEditWrapper
+              <CardLink
                 label={item.label}
                 url={item.url}
                 index={index}
                 formType={'create'}
-                remove={() => {
+                onClick={() => {
                   remove(index)
                 }}
               />
