@@ -18,7 +18,6 @@ import { RadioCategoryList } from '@/components/Radios'
 import { CategoryType } from '@/types/db'
 
 type CardEditProps = {
-  label: string
   index: number
   register: UseFormRegister<Inputs>
   remove: () => void

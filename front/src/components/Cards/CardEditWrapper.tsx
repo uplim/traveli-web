@@ -47,7 +47,6 @@ export const CardEditWrapper = ({
         />
       ) : (
         <CardEdit
-          label={currentLabel}
           index={index}
           register={register}
           errors={errors}
