@@ -32,8 +32,8 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hoo
 
 
 
-const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwner  })=>{
-    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useFormCreateUpdateLinks */ .j)(formType, travelinkData, ownerProfile);
+const FormCreateUpdateLinks = ({ travelinkData , ownerProfile , isOwner  })=>{
+    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useFormCreateUpdateLinks */ .j)(travelinkData, ownerProfile);
     const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     const onClickButton = ()=>{
         inputRef.current?.click();
@@ -186,7 +186,7 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
                             })
                         ]
                     }),
-                    (isOwner || formType === "create") && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.FormControl, {
+                    (isOwner || !travelinkData) && /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.FormControl, {
                         display: "flex",
                         alignItems: "center",
                         paddingTop: "3rem",
@@ -217,7 +217,11 @@ const FormCreateUpdateLinks = ({ formType , travelinkData , ownerProfile , isOwn
                     disabled: disabled,
                     variant: "round",
                     onClick: handleSubmit(onSubmit),
-                    children: "\u4F5C\u6210\u3059\u308B"
+                    children: !travelinkData ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                        children: "\u4F5C\u6210\u3059\u308B"
+                    }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+                        children: "\u5909\u66F4\u3059\u308B"
+                    })
                 })
             })
         ]
@@ -658,7 +662,7 @@ const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
         label: yup__WEBPACK_IMPORTED_MODULE_2__.string()
     }))
 });
-const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
+const useFormCreateUpdateLinks = (travelinkData, ownerProfile)=>{
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.useBoolean)();
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
     const traveliId1 = router.query.traveliId;
@@ -690,7 +694,7 @@ const useFormCreateUpdateLinks = (formType, travelinkData, ownerProfile)=>{
                 const downloadUrl = await uploadImage(image);
                 req.thumbnail = downloadUrl;
             }
-            formType === "create" ? await create(req, currentUser1) : await update(req, traveliId1);
+            !travelinkData ? await create(req, currentUser1) : await update(req, traveliId1);
         } catch (err) {
             console.error(err);
         } finally{
