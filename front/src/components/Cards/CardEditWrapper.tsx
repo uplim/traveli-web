@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 import { UseFormRegister, FieldError } from 'react-hook-form'
-import { TravelinkRequestType, Profile, CategoryType } from '@/types/db'
+import { CategoryType } from '@/types/db'
 import { CardLink, CardEdit } from '@/components/Cards'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
@@ -10,8 +10,6 @@ type CardEditWrapperProps = {
   label: string
   url: string
   index: number
-  travelinkData?: TravelinkRequestType
-  ownerProfile?: Profile
   register: UseFormRegister<Inputs>
   errors?:
     | {

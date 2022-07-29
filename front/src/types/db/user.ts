@@ -6,8 +6,3 @@ export type UserType = firestore.DocumentData & {
   name?: string
   icon?: string
 }
-
-export type Profile = firestore.DocumentData & {
-  name: string
-  icon: string
-}

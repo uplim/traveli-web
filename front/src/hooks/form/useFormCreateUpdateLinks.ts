@@ -5,15 +5,8 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
-import { currentUserState } from '@/recoil/atoms'
-import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
-import {
-  CategoryType,
-  UserType,
-  Profile,
-  TravelinkRequestType
-} from '@/types/db'
+import { CategoryType, UserType, TravelinkRequestType } from '@/types/db'
 
 export type Inputs = {
   title: string
@@ -45,7 +38,7 @@ const schema = yup.object({
 
 export const useFormCreateUpdateLinks = (
   travelinkData?: TravelinkRequestType,
-  ownerProfile?: Profile
+  userData?: UserType
 ) => {
   const [disabled, setDisabled] = useBoolean()
   const [categories, setCategories] = useState<CategoryType[]>(
@@ -76,8 +69,6 @@ export const useFormCreateUpdateLinks = (
   const { uploadImage, image, handleChangeImage, isImageChanged } =
     useUploadImage()
 
-  const currentUser = useRecoilValue(currentUserState)
-
   const createTravelink = useCreateTravelink
   const updateTravelink = useUpdateTravelink
 
@@ -87,8 +78,6 @@ export const useFormCreateUpdateLinks = (
   })
 
   const onSubmit = async (data: Inputs) => {
-    if (!currentUser) return
-
     const mergeCategoriesIntoLinks = data.links.map((link, index) => {
       link.category = categories[index]
       return link
@@ -106,9 +95,7 @@ export const useFormCreateUpdateLinks = (
         req.thumbnail = downloadUrl
       }
 
-      !travelinkData
-        ? await create(req, currentUser)
-        : await update(req, traveliId)
+      !travelinkData ? await create(req) : await update(req, traveliId)
     } catch (err) {
       console.error(err)
     } finally {
@@ -116,16 +103,16 @@ export const useFormCreateUpdateLinks = (
     }
   }
 
-  const create = async (data: TravelinkRequestType, currentUser: UserType) => {
-    if (!ownerProfile) return
+  const create = async (data: TravelinkRequestType) => {
+    if (!userData) return
 
     const res = await createTravelink(
       {
         ...data,
-        ownerIcon: ownerProfile.icon,
-        ownerName: ownerProfile.name
+        ownerIcon: userData.icon ? userData.icon : '',
+        ownerName: userData.name ? userData.name : ''
       },
-      currentUser.uid
+      userData.uid
     )
     router.push(`/${res}`)
   }

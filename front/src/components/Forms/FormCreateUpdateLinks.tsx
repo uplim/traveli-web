@@ -13,7 +13,7 @@ import {
 
 import { useRef } from 'react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
-import { TravelinkRequestType, Profile } from '@/types/db'
+import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
 import { CardEditWrapper } from '@/components/Cards'
@@ -21,13 +21,13 @@ import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
   travelinkData?: TravelinkRequestType
-  ownerProfile?: Profile
+  userData?: UserType
   isOwner?: boolean
 }
 
 export const FormCreateUpdateLinks = ({
   travelinkData,
-  ownerProfile,
+  userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
   const {
@@ -44,7 +44,7 @@ export const FormCreateUpdateLinks = ({
     handleChangeImage,
     setCategories,
     categories
-  } = useFormCreateUpdateLinks(travelinkData, ownerProfile)
+  } = useFormCreateUpdateLinks(travelinkData, userData)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const onClickButton = () => {
