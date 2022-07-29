@@ -19,7 +19,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
 /* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(628);
 /* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(553);
-/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8077);
+/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(701);
 /* harmony import */ var _components_Buttons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7768);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__]);
 ([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
@@ -33,7 +33,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hoo
 
 
 const FormCreateUpdateLinks = ({ travelinkData , ownerProfile , isOwner  })=>{
-    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useFormCreateUpdateLinks */ .j)(travelinkData, ownerProfile);
+    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage , setCategories , categories: categories1  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useFormCreateUpdateLinks */ .j)(travelinkData, ownerProfile);
     const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
     const onClickButton = ()=>{
         inputRef.current?.click();
@@ -150,6 +150,8 @@ const FormCreateUpdateLinks = ({ travelinkData , ownerProfile , isOwner  })=>{
                     fields.map((item, index)=>{
                         return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Cards__WEBPACK_IMPORTED_MODULE_6__/* .CardEditWrapper */ .ak, {
+                                categories: categories1,
+                                setCategories: setCategories,
                                 label: item.label,
                                 url: item.url,
                                 index: index,
@@ -177,6 +179,12 @@ const FormCreateUpdateLinks = ({ travelinkData , ownerProfile , isOwner  })=>{
                                 fontSize: "md",
                                 type: "button",
                                 onClick: ()=>{
+                                    // onChangeでsetStateしているので、初期値はこの段階で入れる
+                                    setCategories((categories)=>[
+                                            ...categories,
+                                            "\u305D\u306E\u4ED6"
+                                        ]
+                                    );
                                     append({
                                         url: "",
                                         label: ""
@@ -627,21 +635,23 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "j": () => (/* binding */ useFormCreateUpdateLinks)
 /* harmony export */ });
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1853);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5641);
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5609);
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1908);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(3125);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(9755);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8456);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_8__]);
-([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5641);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(5609);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1908);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8697);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3125);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9755);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8456);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_2__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__, _hooks_upload__WEBPACK_IMPORTED_MODULE_9__]);
+([react_hook_form__WEBPACK_IMPORTED_MODULE_2__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__, _hooks_upload__WEBPACK_IMPORTED_MODULE_9__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -651,42 +661,52 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([reac
 
 
 
-const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
-    title: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u65C5\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
-    date: yup__WEBPACK_IMPORTED_MODULE_2__.array(),
-    links: yup__WEBPACK_IMPORTED_MODULE_2__.array().of(yup__WEBPACK_IMPORTED_MODULE_2__.object().shape({
-        url: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("url\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")// urlの正規表現にマッチしなかったら弾く
+
+const schema = yup__WEBPACK_IMPORTED_MODULE_3__.object({
+    title: yup__WEBPACK_IMPORTED_MODULE_3__.string().required("\u65C5\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
+    date: yup__WEBPACK_IMPORTED_MODULE_3__.array(),
+    links: yup__WEBPACK_IMPORTED_MODULE_3__.array().of(yup__WEBPACK_IMPORTED_MODULE_3__.object().shape({
+        url: yup__WEBPACK_IMPORTED_MODULE_3__.string().required("url\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")// urlの正規表現にマッチしなかったら弾く
         .matches(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/, {
             message: "\u5229\u7528\u53EF\u80FD\u306AURL\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"
         }),
-        label: yup__WEBPACK_IMPORTED_MODULE_2__.string()
+        label: yup__WEBPACK_IMPORTED_MODULE_3__.string()
     }))
 });
 const useFormCreateUpdateLinks = (travelinkData, ownerProfile)=>{
-    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.useBoolean)();
-    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
+    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__.useBoolean)();
+    const { 0: categories , 1: setCategories  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(travelinkData ? travelinkData.links.map((link)=>link.category
+    ) : []);
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
     const traveliId1 = router.query.traveliId;
     const formatedDate = travelinkData?.date.map((item)=>{
         return item ? item.toDate() : null;
     });
-    const { register , control , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-        resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__.yupResolver)(schema),
+    const { register , control , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+        resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_4__.yupResolver)(schema),
         defaultValues: {
             ...travelinkData,
             date: formatedDate
         }
     });
-    const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_8__/* .useUploadImage */ .H)();
-    const currentUser1 = (0,recoil__WEBPACK_IMPORTED_MODULE_7__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_6__/* .currentUserState */ .y);
-    const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateTravelink */ .h0;
-    const updateTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useUpdateTravelink */ .pz;
-    const { fields , append , remove  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useFieldArray)({
+    const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_9__/* .useUploadImage */ .H)();
+    const currentUser1 = (0,recoil__WEBPACK_IMPORTED_MODULE_8__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_7__/* .currentUserState */ .y);
+    const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__/* .useCreateTravelink */ .h0;
+    const updateTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__/* .useUpdateTravelink */ .pz;
+    const { fields , append , remove  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useFieldArray)({
         name: "links",
         control: control
     });
     const onSubmit = async (data)=>{
         if (!currentUser1) return;
-        const req = data;
+        const mergeCategoriesIntoLinks = data.links.map((link, index)=>{
+            link.category = categories[index];
+            return link;
+        });
+        const req = {
+            ...data,
+            links: mergeCategoriesIntoLinks
+        };
         try {
             setDisabled.on();
             // 画像に変更が入っていたらrequest bodyに画像を含める
@@ -725,7 +745,9 @@ const useFormCreateUpdateLinks = (travelinkData, ownerProfile)=>{
         errors,
         disabled,
         handleChangeImage,
-        image
+        image,
+        categories,
+        setCategories
     };
 };
 
