@@ -70,7 +70,7 @@ const LinkList = () => {
           >
             <TabList bgColor={'white'}>
               <Tab>全て</Tab>
-              <Tab>食べ物</Tab>
+              <Tab>食事</Tab>
               <Tab>場所</Tab>
               <Tab>その他</Tab>
             </TabList>
@@ -81,13 +81,31 @@ const LinkList = () => {
                 ))}
               </TabPanel>
               <TabPanel>
-                <p>たべもの</p>
+                {travelink.links.map(({ category, url, label }, index) => (
+                  <>
+                    {category === '食事' && (
+                      <CardLink label={label} url={url} key={index} />
+                    )}
+                  </>
+                ))}
               </TabPanel>
               <TabPanel>
-                <p>場所</p>
+                {travelink.links.map(({ category, url, label }, index) => (
+                  <>
+                    {category === '場所' && (
+                      <CardLink label={label} url={url} key={index} />
+                    )}
+                  </>
+                ))}
               </TabPanel>
               <TabPanel>
-                <p>その他</p>
+                {travelink.links.map(({ category, url, label }, index) => (
+                  <>
+                    {category === 'その他' && (
+                      <CardLink label={label} url={url} key={index} />
+                    )}
+                  </>
+                ))}
               </TabPanel>
             </TabPanels>
           </Tabs>
