@@ -104,7 +104,9 @@ export const FormCreateUpdateLinks = ({
         />
         <Box
           marginTop={'0.8rem'}
-          bgImage={image ? URL.createObjectURL(image) : ''}
+          bgImage={
+            image ? URL.createObjectURL(image) : travelinkData?.thumbnail
+          }
           onClick={onClickButton}
           w={'100%'}
           h={'12.9rem'}
