@@ -18,7 +18,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9755);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3125);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7658);
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(401);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_auth__WEBPACK_IMPORTED_MODULE_5__]);
 firebase_auth__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
@@ -43,7 +43,7 @@ const UseCheckAuth = ({ children  })=>{
         if (isAccessibleBeforeSignIn) return;
         try {
             const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_5__.getAuth)();
-            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_5__.onAuthStateChanged)(auth, (currentUser)=>{
+            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_5__.onAuthStateChanged)(auth, (currentUser)=>{
                 if (currentUser) {
                     setCurrentUser({
                         uid: currentUser.uid,
@@ -76,39 +76,6 @@ const UseCheckAuth = ({ children  })=>{
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
-
-/***/ }),
-
-/***/ 3125:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "y": () => (/* reexport */ currentUserState)
-});
-
-// EXTERNAL MODULE: external "recoil"
-var external_recoil_ = __webpack_require__(9755);
-;// CONCATENATED MODULE: ./src/recoil/keys.ts
-var AtomKeys;
-(function(AtomKeys) {
-    AtomKeys["CURRENT_USER_STATE"] = "userState";
-})(AtomKeys || (AtomKeys = {}));
-
-;// CONCATENATED MODULE: ./src/recoil/atoms/user.ts
-
-
-// undefined またログインが完了していない状態
-// null ログイン確認をした結果、ログインしていない状態
-const currentUserState = (0,external_recoil_.atom)({
-    key: AtomKeys.CURRENT_USER_STATE,
-    default: undefined
-});
-
-;// CONCATENATED MODULE: ./src/recoil/atoms/index.ts
-
-
 
 /***/ })
 

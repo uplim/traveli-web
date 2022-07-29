@@ -16,7 +16,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
+/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3970);
 /* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(628);
 /* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(553);
 /* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(701);
@@ -256,7 +256,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(553);
-/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7658);
+/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3970);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1853);
@@ -462,7 +462,7 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 7658:
+/***/ 3970:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -493,19 +493,21 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5641);
-/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3392);
-/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1492);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(9755);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3125);
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(5609);
-/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(1908);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, firebase_storage__WEBPACK_IMPORTED_MODULE_2__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__]);
-([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, firebase_storage__WEBPACK_IMPORTED_MODULE_2__, firebase_firestore__WEBPACK_IMPORTED_MODULE_3__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_hook_form__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5641);
+/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3392);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1492);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(9755);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7658);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(5609);
+/* harmony import */ var yup__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(yup__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1908);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_9__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_2__, firebase_storage__WEBPACK_IMPORTED_MODULE_3__, firebase_firestore__WEBPACK_IMPORTED_MODULE_4__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_8__]);
+([react_hook_form__WEBPACK_IMPORTED_MODULE_2__, firebase_storage__WEBPACK_IMPORTED_MODULE_3__, firebase_firestore__WEBPACK_IMPORTED_MODULE_4__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -515,27 +517,30 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([reac
 
 
 
-const schema = yup__WEBPACK_IMPORTED_MODULE_6__.object({
-    name: yup__WEBPACK_IMPORTED_MODULE_6__.string().required("\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")
+
+const schema = yup__WEBPACK_IMPORTED_MODULE_7__.object({
+    name: yup__WEBPACK_IMPORTED_MODULE_7__.string().required("\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")
 });
 const useCreateUpdateUserProfile = ()=>{
-    const { register , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_1__.useForm)({
-        resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_7__.yupResolver)(schema)
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
+    const { register , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+        resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_8__.yupResolver)(schema)
     });
-    const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_4__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_5__/* .currentUserState */ .y);
-    const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.getStorage)();
+    const history = (0,recoil__WEBPACK_IMPORTED_MODULE_5__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_6__/* .historyState */ .f);
+    const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_5__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_6__/* .currentUserState */ .y);
+    const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_3__.getStorage)();
     const { 0: image , 1: setImage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
     const { 0: name , 1: setName  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
     const { 0: iconUrl , 1: setIconUrl  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
     const { 0: error , 1: setError  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
-    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_8__.useBoolean)();
+    const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_9__.useBoolean)();
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
         const getProfile = async ()=>{
             if (!currentUser) return;
-            const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getFirestore)();
-            const profilesCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(db, "profiles");
-            const profileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(profilesCollection, currentUser.uid);
-            const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getDoc)(profileRef);
+            const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.getFirestore)();
+            const profilesCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.collection)(db, "profiles");
+            const profileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.doc)(profilesCollection, currentUser.uid);
+            const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.getDoc)(profileRef);
             const data = document.data();
             if (!data) return;
             setIconUrl(data.icon);
@@ -546,23 +551,23 @@ const useCreateUpdateUserProfile = ()=>{
     }, []);
     const createProfileIfNotFound = async (profile)=>{
         if (!currentUser) return;
-        const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.getFirestore)();
-        const profilesCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.collection)(db, "profiles");
-        const profileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.doc)(profilesCollection, currentUser.uid);
+        const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.getFirestore)();
+        const profilesCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.collection)(db, "profiles");
+        const profileRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.doc)(profilesCollection, currentUser.uid);
         if (profile.name == "" && profile.icon) {
             setIconUrl(profile.icon);
-            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(profileRef, {
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.updateDoc)(profileRef, {
                 icon: profile.icon
             });
         } else if (profile.name && profile.icon == "") {
             setName(profile.name);
-            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.updateDoc)(profileRef, {
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.updateDoc)(profileRef, {
                 name: profile.name
             });
         } else if (profile.name && profile.icon) {
             setIconUrl(profile.icon);
             setName(profile.name);
-            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_3__.setDoc)(profileRef, {
+            await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_4__.setDoc)(profileRef, {
                 name: profile.name,
                 icon: profile.icon
             });
@@ -583,9 +588,9 @@ const useCreateUpdateUserProfile = ()=>{
         try {
             setDisabled.on();
             if (image) {
-                const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.ref)(firestorage, encodeURI(image.name));
-                (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.uploadBytes)(imageRef, image).then(()=>{
-                    (0,firebase_storage__WEBPACK_IMPORTED_MODULE_2__.getDownloadURL)(imageRef).then((url)=>{
+                const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_3__.ref)(firestorage, encodeURI(image.name));
+                (0,firebase_storage__WEBPACK_IMPORTED_MODULE_3__.uploadBytes)(imageRef, image).then(()=>{
+                    (0,firebase_storage__WEBPACK_IMPORTED_MODULE_3__.getDownloadURL)(imageRef).then((url)=>{
                         const req = {
                             name: data.name,
                             icon: url
@@ -599,9 +604,8 @@ const useCreateUpdateUserProfile = ()=>{
                     icon: ""
                 };
                 createProfileIfNotFound(req);
-                // TODO: アラートをいい感じに表示する
-                alert("\u4FDD\u5B58\u3055\u308C\u307E\u3057\u305F");
             }
+            if (history === "/") router.push("/home");
         } catch (err) {
             setError(true);
         } finally{
@@ -646,7 +650,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8697);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3125);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7658);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9755);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(8456);
