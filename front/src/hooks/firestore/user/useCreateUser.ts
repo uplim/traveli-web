@@ -21,7 +21,9 @@ export const useCreateUser = () => {
 
     await setDoc(userRef, {
       uid: user.uid,
-      isAnonymous: user.isAnonymous
+      isAnonymous: user.isAnonymous,
+      name: '',
+      icon: ''
     })
   }
 

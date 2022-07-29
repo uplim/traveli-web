@@ -1,5 +1,6 @@
 // user
 export { useCreateUser } from '@/hooks/firestore/user/useCreateUser'
+export { useUpdateUser } from '@/hooks/firestore/user/useUpdateUser'
 
 // travelink
 export { useGetTravelink } from '@/hooks/firestore/travelink/useGetTravelink'

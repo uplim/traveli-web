@@ -10,7 +10,7 @@ import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
 import {
   CategoryType,
-  CurrentUser,
+  UserType,
   Profile,
   TravelinkRequestType
 } from '@/types/db'
@@ -116,10 +116,7 @@ export const useFormCreateUpdateLinks = (
     }
   }
 
-  const create = async (
-    data: TravelinkRequestType,
-    currentUser: CurrentUser
-  ) => {
+  const create = async (data: TravelinkRequestType, currentUser: UserType) => {
     if (!ownerProfile) return
 
     const res = await createTravelink(

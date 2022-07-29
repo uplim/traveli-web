@@ -1,6 +1,6 @@
+import { useRef } from 'react'
 import NextLink from 'next/link'
 import {
-  Alert,
   Avatar,
   Button,
   FormControl,
@@ -11,24 +11,27 @@ import {
   Spacer,
   VisuallyHiddenInput,
   IconButton,
-  Link
+  Link,
+  FormErrorMessage
 } from '@chakra-ui/react'
 import { IconReturn } from '@/components/Icons'
-import { useCreateUpdateUserProfile } from '@/hooks/form'
-import { useRef } from 'react'
+import { useFormCreateUpdateUser } from '@/hooks/form'
+import { UserType } from '@/types/db'
 
-export const FormUserProfile = () => {
+type FormUserProfileProps = {
+  data: UserType
+}
+
+export const FormUserProfile = ({ data }: FormUserProfileProps) => {
   const {
-    onSubmit,
-    handleSubmit,
     register,
-    handleChangeIcon,
-    error,
-    iconUrl,
-    name,
-    image,
-    disabled
-  } = useCreateUpdateUserProfile()
+    handleSubmit,
+    onSubmit,
+    errors,
+    disabled,
+    handleChangeImage,
+    image
+  } = useFormCreateUpdateUser(data)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const onClickButton = () => {
@@ -38,7 +41,6 @@ export const FormUserProfile = () => {
   return (
     <>
       <Box as={'form'} height={'100vh'} position={'relative'}>
-        {error && <Alert>送信できませんでした</Alert>}
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
           <NextLink href={'/home'} passHref>
             <Link>
@@ -57,33 +59,30 @@ export const FormUserProfile = () => {
           <Box w={'2.2rem'} h={'2.2rem'} />
         </Flex>
 
-        <FormControl>
-          {/* icon */}
-          {/* TODO:firestore関連のエラー  */}
-          <Flex align={'center'} justify={'center'}>
-            <Box
-              borderRadius={'50%'}
-              filter={'drop-shadow(4px 4px 10px #E4EBEE);'}
-              marginBottom={'2.4rem'}
-              bgColor={'base'}
-            >
-              <Avatar
-                src={image ? URL.createObjectURL(image) : iconUrl}
-                w={'12.9rem'}
-                h={'12.9rem'}
-                onClick={onClickButton}
-              />
-            </Box>
-          </Flex>
+        <Flex align={'center'} justify={'center'}>
+          <Box
+            borderRadius={'50%'}
+            filter={'drop-shadow(4px 4px 10px #E4EBEE);'}
+            marginBottom={'2.4rem'}
+            bgColor={'base'}
+          >
+            <Avatar
+              src={image ? URL.createObjectURL(image) : data.icon}
+              w={'12.9rem'}
+              h={'12.9rem'}
+              onClick={onClickButton}
+            />
+          </Box>
+        </Flex>
 
-          <VisuallyHiddenInput
-            onChange={handleChangeIcon}
-            ref={inputRef}
-            id="icon"
-            type="file"
-            accept="image/*"
-          />
-
+        <VisuallyHiddenInput
+          onChange={handleChangeImage}
+          ref={inputRef}
+          id="icon"
+          type="file"
+          accept="image/*"
+        />
+        <FormControl isInvalid={errors.name ? true : false}>
           <FormLabel htmlFor="name" fontSize={'md'}>
             ニックネーム
           </FormLabel>
@@ -96,11 +95,12 @@ export const FormUserProfile = () => {
               borderLeftRadius={'10rem'}
               bgColor={'white'}
               filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
-              id="name"
-              defaultValue={name}
               {...register('name')}
             />
           </Flex>
+          <FormErrorMessage>
+            {errors.name && errors.name.message}
+          </FormErrorMessage>
         </FormControl>
 
         <Button
