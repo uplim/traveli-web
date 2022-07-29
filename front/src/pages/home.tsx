@@ -7,6 +7,7 @@ import {
 import { ButtonIconRound } from '@/components/Buttons'
 import { Sidebar } from '@/components/Sidebars'
 import { TabHome } from '@/components/Tabs'
+import { Loading } from '@/components/Loadings'
 
 const Home = () => {
   const { travelinkList } = useGetTravelinkList()
@@ -16,7 +17,7 @@ const Home = () => {
   return (
     <>
       {!ownerProfile || !travelinkList || !bookmarkList ? (
-        <>ローディングアイコン</>
+        <Loading />
       ) : (
         <>
           <Flex marginTop={'1.2rem'}>

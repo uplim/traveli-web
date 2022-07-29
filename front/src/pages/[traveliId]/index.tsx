@@ -19,6 +19,7 @@ import { IconQr, IconShare } from '@/components/Icons'
 import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
+import { Loading } from '@/components/Loadings'
 import { useDisclosure } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
@@ -34,7 +35,7 @@ const LinkList = () => {
   return (
     <>
       {!travelink ? (
-        <>ローディングアイコン</>
+        <Loading />
       ) : (
         <>
           <Box
