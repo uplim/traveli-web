@@ -21,9 +21,10 @@ var react_ = __webpack_require__(8930);
 ;// CONCATENATED MODULE: ./src/components/Cards/CardLink.tsx
 
 
-const CardLink = ({ label , url , onClick  })=>{
-    if (onClick == undefined) onClick = ()=>{
-        window.open(url);
+const CardLink = ({ label , url , setIsMinimum  })=>{
+    const onClick = ()=>{
+        if (url) window.open(url);
+        if (setIsMinimum) setIsMinimum(false);
     };
     return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
@@ -38,6 +39,7 @@ const CardLink = ({ label , url , onClick  })=>{
             align: "center",
             marginBottom: "1rem",
             onClick: onClick,
+            cursor: "pointer",
             children: [
                 /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
                     backgroundColor: "gray",
@@ -64,7 +66,7 @@ const CardLink = ({ label , url , onClick  })=>{
 ;// CONCATENATED MODULE: ./src/components/Cards/CardEdit.tsx
 
 
-const CardEdit = ({ label , url , index , register , remove , errors , setCurrentLabel , setCurrentURL , setState  })=>{
+const CardEdit = ({ label , index , register , remove , errors , setCurrentLabel , setIsMinimum  })=>{
     return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
         children: /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
             children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
@@ -110,10 +112,8 @@ const CardEdit = ({ label , url , index , register , remove , errors , setCurren
                                         display: "flex",
                                         padding: "0 0 1.35rem 0",
                                         // TODO: useState
-                                        onClick: ()=>{
-                                            setState();
-                                            if (label == "") setCurrentLabel(url);
-                                        },
+                                        onClick: ()=>setIsMinimum(true)
+                                        ,
                                         children: [
                                             /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
                                                 bgImage: "/images/closeMenu.svg",
@@ -177,10 +177,6 @@ const CardEdit = ({ label , url , index , register , remove , errors , setCurren
                                             borderLeftRadius: "10rem",
                                             isInvalid: errors?.[index] ? true : false,
                                             ...register(`links.${index}.url`),
-                                            defaultValue: url,
-                                            onChange: (u)=>{
-                                                setCurrentURL(u.target.value);
-                                            },
                                             placeholder: "https://"
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx(react_.FormErrorMessage, {
@@ -213,8 +209,8 @@ const CardEdit = ({ label , url , index , register , remove , errors , setCurren
                                     borderLeftRadius: "10rem",
                                     ...register(`links.${index}.label`),
                                     defaultValue: label,
-                                    onChange: (l)=>{
-                                        setCurrentLabel(l.target.value);
+                                    onChange: (e)=>{
+                                        setCurrentLabel(e.target.value);
                                     },
                                     placeholder: "\u4F8B\uFF09\u5BBF\u6CCA\u5148"
                                 })
@@ -234,21 +230,15 @@ var external_react_ = __webpack_require__(6689);
 
 
 
-const CardEditWrapper = ({ label , url , index , remove , register , errors  })=>{
-    const { 0: isMinimum , 1: setState  } = (0,external_react_.useState)(false);
+const CardEditWrapper = ({ label , index , remove , register , errors  })=>{
+    const { 0: isMinimum , 1: setIsMinimum  } = (0,external_react_.useState)(false);
     const { 0: currentLabel , 1: setCurrentLabel  } = (0,external_react_.useState)(label);
-    const { 0: currentURL , 1: setCurrentURL  } = (0,external_react_.useState)(url);
     return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
         children: isMinimum ? /*#__PURE__*/ jsx_runtime_.jsx(CardLink, {
             label: currentLabel,
-            url: currentURL,
-            onClick: ()=>{
-                setState(false);
-                if (currentURL == currentLabel) setCurrentLabel("");
-            }
+            setIsMinimum: setIsMinimum
         }) : /*#__PURE__*/ jsx_runtime_.jsx(CardEdit, {
             label: currentLabel,
-            url: currentURL,
             index: index,
             register: register,
             errors: errors,
@@ -256,10 +246,7 @@ const CardEditWrapper = ({ label , url , index , remove , register , errors  })=
                 remove();
             },
             setCurrentLabel: setCurrentLabel,
-            setCurrentURL: setCurrentURL,
-            setState: ()=>{
-                setState(true);
-            }
+            setIsMinimum: setIsMinimum
         })
     });
 };
