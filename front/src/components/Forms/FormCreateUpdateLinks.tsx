@@ -11,6 +11,7 @@ import {
   VisuallyHiddenInput
 } from '@chakra-ui/react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
+import { useInputImage } from '@/hooks/input'
 import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
@@ -41,10 +42,9 @@ export const FormCreateUpdateLinks = ({
     image,
     handleChangeImage,
     setCategories,
-    categories,
-    inputRef,
-    onClickImage
+    categories
   } = useFormCreateUpdateLinks(travelinkData, userData)
+  const { inputRef, onClickImage } = useInputImage()
 
   return (
     <Box>
@@ -137,7 +137,6 @@ export const FormCreateUpdateLinks = ({
           )
         })}
 
-        {/* Add List */}
         <Flex
           align={'center'}
           justify={'center'}
