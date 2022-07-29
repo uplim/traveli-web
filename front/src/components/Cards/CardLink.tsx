@@ -46,7 +46,7 @@ export const CardLink = ({
         bgColor={'white'}
         filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
         align={'center'}
-        marginBottom={'1rem'}
+        mt={'1rem'}
         onClick={onClick}
         cursor={'pointer'}
       >
