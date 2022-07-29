@@ -686,7 +686,10 @@ const useFormCreateUpdateLinks = (travelinkData, ownerProfile)=>{
         resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_4__.yupResolver)(schema),
         defaultValues: {
             ...travelinkData,
-            date: formatedDate
+            date: formatedDate ? formatedDate : [
+                null,
+                null
+            ]
         }
     });
     const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_9__/* .useUploadImage */ .H)();

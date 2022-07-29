@@ -5,9 +5,9 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/63mdjvUZwHr8MsJx5gYpC/_buildManifest.js",
-    "static/63mdjvUZwHr8MsJx5gYpC/_ssgManifest.js",
-    "static/63mdjvUZwHr8MsJx5gYpC/_middlewareManifest.js"
+    "static/CPBIMd-lUL-UYoKzjd7ap/_buildManifest.js",
+    "static/CPBIMd-lUL-UYoKzjd7ap/_ssgManifest.js",
+    "static/CPBIMd-lUL-UYoKzjd7ap/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
@@ -46,7 +46,7 @@
       "static/css/b44e452a9b15cc82.css",
       "static/chunks/123-b6c1ce825780857a.js",
       "static/chunks/355-2cebec4a839333e1.js",
-      "static/chunks/723-bfd80f9398f6a135.js",
+      "static/chunks/723-23d497a044f1b87f.js",
       "static/chunks/pages/[traveliId]/edit-386c72312edc523e.js"
     ],
     "/_app": [
@@ -72,7 +72,7 @@
       "static/css/b44e452a9b15cc82.css",
       "static/chunks/123-b6c1ce825780857a.js",
       "static/chunks/355-2cebec4a839333e1.js",
-      "static/chunks/723-bfd80f9398f6a135.js",
+      "static/chunks/723-23d497a044f1b87f.js",
       "static/chunks/pages/create-66f99bd1401918ae.js"
     ],
     "/home": [
@@ -110,7 +110,7 @@
       "static/css/b44e452a9b15cc82.css",
       "static/chunks/123-b6c1ce825780857a.js",
       "static/chunks/355-2cebec4a839333e1.js",
-      "static/chunks/723-bfd80f9398f6a135.js",
+      "static/chunks/723-23d497a044f1b87f.js",
       "static/chunks/pages/user-0919674da49097ea.js"
     ]
   },
