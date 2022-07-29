@@ -9,8 +9,6 @@ export const useUpdateUser = async (
   const ref = doc(collection(db, 'users'), id)
 
   try {
-    console.log('a')
-
     await updateDoc(ref, data)
   } catch (e) {
     console.error(e)

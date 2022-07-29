@@ -1,4 +1,5 @@
 // user
+export { useGetUser } from '@/hooks/firestore/user/useGetUser'
 export { useCreateUser } from '@/hooks/firestore/user/useCreateUser'
 export { useUpdateUser } from '@/hooks/firestore/user/useUpdateUser'
 
