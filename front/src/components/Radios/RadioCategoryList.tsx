@@ -5,14 +5,21 @@ import { useRadioCategory } from '@/hooks/radio'
 import { CategoryType } from '@/types/db'
 
 type RadioCategoryListProps = {
+  categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
+  index: number
 }
 
 export const RadioCategoryList = ({
-  setCategories
+  categories,
+  setCategories,
+  index
 }: RadioCategoryListProps) => {
-  const { categoryOptions, getRadioProps, group } =
-    useRadioCategory(setCategories)
+  const { categoryOptions, getRadioProps, group } = useRadioCategory(
+    categories,
+    setCategories,
+    index
+  )
 
   return (
     <HStack {...group}>

@@ -30,6 +30,7 @@ type CardEditProps = {
     | undefined
   setCurrentLabel: Dispatch<SetStateAction<string>>
   setIsMinimum: Dispatch<SetStateAction<boolean>>
+  categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
 }
 
@@ -41,6 +42,7 @@ export const CardEdit = ({
   errors,
   setCurrentLabel,
   setIsMinimum,
+  categories,
   setCategories
 }: CardEditProps) => {
   return (
@@ -121,7 +123,11 @@ export const CardEdit = ({
             <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
               カテゴリー
             </FormLabel>
-            <RadioCategoryList setCategories={setCategories} />
+            <RadioCategoryList
+              categories={categories}
+              index={index}
+              setCategories={setCategories}
+            />
             <FormLabel
               mt={'1.6rem'}
               h={'1.6rem'}

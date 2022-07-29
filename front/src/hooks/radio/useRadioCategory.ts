@@ -3,17 +3,23 @@ import { useRadioGroup } from '@chakra-ui/react'
 import { CategoryType } from '@/types/db'
 
 export const useRadioCategory = (
-  setCategory: Dispatch<SetStateAction<CategoryType[]>>
+  categories: CategoryType[],
+  setCategories: Dispatch<SetStateAction<CategoryType[]>>,
+  index: number
 ) => {
   const categoryOptions = ['場所', '食事', 'その他']
 
   const onChangeHandler = (value: CategoryType) => {
-    setCategory((categories) => [...categories, value])
+    setCategories((categories) => {
+      const cpCategories = categories
+      cpCategories.splice(index, 1, value)
+      return cpCategories
+    })
   }
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'category',
-    defaultValue: 'その他',
+    defaultValue: categories[index],
     onChange: onChangeHandler
   })
 

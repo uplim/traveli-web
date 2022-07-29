@@ -20,6 +20,7 @@ type CardEditWrapperProps = {
       }[]
     | undefined
   remove: () => void
+  categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
 }
 
@@ -29,7 +30,8 @@ export const CardEditWrapper = ({
   remove,
   register,
   errors,
-  setCategories
+  setCategories,
+  categories
 }: CardEditWrapperProps) => {
   const [isMinimum, setIsMinimum] = useState(false)
   const [currentLabel, setCurrentLabel] = useState(label)
@@ -54,6 +56,7 @@ export const CardEditWrapper = ({
           }}
           setCurrentLabel={setCurrentLabel}
           setIsMinimum={setIsMinimum}
+          categories={categories}
           setCategories={setCategories}
         />
       )}

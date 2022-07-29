@@ -21,6 +21,7 @@ export type Inputs = {
   links: {
     url: string
     label: string
+    category: string
   }[]
   canEdit: boolean
 }
@@ -47,8 +48,9 @@ export const useFormCreateUpdateLinks = (
   ownerProfile?: Profile
 ) => {
   const [disabled, setDisabled] = useBoolean()
-  const [categories, setCategories] = useState<CategoryType[]>([])
-  console.log(categories)
+  const [categories, setCategories] = useState<CategoryType[]>(
+    travelinkData ? travelinkData.links.map((link) => link.category) : []
+  )
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -85,7 +87,14 @@ export const useFormCreateUpdateLinks = (
   const onSubmit = async (data: Inputs) => {
     if (!currentUser) return
 
-    const req = data as TravelinkRequestType
+    const mergeCategoriesIntoLinks = data.links.map((link, index) => {
+      link.category = categories[index]
+      return link
+    })
+    const req = {
+      ...data,
+      links: mergeCategoriesIntoLinks
+    } as TravelinkRequestType
 
     try {
       setDisabled.on()
@@ -139,6 +148,7 @@ export const useFormCreateUpdateLinks = (
     disabled,
     handleChangeImage,
     image,
+    categories,
     setCategories
   }
 }

@@ -42,7 +42,8 @@ export const FormCreateUpdateLinks = ({
     disabled,
     image,
     handleChangeImage,
-    setCategories
+    setCategories,
+    categories
   } = useFormCreateUpdateLinks(travelinkData, ownerProfile)
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -126,6 +127,7 @@ export const FormCreateUpdateLinks = ({
           return (
             <React.Fragment key={item.id}>
               <CardEditWrapper
+                categories={categories}
                 setCategories={setCategories}
                 label={item.label}
                 url={item.url}
@@ -153,6 +155,8 @@ export const FormCreateUpdateLinks = ({
             fontSize={'md'}
             type="button"
             onClick={() => {
+              // onChangeでsetStateしているので、初期値はこの段階で入れる
+              setCategories((categories) => [...categories, 'その他'])
               append({ url: '', label: '' })
             }}
           >
