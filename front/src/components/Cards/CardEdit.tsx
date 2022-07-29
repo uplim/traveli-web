@@ -35,7 +35,6 @@ type CardEditProps = {
 }
 
 export const CardEdit = ({
-  label,
   index,
   register,
   remove,
@@ -48,7 +47,7 @@ export const CardEdit = ({
   return (
     <Box
       marginTop={'1rem'}
-      padding={'1.4rem 1.6rem 0 1.6rem'}
+      padding={'1.4rem 1.6rem 1.4rem 1.6rem'}
       w={'100%'}
       h={'27.4rem'}
       borderRadius={'1.5rem'}
@@ -166,7 +165,6 @@ export const CardEdit = ({
           borderRightRadius={'10rem'}
           borderLeftRadius={'10rem'}
           {...register(`links.${index}.label`)}
-          defaultValue={label}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setCurrentLabel(e.target.value)
           }}
