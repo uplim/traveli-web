@@ -128,7 +128,6 @@ export const CardEdit = ({
                 </FormLabel>
                 <Input
                   marginTop={'0.3rem'}
-                  marginBottom={'1.6rem'}
                   variant={'outline'}
                   borderColor={'#ACC1CA'}
                   w={'100%'}
@@ -149,6 +148,7 @@ export const CardEdit = ({
                 h={'1.6rem'}
                 fontSize={'sm'}
                 color={'#2D2D2D'}
+                mt={'1.6rem'}
               >
                 <Box>ラベル</Box>
                 <Box color={'gray'}>（任意）</Box>

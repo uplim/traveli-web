@@ -1,14 +1,34 @@
 import { Dispatch, SetStateAction } from 'react'
-import { Box, Flex, Text } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  Text
+} from '@chakra-ui/react'
+import { FieldError } from 'react-hook-form'
 
 type CardLinkProps = {
   // icon: string
   label: string
   url?: string
   setIsMinimum?: Dispatch<SetStateAction<boolean>>
+  errors?:
+    | {
+        url?: FieldError | undefined
+        label?: FieldError | undefined
+      }[]
+    | undefined
+  index?: number
 }
 
-export const CardLink = ({ label, url, setIsMinimum }: CardLinkProps) => {
+export const CardLink = ({
+  label,
+  url,
+  setIsMinimum,
+  errors,
+  index
+}: CardLinkProps) => {
   const onClick = () => {
     if (url) window.open(url)
     if (setIsMinimum) setIsMinimum(false)
@@ -50,6 +70,11 @@ export const CardLink = ({ label, url, setIsMinimum }: CardLinkProps) => {
           {label}
         </Text>
       </Flex>
+      {index !== undefined && (
+        <FormControl isInvalid={!!errors}>
+          <FormErrorMessage>{errors?.[index].url?.message}</FormErrorMessage>
+        </FormControl>
+      )}
     </>
   )
 }

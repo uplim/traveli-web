@@ -35,7 +35,12 @@ export const CardEditWrapper = ({
   return (
     <>
       {isMinimum ? (
-        <CardLink label={currentLabel} setIsMinimum={setIsMinimum} />
+        <CardLink
+          label={currentLabel}
+          setIsMinimum={setIsMinimum}
+          errors={errors}
+          index={index}
+        />
       ) : (
         <CardEdit
           label={currentLabel}

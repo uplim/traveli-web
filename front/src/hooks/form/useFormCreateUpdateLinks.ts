@@ -90,7 +90,6 @@ export const useFormCreateUpdateLinks = (
       !travelinkData
         ? await create(req, currentUser)
         : await update(req, traveliId)
-      
     } catch (err) {
       console.error(err)
     } finally {
