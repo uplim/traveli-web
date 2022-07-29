@@ -23,7 +23,7 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
     if (isAccessibleBeforeSignIn) return
     try {
       const auth = getAuth()
-      await onAuthStateChanged(auth, (currentUser) => {
+      onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
           setCurrentUser({
             uid: currentUser.uid,
