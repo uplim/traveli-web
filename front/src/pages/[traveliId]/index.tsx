@@ -15,16 +15,21 @@ import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
-import { IconQr, IconSave, IconShare } from '@/components/Icons'
+import { IconQr, IconShare } from '@/components/Icons'
 import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
 import { useDisclosure } from '@chakra-ui/react'
+import { useRecoilValue } from 'recoil'
+import { currentUserState } from '@/recoil/atoms'
+import { useButtonBookmark } from '@/hooks/button'
 
 const LinkList = () => {
   const router = useRouter()
+  const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { onClickBookmark, disabled, isBookmarked } = useButtonBookmark()
 
   return (
     <>
@@ -127,10 +132,36 @@ const LinkList = () => {
               </Text>
             )}
             <Flex w={'70%'} margin={'0.9rem auto'}>
-              <Box>
-                <IconSave w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-                <Text>保存</Text>
-              </Box>
+              <Button
+                disabled={disabled}
+                display={'inline'}
+                h={'auto'}
+                onClick={() => onClickBookmark(currentUser, travelink)}
+              >
+                {!isBookmarked ? (
+                  <>
+                    <Image
+                      alt={''}
+                      src={'/images/icons/bookmark-outline.svg'}
+                      w={'2.5rem'}
+                      h={'2.5rem'}
+                      margin={'0 auto'}
+                    />
+                    <Text>保存する</Text>
+                  </>
+                ) : (
+                  <>
+                    <Image
+                      alt={''}
+                      src={'/images/icons/bookmark-solid.svg'}
+                      w={'2.5rem'}
+                      h={'2.5rem'}
+                      margin={'0 auto'}
+                    />
+                    <Text>保存済み</Text>
+                  </>
+                )}
+              </Button>
               <Spacer />
               <Button onClick={onOpen} display={'inline'} h={'auto'}>
                 <IconQr
@@ -149,10 +180,10 @@ const LinkList = () => {
                 onClose={onClose}
               />
               <Spacer />
-              <Box>
+              <Button display={'inline'} h={'auto'}>
                 <IconShare w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-                <Text>共有</Text>
-              </Box>
+                <Text>共有する</Text>
+              </Button>
             </Flex>
           </Box>
         </>
