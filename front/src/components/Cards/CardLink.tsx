@@ -1,14 +1,41 @@
-import { Box, Flex, Text } from '@chakra-ui/react'
+import { Dispatch, SetStateAction } from 'react'
+import {
+  Box,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  Text
+} from '@chakra-ui/react'
+import { FieldError } from 'react-hook-form'
 
 type CardLinkProps = {
   // icon: string
   label: string
-  url: string
+  url?: string
+  setIsMinimum?: Dispatch<SetStateAction<boolean>>
+  errors?:
+    | {
+        url?: FieldError | undefined
+        label?: FieldError | undefined
+      }[]
+    | undefined
+  index?: number
 }
 
-export const CardLink = ({ label, url }: CardLinkProps) => {
+export const CardLink = ({
+  label,
+  url,
+  setIsMinimum,
+  errors,
+  index
+}: CardLinkProps) => {
+  const onClick = () => {
+    if (url) window.open(url)
+    if (setIsMinimum) setIsMinimum(false)
+  }
+
   return (
-    <a href={url} target="_blank" rel="noreferrer">
+    <>
       <Flex
         position={'relative'}
         top={0}
@@ -20,6 +47,8 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
         filter={'drop-shadow(4px 4px 10px #E4EBEE)'}
         align={'center'}
         marginBottom={'1rem'}
+        onClick={onClick}
+        cursor={'pointer'}
       >
         {/* TODO: アイコンPropsの受け取り */}
         <Box
@@ -41,6 +70,11 @@ export const CardLink = ({ label, url }: CardLinkProps) => {
           {label}
         </Text>
       </Flex>
-    </a>
+      {index !== undefined && (
+        <FormControl isInvalid={!!errors}>
+          <FormErrorMessage>{errors?.[index].url?.message}</FormErrorMessage>
+        </FormControl>
+      )}
+    </>
   )
 }

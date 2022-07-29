@@ -9,7 +9,7 @@ import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
 import { CurrentUser, Profile, TravelinkRequestType } from '@/types/db'
 
-type Inputs = {
+export type Inputs = {
   title: string
   date: [Date | null, Date | null]
   links: {
@@ -37,7 +37,6 @@ const schema = yup.object({
 })
 
 export const useFormCreateUpdateLinks = (
-  formType: 'create' | 'update',
   travelinkData?: TravelinkRequestType,
   ownerProfile?: Profile
 ) => {
@@ -88,7 +87,9 @@ export const useFormCreateUpdateLinks = (
         req.thumbnail = downloadUrl
       }
 
-      formType === 'create' ? create(req, currentUser) : update(req, traveliId)
+      !travelinkData
+        ? await create(req, currentUser)
+        : await update(req, traveliId)
     } catch (err) {
       console.error(err)
     } finally {
@@ -110,12 +111,12 @@ export const useFormCreateUpdateLinks = (
       },
       currentUser.uid
     )
-    router.push(window.location.origin + res)
+    router.push(`/${res}`)
   }
 
   const update = async (data: TravelinkRequestType, traveliId: string) => {
     await updateTravelink(data, traveliId)
-    router.push(window.location.origin + traveliId)
+    router.push(`/${traveliId}`)
   }
 
   return {
