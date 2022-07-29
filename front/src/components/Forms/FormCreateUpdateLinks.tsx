@@ -20,14 +20,12 @@ import { CardEditWrapper } from '@/components/Cards'
 import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
-  formType: 'create' | 'update'
   travelinkData?: TravelinkRequestType
   ownerProfile?: Profile
   isOwner?: boolean
 }
 
 export const FormCreateUpdateLinks = ({
-  formType,
   travelinkData,
   ownerProfile,
   isOwner
@@ -44,7 +42,7 @@ export const FormCreateUpdateLinks = ({
     disabled,
     image,
     handleChangeImage
-  } = useFormCreateUpdateLinks(formType, travelinkData, ownerProfile)
+  } = useFormCreateUpdateLinks(travelinkData, ownerProfile)
 
   const inputRef = useRef<HTMLInputElement>(null)
   const onClickButton = () => {
@@ -159,7 +157,7 @@ export const FormCreateUpdateLinks = ({
             リストの追加
           </Box>
         </Flex>
-        {(isOwner || formType === 'create') && (
+        {(isOwner || !travelinkData) && (
           <FormControl
             display={'flex'}
             alignItems={'center'}
@@ -188,7 +186,7 @@ export const FormCreateUpdateLinks = ({
           variant={'round'}
           onClick={handleSubmit(onSubmit)}
         >
-          作成する
+          {!travelinkData ? <>作成する</> : <>変更する</>}
         </Button>
       </Flex>
     </Box>

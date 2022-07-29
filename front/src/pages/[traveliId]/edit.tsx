@@ -9,11 +9,7 @@ const Edit = () => {
       {!travelink || isLoading ? (
         <>ローディングアイコン</>
       ) : (
-        <FormCreateUpdateLinks
-          formType={'update'}
-          travelinkData={travelink}
-          isOwner={isOwner}
-        />
+        <FormCreateUpdateLinks travelinkData={travelink} isOwner={isOwner} />
       )}
     </>
   )

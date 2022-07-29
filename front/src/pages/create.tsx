@@ -9,10 +9,7 @@ const Create = () => {
       {!ownerProfile ? (
         <>ローディングアイコン</>
       ) : (
-        <FormCreateUpdateLinks
-          formType={'create'}
-          ownerProfile={ownerProfile}
-        />
+        <FormCreateUpdateLinks ownerProfile={ownerProfile} />
       )}
     </>
   )

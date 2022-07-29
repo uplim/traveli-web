@@ -37,7 +37,6 @@ const schema = yup.object({
 })
 
 export const useFormCreateUpdateLinks = (
-  formType: 'create' | 'update',
   travelinkData?: TravelinkRequestType,
   ownerProfile?: Profile
 ) => {
@@ -88,9 +87,10 @@ export const useFormCreateUpdateLinks = (
         req.thumbnail = downloadUrl
       }
 
-      formType === 'create'
+      !travelinkData
         ? await create(req, currentUser)
         : await update(req, traveliId)
+      
     } catch (err) {
       console.error(err)
     } finally {
