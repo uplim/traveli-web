@@ -67,7 +67,9 @@ export const useFormCreateUpdateLinks = (
     resolver: yupResolver(schema),
     defaultValues: {
       ...travelinkData,
-      date: formatedDate as [Date | null, Date | null]
+      date: formatedDate
+        ? (formatedDate as [Date | null, Date | null])
+        : [null, null]
     }
   })
 
