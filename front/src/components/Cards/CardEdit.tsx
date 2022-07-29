@@ -6,8 +6,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  List,
-  ListItem,
   Menu,
   MenuButton,
   MenuItem,
@@ -16,6 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { UseFormRegister, FieldError } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
+import { RadioCategoryList } from '../Radios'
 
 type CardEditProps = {
   label: string
@@ -53,14 +52,11 @@ export const CardEdit = ({
           bgColor={'white'}
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
         >
-          {/* TODO:RadioButton実装 */}
           <Menu>
-            <Flex>
+            <Flex position={'absolute'} right={'1.2rem'} zIndex={2}>
               <Spacer />
               <MenuButton>
                 <Flex
-                  bgColor={'#E8ECF0'}
-                  borderRadius={'full'}
                   w={'3.6rem'}
                   h={'3.6rem'}
                   align={'center'}
@@ -118,58 +114,61 @@ export const CardEdit = ({
             </MenuList>
           </Menu>
 
-          <Box>カテゴリ</Box>
+          <FormControl isInvalid={!!errors}>
+            <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
+              カテゴリー
+            </FormLabel>
+            <RadioCategoryList />
+            <FormLabel
+              mt={'1.6rem'}
+              h={'1.6rem'}
+              fontSize={'sm'}
+              color={'#2D2D2D'}
+            >
+              URL
+            </FormLabel>
+            <Input
+              marginTop={'0.3rem'}
+              variant={'outline'}
+              borderColor={'#ACC1CA'}
+              w={'100%'}
+              h={'4.4rem'}
+              borderRightRadius={'10rem'}
+              borderLeftRadius={'10rem'}
+              isInvalid={errors?.[index] ? true : false}
+              {...register(`links.${index}.url`)}
+              placeholder={'https://'}
+            />
+            <FormErrorMessage>
+              {errors?.[index] && errors?.[index].url?.message}
+            </FormErrorMessage>
 
-          <List>
-            <ListItem>
-              <FormControl isInvalid={!!errors}>
-                <FormLabel h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
-                  URL
-                </FormLabel>
-                <Input
-                  marginTop={'0.3rem'}
-                  variant={'outline'}
-                  borderColor={'#ACC1CA'}
-                  w={'100%'}
-                  h={'4.4rem'}
-                  borderRightRadius={'10rem'}
-                  borderLeftRadius={'10rem'}
-                  isInvalid={errors?.[index] ? true : false}
-                  {...register(`links.${index}.url`)}
-                  placeholder={'https://'}
-                />
-                <FormErrorMessage>
-                  {errors?.[index] && errors?.[index].url?.message}
-                </FormErrorMessage>
-              </FormControl>
-
-              <FormLabel
-                display={'flex'}
-                h={'1.6rem'}
-                fontSize={'sm'}
-                color={'#2D2D2D'}
-                mt={'1.6rem'}
-              >
-                <Box>ラベル</Box>
-                <Box color={'gray'}>（任意）</Box>
-              </FormLabel>
-              <Input
-                marginTop={'0.3rem'}
-                variant={'outline'}
-                borderColor={'#ACC1CA'}
-                w={'100%'}
-                h={'4.4rem'}
-                borderRightRadius={'10rem'}
-                borderLeftRadius={'10rem'}
-                {...register(`links.${index}.label`)}
-                defaultValue={label}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => {
-                  setCurrentLabel(e.target.value)
-                }}
-                placeholder={'例）宿泊先'}
-              />
-            </ListItem>
-          </List>
+            <FormLabel
+              display={'flex'}
+              h={'1.6rem'}
+              fontSize={'sm'}
+              color={'#2D2D2D'}
+              mt={'1.6rem'}
+            >
+              <Box>ラベル</Box>
+              <Box color={'gray'}>（任意）</Box>
+            </FormLabel>
+            <Input
+              marginTop={'0.3rem'}
+              variant={'outline'}
+              borderColor={'#ACC1CA'}
+              w={'100%'}
+              h={'4.4rem'}
+              borderRightRadius={'10rem'}
+              borderLeftRadius={'10rem'}
+              {...register(`links.${index}.label`)}
+              defaultValue={label}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                setCurrentLabel(e.target.value)
+              }}
+              placeholder={'例）宿泊先'}
+            />
+          </FormControl>
         </Box>
       </Box>
     </>
