@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 import {
@@ -11,7 +12,7 @@ import {
 } from 'firebase/firestore'
 import { Profile } from '@/types/db'
 import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
+import { currentUserState, historyState } from '@/recoil/atoms'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
@@ -25,13 +26,17 @@ const schema = yup.object({
 })
 
 export const useCreateUpdateUserProfile = () => {
+  const router = useRouter()
+
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm<Inputs>({ resolver: yupResolver(schema) })
 
+  const history = useRecoilValue(historyState)
   const currentUser = useRecoilValue(currentUserState)
+
   const firestorage = getStorage()
   const [image, setImage] = useState<File | null>()
   const [name, setName] = useState('')
@@ -117,10 +122,9 @@ export const useCreateUpdateUserProfile = () => {
         }
 
         createProfileIfNotFound(req)
-
-        // TODO: アラートをいい感じに表示する
-        alert('保存されました')
       }
+
+      if (history === '/') router.push('/home')
     } catch (err) {
       setError(true)
     } finally {
