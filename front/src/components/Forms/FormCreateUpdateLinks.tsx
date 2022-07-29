@@ -117,8 +117,6 @@ export const FormCreateUpdateLinks = ({
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
 
-      {/* CardLinkコンポーネント生成場所 */}
-
       <FormControl>
         {fields.map((item, index) => {
           return (
@@ -189,7 +187,7 @@ export const FormCreateUpdateLinks = ({
           variant={'round'}
           onClick={handleSubmit(onSubmit)}
         >
-          {!travelinkData ? <>作成する</> : <>変更する</>}
+          {!travelinkData ? '作成する' : '変更する'}
         </Button>
       </Flex>
     </Box>
