@@ -10,7 +10,8 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Spacer
+  Spacer,
+  Text
 } from '@chakra-ui/react'
 import { UseFormRegister, FieldError } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
@@ -48,7 +49,6 @@ export const CardEdit = ({
       marginTop={'1rem'}
       padding={'1.4rem 1.6rem 1.4rem 1.6rem'}
       w={'100%'}
-      h={'27.4rem'}
       borderRadius={'1.5rem'}
       bgColor={'white'}
       filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
@@ -117,7 +117,7 @@ export const CardEdit = ({
         </MenuList>
       </Menu>
 
-      <FormControl isInvalid={!!errors}>
+      <FormControl>
         <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
           カテゴリー
         </FormLabel>
@@ -126,7 +126,9 @@ export const CardEdit = ({
           index={index}
           setCategories={setCategories}
         />
-        <FormLabel mt={'1.6rem'} h={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
+      </FormControl>
+      <FormControl mt={'1.6rem'} isInvalid={!!errors}>
+        <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
           URL
         </FormLabel>
         <Input
@@ -141,19 +143,17 @@ export const CardEdit = ({
           {...register(`links.${index}.url`)}
           placeholder={'https://'}
         />
-        <FormErrorMessage>
+        <FormErrorMessage mb={'1rem'}>
           {errors?.[index] && errors?.[index].url?.message}
         </FormErrorMessage>
+      </FormControl>
 
-        <FormLabel
-          display={'flex'}
-          h={'1.6rem'}
-          fontSize={'sm'}
-          color={'#2D2D2D'}
-          mt={'1.6rem'}
-        >
-          <Box>ラベル</Box>
-          <Box color={'gray'}>（任意）</Box>
+      <FormControl mt={'1.6rem'}>
+        <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
+          <Text display={'inline'}>ラベル</Text>
+          <Box as={'span'} display={'inline'} color={'gray'}>
+            （任意）
+          </Box>
         </FormLabel>
         <Input
           marginTop={'0.3rem'}
