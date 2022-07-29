@@ -8,18 +8,17 @@ import {
   setDoc
 } from 'firebase/firestore'
 
-export const useCreateUser =  () => {
+export const useCreateUser = () => {
   const router = useRouter()
-
 
   const createUser = async (user: User) => {
     const db = getFirestore()
     const usersCollection = collection(db, 'users')
     const userRef = doc(usersCollection, user.uid)
     const document = await getDoc(userRef)
-  
+
     if (document.exists()) router.push('/home')
-  
+
     await setDoc(userRef, {
       uid: user.uid,
       isAnonymous: user.isAnonymous

@@ -26,7 +26,6 @@ export const useSignInAnonymously = () => {
             isAnonymous: currentUser.isAnonymous
           })
           createUser(currentUser)
-          
         } else {
           setCurrentUser(null)
         }
