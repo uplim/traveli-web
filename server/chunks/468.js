@@ -21,45 +21,53 @@ var react_ = __webpack_require__(8930);
 ;// CONCATENATED MODULE: ./src/components/Cards/CardLink.tsx
 
 
-const CardLink = ({ label , url , setIsMinimum  })=>{
+const CardLink = ({ label , url , setIsMinimum , errors , index  })=>{
     const onClick = ()=>{
         if (url) window.open(url);
         if (setIsMinimum) setIsMinimum(false);
     };
-    return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
-        children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
-            position: "relative",
-            top: 0,
-            left: 0,
-            w: "100%",
-            h: "5.2rem",
-            borderRadius: "10rem",
-            bgColor: "white",
-            filter: "drop-shadow(4px 4px 10px #E4EBEE)",
-            align: "center",
-            marginBottom: "1rem",
-            onClick: onClick,
-            cursor: "pointer",
-            children: [
-                /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
-                    backgroundColor: "gray",
-                    borderRadius: "100%",
-                    w: "3.8rem",
-                    h: "3.8rem",
-                    marginLeft: "0.7rem"
-                }),
-                /*#__PURE__*/ jsx_runtime_.jsx(react_.Text, {
-                    w: "80%",
-                    textAlign: "center",
-                    fontSize: "md",
-                    overflow: "hidden",
-                    whiteSpace: "nowrap",
-                    textOverflow: "ellipsis",
-                    margin: "0 1.6rem",
-                    children: label
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
+                position: "relative",
+                top: 0,
+                left: 0,
+                w: "100%",
+                h: "5.2rem",
+                borderRadius: "10rem",
+                bgColor: "white",
+                filter: "drop-shadow(4px 4px 10px #E4EBEE)",
+                align: "center",
+                marginBottom: "1rem",
+                onClick: onClick,
+                cursor: "pointer",
+                children: [
+                    /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+                        backgroundColor: "gray",
+                        borderRadius: "100%",
+                        w: "3.8rem",
+                        h: "3.8rem",
+                        marginLeft: "0.7rem"
+                    }),
+                    /*#__PURE__*/ jsx_runtime_.jsx(react_.Text, {
+                        w: "80%",
+                        textAlign: "center",
+                        fontSize: "md",
+                        overflow: "hidden",
+                        whiteSpace: "nowrap",
+                        textOverflow: "ellipsis",
+                        margin: "0 1.6rem",
+                        children: label
+                    })
+                ]
+            }),
+            index !== undefined && /*#__PURE__*/ jsx_runtime_.jsx(react_.FormControl, {
+                isInvalid: !!errors,
+                children: /*#__PURE__*/ jsx_runtime_.jsx(react_.FormErrorMessage, {
+                    children: errors?.[index].url?.message
                 })
-            ]
-        })
+            })
+        ]
     });
 };
 
@@ -168,7 +176,6 @@ const CardEdit = ({ label , index , register , remove , errors , setCurrentLabel
                                         }),
                                         /*#__PURE__*/ jsx_runtime_.jsx(react_.Input, {
                                             marginTop: "0.3rem",
-                                            marginBottom: "1.6rem",
                                             variant: "outline",
                                             borderColor: "#ACC1CA",
                                             w: "100%",
@@ -189,6 +196,7 @@ const CardEdit = ({ label , index , register , remove , errors , setCurrentLabel
                                     h: "1.6rem",
                                     fontSize: "sm",
                                     color: "#2D2D2D",
+                                    mt: "1.6rem",
                                     children: [
                                         /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
                                             children: "\u30E9\u30D9\u30EB"
@@ -236,7 +244,9 @@ const CardEditWrapper = ({ label , index , remove , register , errors  })=>{
     return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
         children: isMinimum ? /*#__PURE__*/ jsx_runtime_.jsx(CardLink, {
             label: currentLabel,
-            setIsMinimum: setIsMinimum
+            setIsMinimum: setIsMinimum,
+            errors: errors,
+            index: index
         }) : /*#__PURE__*/ jsx_runtime_.jsx(CardEdit, {
             label: currentLabel,
             index: index,
