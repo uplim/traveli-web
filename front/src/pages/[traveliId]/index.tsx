@@ -24,6 +24,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { useButtonBookmark } from '@/hooks/button'
+import { useFilterTravelink } from '@/hooks/filter'
 
 const LinkList = () => {
   const router = useRouter()
@@ -31,6 +32,7 @@ const LinkList = () => {
   const { travelink } = useGetTravelink()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { onClickBookmark, disabled, isBookmarked } = useButtonBookmark()
+  const filterTravelink = useFilterTravelink
 
   return (
     <>
@@ -78,35 +80,29 @@ const LinkList = () => {
             <TabPanels>
               <TabPanel>
                 {travelink.links.map(({ url, label }, index) => (
-                  <CardLink label={label} url={url} key={index} />
+                  <CardLink label={label} url={url} key={`all_${index}`} />
                 ))}
               </TabPanel>
               <TabPanel>
-                {travelink.links.map(({ category, url, label }, index) => (
-                  <>
-                    {category === '食事' && (
-                      <CardLink label={label} url={url} key={index} />
-                    )}
-                  </>
-                ))}
+                {filterTravelink(travelink, '食事').map(
+                  ({ url, label }, index) => (
+                    <CardLink label={label} url={url} key={`food_${index}`} />
+                  )
+                )}
               </TabPanel>
               <TabPanel>
-                {travelink.links.map(({ category, url, label }, index) => (
-                  <>
-                    {category === '場所' && (
-                      <CardLink label={label} url={url} key={index} />
-                    )}
-                  </>
-                ))}
+                {filterTravelink(travelink, '場所').map(
+                  ({ url, label }, index) => (
+                    <CardLink label={label} url={url} key={`place_${index}`} />
+                  )
+                )}
               </TabPanel>
               <TabPanel>
-                {travelink.links.map(({ category, url, label }, index) => (
-                  <>
-                    {category === 'その他' && (
-                      <CardLink label={label} url={url} key={index} />
-                    )}
-                  </>
-                ))}
+                {filterTravelink(travelink, 'その他').map(
+                  ({ url, label }, index) => (
+                    <CardLink label={label} url={url} key={`other_${index}`} />
+                  )
+                )}
               </TabPanel>
             </TabPanels>
           </Tabs>
