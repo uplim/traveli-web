@@ -10,8 +10,6 @@ import {
   Spacer,
   VisuallyHiddenInput
 } from '@chakra-ui/react'
-
-import { useRef } from 'react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
@@ -43,13 +41,10 @@ export const FormCreateUpdateLinks = ({
     image,
     handleChangeImage,
     setCategories,
-    categories
+    categories,
+    inputRef,
+    onClickImage
   } = useFormCreateUpdateLinks(travelinkData, userData)
-
-  const inputRef = useRef<HTMLInputElement>(null)
-  const onClickButton = () => {
-    inputRef.current?.click()
-  }
 
   return (
     <Box>
@@ -107,7 +102,7 @@ export const FormCreateUpdateLinks = ({
           bgImage={
             image ? URL.createObjectURL(image) : travelinkData?.thumbnail
           }
-          onClick={onClickButton}
+          onClick={onClickImage}
           w={'100%'}
           h={'12.9rem'}
           borderRadius={'1rem'}

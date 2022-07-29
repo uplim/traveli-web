@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useRouter } from 'next/router'
 import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -77,6 +77,11 @@ export const useFormCreateUpdateLinks = (
     control: control
   })
 
+  const inputRef = useRef<HTMLInputElement>(null)
+  const onClickImage = () => {
+    inputRef.current?.click()
+  }
+
   const onSubmit = async (data: Inputs) => {
     const mergeCategoriesIntoLinks = data.links.map((link, index) => {
       link.category = categories[index]
@@ -135,6 +140,8 @@ export const useFormCreateUpdateLinks = (
     handleChangeImage,
     image,
     categories,
-    setCategories
+    setCategories,
+    inputRef,
+    onClickImage
   }
 }
