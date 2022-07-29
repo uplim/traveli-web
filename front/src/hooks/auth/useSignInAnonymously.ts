@@ -2,15 +2,16 @@ import { useRouter } from 'next/router'
 import { getAuth, onAuthStateChanged, signInAnonymously } from 'firebase/auth'
 import { useSetRecoilState } from 'recoil'
 import { useBoolean } from '@chakra-ui/react'
-import { currentUserState } from '@/recoil/atoms'
+import { currentUserState, historyState } from '@/recoil/atoms'
 import { useCreateUser } from '@/hooks/firestore'
 
 export const useSignInAnonymously = () => {
-  const [disabled, setDisabled] = useBoolean()
   const router = useRouter()
+  const [disabled, setDisabled] = useBoolean()
   const setCurrentUser = useSetRecoilState(currentUserState)
+  const setHistory = useSetRecoilState(historyState)
 
-  const createUser = useCreateUser
+  const { createUser } = useCreateUser()
 
   const signInAnonymouslyHandler = async () => {
     setDisabled.on()
@@ -25,11 +26,12 @@ export const useSignInAnonymously = () => {
             isAnonymous: currentUser.isAnonymous
           })
           createUser(currentUser)
+          
         } else {
           setCurrentUser(null)
         }
       })
-
+      setHistory('/')
       router.push('/user')
     } catch (err) {
       console.error(err)

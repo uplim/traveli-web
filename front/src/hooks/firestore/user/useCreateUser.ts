@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import { User } from 'firebase/auth'
 import {
   getDoc,
@@ -7,16 +8,23 @@ import {
   setDoc
 } from 'firebase/firestore'
 
-export const useCreateUser = async (user: User) => {
-  const db = getFirestore()
-  const usersCollection = collection(db, 'users')
-  const userRef = doc(usersCollection, user.uid)
-  const document = await getDoc(userRef)
+export const useCreateUser =  () => {
+  const router = useRouter()
 
-  if (document.exists()) return
 
-  await setDoc(userRef, {
-    uid: user.uid,
-    isAnonymous: user.isAnonymous
-  })
+  const createUser = async (user: User) => {
+    const db = getFirestore()
+    const usersCollection = collection(db, 'users')
+    const userRef = doc(usersCollection, user.uid)
+    const document = await getDoc(userRef)
+  
+    if (document.exists()) router.push('/home')
+  
+    await setDoc(userRef, {
+      uid: user.uid,
+      isAnonymous: user.isAnonymous
+    })
+  }
+
+  return { createUser }
 }
