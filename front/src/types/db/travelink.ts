@@ -6,6 +6,7 @@ export type TravelinkRequestType = firestore.DocumentData & {
   links: {
     url: string
     label: string
+    category: CategoryType
   }[]
   canEdit: boolean
   createdAt: string
@@ -18,3 +19,5 @@ export type TravelinkRequestType = firestore.DocumentData & {
   ownerIcon: string
   thumbnail: string
 }
+
+export type CategoryType = '食事' | '場所' | 'その他'
