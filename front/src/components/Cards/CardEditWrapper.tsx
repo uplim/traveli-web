@@ -24,31 +24,21 @@ type CardEditWrapperProps = {
 
 export const CardEditWrapper = ({
   label,
-  url,
   index,
   remove,
   register,
   errors
 }: CardEditWrapperProps) => {
-  const [isMinimum, setState] = useState(false)
+  const [isMinimum, setIsMinimum] = useState(false)
   const [currentLabel, setCurrentLabel] = useState(label)
-  const [currentURL, setCurrentURL] = useState(url)
 
   return (
     <>
       {isMinimum ? (
-        <CardLink
-          label={currentLabel}
-          url={currentURL}
-          onClick={() => {
-            setState(false)
-            if (currentURL == currentLabel) setCurrentLabel('')
-          }}
-        />
+        <CardLink label={currentLabel} setIsMinimum={setIsMinimum} />
       ) : (
         <CardEdit
           label={currentLabel}
-          url={currentURL}
           index={index}
           register={register}
           errors={errors}
@@ -56,10 +46,7 @@ export const CardEditWrapper = ({
             remove()
           }}
           setCurrentLabel={setCurrentLabel}
-          setCurrentURL={setCurrentURL}
-          setState={() => {
-            setState(true)
-          }}
+          setIsMinimum={setIsMinimum}
         />
       )}
     </>

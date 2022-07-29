@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction, ChangeEvent } from 'react'
 import {
   Box,
   Flex,
@@ -13,13 +14,11 @@ import {
   MenuList,
   Spacer
 } from '@chakra-ui/react'
-import { Dispatch, SetStateAction } from 'react'
 import { UseFormRegister, FieldError } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
 type CardEditProps = {
   label: string
-  url: string
   index: number
   register: UseFormRegister<Inputs>
   remove: () => void
@@ -30,20 +29,17 @@ type CardEditProps = {
       }[]
     | undefined
   setCurrentLabel: Dispatch<SetStateAction<string>>
-  setCurrentURL: Dispatch<SetStateAction<string>>
-  setState: () => void
+  setIsMinimum: Dispatch<SetStateAction<boolean>>
 }
 
 export const CardEdit = ({
   label,
-  url,
   index,
   register,
   remove,
   errors,
   setCurrentLabel,
-  setCurrentURL,
-  setState
+  setIsMinimum
 }: CardEditProps) => {
   return (
     <>
@@ -91,10 +87,7 @@ export const CardEdit = ({
                 display={'flex'}
                 padding={'0 0 1.35rem 0'}
                 // TODO: useState
-                onClick={() => {
-                  setState()
-                  if (label == '') setCurrentLabel(url)
-                }}
+                onClick={() => setIsMinimum(true)}
               >
                 {/* TODO:表示の最小化の実装 */}
                 <Box
@@ -144,10 +137,6 @@ export const CardEdit = ({
                   borderLeftRadius={'10rem'}
                   isInvalid={errors?.[index] ? true : false}
                   {...register(`links.${index}.url`)}
-                  defaultValue={url}
-                  onChange={(u: React.ChangeEvent<HTMLInputElement>) => {
-                    setCurrentURL(u.target.value)
-                  }}
                   placeholder={'https://'}
                 />
                 <FormErrorMessage>
@@ -174,8 +163,8 @@ export const CardEdit = ({
                 borderLeftRadius={'10rem'}
                 {...register(`links.${index}.label`)}
                 defaultValue={label}
-                onChange={(l: React.ChangeEvent<HTMLInputElement>) => {
-                  setCurrentLabel(l.target.value)
+                onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                  setCurrentLabel(e.target.value)
                 }}
                 placeholder={'例）宿泊先'}
               />

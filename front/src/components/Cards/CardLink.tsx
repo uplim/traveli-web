@@ -1,17 +1,18 @@
+import { Dispatch, SetStateAction } from 'react'
 import { Box, Flex, Text } from '@chakra-ui/react'
 
 type CardLinkProps = {
   // icon: string
   label: string
-  url: string
-  onClick?: () => void
+  url?: string
+  setIsMinimum?: Dispatch<SetStateAction<boolean>>
 }
 
-export const CardLink = ({ label, url, onClick }: CardLinkProps) => {
-  if (onClick == undefined)
-    onClick = () => {
-      window.open(url)
-    }
+export const CardLink = ({ label, url, setIsMinimum }: CardLinkProps) => {
+  const onClick = () => {
+    if (url) window.open(url)
+    if (setIsMinimum) setIsMinimum(false)
+  }
 
   return (
     <>
@@ -27,6 +28,7 @@ export const CardLink = ({ label, url, onClick }: CardLinkProps) => {
         align={'center'}
         marginBottom={'1rem'}
         onClick={onClick}
+        cursor={'pointer'}
       >
         {/* TODO: アイコンPropsの受け取り */}
         <Box
