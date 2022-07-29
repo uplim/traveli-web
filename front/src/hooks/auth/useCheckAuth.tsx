@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useRecoilState } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
+import { Loading } from '@/components/Loadings'
 
 type UseCheckAuthProps = {
   children: React.ReactNode
@@ -48,11 +49,7 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
 
   return (
     <>
-      {isAccessibleBeforeSignIn || currentUser ? (
-        <>{children}</>
-      ) : (
-        <>ローディングアイコン</>
-      )}
+      {isAccessibleBeforeSignIn || currentUser ? <>{children}</> : <Loading />}
     </>
   )
 }

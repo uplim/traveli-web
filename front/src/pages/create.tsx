@@ -1,4 +1,5 @@
 import { FormCreateUpdateLinks } from '@/components/Forms'
+import { Loading } from '@/components/Loadings'
 import { useGetOwnerProfile } from '@/hooks/firestore'
 
 const Create = () => {
@@ -7,7 +8,7 @@ const Create = () => {
   return (
     <>
       {!ownerProfile ? (
-        <>ローディングアイコン</>
+        <Loading />
       ) : (
         <FormCreateUpdateLinks ownerProfile={ownerProfile} />
       )}

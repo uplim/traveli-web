@@ -1,9 +1,10 @@
-import Link from 'next/link'
+import NextLink from 'next/link'
 import { useRouter } from 'next/router'
-import { Avatar, Box, Flex, Heading, Spacer } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Heading, Spacer, Link } from '@chakra-ui/react'
 import { BookmarkType, TravelinkRequestType } from '@/types/db'
 import { format } from 'date-fns'
 import { IconLink } from '@/components/Icons'
+import { Button } from '@/components/Buttons'
 
 type CardHomeProps = {
   data: BookmarkType | TravelinkRequestType
@@ -13,9 +14,8 @@ export const CardHome = ({ data }: CardHomeProps) => {
   const router = useRouter()
 
   return (
-    <Link href={router.basePath + data.id} key={data.id} passHref>
-      <Box
-        as={'a'}
+    <NextLink href={router.basePath + data.id} key={data.id} passHref>
+      <Link
         display={'block'}
         w={'100%'}
         h={'23.9rem'}
@@ -57,12 +57,12 @@ export const CardHome = ({ data }: CardHomeProps) => {
             </Flex>
 
             <Spacer />
-            <Link href={router.basePath + '/user'} passHref>
+            <Button>
               <IconLink w={'2rem'} h={'2rem'} color={'gray'} />
-            </Link>
+            </Button>
           </Flex>
         </Box>
-      </Box>
-    </Link>
+      </Link>
+    </NextLink>
   )
 }
