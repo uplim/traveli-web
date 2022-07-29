@@ -1,3 +1,4 @@
+import NextLink from 'next/link'
 import {
   Alert,
   Avatar,
@@ -9,17 +10,14 @@ import {
   Flex,
   Spacer,
   VisuallyHiddenInput,
-  IconButton
+  IconButton,
+  Link
 } from '@chakra-ui/react'
-import Link from 'next/link'
 import { IconReturn } from '@/components/Icons'
 import { useCreateUpdateUserProfile } from '@/hooks/form'
 import { useRef } from 'react'
-import { useRouter } from 'next/router'
 
 export const FormUserProfile = () => {
-  const router = useRouter()
-
   const {
     onSubmit,
     handleSubmit,
@@ -41,20 +39,16 @@ export const FormUserProfile = () => {
     <>
       <Box as={'form'} height={'100vh'} position={'relative'}>
         {error && <Alert>送信できませんでした</Alert>}
-        {/* TODO:FormUserProfileに置き換え */}
-        {/* Header */}
-
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-          <Link href={router.basePath + '/home'} passHref>
-            {/* TODO:Warningエラー出てる */}
-            {/* 原因解決：https://zenn.dev/hiro__dev/scraps/d4b531165ad335 */}
-
-            <IconButton
-              aria-label="return"
-              size="lg"
-              icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
-            />
-          </Link>
+          <NextLink href={'/home'} passHref>
+            <Link>
+              <IconButton
+                aria-label="return"
+                size="lg"
+                icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
+              />
+            </Link>
+          </NextLink>
           <Spacer />
           <Box color={'black'} fontSize={'md'} fontWeight={'bold'}>
             プロフィール
@@ -90,7 +84,6 @@ export const FormUserProfile = () => {
             accept="image/*"
           />
 
-          {/* name */}
           <FormLabel htmlFor="name" fontSize={'md'}>
             ニックネーム
           </FormLabel>
@@ -109,7 +102,7 @@ export const FormUserProfile = () => {
             />
           </Flex>
         </FormControl>
-        {/* SubmitButton */}
+
         <Button
           position={'absolute'}
           bottom={'12.9rem'}
