@@ -137,7 +137,8 @@ const colors = {
     logoBlack: "#393849",
     brandBlue: "#1A489D",
     "brandBlue-switch": {
-        500: "#1A489D"
+        500: "#1A489D",
+        600: "#1A489D"
     },
     gray: "#7E7E7E",
     black: "#252525",
