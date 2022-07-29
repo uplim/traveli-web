@@ -41,7 +41,8 @@ export const FormCreateUpdateLinks = ({
     errors,
     disabled,
     image,
-    handleChangeImage
+    handleChangeImage,
+    setCategories
   } = useFormCreateUpdateLinks(travelinkData, ownerProfile)
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -125,6 +126,7 @@ export const FormCreateUpdateLinks = ({
           return (
             <React.Fragment key={item.id}>
               <CardEditWrapper
+                setCategories={setCategories}
                 label={item.label}
                 url={item.url}
                 index={index}

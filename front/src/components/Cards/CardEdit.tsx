@@ -14,7 +14,8 @@ import {
 } from '@chakra-ui/react'
 import { UseFormRegister, FieldError } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
-import { RadioCategoryList } from '../Radios'
+import { RadioCategoryList } from '@/components/Radios'
+import { CategoryType } from '@/types/db'
 
 type CardEditProps = {
   label: string
@@ -29,6 +30,7 @@ type CardEditProps = {
     | undefined
   setCurrentLabel: Dispatch<SetStateAction<string>>
   setIsMinimum: Dispatch<SetStateAction<boolean>>
+  setCategories: Dispatch<SetStateAction<CategoryType[]>>
 }
 
 export const CardEdit = ({
@@ -38,7 +40,8 @@ export const CardEdit = ({
   remove,
   errors,
   setCurrentLabel,
-  setIsMinimum
+  setIsMinimum,
+  setCategories
 }: CardEditProps) => {
   return (
     <>
@@ -118,7 +121,7 @@ export const CardEdit = ({
             <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
               カテゴリー
             </FormLabel>
-            <RadioCategoryList />
+            <RadioCategoryList setCategories={setCategories} />
             <FormLabel
               mt={'1.6rem'}
               h={'1.6rem'}

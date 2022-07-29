@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -7,7 +8,12 @@ import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { currentUserState } from '@/recoil/atoms'
 import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
-import { CurrentUser, Profile, TravelinkRequestType } from '@/types/db'
+import {
+  CategoryType,
+  CurrentUser,
+  Profile,
+  TravelinkRequestType
+} from '@/types/db'
 
 export type Inputs = {
   title: string
@@ -41,6 +47,8 @@ export const useFormCreateUpdateLinks = (
   ownerProfile?: Profile
 ) => {
   const [disabled, setDisabled] = useBoolean()
+  const [categories, setCategories] = useState<CategoryType[]>([])
+  console.log(categories)
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -130,6 +138,7 @@ export const useFormCreateUpdateLinks = (
     errors,
     disabled,
     handleChangeImage,
-    image
+    image,
+    setCategories
   }
 }

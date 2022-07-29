@@ -1,16 +1,18 @@
-import { HStack, useRadioGroup } from '@chakra-ui/react'
-import { RadioCategoryItem } from './RadioCategoryItem'
+import { Dispatch, SetStateAction } from 'react'
+import { HStack } from '@chakra-ui/react'
+import { RadioCategoryItem } from '@/components/Radios'
+import { useRadioCategory } from '@/hooks/radio'
+import { CategoryType } from '@/types/db'
 
-export const RadioCategoryList = () => {
-  const categoryOptions = ['場所', '食事', 'その他']
+type RadioCategoryListProps = {
+  setCategories: Dispatch<SetStateAction<CategoryType[]>>
+}
 
-  const { getRootProps, getRadioProps } = useRadioGroup({
-    name: 'category',
-    defaultValue: 'その他',
-    onChange: console.log
-  })
-
-  const group = getRootProps()
+export const RadioCategoryList = ({
+  setCategories
+}: RadioCategoryListProps) => {
+  const { categoryOptions, getRadioProps, group } =
+    useRadioCategory(setCategories)
 
   return (
     <HStack {...group}>

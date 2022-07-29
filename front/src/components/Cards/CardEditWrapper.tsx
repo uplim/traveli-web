@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
 import { UseFormRegister, FieldError } from 'react-hook-form'
-import { TravelinkRequestType, Profile } from '@/types/db'
+import { TravelinkRequestType, Profile, CategoryType } from '@/types/db'
 import { CardLink, CardEdit } from '@/components/Cards'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
@@ -20,6 +20,7 @@ type CardEditWrapperProps = {
       }[]
     | undefined
   remove: () => void
+  setCategories: Dispatch<SetStateAction<CategoryType[]>>
 }
 
 export const CardEditWrapper = ({
@@ -27,7 +28,8 @@ export const CardEditWrapper = ({
   index,
   remove,
   register,
-  errors
+  errors,
+  setCategories
 }: CardEditWrapperProps) => {
   const [isMinimum, setIsMinimum] = useState(false)
   const [currentLabel, setCurrentLabel] = useState(label)
@@ -52,6 +54,7 @@ export const CardEditWrapper = ({
           }}
           setCurrentLabel={setCurrentLabel}
           setIsMinimum={setIsMinimum}
+          setCategories={setCategories}
         />
       )}
     </>
