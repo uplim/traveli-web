@@ -3,6 +3,46 @@ exports.id = 545;
 exports.ids = [545];
 exports.modules = {
 
+/***/ 7043:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "g": () => (/* reexport */ Loading)
+});
+
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(997);
+// EXTERNAL MODULE: external "@chakra-ui/react"
+var react_ = __webpack_require__(8930);
+;// CONCATENATED MODULE: ./src/components/Loadings/Loading.tsx
+
+
+const Loading = ()=>{
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_.Flex, {
+        justifyContent: "center",
+        alignItems: "center",
+        direction: "column",
+        h: "100vh",
+        w: "100%",
+        children: /*#__PURE__*/ jsx_runtime_.jsx(react_.Spinner, {
+            thickness: ".4rem",
+            speed: ".65s",
+            emptyColor: "gray",
+            color: "brandBlue",
+            w: "6.4rem",
+            h: "6.4rem"
+        })
+    });
+};
+
+;// CONCATENATED MODULE: ./src/components/Loadings/index.ts
+
+
+
+/***/ }),
+
 /***/ 7417:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
@@ -20,8 +60,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7658);
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(401);
+/* harmony import */ var _components_Loadings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(7043);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_auth__WEBPACK_IMPORTED_MODULE_5__]);
 firebase_auth__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
 
 
 
@@ -68,9 +110,7 @@ const UseCheckAuth = ({ children  })=>{
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: isAccessibleBeforeSignIn || currentUser1 ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
             children: children
-        }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-            children: "\u30ED\u30FC\u30C7\u30A3\u30F3\u30B0\u30A2\u30A4\u30B3\u30F3"
-        })
+        }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Loadings__WEBPACK_IMPORTED_MODULE_6__/* .Loading */ .g, {})
     });
 };
 
