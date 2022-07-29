@@ -17,7 +17,7 @@ export const useCheckBookmarked = () => {
     const loadBookmark = async () => {
       const db = getFirestore()
       const ref = doc(
-        collection(db, 'profiles', currentUser.uid, 'bookmarks'),
+        collection(db, 'users', currentUser.uid, 'bookmarks'),
         traveliId
       )
       const document = await getDoc(ref)
