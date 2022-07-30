@@ -16,7 +16,10 @@ import { JSDOM } from 'jsdom'
 export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
   const url = getUrlParameter(req)
   if (!url) {
-    errorResponce(res)
+    return
+  }
+
+  if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/)) {
     return
   }
 
