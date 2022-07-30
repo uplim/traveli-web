@@ -14,6 +14,10 @@ export const useFetchOgp = (url: string) => {
   const [ogp, setOgp] = useState<OgpType>()
 
   useEffect(() => {
+    if (!url) return
+    if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/))
+      return
+
     const loadOgp = async () => {
       try {
         const responce = await fetch(`/api/ogp?url=${url}`, {
