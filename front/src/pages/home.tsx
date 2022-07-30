@@ -1,7 +1,8 @@
-import { Box, Flex, Spacer } from '@chakra-ui/react'
+import NextLink from 'next/link'
+import { Box, Flex, Spacer, Link } from '@chakra-ui/react'
 import {
   useGetTravelinkList,
-  useGetOwnerProfile,
+  useGetUser,
   useGetBookmarkList
 } from '@/hooks/firestore'
 import { ButtonIconRound } from '@/components/Buttons'
@@ -12,11 +13,11 @@ import { Loading } from '@/components/Loadings'
 const Home = () => {
   const { travelinkList } = useGetTravelinkList()
   const { bookmarkList } = useGetBookmarkList()
-  const { ownerProfile } = useGetOwnerProfile()
+  const { user } = useGetUser()
 
   return (
     <>
-      {!ownerProfile || !travelinkList || !bookmarkList ? (
+      {!user || !travelinkList || !bookmarkList ? (
         <Loading />
       ) : (
         <>
@@ -32,8 +33,8 @@ const Home = () => {
             <Spacer />
 
             <Sidebar
-              icon={ownerProfile ? ownerProfile.icon : ''}
-              name={ownerProfile ? ownerProfile.name : ''}
+              icon={user.icon ? user.icon : ''}
+              name={user.name ? user.name : ''}
             />
           </Flex>
 
@@ -52,17 +53,20 @@ const Home = () => {
           </Box>
 
           <TabHome data={travelinkList} bookmarkData={bookmarkList} />
-
-          <ButtonIconRound
-            iconType={'plus'}
-            position={'fixed'}
-            top={'calc(100vh - 6.4rem - 4.8rem)'}
-            right={'1.6rem'}
-            w={'6.4rem'}
-            h={'6.4rem'}
-            boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
-            filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'}
-          />
+          <NextLink href={'/create'} passHref>
+            <Link>
+              <ButtonIconRound
+                iconType={'plus'}
+                position={'fixed'}
+                top={'calc(100vh - 6.4rem - 4.8rem)'}
+                right={'1.6rem'}
+                w={'6.4rem'}
+                h={'6.4rem'}
+                boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
+                filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'}
+              />
+            </Link>
+          </NextLink>
         </>
       )}
     </>

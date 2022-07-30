@@ -10,10 +10,9 @@ import {
   Spacer,
   VisuallyHiddenInput
 } from '@chakra-ui/react'
-
-import { useRef } from 'react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
-import { TravelinkRequestType, Profile } from '@/types/db'
+import { useInputImage } from '@/hooks/input'
+import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
 import { CardEditWrapper } from '@/components/Cards'
@@ -21,13 +20,13 @@ import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
   travelinkData?: TravelinkRequestType
-  ownerProfile?: Profile
+  userData?: UserType
   isOwner?: boolean
 }
 
 export const FormCreateUpdateLinks = ({
   travelinkData,
-  ownerProfile,
+  userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
   const {
@@ -44,12 +43,8 @@ export const FormCreateUpdateLinks = ({
     handleChangeImage,
     setCategories,
     categories
-  } = useFormCreateUpdateLinks(travelinkData, ownerProfile)
-
-  const inputRef = useRef<HTMLInputElement>(null)
-  const onClickButton = () => {
-    inputRef.current?.click()
-  }
+  } = useFormCreateUpdateLinks(travelinkData, userData)
+  const { inputRef, onClickImage } = useInputImage()
 
   return (
     <Box>
@@ -104,8 +99,10 @@ export const FormCreateUpdateLinks = ({
         />
         <Box
           marginTop={'0.8rem'}
-          bgImage={image ? URL.createObjectURL(image) : ''}
-          onClick={onClickButton}
+          bgImage={
+            image ? URL.createObjectURL(image) : travelinkData?.thumbnail
+          }
+          onClick={onClickImage}
           w={'100%'}
           h={'12.9rem'}
           borderRadius={'1rem'}
@@ -119,8 +116,6 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
-
-      {/* CardLinkコンポーネント生成場所 */}
 
       <FormControl>
         {fields.map((item, index) => {
@@ -142,7 +137,6 @@ export const FormCreateUpdateLinks = ({
           )
         })}
 
-        {/* Add List */}
         <Flex
           align={'center'}
           justify={'center'}
@@ -192,7 +186,7 @@ export const FormCreateUpdateLinks = ({
           variant={'round'}
           onClick={handleSubmit(onSubmit)}
         >
-          {!travelinkData ? <>作成する</> : <>変更する</>}
+          {!travelinkData ? '作成する' : '変更する'}
         </Button>
       </Flex>
     </Box>

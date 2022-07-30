@@ -7,7 +7,7 @@ export const useCreateBookmark = async (
   data: TravelinkRequestType
 ) => {
   const db = getFirestore()
-  const subColRef = doc(collection(db, 'profiles', uid, 'bookmarks'), traveliId)
+  const subColRef = doc(collection(db, 'users', uid, 'bookmarks'), traveliId)
 
   try {
     await setDoc(subColRef, {

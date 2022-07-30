@@ -1,19 +1,11 @@
 import { FormCreateUpdateLinks } from '@/components/Forms'
 import { Loading } from '@/components/Loadings'
-import { useGetOwnerProfile } from '@/hooks/firestore'
+import { useGetUser } from '@/hooks/firestore'
 
 const Create = () => {
-  const { ownerProfile } = useGetOwnerProfile()
+  const { user } = useGetUser()
 
-  return (
-    <>
-      {!ownerProfile ? (
-        <Loading />
-      ) : (
-        <FormCreateUpdateLinks ownerProfile={ownerProfile} />
-      )}
-    </>
-  )
+  return <>{!user ? <Loading /> : <FormCreateUpdateLinks userData={user} />}</>
 }
 
 export default Create
