@@ -29,7 +29,6 @@ export const FormCreateUpdateLinks = ({
   userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
-
   // 次へを押された時に最小化するためのstate
   const [isClickNext, setIsClickNext] = useState<boolean>(
     travelinkData ? true : false
