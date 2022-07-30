@@ -19,10 +19,6 @@ export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
     return
   }
 
-  if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/)) {
-    return
-  }
-
   try {
     const responce = await axios.get(<string>url)
     const data = responce.data
