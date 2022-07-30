@@ -13,16 +13,6 @@ services:
       - ./front:/home/app
       - node_modules_volume:/home/app/node_modules:delegated
       - build_volume:/home/app/build:nocopy
-  api:
-    build:
-      context: ./api
-      dockerfile: Dockerfile
-    container_name: traveli-web-api
-    ports:
-      - "8080:8080"
-    volumes:
-      - ./api:/home/api
-      - node_modules_volume:/home/api/node_modules:delegated
 
 volumes:
   node_modules_volume:

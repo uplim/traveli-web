@@ -1,6 +1,6 @@
 // refference: https://github.com/jiri3/ogp-api (The Unlicense)
 
-import { NowRequest, NowResponse } from '@vercel/node'
+import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 import { JSDOM } from 'jsdom'
 
@@ -13,7 +13,7 @@ import { JSDOM } from 'jsdom'
  * @param res HTTP responce
  */
 
-export default async function (req: NowRequest, res: NowResponse) {
+export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
   const url = getUrlParameter(req)
   if (!url) {
     errorResponce(res)
@@ -29,7 +29,8 @@ export default async function (req: NowRequest, res: NowResponse) {
     // metaからOGPを抽出し、JSON形式に変換する
     const ogp = Array.from(meta)
       .filter((element) => element.hasAttribute('property'))
-      .reduce((pre, ogp) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      .reduce((pre: any, ogp) => {
         const property = ogp.getAttribute('property')?.trim().replace('og:', '')
         const content = ogp.getAttribute('content')
         pre[property ? property : ''] = content
@@ -45,7 +46,7 @@ function isValidUrlParameter(url: string | string[]): boolean {
   return !(url == undefined || url == null || Array.isArray(url))
 }
 
-function getUrlParameter(req: NowRequest): string | null {
+function getUrlParameter(req: NextApiRequest): string | null {
   const { url } = req.query
   if (isValidUrlParameter(url)) {
     return <string>url
@@ -53,6 +54,6 @@ function getUrlParameter(req: NowRequest): string | null {
   return null
 }
 
-function errorResponce(res: NowResponse): void {
+function errorResponce(res: NextApiResponse): void {
   res.status(400).send('error')
 }
