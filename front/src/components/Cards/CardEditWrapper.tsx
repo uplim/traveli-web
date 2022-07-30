@@ -20,6 +20,9 @@ type CardEditWrapperProps = {
   remove: () => void
   categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
+  setIsClickNext: Dispatch<SetStateAction<boolean>>
+  isClickNext: boolean
+  isLast: boolean
 }
 
 export const CardEditWrapper = ({
@@ -29,16 +32,25 @@ export const CardEditWrapper = ({
   register,
   errors,
   setCategories,
-  categories
+  categories,
+  setIsClickNext,
+  isClickNext,
+  isLast
 }: CardEditWrapperProps) => {
   const [isMinimum, setIsMinimum] = useState(false)
   const [currentLabel, setCurrentLabel] = useState(label)
+
+  // 次へを押された時、最後の要素以外は最小化する
+  if (isClickNext && !isMinimum && !isLast) {
+    setIsMinimum(true)
+  }
 
   return (
     <>
       {isMinimum ? (
         <CardLink
           label={currentLabel}
+          setIsClickNext={setIsClickNext}
           setIsMinimum={setIsMinimum}
           errors={errors}
           index={index}
