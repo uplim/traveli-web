@@ -1,0 +1,14 @@
+{
+  "routes": [
+    {
+      "src": "/src/ogp",
+      "methods": [
+        "GET"
+      ],
+      "dest": "/src/ogp",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      }
+    }
+  ]
+}
