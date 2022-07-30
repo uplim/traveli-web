@@ -5,6 +5,7 @@
   "/404": "pages/404.html",
   "/[traveliId]/edit": "pages/[traveliId]/edit.html",
   "/[traveliId]": "pages/[traveliId].html",
+  "/api/ogp": "pages/api/ogp.js",
   "/create": "pages/create.html",
   "/home": "pages/home.html",
   "/": "pages/index.html",
