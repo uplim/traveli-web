@@ -109,7 +109,7 @@ export const CardEdit = ({
             }}
           >
             <Box
-              bgImage={'/images/trash.svg'}
+              bgImage={'/images/icons/trash.svg'}
               w={'1.68rem'}
               h={'1.68rem'}
               marginRight={'1.6rem'}
