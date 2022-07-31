@@ -43,11 +43,14 @@ export const useFetchOgp = (
       })
       const json = (await responce.json()) as OgpType
       setOgp(json)
-
-      setCurrentLabel(json ? json.title : 'あいあいさ')
-      setValue(`links.${index}.label`, json ? json.title : '')
+      if (!json.title) {
+        alert('リンク先のタイトルを取得できませんでした')
+        return
+      }
+      setCurrentLabel(json.title)
+      setValue(`links.${index}.label`, json.title)
     } catch (e) {
-      alert('リンク先のタイトルが取得できませんでした。')
+      alert('リンク先のタイトルが取得できませんでした')
       console.error(e)
     } finally {
       setDisabled.off()

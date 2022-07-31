@@ -60,14 +60,9 @@ export const FormCreateUpdateLinks = ({
   return (
     <Box>
       <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-        <NextLink href={`/${traveliId}`}>
+        <NextLink href={travelinkData ? `/${traveliId}` : '/home'}>
           <Link>
-            <IconReturn
-              bgColor={'none'}
-              iconType={'return'}
-              w={'2.4rem'}
-              h={'2.4rem'}
-            />
+            <IconReturn bgColor={'none'} w={'2.4rem'} h={'2.4rem'} />
           </Link>
         </NextLink>
         <Spacer />
