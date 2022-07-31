@@ -130,6 +130,7 @@ const useSignInGoogle = ()=>{
                     uid: user.uid,
                     isAnonymous: user.isAnonymous
                 });
+                router.push("/home");
             }).catch((err)=>{
                 console.error(err);
                 setCurrentUser(null);

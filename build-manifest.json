@@ -5,9 +5,9 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/Fprj-redEVvtuvcXOGi3A/_buildManifest.js",
-    "static/Fprj-redEVvtuvcXOGi3A/_ssgManifest.js",
-    "static/Fprj-redEVvtuvcXOGi3A/_middlewareManifest.js"
+    "static/96VfRJnltqJECPqRYGE4x/_buildManifest.js",
+    "static/96VfRJnltqJECPqRYGE4x/_ssgManifest.js",
+    "static/96VfRJnltqJECPqRYGE4x/_middlewareManifest.js"
   ],
   "pages": {
     "/": [
@@ -15,7 +15,7 @@
       "static/chunks/framework-5f4595e5518b5600.js",
       "static/chunks/main-f65e66e62fc5ca80.js",
       "static/chunks/843-c3fec870ecf15a98.js",
-      "static/chunks/pages/index-c104d4de8cfdc507.js"
+      "static/chunks/pages/index-f82cb6c0df112a36.js"
     ],
     "/404": [
       "static/chunks/webpack-42cdea76c8170223.js",
@@ -45,7 +45,7 @@
       "static/chunks/711-98ef69994abb1512.js",
       "static/chunks/843-c3fec870ecf15a98.js",
       "static/chunks/468-c8e7ee24c2b1c262.js",
-      "static/chunks/474-ac8e47608726e0f2.js",
+      "static/chunks/474-9a62275775118f82.js",
       "static/chunks/pages/[traveliId]/edit-92613a71fc39541c.js"
     ],
     "/_app": [
@@ -71,7 +71,7 @@
       "static/chunks/711-98ef69994abb1512.js",
       "static/chunks/843-c3fec870ecf15a98.js",
       "static/chunks/468-c8e7ee24c2b1c262.js",
-      "static/chunks/474-ac8e47608726e0f2.js",
+      "static/chunks/474-9a62275775118f82.js",
       "static/chunks/pages/create-14bf6915b6f2dbc6.js"
     ],
     "/home": [
@@ -83,7 +83,7 @@
       "static/chunks/461-e01ec59824e66cac.js",
       "static/chunks/843-c3fec870ecf15a98.js",
       "static/chunks/468-c8e7ee24c2b1c262.js",
-      "static/chunks/pages/home-4119e3f3a7fbe277.js"
+      "static/chunks/pages/home-7dfdd32c193bf939.js"
     ],
     "/signin": [
       "static/chunks/webpack-42cdea76c8170223.js",
@@ -109,7 +109,7 @@
       "static/chunks/711-98ef69994abb1512.js",
       "static/chunks/843-c3fec870ecf15a98.js",
       "static/chunks/468-c8e7ee24c2b1c262.js",
-      "static/chunks/474-ac8e47608726e0f2.js",
+      "static/chunks/474-9a62275775118f82.js",
       "static/chunks/pages/user-707c692de1800079.js"
     ]
   },

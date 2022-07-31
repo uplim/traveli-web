@@ -642,8 +642,16 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8456);
 /* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9755);
+/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7658);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_8__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__]);
 ([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
+
+
 
 
 
@@ -654,6 +662,8 @@ const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
     name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")
 });
 const useFormCreateUpdateUser = (userData)=>{
+    const history = (0,recoil__WEBPACK_IMPORTED_MODULE_6__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_7__/* .historyState */ .f);
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_8__.useRouter)();
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.useBoolean)();
     const { register , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.useForm)({
         resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__.yupResolver)(schema),
@@ -676,6 +686,9 @@ const useFormCreateUpdateUser = (userData)=>{
         } catch (err) {
             console.error(err);
         } finally{
+            if (history === "/") {
+                router.push("/home");
+            }
             setDisabled.off();
         }
     };
