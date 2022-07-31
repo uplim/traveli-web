@@ -108,7 +108,7 @@ export const FormCreateUpdateLinks = ({
           }
           bgRepeat={'no-repeat'}
           bgSize={'cover'}
-          bgPosition={'center center'}  
+          bgPosition={'center center'}
           onClick={onClickImage}
           w={'100%'}
           h={'12.9rem'}

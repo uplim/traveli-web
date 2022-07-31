@@ -16,7 +16,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 import { IconQr, IconShare } from '@/components/Icons'
-import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
+import { ButtonIconRound } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
 import { Loading } from '@/components/Loadings'
@@ -44,7 +44,7 @@ const LinkList = () => {
             position={'absolute'}
             bgRepeat={'no-repeat'}
             bgSize={'cover'}
-            bgPosition={'center center'}  
+            bgPosition={'center center'}
             top={'0'}
             left={'0'}
             w={'100vw'}
@@ -144,13 +144,6 @@ const LinkList = () => {
               alt={'img'}
               margin={'6rem auto 0 auto'}
               border={'solid white 0.4rem'}
-            />
-            <ButtonViewChange
-              position={'absolute'}
-              top={'8rem'}
-              right={'1rem'}
-              w={'100vw'}
-              h={'19rem'}
             />
             <Text
               fontSize={'2rem'}
