@@ -20,7 +20,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _hooks_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8144);
 /* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(628);
 /* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(553);
-/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(701);
+/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(163);
 /* harmony import */ var _components_Buttons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(7768);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_5__]);
 ([_hooks_form__WEBPACK_IMPORTED_MODULE_3__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
@@ -34,6 +34,8 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hoo
 
 
 const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
+    // 次へを押された時に最小化するためのstate
+    const { 0: isClickNext , 1: setIsClickNext  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(travelinkData ? true : false);
     const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage , setCategories , categories: categories1  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_3__/* .useFormCreateUpdateLinks */ .j)(travelinkData, userData);
     const { inputRef , onClickImage  } = (0,_hooks_input__WEBPACK_IMPORTED_MODULE_4__/* .useInputImage */ .U)();
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
@@ -157,7 +159,10 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                                 errors: errors.links,
                                 remove: ()=>{
                                     remove(index);
-                                }
+                                },
+                                isClickNext: isClickNext,
+                                setIsClickNext: setIsClickNext,
+                                isLast: fields.length === index + 1
                             })
                         }, item.id);
                     }),
@@ -183,6 +188,8 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                                             "\u305D\u306E\u4ED6"
                                         ]
                                     );
+                                    // 次のやつ以外閉じる
+                                    setIsClickNext(true);
                                     append({
                                         url: "",
                                         label: ""

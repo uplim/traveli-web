@@ -34,7 +34,6 @@ const external_jsdom_namespaceObject = require("jsdom");
  */ async function ogp2(req, res) {
     const url = getUrlParameter(req);
     if (!url) {
-        errorResponce(res);
         return;
     }
     try {
