@@ -507,7 +507,7 @@ const useFetchOgp = (setCurrentLabel, setValue, index)=>{
 
 
 
-const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIsMinimum , categories , setCategories , label , setValue , currentUrl , setCurrentUrl  })=>{
+const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIsMinimum , categories , setCategories , setValue , currentUrl , setCurrentUrl  })=>{
     const { disabled , ogp , onClickHandler , setOgp  } = useFetchOgp(setCurrentLabel, setValue, index);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
         marginTop: "1rem",
@@ -653,7 +653,6 @@ const CardEditWrapper = ({ label , index , url , remove , register , errors , se
             setValue: setValue,
             register: register,
             errors: errors,
-            label: label,
             url: url,
             remove: ()=>{
                 remove();
