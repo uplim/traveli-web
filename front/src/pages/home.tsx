@@ -40,7 +40,6 @@ const Home = () => {
 
           <Box
             marginTop={'2.2rem'}
-            filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
             w={'100%'}
             h={'11.4rem'}
             borderRadius={'1rem'}
