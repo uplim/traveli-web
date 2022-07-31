@@ -67,7 +67,6 @@ export const CardEditWrapper = ({
           setValue={setValue}
           register={register}
           errors={errors}
-          label={label}
           url={url}
           remove={() => {
             remove()

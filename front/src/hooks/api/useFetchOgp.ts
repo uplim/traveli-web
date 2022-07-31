@@ -1,5 +1,5 @@
 import { useBoolean } from '@chakra-ui/react'
-import { useState, Dispatch, SetStateAction, ChangeEvent } from 'react'
+import { useState, Dispatch, SetStateAction } from 'react'
 import { UseFormSetValue } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 

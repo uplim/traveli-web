@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, ChangeEvent, useState } from 'react'
+import { Dispatch, SetStateAction, ChangeEvent } from 'react'
 import {
   Box,
   FormControl,
@@ -28,7 +28,6 @@ type CardEditProps = {
   setIsMinimum: Dispatch<SetStateAction<boolean>>
   categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
-  label: string
   url: string
   setValue: UseFormSetValue<Inputs>
   currentUrl: string
@@ -44,7 +43,6 @@ export const CardEdit = ({
   setIsMinimum,
   categories,
   setCategories,
-  label,
   setValue,
   currentUrl,
   setCurrentUrl
