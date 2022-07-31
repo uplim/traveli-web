@@ -24,7 +24,15 @@ export const CardHome = ({ data }: CardHomeProps) => {
         bgColor={'white'}
         marginTop={'2.2rem'}
       >
-        <Box bgImage={data.thumbnail} h={'12.9rem'} borderTopRadius={'10'} />
+        <Box
+          bgImage={data.thumbnail}
+          bgSize={'cover'}
+          bgRepeat={'no-repeat'}
+          bgPosition={'center center'}
+          w={'100%'}
+          h={'12.9rem'}
+          borderTopRadius={'10'}
+        />
         <Box
           paddingTop={'1.1rem'}
           paddingLeft={'1.8rem'}

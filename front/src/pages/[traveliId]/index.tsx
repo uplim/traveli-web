@@ -44,6 +44,7 @@ const LinkList = () => {
             position={'absolute'}
             bgRepeat={'no-repeat'}
             bgSize={'cover'}
+            bgPosition={'center center'}  
             top={'0'}
             left={'0'}
             w={'100vw'}
