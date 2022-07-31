@@ -87,8 +87,6 @@ export const FormCreateUpdateLinks = ({
         <FormLabel marginTop={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
           日時（任意）
         </FormLabel>
-
-        {/* TODO:InputDateの見た目変える */}
         <InputDate control={control} name={'date'} />
       </FormControl>
 

@@ -33,7 +33,6 @@ export const CardHome = ({ data }: CardHomeProps) => {
         >
           {data.date[0] && (
             <Box fontSize={'xs'} color={'gray'}>
-              {/* TODO: date-pickerのstartとendで表示する */}
               {data.date[0] && format(data.date[0].toDate(), 'yyyy/MM/dd')}~
               {data.date[1] && format(data.date[1].toDate(), 'yyyy/MM/dd')}
             </Box>

@@ -82,10 +82,8 @@ export const CardEdit = ({
           <MenuItem
             display={'flex'}
             padding={'0 0 1.35rem 0'}
-            // TODO: useState
             onClick={() => setIsMinimum(true)}
           >
-            {/* TODO:表示の最小化の実装 */}
             <Box
               bgImage={'/images/closeMenu.svg'}
               w={'1.5rem'}
