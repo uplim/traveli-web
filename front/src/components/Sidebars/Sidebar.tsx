@@ -14,6 +14,7 @@ import { IconUser, IconHelp, IconSignOut } from '@/components/Icons'
 import NextLink from 'next/link'
 import { useSignInGoogle } from '@/hooks/auth/useSignInGoogle'
 import { Button } from '@/components/Buttons'
+import { useSignOut } from '@/hooks/auth'
 
 type SidebarProps = {
   icon: string
@@ -22,7 +23,12 @@ type SidebarProps = {
 
 export const Sidebar = ({ icon, name }: SidebarProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
-  const { signInGoogleHandler, disabled, currentUser } = useSignInGoogle()
+  const {
+    signInGoogleHandler,
+    disabled: signInDisabled,
+    currentUser
+  } = useSignInGoogle()
+  const { signOutHandler, disabled: signOutDisabled } = useSignOut()
 
   return (
     <Box>
@@ -91,7 +97,7 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                   fontSize={'md'}
                   fontWeight={'bold'}
                   padding={0}
-                  disabled={disabled}
+                  disabled={signInDisabled}
                   onClick={() => signInGoogleHandler()}
                 >
                   Google連携
@@ -145,8 +151,10 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                   <Button
                     color={'logoBlack'}
                     fontSize={'md'}
+                    disabled={signOutDisabled}
                     fontWeight={'bold'}
                     padding={0}
+                    onClick={() => signOutHandler()}
                   >
                     ログアウト
                   </Button>
