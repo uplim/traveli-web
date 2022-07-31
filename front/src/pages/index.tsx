@@ -17,8 +17,8 @@ const Index = () => {
       {!isLoad ? (
         <Loading />
       ) : (
-        <>
-          <Flex mt={'7.7rem'} alignItems={'center'} justifyContent={'center'}>
+        <Box py={'7.7rem'}>
+          <Flex alignItems={'center'} justifyContent={'center'}>
             <Image src={'/images/top.svg'} alt={''} />
           </Flex>
           <Box mt={'4.3rem'} textAlign={'right'}>
@@ -58,7 +58,7 @@ const Index = () => {
               signInAnonymouslyHandler()
             }}
           />
-        </>
+        </Box>
       )}
     </Layout>
   )
