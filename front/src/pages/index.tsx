@@ -17,8 +17,8 @@ const Index = () => {
       <Box mt={'4.3rem'} textAlign={'right'}>
         <Image src={'/images/text.svg'} alt={''} display={'inline'} />
       </Box>
-      <Box mt={'-5rem'} textAlign={'center'}>
-        <Image src={'/images/smartphone.svg'} alt={''} w={'100%'} h={'100%'} />
+      <Box mt={'-3rem'} textAlign={'center'}>
+        <Image src={'/images/smartphone.png'} alt={''} w={'100%'} h={'100%'} />
       </Box>
       <Text
         mt={'2.7rem'}
