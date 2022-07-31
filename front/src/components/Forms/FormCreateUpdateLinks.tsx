@@ -47,7 +47,8 @@ export const FormCreateUpdateLinks = ({
     image,
     handleChangeImage,
     setCategories,
-    categories
+    categories,
+    setValue
   } = useFormCreateUpdateLinks(travelinkData, userData)
   const { inputRef, onClickImage } = useInputImage()
 
@@ -132,6 +133,7 @@ export const FormCreateUpdateLinks = ({
                 index={index}
                 register={register}
                 errors={errors.links}
+                setValue={setValue}
                 remove={() => {
                   remove(index)
                 }}
