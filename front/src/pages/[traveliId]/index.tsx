@@ -108,10 +108,12 @@ const LinkList = () => {
           </Tabs>
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
             <Link href={router.basePath + '/home'}>
-              <ButtonIconRound iconType="return" />
+                <ButtonIconRound iconType="return" boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
+                  filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'} />
             </Link>
             <Spacer />
-            <ButtonIconRound iconType="edit" />
+              <ButtonIconRound iconType="edit" boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
+                filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'} />
           </Flex>
           <Box>
             <Image
