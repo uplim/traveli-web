@@ -20,9 +20,8 @@ type CardLinkProps = {
     | {
         url?: FieldError | undefined
         label?: FieldError | undefined
-      }[]
+      }
     | undefined
-  index?: number
   category: CategoryType
 }
 
@@ -32,7 +31,6 @@ export const CardLink = ({
   setIsClickNext,
   setIsMinimum,
   errors,
-  index,
   category
 }: CardLinkProps) => {
   const onClick = () => {
@@ -86,9 +84,9 @@ export const CardLink = ({
           {label}
         </Text>
       </Flex>
-      {index !== undefined && (
+      {setIsMinimum && (
         <FormControl isInvalid={!!errors}>
-          <FormErrorMessage>{errors?.[index].url?.message}</FormErrorMessage>
+          <FormErrorMessage>{errors && errors.url?.message}</FormErrorMessage>
         </FormControl>
       )}
     </>

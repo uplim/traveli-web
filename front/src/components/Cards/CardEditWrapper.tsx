@@ -59,8 +59,7 @@ export const CardEditWrapper = ({
           label={currentLabel}
           setIsClickNext={setIsClickNext}
           setIsMinimum={setIsMinimum}
-          errors={errors}
-          index={index}
+          errors={errors ? errors[index] : undefined}
           category={categories[index]}
         />
       ) : (
