@@ -22,8 +22,11 @@ export const useCreateUser = () => {
     await setDoc(userRef, {
       uid: user.uid,
       isAnonymous: user.isAnonymous,
-      name: '',
-      icon: ''
+      // google認証しかないため、providerData[0]でok
+      name: user.providerData[0].displayName
+        ? user.providerData[0].displayName
+        : '',
+      icon: user.providerData[0].photoURL ? user.providerData[0].photoURL : ''
     })
   }
 

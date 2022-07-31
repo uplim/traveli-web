@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router'
 import {
   getAuth,
   GoogleAuthProvider,
@@ -7,10 +8,13 @@ import {
 import { useRecoilState } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { useBoolean } from '@chakra-ui/react'
+import { useCreateUser } from '@/hooks/firestore'
 
 export const useSignInGoogle = () => {
+  const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+  const { createUser } = useCreateUser()
 
   const signInGoogleHandler = async () => {
     setDisabled.on()
@@ -40,6 +44,8 @@ export const useSignInGoogle = () => {
             uid: user.uid,
             isAnonymous: user.isAnonymous
           })
+          createUser(user)
+          router.push('/home')
         })
         .catch((err) => {
           console.error(err)
