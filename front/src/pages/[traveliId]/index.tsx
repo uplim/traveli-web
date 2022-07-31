@@ -107,17 +107,17 @@ const LinkList = () => {
             </TabPanels>
           </Tabs>
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-            <Link href={router.basePath + '/home'}>
-                <ButtonIconRound iconType="return" boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
-                  filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'} />
+            <Link href={'/home'}>
+              <ButtonIconRound as={'a'} iconType={'return'} />
             </Link>
             <Spacer />
-              <ButtonIconRound iconType="edit" boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
-                filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'} />
+            <Link href={`/${travelink.id}/edit`}>
+              <ButtonIconRound as={'a'} iconType={'edit'} />
+            </Link>
           </Flex>
           <Box>
             <Image
-              borderRadius="full"
+              borderRadius={'full'}
               boxSize={'12rem'}
               src={travelink.thumbnail}
               alt={'img'}
