@@ -269,6 +269,8 @@ const CardHome = ({ data  })=>{
     }, data.id);
 };
 
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(6689);
 ;// CONCATENATED MODULE: ./src/hooks/radio/useRadioCategory.ts
 
 const useRadioCategory = (categories1, setCategories, index)=>{
@@ -321,8 +323,6 @@ const RadioCategoryList = ({ categories , setCategories , index  })=>{
     });
 };
 
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(6689);
 ;// CONCATENATED MODULE: ./src/components/Radios/RadioCategoryItem.tsx
 
 
@@ -453,12 +453,61 @@ const MenuLinkCardEdit = ({ setCategories , setIsMinimum , remove , index  })=>{
 ;// CONCATENATED MODULE: ./src/components/Menus/index.ts
 
 
+;// CONCATENATED MODULE: ./src/hooks/api/useFetchOgp.ts
+
+
+const useFetchOgp = ()=>{
+    const { 0: ogp , 1: setOgp  } = (0,external_react_.useState)();
+    const [disabled, setDisabled] = (0,react_.useBoolean)();
+    const onClickHandler = async (url)=>{
+        setDisabled.on();
+        if (!url) {
+            alert("url\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044");
+            setDisabled.off();
+            return;
+        }
+        if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/)) {
+            console.log("a");
+            alert("url\u304C\u6B63\u3057\u304F\u3042\u308A\u307E\u305B\u3093");
+            setDisabled.off();
+            return;
+        }
+        try {
+            const responce = await fetch(`/api/ogp?url=${url}`, {
+                headers: {
+                    Accept: "application/json"
+                }
+            });
+            const json = await responce.json();
+            setOgp(json);
+        } catch (e) {
+            alert("\u30EA\u30F3\u30AF\u5148\u306E\u30BF\u30A4\u30C8\u30EB\u304C\u53D6\u5F97\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002");
+            console.error(e);
+        } finally{
+            setDisabled.off();
+        }
+    };
+    return {
+        ogp,
+        onClickHandler,
+        disabled
+    };
+};
+
+;// CONCATENATED MODULE: ./src/hooks/api/index.ts
+
+
 ;// CONCATENATED MODULE: ./src/components/Cards/CardEdit.tsx
 
 
 
 
-const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIsMinimum , categories , setCategories , setCurrentUrl , label  })=>{
+
+
+
+const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIsMinimum , categories , setCategories , label , setValue , url  })=>{
+    const { 0: currentUrl , 1: setCurrentUrl  } = (0,external_react_.useState)(url);
+    const { disabled , ogp , onClickHandler  } = useFetchOgp();
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
         marginTop: "1rem",
         padding: "1.4rem 1.6rem 1.4rem 1.6rem",
@@ -523,16 +572,34 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
                     /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.FormLabel, {
                         fontSize: "sm",
                         color: "#2D2D2D",
+                        display: "flex",
+                        justifyContent: "space-between",
                         children: [
-                            /*#__PURE__*/ jsx_runtime_.jsx(react_.Text, {
+                            /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
                                 display: "inline",
-                                children: "\u30E9\u30D9\u30EB"
+                                children: [
+                                    "\u30E9\u30D9\u30EB",
+                                    " ",
+                                    /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+                                        as: "span",
+                                        color: "gray",
+                                        children: "\uFF08\u4EFB\u610F\uFF09"
+                                    })
+                                ]
                             }),
-                            /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
-                                as: "span",
-                                display: "inline",
-                                color: "gray",
-                                children: "\uFF08\u4EFB\u610F\uFF09"
+                            /*#__PURE__*/ jsx_runtime_.jsx(Buttons/* Button */.z, {
+                                disabled: disabled,
+                                onClick: ()=>{
+                                    setCurrentLabel(label ? label : ogp ? ogp.title : categories[index]);
+                                    setValue(`links.${index}.label`, label ? label : ogp ? ogp.title : categories[index]);
+                                    onClickHandler(currentUrl);
+                                },
+                                p: "0",
+                                borderBottom: disabled ? "none" : "0.1rem solid",
+                                borderColor: disabled ? "none" : "brandBlue",
+                                color: "brandBlue",
+                                borderRadius: "none",
+                                children: "\u81EA\u52D5\u53D6\u5F97"
                             })
                         ]
                     }),
@@ -548,8 +615,8 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
                         onChange: (e)=>{
                             setCurrentLabel(e.target.value);
                         },
-                        value: label,
-                        placeholder: "\u4F8B\uFF09\u5BBF\u6CCA\u5148"
+                        value: ogp && ogp.title,
+                        placeholder: disabled ? "\u53D6\u5F97\u4E2D" : "\u4F8B\uFF09\u5BBF\u6CCA\u5148"
                     })
                 ]
             })
@@ -557,54 +624,16 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
     });
 };
 
-;// CONCATENATED MODULE: ./src/hooks/api/useFetchOgp.ts
-
-const useFetchOgp = (url)=>{
-    const { 0: ogp , 1: setOgp  } = (0,external_react_.useState)();
-    (0,external_react_.useEffect)(()=>{
-        if (!url) return;
-        if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/)) return;
-        const loadOgp = async ()=>{
-            try {
-                const responce = await fetch(`/api/ogp?url=${url}`, {
-                    headers: {
-                        Accept: "application/json"
-                    }
-                });
-                const json = await responce.json();
-                setOgp(json);
-            } catch (e) {
-                console.error(e);
-            }
-        };
-        loadOgp();
-    }, [
-        url
-    ]);
-    return {
-        ogp
-    };
-};
-
-;// CONCATENATED MODULE: ./src/hooks/api/index.ts
-
-
 ;// CONCATENATED MODULE: ./src/components/Cards/CardEditWrapper.tsx
 
 
 
 
-
-const CardEditWrapper = ({ label , index , remove , register , errors , setCategories , categories , setIsClickNext , isClickNext , isLast , setValue  })=>{
+const CardEditWrapper = ({ label , index , url , remove , register , errors , setCategories , categories , setIsClickNext , isClickNext , isLast , setValue  })=>{
     const { 0: isMinimum , 1: setIsMinimum  } = (0,external_react_.useState)(false);
     const { 0: currentLabel , 1: setCurrentLabel  } = (0,external_react_.useState)(label);
-    const { 0: currentUrl , 1: setCurrentUrl  } = (0,external_react_.useState)("");
-    const { ogp  } = useFetchOgp(currentUrl);
     // 次へを押された時、最後の要素以外は最小化する
-    // titleをセットする
     if (isClickNext && !isMinimum && !isLast) {
-        setCurrentLabel(currentLabel ? currentLabel : ogp ? ogp.title : categories[index]);
-        setValue(`links.${index}.label`, currentLabel ? currentLabel : ogp ? ogp.title : categories[index]);
         setIsMinimum(true);
     }
     return /*#__PURE__*/ jsx_runtime_.jsx(jsx_runtime_.Fragment, {
@@ -616,13 +645,14 @@ const CardEditWrapper = ({ label , index , remove , register , errors , setCateg
             category: categories[index]
         }) : /*#__PURE__*/ jsx_runtime_.jsx(CardEdit, {
             index: index,
+            setValue: setValue,
             register: register,
             errors: errors,
+            label: label,
+            url: url,
             remove: ()=>{
                 remove();
             },
-            label: currentLabel,
-            setCurrentUrl: setCurrentUrl,
             setCurrentLabel: setCurrentLabel,
             setIsMinimum: setIsMinimum,
             categories: categories,
