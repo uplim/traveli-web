@@ -23,10 +23,8 @@ export const useCreateUser = () => {
       uid: user.uid,
       isAnonymous: user.isAnonymous,
       // google認証しかないため、providerData[0]でok
-      name: user.providerData[0].displayName
-        ? user.providerData[0].displayName
-        : '',
-      icon: user.providerData[0].photoURL ? user.providerData[0].photoURL : ''
+      name: !user.isAnonymous ? user.providerData[0].displayName : '',
+      icon: !user.isAnonymous ? user.providerData[0].photoURL : ''
     })
   }
 
