@@ -269,8 +269,6 @@ const CardHome = ({ data  })=>{
     }, data.id);
 };
 
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(6689);
 ;// CONCATENATED MODULE: ./src/hooks/radio/useRadioCategory.ts
 
 const useRadioCategory = (categories1, setCategories, index)=>{
@@ -323,6 +321,8 @@ const RadioCategoryList = ({ categories , setCategories , index  })=>{
     });
 };
 
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(6689);
 ;// CONCATENATED MODULE: ./src/components/Radios/RadioCategoryItem.tsx
 
 
@@ -456,7 +456,7 @@ const MenuLinkCardEdit = ({ setCategories , setIsMinimum , remove , index  })=>{
 ;// CONCATENATED MODULE: ./src/hooks/api/useFetchOgp.ts
 
 
-const useFetchOgp = ()=>{
+const useFetchOgp = (setCurrentLabel, setValue, index)=>{
     const { 0: ogp , 1: setOgp  } = (0,external_react_.useState)();
     const [disabled, setDisabled] = (0,react_.useBoolean)();
     const onClickHandler = async (url)=>{
@@ -480,6 +480,8 @@ const useFetchOgp = ()=>{
             });
             const json = await responce.json();
             setOgp(json);
+            setCurrentLabel(json ? json.title : "\u3042\u3044\u3042\u3044\u3055");
+            setValue(`links.${index}.label`, json ? json.title : "");
         } catch (e) {
             alert("\u30EA\u30F3\u30AF\u5148\u306E\u30BF\u30A4\u30C8\u30EB\u304C\u53D6\u5F97\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002");
             console.error(e);
@@ -490,7 +492,8 @@ const useFetchOgp = ()=>{
     return {
         ogp,
         onClickHandler,
-        disabled
+        disabled,
+        setOgp
     };
 };
 
@@ -504,10 +507,8 @@ const useFetchOgp = ()=>{
 
 
 
-
-const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIsMinimum , categories , setCategories , label , setValue , url  })=>{
-    const { 0: currentUrl , 1: setCurrentUrl  } = (0,external_react_.useState)(url);
-    const { disabled , ogp , onClickHandler  } = useFetchOgp();
+const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIsMinimum , categories , setCategories , label , setValue , currentUrl , setCurrentUrl  })=>{
+    const { disabled , ogp , onClickHandler , setOgp  } = useFetchOgp(setCurrentLabel, setValue, index);
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
         marginTop: "1rem",
         padding: "1.4rem 1.6rem 1.4rem 1.6rem",
@@ -590,8 +591,6 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
                             /*#__PURE__*/ jsx_runtime_.jsx(Buttons/* Button */.z, {
                                 disabled: disabled,
                                 onClick: ()=>{
-                                    setCurrentLabel(label ? label : ogp ? ogp.title : categories[index]);
-                                    setValue(`links.${index}.label`, label ? label : ogp ? ogp.title : categories[index]);
                                     onClickHandler(currentUrl);
                                 },
                                 p: "0",
@@ -610,6 +609,9 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
                         w: "100%",
                         h: "4.4rem",
                         borderRightRadius: "10rem",
+                        onFocus: ()=>{
+                            setOgp(undefined);
+                        },
                         borderLeftRadius: "10rem",
                         ...register(`links.${index}.label`),
                         onChange: (e)=>{
@@ -632,6 +634,7 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
 const CardEditWrapper = ({ label , index , url , remove , register , errors , setCategories , categories , setIsClickNext , isClickNext , isLast , setValue  })=>{
     const { 0: isMinimum , 1: setIsMinimum  } = (0,external_react_.useState)(false);
     const { 0: currentLabel , 1: setCurrentLabel  } = (0,external_react_.useState)(label);
+    const { 0: currentUrl , 1: setCurrentUrl  } = (0,external_react_.useState)(url);
     // 次へを押された時、最後の要素以外は最小化する
     if (isClickNext && !isMinimum && !isLast) {
         setIsMinimum(true);
@@ -644,6 +647,8 @@ const CardEditWrapper = ({ label , index , url , remove , register , errors , se
             errors: errors ? errors[index] : undefined,
             category: categories[index]
         }) : /*#__PURE__*/ jsx_runtime_.jsx(CardEdit, {
+            currentUrl: currentUrl,
+            setCurrentUrl: setCurrentUrl,
             index: index,
             setValue: setValue,
             register: register,
