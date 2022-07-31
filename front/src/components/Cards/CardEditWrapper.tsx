@@ -61,6 +61,7 @@ export const CardEditWrapper = ({
           setIsMinimum={setIsMinimum}
           errors={errors}
           index={index}
+          category={categories[index]}
         />
       ) : (
         <CardEdit

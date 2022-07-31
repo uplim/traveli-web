@@ -4,9 +4,11 @@ import {
   Flex,
   FormControl,
   FormErrorMessage,
-  Text
+  Text,
+  Image
 } from '@chakra-ui/react'
 import { FieldError } from 'react-hook-form'
+import { CategoryType } from '@/types/db'
 
 type CardLinkProps = {
   // icon: string
@@ -21,6 +23,7 @@ type CardLinkProps = {
       }[]
     | undefined
   index?: number
+  category: CategoryType
 }
 
 export const CardLink = ({
@@ -29,7 +32,8 @@ export const CardLink = ({
   setIsClickNext,
   setIsMinimum,
   errors,
-  index
+  index,
+  category
 }: CardLinkProps) => {
   const onClick = () => {
     if (url) window.open(url)
@@ -37,6 +41,12 @@ export const CardLink = ({
       setIsClickNext(false)
       setIsMinimum(false)
     }
+  }
+
+  const handleCategoryIcon = (category: CategoryType) => {
+    if (category === '食事') return '/images/icons/food.svg'
+    if (category === '場所') return '/images/icons/place.svg'
+    return '/images/icons/other.svg'
   }
 
   return (
@@ -55,14 +65,15 @@ export const CardLink = ({
         onClick={onClick}
         cursor={'pointer'}
       >
-        {/* TODO: アイコンPropsの受け取り */}
         <Box
-          backgroundColor={'gray'}
           borderRadius={'100%'}
-          w={'3.8rem'}
-          h={'3.8rem'}
-          marginLeft={'0.7rem'}
-        />
+          w={'2.8rem'}
+          h={'2.8rem'}
+          marginLeft={'1.2rem'}
+        >
+          <Image alt={''} src={handleCategoryIcon(category)} />
+        </Box>
+
         <Text
           w={'80%'}
           textAlign={'center'}

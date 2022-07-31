@@ -79,28 +79,48 @@ const LinkList = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                {travelink.links.map(({ url, label }, index) => (
-                  <CardLink label={label} url={url} key={`all_${index}`} />
+                {travelink.links.map(({ url, label, category }, index) => (
+                  <CardLink
+                    label={label}
+                    url={url}
+                    key={`all_${index}`}
+                    category={category}
+                  />
                 ))}
               </TabPanel>
               <TabPanel>
                 {filterTravelink(travelink, '食事').map(
-                  ({ url, label }, index) => (
-                    <CardLink label={label} url={url} key={`food_${index}`} />
+                  ({ url, label, category }, index) => (
+                    <CardLink
+                      label={label}
+                      url={url}
+                      key={`food_${index}`}
+                      category={category}
+                    />
                   )
                 )}
               </TabPanel>
               <TabPanel>
                 {filterTravelink(travelink, '場所').map(
-                  ({ url, label }, index) => (
-                    <CardLink label={label} url={url} key={`place_${index}`} />
+                  ({ url, label, category }, index) => (
+                    <CardLink
+                      label={label}
+                      url={url}
+                      key={`place_${index}`}
+                      category={category}
+                    />
                   )
                 )}
               </TabPanel>
               <TabPanel>
                 {filterTravelink(travelink, 'その他').map(
-                  ({ url, label }, index) => (
-                    <CardLink label={label} url={url} key={`other_${index}`} />
+                  ({ url, label, category }, index) => (
+                    <CardLink
+                      label={label}
+                      url={url}
+                      key={`other_${index}`}
+                      category={category}
+                    />
                   )
                 )}
               </TabPanel>
