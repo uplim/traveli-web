@@ -59,6 +59,10 @@ const useSignInAnonymously = ()=>{
         setDisabled.on();
         const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
         try {
+            if (auth.currentUser) {
+                router.push("/home");
+                return;
+            }
             await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInAnonymously)(auth);
             (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, (currentUser)=>{
                 if (currentUser) {

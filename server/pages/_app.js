@@ -179,7 +179,10 @@ const sizes = {
 ;// CONCATENATED MODULE: ./src/theme/button.ts
 const Button = {
     baseStyle: {
-        fontWeight: 400
+        fontWeight: 400,
+        _focus: {
+            boxShadow: "none"
+        }
     },
     variants: {
         round: {
