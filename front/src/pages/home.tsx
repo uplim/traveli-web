@@ -13,11 +13,11 @@ import { Loading } from '@/components/Loadings'
 const Home = () => {
   const { travelinkList } = useGetTravelinkList()
   const { bookmarkList } = useGetBookmarkList()
-  const { user } = useGetUser()
+  const { user, currentUser } = useGetUser()
 
   return (
     <>
-      {!user || !travelinkList || !bookmarkList ? (
+      {!user || !travelinkList || !bookmarkList || !currentUser ? (
         <Loading />
       ) : (
         <>
