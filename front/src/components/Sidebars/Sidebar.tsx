@@ -83,7 +83,7 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
               bgColor={'#C6C6C6'}
             />
 
-            <Flex h={'3.2rem'} align={'center'} marginBottom={'1.6rem'}>
+            <Flex h={'3.2rem'} align={'center'} mt={'1.6rem'}>
               <Image
                 alt={''}
                 src={'/images/icons/google.svg'}
@@ -109,7 +109,7 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
               )}
             </Flex>
 
-            <Flex h={'3.2rem'} align={'center'} marginBottom={'1.6rem'}>
+            <Flex h={'3.2rem'} align={'center'} mt={'1.6rem'}>
               <IconHelp
                 w={'3.2rem'}
                 h={'3.2rem'}
@@ -121,27 +121,27 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
               </Box>
             </Flex>
 
-            <Flex h={'3.2rem'} align={'center'}>
-              {currentUser?.isAnonymous ? (
-                <>
-                  <Image
-                    src={'/images/icons/trash.svg'}
-                    alt={''}
-                    w={'3.2rem'}
-                    h={'3.2rem'}
-                    marginRight={'1.7rem'}
-                  />
-                  <Button
-                    color={'#FF4D4D'}
-                    fontSize={'md'}
-                    fontWeight={'bold'}
-                    padding={0}
-                  >
-                    アカウント削除
-                  </Button>
-                </>
-              ) : (
-                <>
+            {currentUser?.isAnonymous ? (
+              <Flex h={'3.2rem'} align={'center'} mt={'1.6rem'}>
+                <Image
+                  src={'/images/icons/trash.svg'}
+                  alt={''}
+                  w={'3.2rem'}
+                  h={'3.2rem'}
+                  marginRight={'1.7rem'}
+                />
+                <Button
+                  color={'#FF4D4D'}
+                  fontSize={'md'}
+                  fontWeight={'bold'}
+                  padding={0}
+                >
+                  アカウント削除
+                </Button>
+              </Flex>
+            ) : (
+              <>
+                <Flex h={'3.2rem'} align={'center'} mt={'1.6rem'}>
                   <IconSignOut
                     w={'3.2rem'}
                     h={'3.2rem'}
@@ -158,9 +158,27 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                   >
                     ログアウト
                   </Button>
-                </>
-              )}
-            </Flex>
+                </Flex>
+
+                <Flex h={'3.2rem'} align={'center'} mt={'1.6rem'}>
+                  <Image
+                    src={'/images/icons/trash.svg'}
+                    alt={''}
+                    w={'3.2rem'}
+                    h={'3.2rem'}
+                    marginRight={'1.7rem'}
+                  />
+                  <Button
+                    color={'#FF4D4D'}
+                    fontSize={'md'}
+                    fontWeight={'bold'}
+                    padding={0}
+                  >
+                    アカウント削除
+                  </Button>
+                </Flex>
+              </>
+            )}
           </Box>
         </DrawerContent>
       </Drawer>
