@@ -382,7 +382,12 @@ const useCreateUser = ()=>{
         const usersCollection = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "users");
         const userRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(usersCollection, user.uid);
         const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(userRef);
-        if (document.exists()) router.push("/home");
+        if (document.exists()) {
+            const data = document.data();
+            if (!data.name) router.push("/user");
+            router.push("/home");
+            return;
+        }
         await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(userRef, {
             uid: user.uid,
             isAnonymous: user.isAnonymous,
