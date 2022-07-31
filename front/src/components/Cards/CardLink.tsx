@@ -13,6 +13,7 @@ type CardLinkProps = {
   label: string
   url?: string
   setIsMinimum?: Dispatch<SetStateAction<boolean>>
+  setIsClickNext?: Dispatch<SetStateAction<boolean>>
   errors?:
     | {
         url?: FieldError | undefined
@@ -25,13 +26,17 @@ type CardLinkProps = {
 export const CardLink = ({
   label,
   url,
+  setIsClickNext,
   setIsMinimum,
   errors,
   index
 }: CardLinkProps) => {
   const onClick = () => {
     if (url) window.open(url)
-    if (setIsMinimum) setIsMinimum(false)
+    if (setIsMinimum && setIsClickNext) {
+      setIsClickNext(false)
+      setIsMinimum(false)
+    }
   }
 
   return (

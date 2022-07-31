@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Input,
   Box,
@@ -29,6 +29,11 @@ export const FormCreateUpdateLinks = ({
   userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
+  // 次へを押された時に最小化するためのstate
+  const [isClickNext, setIsClickNext] = useState<boolean>(
+    travelinkData ? true : false
+  )
+
   const {
     register,
     handleSubmit,
@@ -132,6 +137,9 @@ export const FormCreateUpdateLinks = ({
                 remove={() => {
                   remove(index)
                 }}
+                isClickNext={isClickNext}
+                setIsClickNext={setIsClickNext}
+                isLast={fields.length === index + 1}
               />
             </React.Fragment>
           )
@@ -151,6 +159,8 @@ export const FormCreateUpdateLinks = ({
             onClick={() => {
               // onChangeでsetStateしているので、初期値はこの段階で入れる
               setCategories((categories) => [...categories, 'その他'])
+              // 次のやつ以外閉じる
+              setIsClickNext(true)
               append({ url: '', label: '' })
             }}
           >
