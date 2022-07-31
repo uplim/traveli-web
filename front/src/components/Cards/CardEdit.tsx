@@ -1,17 +1,18 @@
-import { Dispatch, SetStateAction, ChangeEvent } from 'react'
+import { Dispatch, SetStateAction, ChangeEvent, useState } from 'react'
 import {
   Box,
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Input,
-  Text
+  Input
 } from '@chakra-ui/react'
-import { UseFormRegister, FieldError } from 'react-hook-form'
+import { UseFormRegister, FieldError, UseFormSetValue } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 import { RadioCategoryList } from '@/components/Radios'
 import { CategoryType } from '@/types/db'
 import { MenuLinkCardEdit } from '@/components/Menus'
+import { useFetchOgp } from '@/hooks/api'
+import { Button } from '@/components/Buttons'
 
 type CardEditProps = {
   index: number
@@ -27,8 +28,9 @@ type CardEditProps = {
   setIsMinimum: Dispatch<SetStateAction<boolean>>
   categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
-  setCurrentUrl: Dispatch<SetStateAction<string>>
   label: string
+  url: string
+  setValue: UseFormSetValue<Inputs>
 }
 
 export const CardEdit = ({
@@ -40,9 +42,13 @@ export const CardEdit = ({
   setIsMinimum,
   categories,
   setCategories,
-  setCurrentUrl,
-  label
+  label,
+  setValue,
+  url
 }: CardEditProps) => {
+  const [currentUrl, setCurrentUrl] = useState<string>(url)
+  const { disabled, ogp, onClickHandler } = useFetchOgp()
+
   return (
     <Box
       marginTop={'1rem'}
@@ -94,11 +100,38 @@ export const CardEdit = ({
       </FormControl>
 
       <FormControl mt={'1.6rem'}>
-        <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
-          <Text display={'inline'}>ラベル</Text>
-          <Box as={'span'} display={'inline'} color={'gray'}>
-            （任意）
+        <FormLabel
+          fontSize={'sm'}
+          color={'#2D2D2D'}
+          display={'flex'}
+          justifyContent={'space-between'}
+        >
+          <Box display={'inline'}>
+            ラベル{' '}
+            <Box as={'span'} color={'gray'}>
+              （任意）
+            </Box>
           </Box>
+          <Button
+            disabled={disabled}
+            onClick={() => {
+              setCurrentLabel(
+                label ? label : ogp ? ogp.title : categories[index]
+              )
+              setValue(
+                `links.${index}.label`,
+                label ? label : ogp ? ogp.title : categories[index]
+              )
+              onClickHandler(currentUrl)
+            }}
+            p={'0'}
+            borderBottom={disabled ? 'none' : '0.1rem solid'}
+            borderColor={disabled ? 'none' : 'brandBlue'}
+            color={'brandBlue'}
+            borderRadius={'none'}
+          >
+            自動取得
+          </Button>
         </FormLabel>
         <Input
           marginTop={'0.3rem'}
@@ -112,8 +145,8 @@ export const CardEdit = ({
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setCurrentLabel(e.target.value)
           }}
-          value={label}
-          placeholder={'例）宿泊先'}
+          value={ogp && ogp.title}
+          placeholder={disabled ? '取得中' : '例）宿泊先'}
         />
       </FormControl>
     </Box>
