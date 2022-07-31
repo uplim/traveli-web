@@ -7,6 +7,7 @@ import {
   getFirestore,
   setDoc
 } from 'firebase/firestore'
+import { UserType } from '@/types/db'
 
 export const useCreateUser = () => {
   const router = useRouter()
@@ -17,7 +18,12 @@ export const useCreateUser = () => {
     const userRef = doc(usersCollection, user.uid)
     const document = await getDoc(userRef)
 
-    if (document.exists()) router.push('/home')
+    if (document.exists()) {
+      const data = document.data() as UserType
+      if (!data.name) router.push('/user')
+      router.push('/home')
+      return
+    }
 
     await setDoc(userRef, {
       uid: user.uid,
