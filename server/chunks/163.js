@@ -29,8 +29,8 @@ const Button = (0,react_.forwardRef)(({ children , ...props }, ref)=>{
     });
 });
 
-// EXTERNAL MODULE: ./src/components/Icons/index.ts + 11 modules
-var Icons = __webpack_require__(553);
+// EXTERNAL MODULE: ./src/components/Icons/index.ts + 14 modules
+var Icons = __webpack_require__(5456);
 ;// CONCATENATED MODULE: ./src/components/Buttons/ButtonIconRound.tsx
 
 
@@ -191,8 +191,8 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 var router_ = __webpack_require__(1853);
 // EXTERNAL MODULE: external "date-fns"
 var external_date_fns_ = __webpack_require__(4146);
-// EXTERNAL MODULE: ./src/components/Icons/index.ts + 11 modules
-var Icons = __webpack_require__(553);
+// EXTERNAL MODULE: ./src/components/Icons/index.ts + 14 modules
+var Icons = __webpack_require__(5456);
 // EXTERNAL MODULE: ./src/components/Buttons/index.ts + 3 modules
 var Buttons = __webpack_require__(7768);
 ;// CONCATENATED MODULE: ./src/components/Cards/CardHome.tsx
@@ -452,7 +452,7 @@ const CardEdit = ({ index , register , remove , errors , setCurrentLabel , setIs
                                 },
                                 children: [
                                     /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
-                                        bgImage: "/images/trash.svg",
+                                        bgImage: "/images/icons/trash.svg",
                                         w: "1.68rem",
                                         h: "1.68rem",
                                         marginRight: "1.6rem"
@@ -634,109 +634,7 @@ const CardEditWrapper = ({ label , index , remove , register , errors , setCateg
 
 /***/ }),
 
-/***/ 6500:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "T": () => (/* binding */ IconHelp)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const IconHelp = ({ ...props })=>{
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
-        ...props,
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            className: "h-6 w-6",
-            fill: "none",
-            viewBox: "0 0 24 24",
-            stroke: "currentColor",
-            strokeWidth: 2,
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-            })
-        })
-    });
-};
-
-
-/***/ }),
-
-/***/ 5050:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "D": () => (/* binding */ IconSignOut)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const IconSignOut = ({ ...props })=>{
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
-        ...props,
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            className: "h-6 w-6",
-            fill: "none",
-            viewBox: "0 0 24 24",
-            stroke: "currentColor",
-            strokeWidth: 2,
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-            })
-        })
-    });
-};
-
-
-/***/ }),
-
-/***/ 4673:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "f": () => (/* binding */ IconUser)
-/* harmony export */ });
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__);
-
-
-const IconUser = ({ ...props })=>{
-    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_1__.Box, {
-        ...props,
-        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("svg", {
-            xmlns: "http://www.w3.org/2000/svg",
-            className: "h-6 w-6",
-            fill: "none",
-            viewBox: "0 0 24 24",
-            stroke: "currentColor",
-            strokeWidth: 2,
-            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("path", {
-                strokeLinecap: "round",
-                strokeLinejoin: "round",
-                d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-            })
-        })
-    });
-};
-
-
-/***/ }),
-
-/***/ 553:
+/***/ 5456:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
@@ -744,17 +642,20 @@ const IconUser = ({ ...props })=>{
 __webpack_require__.d(__webpack_exports__, {
   "Lj": () => (/* reexport */ IconCamera),
   "yl": () => (/* reexport */ IconEdit),
+  "T0": () => (/* reexport */ IconHelp),
   "JH": () => (/* reexport */ IconLink),
   "dc": () => (/* reexport */ IconMenu),
   "SC": () => (/* reexport */ IconPlus),
   "G1": () => (/* reexport */ IconQr),
   "BK": () => (/* reexport */ IconReturn),
   "FO": () => (/* reexport */ IconShare),
+  "Dz": () => (/* reexport */ IconSignOut),
+  "f7": () => (/* reexport */ IconUser),
   "MS": () => (/* reexport */ IconViewGrid),
   "d8": () => (/* reexport */ IconViewList)
 });
 
-// UNUSED EXPORTS: IconHelp, IconSave, IconSignOut, IconUser
+// UNUSED EXPORTS: IconSave
 
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(997);
@@ -811,8 +712,28 @@ const IconEdit = ({ ...props })=>{
     });
 };
 
-// EXTERNAL MODULE: ./src/components/Icons/IconHelp.tsx
-var IconHelp = __webpack_require__(6500);
+;// CONCATENATED MODULE: ./src/components/Icons/IconHelp.tsx
+
+
+const IconHelp = ({ ...props })=>{
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+        ...props,
+        children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            className: "h-6 w-6",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            stroke: "currentColor",
+            strokeWidth: 2,
+            children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            })
+        })
+    });
+};
+
 ;// CONCATENATED MODULE: ./src/components/Icons/IconLink.tsx
 
 
@@ -964,10 +885,50 @@ const IconShare = ({ ...props })=>{
     });
 };
 
-// EXTERNAL MODULE: ./src/components/Icons/IconSignOut.tsx
-var IconSignOut = __webpack_require__(5050);
-// EXTERNAL MODULE: ./src/components/Icons/IconUser.tsx
-var IconUser = __webpack_require__(4673);
+;// CONCATENATED MODULE: ./src/components/Icons/IconSignOut.tsx
+
+
+const IconSignOut = ({ ...props })=>{
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+        ...props,
+        children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            className: "h-6 w-6",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            stroke: "currentColor",
+            strokeWidth: 2,
+            children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            })
+        })
+    });
+};
+
+;// CONCATENATED MODULE: ./src/components/Icons/IconUser.tsx
+
+
+const IconUser = ({ ...props })=>{
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+        ...props,
+        children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            className: "h-6 w-6",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            stroke: "currentColor",
+            strokeWidth: 2,
+            children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            })
+        })
+    });
+};
+
 ;// CONCATENATED MODULE: ./src/components/Icons/IconViewGrid.tsx
 
 
