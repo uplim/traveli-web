@@ -37,10 +37,11 @@ const external_jsdom_namespaceObject = require("jsdom");
         return;
     }
     try {
-        const responce = await external_axios_default().get(url);
-        const data = responce.data;
+        const response = await external_axios_default().get(url);
+        const data = response.data;
         const dom = new external_jsdom_namespaceObject.JSDOM(data);
         const meta = dom.window.document.querySelectorAll("head > meta");
+        const title = dom.window.document.title;
         // metaからOGPを抽出し、JSON形式に変換する
         const ogp1 = Array.from(meta).filter((element)=>element.hasAttribute("property")
         )// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,6 +49,7 @@ const external_jsdom_namespaceObject = require("jsdom");
             const property = ogp.getAttribute("property")?.trim().replace("og:", "");
             const content = ogp.getAttribute("content");
             pre[property ? property : ""] = content;
+            if (title) pre["title"] = title;
             return pre;
         }, {});
         res.status(200).json(ogp1);

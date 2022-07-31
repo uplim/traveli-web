@@ -55,11 +55,10 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                 align: "center",
                 children: [
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
-                        href: `/${traveliId}`,
+                        href: travelinkData ? `/${traveliId}` : "/home",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Link, {
                             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_8__/* .IconReturn */ .BK, {
                                 bgColor: "none",
-                                iconType: "return",
                                 w: "2.4rem",
                                 h: "2.4rem"
                             })

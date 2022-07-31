@@ -480,10 +480,14 @@ const useFetchOgp = (setCurrentLabel, setValue, index)=>{
             });
             const json = await responce.json();
             setOgp(json);
-            setCurrentLabel(json ? json.title : "\u3042\u3044\u3042\u3044\u3055");
-            setValue(`links.${index}.label`, json ? json.title : "");
+            if (!json.title) {
+                alert("\u30EA\u30F3\u30AF\u5148\u306E\u30BF\u30A4\u30C8\u30EB\u3092\u53D6\u5F97\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F");
+                return;
+            }
+            setCurrentLabel(json.title);
+            setValue(`links.${index}.label`, json.title);
         } catch (e) {
-            alert("\u30EA\u30F3\u30AF\u5148\u306E\u30BF\u30A4\u30C8\u30EB\u304C\u53D6\u5F97\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F\u3002");
+            alert("\u30EA\u30F3\u30AF\u5148\u306E\u30BF\u30A4\u30C8\u30EB\u304C\u53D6\u5F97\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F");
             console.error(e);
         } finally{
             setDisabled.off();
