@@ -16,7 +16,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 import { IconQr, IconShare } from '@/components/Icons'
-import { ButtonIconRound, ButtonViewChange } from '@/components/Buttons'
+import { ButtonIconRound } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
 import { Loading } from '@/components/Loadings'
@@ -44,6 +44,7 @@ const LinkList = () => {
             position={'absolute'}
             bgRepeat={'no-repeat'}
             bgSize={'cover'}
+            bgPosition={'center center'}
             top={'0'}
             left={'0'}
             w={'100vw'}
@@ -79,55 +80,70 @@ const LinkList = () => {
             </TabList>
             <TabPanels>
               <TabPanel>
-                {travelink.links.map(({ url, label }, index) => (
-                  <CardLink label={label} url={url} key={`all_${index}`} />
+                {travelink.links.map(({ url, label, category }, index) => (
+                  <CardLink
+                    label={label}
+                    url={url}
+                    key={`all_${index}`}
+                    category={category}
+                  />
                 ))}
               </TabPanel>
               <TabPanel>
                 {filterTravelink(travelink, '食事').map(
-                  ({ url, label }, index) => (
-                    <CardLink label={label} url={url} key={`food_${index}`} />
+                  ({ url, label, category }, index) => (
+                    <CardLink
+                      label={label}
+                      url={url}
+                      key={`food_${index}`}
+                      category={category}
+                    />
                   )
                 )}
               </TabPanel>
               <TabPanel>
                 {filterTravelink(travelink, '場所').map(
-                  ({ url, label }, index) => (
-                    <CardLink label={label} url={url} key={`place_${index}`} />
+                  ({ url, label, category }, index) => (
+                    <CardLink
+                      label={label}
+                      url={url}
+                      key={`place_${index}`}
+                      category={category}
+                    />
                   )
                 )}
               </TabPanel>
               <TabPanel>
                 {filterTravelink(travelink, 'その他').map(
-                  ({ url, label }, index) => (
-                    <CardLink label={label} url={url} key={`other_${index}`} />
+                  ({ url, label, category }, index) => (
+                    <CardLink
+                      label={label}
+                      url={url}
+                      key={`other_${index}`}
+                      category={category}
+                    />
                   )
                 )}
               </TabPanel>
             </TabPanels>
           </Tabs>
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-            <Link href={router.basePath + '/home'}>
-              <ButtonIconRound iconType="return" />
+            <Link href={'/home'}>
+              <ButtonIconRound as={'a'} iconType={'return'} />
             </Link>
             <Spacer />
-            <ButtonIconRound iconType="edit" />
+            <Link href={`/${travelink.id}/edit`}>
+              <ButtonIconRound as={'a'} iconType={'edit'} />
+            </Link>
           </Flex>
           <Box>
             <Image
-              borderRadius="full"
+              borderRadius={'full'}
               boxSize={'12rem'}
               src={travelink.thumbnail}
               alt={'img'}
               margin={'6rem auto 0 auto'}
               border={'solid white 0.4rem'}
-            />
-            <ButtonViewChange
-              position={'absolute'}
-              top={'8rem'}
-              right={'1rem'}
-              w={'100vw'}
-              h={'19rem'}
             />
             <Text
               fontSize={'2rem'}

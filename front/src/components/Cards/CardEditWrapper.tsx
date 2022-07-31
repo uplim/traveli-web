@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import { useState } from 'react'
-import { UseFormRegister, FieldError } from 'react-hook-form'
+import { UseFormRegister, FieldError, UseFormSetValue } from 'react-hook-form'
 import { CategoryType } from '@/types/db'
 import { CardLink, CardEdit } from '@/components/Cards'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
@@ -24,6 +24,7 @@ type CardEditWrapperProps = {
   setIsClickNext: Dispatch<SetStateAction<boolean>>
   isClickNext: boolean
   isLast: boolean
+  setValue: UseFormSetValue<Inputs>
 }
 
 export const CardEditWrapper = ({
@@ -36,7 +37,8 @@ export const CardEditWrapper = ({
   categories,
   setIsClickNext,
   isClickNext,
-  isLast
+  isLast,
+  setValue
 }: CardEditWrapperProps) => {
   const [isMinimum, setIsMinimum] = useState(false)
   const [currentLabel, setCurrentLabel] = useState(label)
@@ -49,6 +51,10 @@ export const CardEditWrapper = ({
     setCurrentLabel(
       currentLabel ? currentLabel : ogp ? ogp.title : categories[index]
     )
+    setValue(
+      `links.${index}.label`,
+      currentLabel ? currentLabel : ogp ? ogp.title : categories[index]
+    )
     setIsMinimum(true)
   }
 
@@ -59,8 +65,8 @@ export const CardEditWrapper = ({
           label={currentLabel}
           setIsClickNext={setIsClickNext}
           setIsMinimum={setIsMinimum}
-          errors={errors}
-          index={index}
+          errors={errors ? errors[index] : undefined}
+          category={categories[index]}
         />
       ) : (
         <CardEdit
