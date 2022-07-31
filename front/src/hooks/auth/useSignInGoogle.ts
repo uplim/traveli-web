@@ -44,8 +44,8 @@ export const useSignInGoogle = () => {
             uid: user.uid,
             isAnonymous: user.isAnonymous
           })
-          createUser(user)
           router.push('/home')
+          createUser(user)
         })
         .catch((err) => {
           console.error(err)
