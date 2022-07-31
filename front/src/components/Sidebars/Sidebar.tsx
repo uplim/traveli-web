@@ -1,6 +1,7 @@
 import {
   Avatar,
   Box,
+  Button,
   Drawer,
   DrawerContent,
   DrawerOverlay,
@@ -93,7 +94,9 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                 color={'logoBlack'}
               />
               <Box color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
-                ログアウト
+                <Button>
+                  ログアウト
+                </Button>
               </Box>
             </Flex>
           </Box>
