@@ -32,6 +32,8 @@ type CardEditProps = {
   setIsMinimum: Dispatch<SetStateAction<boolean>>
   categories: CategoryType[]
   setCategories: Dispatch<SetStateAction<CategoryType[]>>
+  setCurrentUrl: Dispatch<SetStateAction<string>>
+  label: string
 }
 
 export const CardEdit = ({
@@ -42,7 +44,9 @@ export const CardEdit = ({
   setCurrentLabel,
   setIsMinimum,
   categories,
-  setCategories
+  setCategories,
+  setCurrentUrl,
+  label
 }: CardEditProps) => {
   return (
     <Box
@@ -142,6 +146,9 @@ export const CardEdit = ({
           isInvalid={errors?.[index] ? true : false}
           {...register(`links.${index}.url`)}
           placeholder={'https://'}
+          onChange={(e: ChangeEvent<HTMLInputElement>) => {
+            setCurrentUrl(e.target.value)
+          }}
         />
         <FormErrorMessage mb={'1rem'}>
           {errors?.[index] && errors?.[index].url?.message}
@@ -167,6 +174,7 @@ export const CardEdit = ({
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
             setCurrentLabel(e.target.value)
           }}
+          value={label}
           placeholder={'例）宿泊先'}
         />
       </FormControl>
