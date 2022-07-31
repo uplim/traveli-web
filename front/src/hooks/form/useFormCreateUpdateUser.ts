@@ -65,6 +65,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     errors,
     disabled,
     handleChangeImage,
-    image
+    image,
+    history
   }
 }

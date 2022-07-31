@@ -21,7 +21,8 @@ export const useCreateUser = () => {
     if (document.exists()) {
       const data = document.data() as UserType
       if (!data.name) router.push('/user')
-      router.push('/home')
+      else router.push('/home')
+
       return
     }
 

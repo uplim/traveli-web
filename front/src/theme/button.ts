@@ -1,6 +1,7 @@
 export const Button = {
   baseStyle: {
-    fontWeight: 400
+    fontWeight: 400,
+    _focus: { boxShadow: 'none' }
   },
   variants: {
     round: {

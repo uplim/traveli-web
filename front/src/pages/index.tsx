@@ -1,7 +1,8 @@
 import { useSignInAnonymously } from '@/hooks/auth'
-import { Button } from '@chakra-ui/react'
-import { Text } from '@chakra-ui/react'
+import { Flex, Image, Box, Text } from '@chakra-ui/react'
 import { useSignInGoogle } from '@/hooks/auth/useSignInGoogle'
+import { Layout } from '@/components/Layout'
+import { ButtonSignIn } from '@/components/Buttons'
 
 const Index = () => {
   const { signInAnonymouslyHandler, disabled: anonymouslyDisabled } =
@@ -9,24 +10,43 @@ const Index = () => {
   const { signInGoogleHandler, disabled: googleDisabled } = useSignInGoogle()
 
   return (
-    <>
-      <Text fontWeight="bold">indexページ</Text>
-      <Button
-        bgColor={'brandBlue'}
-        disabled={anonymouslyDisabled}
-        onClick={() => signInAnonymouslyHandler()}
+    <Layout>
+      <Flex mt={'7.7rem'} alignItems={'center'} justifyContent={'center'}>
+        <Image src={'/images/top.svg'} alt={''} />
+      </Flex>
+      <Box mt={'4.3rem'} textAlign={'right'}>
+        <Image src={'/images/text.svg'} alt={''} display={'inline'} />
+      </Box>
+      <Box mt={'-5rem'} textAlign={'center'}>
+        <Image src={'/images/smartphone.svg'} alt={''} w={'100%'} h={'100%'} />
+      </Box>
+      <Text
+        mt={'2.7rem'}
+        textAlign={'center'}
+        lineHeight={'1.92rem'}
+        fontSize={'md'}
       >
-        登録せず利用
-      </Button>
+        traveliは、旅先で必要なURLをまとめて、
+        <br /> 管理・共有できるwebサービスです。
+      </Text>
 
-      <Button
-        bgColor={'brandBlue'}
+      <ButtonSignIn
         disabled={googleDisabled}
-        onClick={() => signInGoogleHandler()}
-      >
-        Googleログイン
-      </Button>
-    </>
+        mt={'2.1rem'}
+        iconType={'google'}
+        onClick={() => {
+          signInGoogleHandler()
+        }}
+      />
+      <ButtonSignIn
+        disabled={anonymouslyDisabled}
+        mt={'2.1rem'}
+        iconType={'anonymous'}
+        onClick={() => {
+          signInAnonymouslyHandler()
+        }}
+      />
+    </Layout>
   )
 }
 
