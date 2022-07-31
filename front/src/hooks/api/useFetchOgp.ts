@@ -1,5 +1,7 @@
 import { useBoolean } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useState, Dispatch, SetStateAction, ChangeEvent } from 'react'
+import { UseFormSetValue } from 'react-hook-form'
+import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
 type OgpType = {
   title: string
@@ -11,7 +13,11 @@ type OgpType = {
   locale: string
 }
 
-export const useFetchOgp = () => {
+export const useFetchOgp = (
+  setCurrentLabel: Dispatch<SetStateAction<string>>,
+  setValue: UseFormSetValue<Inputs>,
+  index: number
+) => {
   const [ogp, setOgp] = useState<OgpType>()
   const [disabled, setDisabled] = useBoolean()
 
@@ -37,6 +43,9 @@ export const useFetchOgp = () => {
       })
       const json = (await responce.json()) as OgpType
       setOgp(json)
+
+      setCurrentLabel(json ? json.title : 'あいあいさ')
+      setValue(`links.${index}.label`, json ? json.title : '')
     } catch (e) {
       alert('リンク先のタイトルが取得できませんでした。')
       console.error(e)
@@ -45,5 +54,5 @@ export const useFetchOgp = () => {
     }
   }
 
-  return { ogp, onClickHandler, disabled }
+  return { ogp, onClickHandler, disabled, setOgp }
 }

@@ -42,6 +42,7 @@ export const CardEditWrapper = ({
 }: CardEditWrapperProps) => {
   const [isMinimum, setIsMinimum] = useState(false)
   const [currentLabel, setCurrentLabel] = useState(label)
+  const [currentUrl, setCurrentUrl] = useState<string>(url)
 
   // 次へを押された時、最後の要素以外は最小化する
   if (isClickNext && !isMinimum && !isLast) {
@@ -60,6 +61,8 @@ export const CardEditWrapper = ({
         />
       ) : (
         <CardEdit
+          currentUrl={currentUrl}
+          setCurrentUrl={setCurrentUrl}
           index={index}
           setValue={setValue}
           register={register}

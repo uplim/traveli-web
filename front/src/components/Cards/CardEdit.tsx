@@ -31,6 +31,8 @@ type CardEditProps = {
   label: string
   url: string
   setValue: UseFormSetValue<Inputs>
+  currentUrl: string
+  setCurrentUrl: Dispatch<SetStateAction<string>>
 }
 
 export const CardEdit = ({
@@ -44,10 +46,14 @@ export const CardEdit = ({
   setCategories,
   label,
   setValue,
-  url
+  currentUrl,
+  setCurrentUrl
 }: CardEditProps) => {
-  const [currentUrl, setCurrentUrl] = useState<string>(url)
-  const { disabled, ogp, onClickHandler } = useFetchOgp()
+  const { disabled, ogp, onClickHandler, setOgp } = useFetchOgp(
+    setCurrentLabel,
+    setValue,
+    index
+  )
 
   return (
     <Box
@@ -115,13 +121,6 @@ export const CardEdit = ({
           <Button
             disabled={disabled}
             onClick={() => {
-              setCurrentLabel(
-                label ? label : ogp ? ogp.title : categories[index]
-              )
-              setValue(
-                `links.${index}.label`,
-                label ? label : ogp ? ogp.title : categories[index]
-              )
               onClickHandler(currentUrl)
             }}
             p={'0'}
@@ -140,6 +139,9 @@ export const CardEdit = ({
           w={'100%'}
           h={'4.4rem'}
           borderRightRadius={'10rem'}
+          onFocus={() => {
+            setOgp(undefined)
+          }}
           borderLeftRadius={'10rem'}
           {...register(`links.${index}.label`)}
           onChange={(e: ChangeEvent<HTMLInputElement>) => {
