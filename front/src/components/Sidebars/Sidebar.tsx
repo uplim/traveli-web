@@ -23,7 +23,6 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
   const router = useRouter()
 
   return (
-    // Back
     <Box>
       <Avatar w={'4rem'} h={'4rem'} src={icon} onClick={onOpen} />
 

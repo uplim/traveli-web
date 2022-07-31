@@ -1,20 +1,20 @@
+import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
-import { currentUserState } from '@/recoil/atoms'
-import { useRecoilValue } from 'recoil'
 import { useUploadImage } from '@/hooks/upload'
-import { CurrentUser, Profile, TravelinkRequestType } from '@/types/db'
+import { CategoryType, UserType, TravelinkRequestType } from '@/types/db'
 
-type Inputs = {
+export type Inputs = {
   title: string
   date: [Date | null, Date | null]
   links: {
     url: string
     label: string
+    category: string
   }[]
   canEdit: boolean
 }
@@ -37,11 +37,13 @@ const schema = yup.object({
 })
 
 export const useFormCreateUpdateLinks = (
-  formType: 'create' | 'update',
   travelinkData?: TravelinkRequestType,
-  ownerProfile?: Profile
+  userData?: UserType
 ) => {
   const [disabled, setDisabled] = useBoolean()
+  const [categories, setCategories] = useState<CategoryType[]>(
+    travelinkData ? travelinkData.links.map((link) => link.category) : []
+  )
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -58,14 +60,14 @@ export const useFormCreateUpdateLinks = (
     resolver: yupResolver(schema),
     defaultValues: {
       ...travelinkData,
-      date: formatedDate as [Date | null, Date | null]
+      date: formatedDate
+        ? (formatedDate as [Date | null, Date | null])
+        : [null, null]
     }
   })
 
   const { uploadImage, image, handleChangeImage, isImageChanged } =
     useUploadImage()
-
-  const currentUser = useRecoilValue(currentUserState)
 
   const createTravelink = useCreateTravelink
   const updateTravelink = useUpdateTravelink
@@ -76,9 +78,14 @@ export const useFormCreateUpdateLinks = (
   })
 
   const onSubmit = async (data: Inputs) => {
-    if (!currentUser) return
-
-    const req = data as TravelinkRequestType
+    const mergeCategoriesIntoLinks = data.links.map((link, index) => {
+      link.category = categories[index]
+      return link
+    })
+    const req = {
+      ...data,
+      links: mergeCategoriesIntoLinks
+    } as TravelinkRequestType
 
     try {
       setDisabled.on()
@@ -88,7 +95,7 @@ export const useFormCreateUpdateLinks = (
         req.thumbnail = downloadUrl
       }
 
-      formType === 'create' ? create(req, currentUser) : update(req, traveliId)
+      !travelinkData ? await create(req) : await update(req, traveliId)
     } catch (err) {
       console.error(err)
     } finally {
@@ -96,26 +103,23 @@ export const useFormCreateUpdateLinks = (
     }
   }
 
-  const create = async (
-    data: TravelinkRequestType,
-    currentUser: CurrentUser
-  ) => {
-    if (!ownerProfile) return
+  const create = async (data: TravelinkRequestType) => {
+    if (!userData) return
 
     const res = await createTravelink(
       {
         ...data,
-        ownerIcon: ownerProfile.icon,
-        ownerName: ownerProfile.name
+        ownerIcon: userData.icon ? userData.icon : '',
+        ownerName: userData.name ? userData.name : ''
       },
-      currentUser.uid
+      userData.uid
     )
-    router.push(window.location.origin + res)
+    router.push(`/${res}`)
   }
 
   const update = async (data: TravelinkRequestType, traveliId: string) => {
     await updateTravelink(data, traveliId)
-    router.push(window.location.origin + traveliId)
+    router.push(`/${traveliId}`)
   }
 
   return {
@@ -129,6 +133,8 @@ export const useFormCreateUpdateLinks = (
     errors,
     disabled,
     handleChangeImage,
-    image
+    image,
+    categories,
+    setCategories
   }
 }

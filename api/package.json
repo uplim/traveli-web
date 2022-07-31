@@ -1,0 +1,15 @@
+{
+  "name": "api",
+  "version": "0.1.0",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+  },
+  "dependencies": {
+    "@vercel/node": "^2.5.2"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^20.0.0",
+    "axios": "^0.27.2",
+    "jsdom": "^20.0.0"
+  }
+}

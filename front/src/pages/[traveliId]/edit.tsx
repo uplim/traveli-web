@@ -1,4 +1,5 @@
 import { FormCreateUpdateLinks } from '@/components/Forms'
+import { Loading } from '@/components/Loadings'
 import { useRoleEdit } from '@/hooks/role/'
 
 const Edit = () => {
@@ -7,13 +8,9 @@ const Edit = () => {
   return (
     <>
       {!travelink || isLoading ? (
-        <>ローディングアイコン</>
+        <Loading />
       ) : (
-        <FormCreateUpdateLinks
-          formType={'update'}
-          travelinkData={travelink}
-          isOwner={isOwner}
-        />
+        <FormCreateUpdateLinks travelinkData={travelink} isOwner={isOwner} />
       )}
     </>
   )
