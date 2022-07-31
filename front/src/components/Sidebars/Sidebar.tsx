@@ -1,18 +1,19 @@
 import {
   Avatar,
   Box,
-  Button,
   Drawer,
   DrawerContent,
   DrawerOverlay,
   Flex,
-  useDisclosure
+  useDisclosure,
+  Link,
+  Image,
+  Text
 } from '@chakra-ui/react'
-import { IconUser } from './../Icons/IconUser'
-import { IconHelp } from './../Icons/IconHelp'
-import { IconSignOut } from './../Icons/IconSignOut'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { IconUser, IconHelp, IconSignOut } from '@/components/Icons'
+import NextLink from 'next/link'
+import { useSignInGoogle } from '@/hooks/auth/useSignInGoogle'
+import { Button } from '@/components/Buttons'
 
 type SidebarProps = {
   icon: string
@@ -21,7 +22,7 @@ type SidebarProps = {
 
 export const Sidebar = ({ icon, name }: SidebarProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
-  const router = useRouter()
+  const { signInGoogleHandler, disabled, currentUser } = useSignInGoogle()
 
   return (
     <Box>
@@ -60,11 +61,13 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                 marginRight={'1.7rem'}
                 color={'logoBlack'}
               />
-              <Link href={router.basePath + '/user'} passHref>
-                <Box color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
-                  プロフィール
-                </Box>
-              </Link>
+              <NextLink href={'/user'} passHref>
+                <Link>
+                  <Box color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
+                    プロフィール
+                  </Box>
+                </Link>
+              </NextLink>
             </Flex>
 
             <Box
@@ -73,6 +76,32 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
               h={'0.1rem'}
               bgColor={'#C6C6C6'}
             />
+
+            <Flex h={'3.2rem'} align={'center'} marginBottom={'1.6rem'}>
+              <Image
+                alt={''}
+                src={'/images/icons/google.svg'}
+                w={'3.2rem'}
+                h={'3.2rem'}
+                marginRight={'1.7rem'}
+              />
+              {currentUser?.isAnonymous ? (
+                <Button
+                  color={'logoBlack'}
+                  fontSize={'md'}
+                  fontWeight={'bold'}
+                  padding={0}
+                  disabled={disabled}
+                  onClick={() => signInGoogleHandler()}
+                >
+                  Google連携
+                </Button>
+              ) : (
+                <Text color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
+                  Google連携済み
+                </Text>
+              )}
+            </Flex>
 
             <Flex h={'3.2rem'} align={'center'} marginBottom={'1.6rem'}>
               <IconHelp
@@ -87,17 +116,42 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
             </Flex>
 
             <Flex h={'3.2rem'} align={'center'}>
-              <IconSignOut
-                w={'3.2rem'}
-                h={'3.2rem'}
-                marginRight={'1.7rem'}
-                color={'logoBlack'}
-              />
-              <Box color={'logoBlack'} fontSize={'md'} fontWeight={'bold'}>
-                <Button>
-                  ログアウト
-                </Button>
-              </Box>
+              {currentUser?.isAnonymous ? (
+                <>
+                  <Image
+                    src={'/images/icons/trash.svg'}
+                    alt={''}
+                    w={'3.2rem'}
+                    h={'3.2rem'}
+                    marginRight={'1.7rem'}
+                  />
+                  <Button
+                    color={'#FF4D4D'}
+                    fontSize={'md'}
+                    fontWeight={'bold'}
+                    padding={0}
+                  >
+                    アカウント削除
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <IconSignOut
+                    w={'3.2rem'}
+                    h={'3.2rem'}
+                    marginRight={'1.7rem'}
+                    color={'logoBlack'}
+                  />
+                  <Button
+                    color={'logoBlack'}
+                    fontSize={'md'}
+                    fontWeight={'bold'}
+                    padding={0}
+                  >
+                    ログアウト
+                  </Button>
+                </>
+              )}
             </Flex>
           </Box>
         </DrawerContent>

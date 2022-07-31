@@ -4,7 +4,8 @@ import { Text } from '@chakra-ui/react'
 import { useSignInGoogle } from '@/hooks/auth/useSignInGoogle'
 
 const Index = () => {
-  const { signInAnonymouslyHandler, disabled: anonymouslyDisabled } = useSignInAnonymously()
+  const { signInAnonymouslyHandler, disabled: anonymouslyDisabled } =
+    useSignInAnonymously()
   const { signInGoogleHandler, disabled: googleDisabled } = useSignInGoogle()
 
   return (

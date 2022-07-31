@@ -4,19 +4,19 @@ import {
   linkWithPopup,
   signInWithPopup
 } from 'firebase/auth'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { useBoolean } from '@chakra-ui/react'
 
 export const useSignInGoogle = () => {
-  const [disabled, setDisabled] = useBoolean() 
-  const setCurrentUser = useSetRecoilState(currentUserState)
-  
+  const [disabled, setDisabled] = useBoolean()
+  const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
+
   const signInGoogleHandler = async () => {
     setDisabled.on()
     const auth = getAuth()
     const provider = new GoogleAuthProvider()
-    
+
     // 匿名認証済みの時は、リンクさせる
     if (auth.currentUser) {
       await linkWithPopup(auth.currentUser, provider)
@@ -49,6 +49,5 @@ export const useSignInGoogle = () => {
     }
   }
 
-  return { signInGoogleHandler, disabled }
- 
+  return { signInGoogleHandler, disabled, currentUser }
 }
