@@ -14,12 +14,20 @@ export const ButtonIconRound = forwardRef<
   return (
     <>
       {iconType === 'plus' ? (
-        <Button {...props} ref={ref} variant={'iconRound'}>
+        <Button
+          {...props}
+          ref={ref}
+          variant={'iconRound'}
+          boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
+          filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'}
+        >
           <IconPlus w={'2.4rem'} h={'2.4rem'} color={'white'} />
         </Button>
       ) : (
         <Button
           {...props}
+          boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
+          filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'}
           ref={ref}
           variant={'iconRound'}
           bgColor={'white'}

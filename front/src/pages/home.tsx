@@ -1,5 +1,5 @@
-import NextLink from 'next/link'
-import { Box, Flex, Spacer, Link } from '@chakra-ui/react'
+import Link from 'next/link'
+import { Box, Flex, Spacer } from '@chakra-ui/react'
 import {
   useGetTravelinkList,
   useGetUser,
@@ -38,9 +38,6 @@ const Home = () => {
             />
           </Flex>
 
-          {/* TODO:shadowの色を変数に置き換える */}
-          {/* TODO: date-pickerのstartでええ感じにsortする */}
-
           <Box
             marginTop={'2.2rem'}
             filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
@@ -53,20 +50,17 @@ const Home = () => {
           </Box>
 
           <TabHome data={travelinkList} bookmarkData={bookmarkList} />
-          <NextLink href={'/create'} passHref>
-            <Link>
-              <ButtonIconRound
-                iconType={'plus'}
-                position={'fixed'}
-                top={'calc(100vh - 6.4rem - 4.8rem)'}
-                right={'1.6rem'}
-                w={'6.4rem'}
-                h={'6.4rem'}
-                boxShadow={'0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)'}
-                filter={'drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))'}
-              />
-            </Link>
-          </NextLink>
+          <Link href={'/create'} passHref>
+            <ButtonIconRound
+              as={'a'}
+              iconType={'plus'}
+              position={'fixed'}
+              top={'calc(100vh - 6.4rem - 4.8rem)'}
+              right={'1.6rem'}
+              w={'6.4rem'}
+              h={'6.4rem'}
+            />
+          </Link>
         </>
       )}
     </>
