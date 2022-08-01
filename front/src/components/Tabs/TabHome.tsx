@@ -46,12 +46,16 @@ export const TabHome = ({ data, bookmarkData }: TabHomeProps) => {
               {data.map((item) => (
                 <CardHome data={item} key={item.id} />
               ))}
-              <Heading fontSize={'lg'} mt={'3rem'}>
-                保存済み
-              </Heading>
-              {bookmarkData.map((item) => (
-                <CardHome data={item} key={item.id} />
-              ))}
+              {bookmarkData.length !== 0 && (
+                <>
+                  <Heading fontSize={'lg'} mt={'3rem'}>
+                    保存済み
+                  </Heading>
+                  {bookmarkData.map((item) => (
+                    <CardHome data={item} key={item.id} />
+                  ))}
+                </>
+              )}
             </>
           )}
         </TabPanel>
