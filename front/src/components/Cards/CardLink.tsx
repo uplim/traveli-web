@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react'
 import {
   Box,
   Flex,
@@ -6,7 +7,6 @@ import {
   Text,
   Image
 } from '@chakra-ui/react'
-import { Dispatch, SetStateAction } from 'react'
 import { FieldError } from 'react-hook-form'
 import { CategoryType } from '@/types/db'
 
