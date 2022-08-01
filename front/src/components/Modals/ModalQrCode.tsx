@@ -16,7 +16,7 @@ type QrCodeProps = {
   thumbnail: string
   title: string
   date: [Timestamp | null, Timestamp | null]
-  router: string
+  path: string
   isOpen: boolean
   onClose: () => void
 }
@@ -25,7 +25,7 @@ export const ModalQrCode = ({
   thumbnail,
   title,
   date,
-  router,
+  path,
   isOpen,
   onClose
 }: QrCodeProps) => {
@@ -72,7 +72,7 @@ export const ModalQrCode = ({
             margin={'2rem 0'}
           >
             <QRCodeSVG
-              value={window.location.origin + router}
+              value={`https://traveli-web.vercel.app/${path}`}
               size={168}
               includeMargin={false}
               imageSettings={{

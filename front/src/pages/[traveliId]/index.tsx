@@ -13,9 +13,8 @@ import {
 } from '@chakra-ui/react'
 import { useGetTravelink } from '@/hooks/firestore'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { format } from 'date-fns'
-import { IconQr, IconShare } from '@/components/Icons'
+import { IconCheck, IconQr } from '@/components/Icons'
 import { ButtonIconRound } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
@@ -25,14 +24,19 @@ import { useRecoilValue } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { useButtonBookmark } from '@/hooks/button'
 import { useFilterTravelink } from '@/hooks/filter'
+import { useCopyTextToClipboard } from '@/hooks/copy'
 
 const LinkList = () => {
-  const router = useRouter()
   const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { onClickBookmark, disabled, isBookmarked } = useButtonBookmark()
   const filterTravelink = useFilterTravelink
+  const {
+    copyTextToClipboard,
+    disabled: copyDisabled,
+    copied
+  } = useCopyTextToClipboard()
 
   return (
     <>
@@ -206,14 +210,41 @@ const LinkList = () => {
                 thumbnail={travelink.thumbnail}
                 title={travelink.title}
                 date={travelink.date}
-                router={router.asPath}
+                path={travelink.id}
                 isOpen={isOpen}
                 onClose={onClose}
               />
               <Spacer />
-              <Button display={'inline'} h={'auto'}>
-                <IconShare w={'2.5rem'} h={'2.5rem'} margin={'0 auto'} />
-                <Text>共有する</Text>
+              <Button
+                disabled={copyDisabled}
+                display={'inline'}
+                h={'auto'}
+                w={'8.4rem'}
+                onClick={() =>
+                  copyTextToClipboard(
+                    `https://traveli-web.vercel.app/${travelink.id}`
+                  )
+                }
+              >
+                {copied ? (
+                  <IconCheck
+                    color={'#77B255'}
+                    src={'/images/icons/check.svg'}
+                    alt={''}
+                    w={'2.5rem'}
+                    h={'2.5rem'}
+                    margin={'0 auto'}
+                  />
+                ) : (
+                  <Image
+                    src={'/images/icons/copy.svg'}
+                    alt={''}
+                    w={'2.5rem'}
+                    h={'2.5rem'}
+                    margin={'0 auto'}
+                  />
+                )}
+                <Text>コピー</Text>
               </Button>
             </Flex>
           </Box>
