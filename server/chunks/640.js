@@ -90,8 +90,8 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 var router_ = __webpack_require__(1853);
 // EXTERNAL MODULE: external "date-fns"
 var external_date_fns_ = __webpack_require__(4146);
-// EXTERNAL MODULE: ./src/components/Icons/index.ts + 14 modules
-var Icons = __webpack_require__(5456);
+// EXTERNAL MODULE: ./src/components/Icons/index.ts + 15 modules
+var Icons = __webpack_require__(3307);
 // EXTERNAL MODULE: ./src/components/Buttons/index.ts + 3 modules
 var Buttons = __webpack_require__(2770);
 ;// CONCATENATED MODULE: ./src/components/Cards/CardHome.tsx

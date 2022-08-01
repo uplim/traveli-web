@@ -33,8 +33,8 @@ const Button = (0,react_.forwardRef)(({ children , disabled , ...props }, ref)=>
     });
 });
 
-// EXTERNAL MODULE: ./src/components/Icons/index.ts + 14 modules
-var Icons = __webpack_require__(5456);
+// EXTERNAL MODULE: ./src/components/Icons/index.ts + 15 modules
+var Icons = __webpack_require__(3307);
 ;// CONCATENATED MODULE: ./src/components/Buttons/ButtonIconRound.tsx
 
 
@@ -139,13 +139,14 @@ const ButtonSignIn = (0,react_.forwardRef)(({ iconType , ...props }, ref)=>{
 
 /***/ }),
 
-/***/ 5456:
+/***/ 3307:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
   "Lj": () => (/* reexport */ IconCamera),
+  "NO": () => (/* reexport */ IconCheck),
   "yl": () => (/* reexport */ IconEdit),
   "T0": () => (/* reexport */ IconHelp),
   "JH": () => (/* reexport */ IconLink),
@@ -153,12 +154,11 @@ __webpack_require__.d(__webpack_exports__, {
   "SC": () => (/* reexport */ IconPlus),
   "G1": () => (/* reexport */ IconQr),
   "BK": () => (/* reexport */ IconReturn),
-  "FO": () => (/* reexport */ IconShare),
   "Dz": () => (/* reexport */ IconSignOut),
   "f7": () => (/* reexport */ IconUser)
 });
 
-// UNUSED EXPORTS: IconSave, IconViewGrid, IconViewList
+// UNUSED EXPORTS: IconSave, IconShare, IconViewGrid, IconViewList
 
 // EXTERNAL MODULE: external "react/jsx-runtime"
 var jsx_runtime_ = __webpack_require__(997);
@@ -374,14 +374,14 @@ const IconSave = ({ ...props })=>{
 
 
 const IconShare = ({ ...props })=>{
-    return /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+    return /*#__PURE__*/ _jsx(Box, {
         ...props,
-        children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+        children: /*#__PURE__*/ _jsx("svg", {
             xmlns: "http://www.w3.org/2000/svg",
             className: "h-5 w-5",
             viewBox: "0 0 20 20",
             fill: "currentColor",
-            children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+            children: /*#__PURE__*/ _jsx("path", {
                 d: "M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"
             })
         })
@@ -470,7 +470,30 @@ const IconViewList = ({ ...props })=>{
     });
 };
 
+;// CONCATENATED MODULE: ./src/components/Icons/IconCheck.tsx
+
+
+const IconCheck = ({ ...props })=>{
+    return /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+        ...props,
+        children: /*#__PURE__*/ jsx_runtime_.jsx("svg", {
+            xmlns: "http://www.w3.org/2000/svg",
+            className: "h-6 w-6",
+            fill: "none",
+            viewBox: "0 0 24 24",
+            stroke: "currentColor",
+            strokeWidth: 3,
+            children: /*#__PURE__*/ jsx_runtime_.jsx("path", {
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                d: "M5 13l4 4L19 7"
+            })
+        })
+    });
+};
+
 ;// CONCATENATED MODULE: ./src/components/Icons/index.ts
+
 
 
 
