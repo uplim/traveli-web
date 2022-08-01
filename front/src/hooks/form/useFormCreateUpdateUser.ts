@@ -5,6 +5,9 @@ import { useBoolean } from '@chakra-ui/react'
 import { useUploadImage } from '@/hooks/upload'
 import { useUpdateUser } from '@/hooks/firestore'
 import { UserType } from '@/types/db'
+import { useRecoilValue } from 'recoil'
+import { historyState } from '@/recoil/atoms'
+import { useRouter } from 'next/router'
 
 type Inputs = {
   name: string
@@ -15,6 +18,8 @@ const schema = yup.object({
 })
 
 export const useFormCreateUpdateUser = (userData: UserType) => {
+  const history = useRecoilValue(historyState)
+  const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
 
   const {
@@ -46,6 +51,9 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     } catch (err) {
       console.error(err)
     } finally {
+      if (history === '/') {
+        router.push('/home')
+      }
       setDisabled.off()
     }
   }
@@ -57,6 +65,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     errors,
     disabled,
     handleChangeImage,
-    image
+    image,
+    history
   }
 }

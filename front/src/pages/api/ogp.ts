@@ -15,15 +15,19 @@ import { JSDOM } from 'jsdom'
 
 export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
   const url = getUrlParameter(req)
+
   if (!url) {
     return
   }
 
   try {
-    const responce = await axios.get(<string>url)
-    const data = responce.data
+    const response = await axios.get(<string>url)
+
+    const data = response.data
     const dom = new JSDOM(data)
+
     const meta = dom.window.document.querySelectorAll('head > meta')
+    const title = dom.window.document.title
 
     // metaからOGPを抽出し、JSON形式に変換する
     const ogp = Array.from(meta)
@@ -33,8 +37,10 @@ export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
         const property = ogp.getAttribute('property')?.trim().replace('og:', '')
         const content = ogp.getAttribute('content')
         pre[property ? property : ''] = content
+        if (title) pre['title'] = title
         return pre
       }, {})
+
     res.status(200).json(ogp)
   } catch (e) {
     errorResponce(res)

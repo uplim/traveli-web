@@ -24,7 +24,15 @@ export const CardHome = ({ data }: CardHomeProps) => {
         bgColor={'white'}
         marginTop={'2.2rem'}
       >
-        <Box bgImage={data.thumbnail} h={'12.9rem'} borderTopRadius={'10'} />
+        <Box
+          bgImage={data.thumbnail}
+          bgSize={'cover'}
+          bgRepeat={'no-repeat'}
+          bgPosition={'center center'}
+          w={'100%'}
+          h={'12.9rem'}
+          borderTopRadius={'10'}
+        />
         <Box
           paddingTop={'1.1rem'}
           paddingLeft={'1.8rem'}
@@ -33,7 +41,6 @@ export const CardHome = ({ data }: CardHomeProps) => {
         >
           {data.date[0] && (
             <Box fontSize={'xs'} color={'gray'}>
-              {/* TODO: date-pickerのstartとendで表示する */}
               {data.date[0] && format(data.date[0].toDate(), 'yyyy/MM/dd')}~
               {data.date[1] && format(data.date[1].toDate(), 'yyyy/MM/dd')}
             </Box>

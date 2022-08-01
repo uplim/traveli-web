@@ -55,6 +55,7 @@ export const useFormCreateUpdateLinks = (
     register,
     control,
     handleSubmit,
+    setValue,
     formState: { errors }
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
@@ -135,6 +136,7 @@ export const useFormCreateUpdateLinks = (
     handleChangeImage,
     image,
     categories,
-    setCategories
+    setCategories,
+    setValue
   }
 }

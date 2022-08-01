@@ -3,9 +3,11 @@ import { Loading } from '@/components/Loadings'
 import { useGetUser } from '@/hooks/firestore'
 
 const User = () => {
-  const { user } = useGetUser()
+  const { user, currentUser } = useGetUser()
 
-  return <>{!user ? <Loading /> : <FormUserProfile data={user} />}</>
+  return (
+    <>{!user || !currentUser ? <Loading /> : <FormUserProfile data={user} />}</>
+  )
 }
 
 export default User

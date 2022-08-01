@@ -1,32 +1,66 @@
-import Link from 'next/link'
 import { useSignInAnonymously } from '@/hooks/auth'
-import { Button } from '@chakra-ui/react'
-import { Text } from '@chakra-ui/react'
+import { Flex, Image, Box, Text } from '@chakra-ui/react'
+import { useSignInGoogle } from '@/hooks/auth/useSignInGoogle'
+import { Layout } from '@/components/Layout'
+import { ButtonSignIn } from '@/components/Buttons'
+import { useLoadImage } from '@/hooks/load'
+import { Loading } from '@/components/Loadings'
 
 const Index = () => {
-  const { signInAnonymouslyHandler, disabled } = useSignInAnonymously()
+  const { signInAnonymouslyHandler, disabled: anonymouslyDisabled } =
+    useSignInAnonymously()
+  const { signInGoogleHandler, disabled: googleDisabled } = useSignInGoogle()
+  const { isLoad } = useLoadImage('/images/smartphone.png')
 
   return (
-    <>
-      <Text fontWeight="bold">indexページ</Text>
-      <Link href="/signin" passHref>
-        <a href="replace">
-          <p>/signin</p>
-        </a>
-      </Link>
-      <Link href="/signup" passHref>
-        <a href="replace">
-          <p>/signup</p>
-        </a>
-      </Link>
-      <Button
-        bgColor={'brandBlue'}
-        disabled={disabled}
-        onClick={() => signInAnonymouslyHandler()}
-      >
-        登録せず利用
-      </Button>
-    </>
+    <Layout>
+      {!isLoad ? (
+        <Loading />
+      ) : (
+        <Box py={'7.7rem'}>
+          <Flex alignItems={'center'} justifyContent={'center'}>
+            <Image src={'/images/top.svg'} alt={''} />
+          </Flex>
+          <Box mt={'4.3rem'} textAlign={'right'}>
+            <Image src={'/images/text.svg'} alt={''} display={'inline'} />
+          </Box>
+          <Box mt={'-3rem'} textAlign={'center'}>
+            <Image
+              src={'/images/smartphone.png'}
+              alt={''}
+              w={'100%'}
+              h={'100%'}
+            />
+          </Box>
+          <Text
+            mt={'2.7rem'}
+            textAlign={'center'}
+            lineHeight={'1.92rem'}
+            fontSize={'md'}
+          >
+            traveliは、旅先で必要なURLをまとめて、
+            <br /> 管理・共有できるwebサービスです。
+          </Text>
+
+          <ButtonSignIn
+            disabled={googleDisabled}
+            mt={'2.1rem'}
+            iconType={'google'}
+            onClick={() => {
+              signInGoogleHandler()
+            }}
+          />
+          <ButtonSignIn
+            disabled={anonymouslyDisabled}
+            mt={'2.1rem'}
+            iconType={'anonymous'}
+            onClick={() => {
+              signInAnonymouslyHandler()
+            }}
+          />
+        </Box>
+      )}
+    </Layout>
   )
 }
 

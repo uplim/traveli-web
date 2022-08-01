@@ -18,6 +18,10 @@ export const useSignInAnonymously = () => {
     const auth = getAuth()
 
     try {
+      if (auth.currentUser) {
+        router.push('/home')
+        return
+      }
       await signInAnonymously(auth)
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {

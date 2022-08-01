@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import NextLink from 'next/link'
+import { useRouter } from 'next/router'
 import {
   Input,
   Box,
@@ -8,7 +10,8 @@ import {
   Switch,
   Flex,
   Spacer,
-  VisuallyHiddenInput
+  VisuallyHiddenInput,
+  Link
 } from '@chakra-ui/react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { useInputImage } from '@/hooks/input'
@@ -47,14 +50,21 @@ export const FormCreateUpdateLinks = ({
     image,
     handleChangeImage,
     setCategories,
-    categories
+    categories,
+    setValue
   } = useFormCreateUpdateLinks(travelinkData, userData)
   const { inputRef, onClickImage } = useInputImage()
+  const router = useRouter()
+  const traveliId = router.query.traveliId
 
   return (
     <Box>
       <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-        <IconReturn w={'2.2rem'} h={'2.2rem'} />
+        <NextLink href={travelinkData ? `/${traveliId}` : '/home'}>
+          <Link>
+            <IconReturn bgColor={'none'} w={'2.4rem'} h={'2.4rem'} />
+          </Link>
+        </NextLink>
         <Spacer />
         <Box color={'black'} fontSize={'md'} fontWeight={'bold'}>
           新しいトラベリンクを作成
@@ -87,8 +97,6 @@ export const FormCreateUpdateLinks = ({
         <FormLabel marginTop={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
           日時（任意）
         </FormLabel>
-
-        {/* TODO:InputDateの見た目変える */}
         <InputDate control={control} name={'date'} />
       </FormControl>
 
@@ -107,6 +115,9 @@ export const FormCreateUpdateLinks = ({
           bgImage={
             image ? URL.createObjectURL(image) : travelinkData?.thumbnail
           }
+          bgRepeat={'no-repeat'}
+          bgSize={'cover'}
+          bgPosition={'center center'}
           onClick={onClickImage}
           w={'100%'}
           h={'12.9rem'}
@@ -134,6 +145,7 @@ export const FormCreateUpdateLinks = ({
                 index={index}
                 register={register}
                 errors={errors.links}
+                setValue={setValue}
                 remove={() => {
                   remove(index)
                 }}
