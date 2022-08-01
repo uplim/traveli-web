@@ -90,12 +90,9 @@ var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
 var router_ = __webpack_require__(1853);
 // EXTERNAL MODULE: external "date-fns"
 var external_date_fns_ = __webpack_require__(4146);
-// EXTERNAL MODULE: ./src/components/Icons/index.ts + 15 modules
-var Icons = __webpack_require__(3307);
 // EXTERNAL MODULE: ./src/components/Buttons/index.ts + 3 modules
 var Buttons = __webpack_require__(2770);
 ;// CONCATENATED MODULE: ./src/components/Cards/CardHome.tsx
-
 
 
 
@@ -125,55 +122,64 @@ const CardHome = ({ data  })=>{
                     h: "12.9rem",
                     borderTopRadius: "10"
                 }),
-                /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
-                    paddingTop: "1.1rem",
-                    paddingLeft: "1.8rem",
-                    paddingRight: "1.8rem",
-                    borderBottomRadius: "10",
+                /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
+                    justify: "space-between",
                     children: [
-                        data.date[0] && /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
-                            fontSize: "xs",
-                            color: "gray",
+                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
+                            paddingTop: "1.1rem",
+                            paddingLeft: "1.8rem",
+                            paddingRight: "1.8rem",
+                            borderBottomRadius: "10",
                             children: [
-                                data.date[0] && (0,external_date_fns_.format)(data.date[0].toDate(), "yyyy/MM/dd"),
-                                "~",
-                                data.date[1] && (0,external_date_fns_.format)(data.date[1].toDate(), "yyyy/MM/dd")
-                            ]
-                        }),
-                        /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
-                            children: /*#__PURE__*/ jsx_runtime_.jsx(react_.Heading, {
-                                paddingTop: "0.6rem",
-                                paddingBottom: "1.4rem",
-                                fontSize: "lg",
-                                children: data.title
-                            })
-                        }),
-                        /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
-                            alignContent: "baseline",
-                            children: [
-                                /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
+                                data.date[0] && /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Box, {
+                                    fontSize: "xs",
+                                    color: "gray",
                                     children: [
-                                        /*#__PURE__*/ jsx_runtime_.jsx(react_.Avatar, {
-                                            w: "2.4rem",
-                                            h: "2.4rem",
-                                            src: data.ownerIcon
-                                        }),
-                                        /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
-                                            paddingLeft: "1rem",
-                                            fontSize: "md",
-                                            children: data.ownerName
-                                        })
+                                        data.date[0] && (0,external_date_fns_.format)(data.date[0].toDate(), "yyyy/MM/dd"),
+                                        "~",
+                                        data.date[1] && (0,external_date_fns_.format)(data.date[1].toDate(), "yyyy/MM/dd")
                                     ]
                                 }),
-                                /*#__PURE__*/ jsx_runtime_.jsx(react_.Spacer, {}),
-                                /*#__PURE__*/ jsx_runtime_.jsx(Buttons/* Button */.zx, {
-                                    children: /*#__PURE__*/ jsx_runtime_.jsx(Icons/* IconLink */.JH, {
-                                        w: "2rem",
-                                        h: "2rem",
-                                        color: "gray"
+                                /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+                                    children: /*#__PURE__*/ jsx_runtime_.jsx(react_.Heading, {
+                                        paddingTop: "0.6rem",
+                                        paddingBottom: "1.4rem",
+                                        fontSize: "lg",
+                                        children: data.title
+                                    })
+                                }),
+                                /*#__PURE__*/ jsx_runtime_.jsx(react_.Flex, {
+                                    alignContent: "baseline",
+                                    children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
+                                        children: [
+                                            /*#__PURE__*/ jsx_runtime_.jsx(react_.Avatar, {
+                                                w: "2.4rem",
+                                                h: "2.4rem",
+                                                src: data.ownerIcon
+                                            }),
+                                            /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+                                                paddingLeft: "1rem",
+                                                fontSize: "md",
+                                                children: data.ownerName
+                                            })
+                                        ]
                                     })
                                 })
                             ]
+                        }),
+                        /*#__PURE__*/ jsx_runtime_.jsx(Buttons/* Button */.zx, {
+                            mt: "1.6rem",
+                            children: /*#__PURE__*/ jsx_runtime_.jsx(react_.Flex, {
+                                w: "3.6rem",
+                                h: "3.6rem",
+                                align: "center",
+                                justify: "center",
+                                children: /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
+                                    bgImage: "/images/icons/homeMenu.svg",
+                                    w: "2.4rem",
+                                    h: "2.4rem"
+                                })
+                            })
                         })
                     ]
                 })
