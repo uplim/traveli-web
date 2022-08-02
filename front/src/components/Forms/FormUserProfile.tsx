@@ -42,13 +42,15 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
     <>
       <Box as={'form'} height={'100vh'} position={'relative'}>
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-          <NextLink href={history !== '/' ? '/home' : '/'} passHref>
-            <IconButton
-              aria-label="return"
-              size="lg"
-              icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
-            />
-          </NextLink>
+          {history !== '/' && (
+            <NextLink href={'/home'} passHref>
+              <IconButton
+                aria-label="return"
+                size="lg"
+                icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
+              />
+            </NextLink>
+          )}
           <Spacer />
           <Box color={'black'} fontSize={'md'} fontWeight={'bold'}>
             プロフィール
