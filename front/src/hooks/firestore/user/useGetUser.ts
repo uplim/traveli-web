@@ -10,7 +10,7 @@ export const useGetUser = () => {
 
   useEffect(() => {
     if (!currentUser) return
-    
+
     const loadUser = async () => {
       const db = getFirestore()
       const ref = doc(collection(db, 'users'), currentUser.uid)
