@@ -9,8 +9,9 @@ export const useGetUser = () => {
   const [user, setUser] = useState<UserType | null>(null)
 
   useEffect(() => {
+    if (!currentUser) return
+    
     const loadUser = async () => {
-      if (!currentUser) return
       const db = getFirestore()
       const ref = doc(collection(db, 'users'), currentUser.uid)
       const document = await getDoc(ref)

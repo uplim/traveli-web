@@ -6,7 +6,7 @@ const User = () => {
   const { user, currentUser } = useGetUser()
 
   return (
-    <>{!user || !currentUser ? 'かきくけこ' : <FormUserProfile data={user} />}</>
+    <>{!user || !currentUser ? <Loading /> : <FormUserProfile data={user} />}</>
   )
 }
 

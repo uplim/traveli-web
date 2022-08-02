@@ -49,7 +49,7 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
 
   return (
     <>
-      {isAccessibleBeforeSignIn || currentUser ? <>{children}</> : 'あいうえお'}
+      {isAccessibleBeforeSignIn || currentUser ? <>{children}</> : <Loading />}
     </>
   )
 }
