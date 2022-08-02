@@ -1,7 +1,7 @@
 # Traveli
 “メモ帳以上、旅程表アプリ未満” の旅程管理アプリ  
 
-URL: '未定'  
+URL: https://traveli-web.vercel.app
 Storybook: https://traveli-dev.github.io/traveli-web/storybook
 
 ## 🔑 Requirements
@@ -12,16 +12,18 @@ Storybook: https://traveli-dev.github.io/traveli-web/storybook
   # build
     docker compose build front
     docker compose up front
-  # enter in a docker container (別のターミナルで)
+  # docker コンテナに入る (frontを起動した状態で別のターミナルから)
     docker compose exec front sh
-  # create .env
+  # create .env (.envファイルに、別途添付の環境変数をコピペしてください)
     cp .env.example .env
   # exit docker container
     exit
+  # vscodeでエラーが出る場合は、下記コマンドを打ってください
   # copy modules to local (windowsでは管理者権限が必要です)
     docker cp traveli-web-front:/home/app/node_modules/ ./front/
 ```
-.envには、別途共有の環境変数を入力してください。
+以下の URL にブラウザからアクセスできるか確認してください。
+- http://localhost:3000
 
 ## 💫 Start Node
 ```sh
@@ -30,9 +32,6 @@ Storybook: https://traveli-dev.github.io/traveli-web/storybook
   # 落とす
     docker compose down front
 ```
-
-以下の URL にブラウザからアクセスできるか確認してください。
-- http://localhost:3000
 
 ## 📕 Start Storybook
 ```sh
