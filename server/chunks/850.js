@@ -769,7 +769,7 @@ firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies_
 
 const useGetTravelink = ()=>{
     const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
-    const { 0: travelink , 1: setTravelink  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    const { 0: travelink , 1: setTravelink  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
     const traveliId = router.query.traveliId;
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
@@ -891,9 +891,7 @@ const useCreateUser = ()=>{
         const userRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)(usersCollection, user.uid);
         const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(userRef);
         if (document.exists()) {
-            const data = document.data();
-            if (!data.name) router.push("/user");
-            else router.push("/home");
+            router.push("/home");
             return;
         }
         await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.setDoc)(userRef, {
@@ -935,7 +933,7 @@ firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies_
 
 const useGetUser = ()=>{
     const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
-    const { 0: user , 1: setUser  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    const { 0: user , 1: setUser  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
         const loadUser = async ()=>{
             if (!currentUser) return;
