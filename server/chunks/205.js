@@ -659,7 +659,7 @@ const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
     name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")
 });
 const useFormCreateUpdateUser = (userData)=>{
-    const history = (0,recoil__WEBPACK_IMPORTED_MODULE_6__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_7__/* .historyState */ .f);
+    const [history, setHistory] = (0,recoil__WEBPACK_IMPORTED_MODULE_6__.useRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_7__/* .historyState */ .f);
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_8__.useRouter)();
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.useBoolean)();
     const { register , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.useForm)({
@@ -684,6 +684,7 @@ const useFormCreateUpdateUser = (userData)=>{
             console.error(err);
         } finally{
             if (history === "/") {
+                setHistory("/user");
                 router.push("/home");
             }
             setDisabled.off();
