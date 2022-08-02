@@ -60,8 +60,10 @@ const useSignInAnonymously = ()=>{
         const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
         try {
             if (auth.currentUser) {
-                router.push("/home");
-                return;
+                if (!auth.currentUser.isAnonymous) {
+                    router.push("/home");
+                    return;
+                }
             }
             await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInAnonymously)(auth);
             (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, (currentUser)=>{
@@ -120,7 +122,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([fire
 const useSignInGoogle = ()=>{
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.useBoolean)();
-    const [currentUser, setCurrentUser] = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
+    const [currentUser1, setCurrentUser] = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
     const { createUser  } = (0,_hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateUser */ .O2)();
     const signInGoogleHandler = async ()=>{
         setDisabled.on();
@@ -128,38 +130,39 @@ const useSignInGoogle = ()=>{
         const provider = new firebase_auth__WEBPACK_IMPORTED_MODULE_1__.GoogleAuthProvider();
         // 匿名認証済みの時は、リンクさせる
         if (auth.currentUser) {
-            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.linkWithPopup)(auth.currentUser, provider).then((result)=>{
-                const user = result.user;
-                setCurrentUser({
-                    uid: user.uid,
-                    isAnonymous: user.isAnonymous
-                });
+            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.linkWithPopup)(auth.currentUser, provider);
+            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, (currentUser)=>{
+                if (currentUser) {
+                    setCurrentUser({
+                        uid: currentUser.uid,
+                        isAnonymous: currentUser.isAnonymous
+                    });
+                    createUser(currentUser);
+                } else {
+                    setCurrentUser(null);
+                }
                 router.push("/home");
-            }).catch((err)=>{
-                console.error(err);
-                setCurrentUser(null);
-                setDisabled.off();
             });
         } else {
-            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithPopup)(auth, provider).then((result)=>{
-                const user = result.user;
-                setCurrentUser({
-                    uid: user.uid,
-                    isAnonymous: user.isAnonymous
-                });
+            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithPopup)(auth, provider);
+            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, (currentUser)=>{
+                if (currentUser) {
+                    setCurrentUser({
+                        uid: currentUser.uid,
+                        isAnonymous: currentUser.isAnonymous
+                    });
+                    createUser(currentUser);
+                } else {
+                    setCurrentUser(null);
+                }
                 router.push("/home");
-                createUser(user);
-            }).catch((err)=>{
-                console.error(err);
-                setCurrentUser(null);
-                setDisabled.off();
             });
         }
     };
     return {
         signInGoogleHandler,
         disabled,
-        currentUser
+        currentUser: currentUser1
     };
 };
 
