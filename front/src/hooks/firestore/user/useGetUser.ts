@@ -6,7 +6,7 @@ import { UserType } from '@/types/db'
 
 export const useGetUser = () => {
   const currentUser = useRecoilValue(currentUserState)
-  const [user, setUser] = useState<UserType>()
+  const [user, setUser] = useState<UserType | null>(null)
 
   useEffect(() => {
     const loadUser = async () => {

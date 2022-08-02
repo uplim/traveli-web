@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 export const useGetTravelink = () => {
   const currentUser = useRecoilValue(currentUserState)
-  const [travelink, setTravelink] = useState<TravelinkRequestType>()
+  const [travelink, setTravelink] = useState<TravelinkRequestType | null>(null)
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
