@@ -52,17 +52,19 @@ const Home = () => {
           />
 
           <TabHome data={travelinkList} bookmarkData={bookmarkList} />
-          <Link href={'/create'} passHref>
-            <ButtonIconRound
-              as={'a'}
-              iconType={'plus'}
-              position={'fixed'}
-              top={'calc(100vh - 6.4rem - 4.8rem)'}
-              right={'1.6rem'}
-              w={'6.4rem'}
-              h={'6.4rem'}
-            />
-          </Link>
+          <Box position={'fixed'} bottom={0}>
+            <Link href={'/create'} passHref>
+              <ButtonIconRound
+                as={'a'}
+                iconType={'plus'}
+                position={'fixed'}
+                bottom={'5rem'}
+                right={'1.9rem'}
+                w={'6.4rem'}
+                h={'6.4rem'}
+              />
+            </Link>
+          </Box>
         </>
       )}
     </>
