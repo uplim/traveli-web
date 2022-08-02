@@ -935,8 +935,8 @@ const useGetUser = ()=>{
     const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
     const { 0: user , 1: setUser  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
+        if (!currentUser) return;
         const loadUser = async ()=>{
-            if (!currentUser) return;
             const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
             const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "users"), currentUser.uid);
             const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getDoc)(ref);
