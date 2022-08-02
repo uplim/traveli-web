@@ -10,7 +10,6 @@ export const useSignInAnonymously = () => {
   const [disabled, setDisabled] = useBoolean()
   const setCurrentUser = useSetRecoilState(currentUserState)
   const setHistory = useSetRecoilState(historyState)
-
   const { createUser } = useCreateUser()
 
   const signInAnonymouslyHandler = async () => {
@@ -19,8 +18,10 @@ export const useSignInAnonymously = () => {
 
     try {
       if (auth.currentUser) {
-        router.push('/home')
-        return
+        if (!auth.currentUser.isAnonymous) {
+          router.push('/home')
+          return
+        }
       }
       await signInAnonymously(auth)
       onAuthStateChanged(auth, (currentUser) => {

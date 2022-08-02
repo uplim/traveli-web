@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <>
-      {!user || !travelinkList || !bookmarkList || !currentUser ? (
+      {!user || !currentUser ? (
         <Loading />
       ) : (
         <>

@@ -3,6 +3,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   linkWithPopup,
+  onAuthStateChanged,
   signInWithPopup
 } from 'firebase/auth'
 import { useRecoilState } from 'recoil'
@@ -24,35 +25,32 @@ export const useSignInGoogle = () => {
     // 匿名認証済みの時は、リンクさせる
     if (auth.currentUser) {
       await linkWithPopup(auth.currentUser, provider)
-        .then((result) => {
-          const user = result.user
+      onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
           setCurrentUser({
-            uid: user.uid,
-            isAnonymous: user.isAnonymous
+            uid: currentUser.uid,
+            isAnonymous: currentUser.isAnonymous
           })
-          router.push('/home')
-        })
-        .catch((err) => {
-          console.error(err)
+          createUser(currentUser)
+        } else {
           setCurrentUser(null)
-          setDisabled.off()
-        })
+        }
+        router.push('/home')
+      })
     } else {
       await signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user
+      onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
           setCurrentUser({
-            uid: user.uid,
-            isAnonymous: user.isAnonymous
+            uid: currentUser.uid,
+            isAnonymous: currentUser.isAnonymous
           })
-          router.push('/home')
-          createUser(user)
-        })
-        .catch((err) => {
-          console.error(err)
+          createUser(currentUser)
+        } else {
           setCurrentUser(null)
-          setDisabled.off()
-        })
+        }
+        router.push('/home')
+      })
     }
   }
 
