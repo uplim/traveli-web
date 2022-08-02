@@ -944,7 +944,9 @@ const useGetUser = ()=>{
             setUser(getUser);
         };
         loadUser();
-    }, []);
+    }, [
+        currentUser
+    ]);
     return {
         user,
         currentUser
