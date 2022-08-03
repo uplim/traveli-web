@@ -134,7 +134,7 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Box, {
                         marginTop: "0.8rem",
-                        bgImage: image ? URL.createObjectURL(image) : travelinkData ? travelinkData.thumbnail : "",
+                        bgImage: image ? image : travelinkData ? travelinkData.thumbnail : "",
                         bgRepeat: "no-repeat",
                         bgSize: "cover",
                         bgPosition: "center center",
@@ -339,7 +339,7 @@ const FormUserProfile = ({ data  })=>{
                         marginBottom: "2.4rem",
                         bgColor: "base",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
-                            src: image ? URL.createObjectURL(image) : data.icon,
+                            src: image ? image : data.icon,
                             w: "12.9rem",
                             h: "12.9rem",
                             onClick: onClickButton
@@ -557,7 +557,7 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
             ]
         }
     });
-    const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_7__/* .useUploadImage */ .H)();
+    const { uploadImage , imageFile , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_7__/* .useUploadImage */ .H)();
     const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__/* .useCreateTravelink */ .h0;
     const updateTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__/* .useUpdateTravelink */ .pz;
     const { fields , append , remove  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useFieldArray)({
@@ -576,8 +576,8 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
         try {
             setDisabled.on();
             // 画像に変更が入っていたらrequest bodyに画像を含める
-            if (image && isImageChanged) {
-                const downloadUrl = await uploadImage(image);
+            if (imageFile && isImageChanged) {
+                const downloadUrl = await uploadImage(imageFile);
                 req.thumbnail = downloadUrl;
             }
             !travelinkData ? await create(req) : await update(req, traveliId1);
@@ -668,15 +668,15 @@ const useFormCreateUpdateUser = (userData)=>{
             name: userData.name
         }
     });
-    const { uploadImage , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_4__/* .useUploadImage */ .H)();
+    const { uploadImage , image , imageFile , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_4__/* .useUploadImage */ .H)();
     const updateUser = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useUpdateUser */ .Io;
     const onSubmit = async (data)=>{
         const req = data;
         try {
             setDisabled.on();
             // 画像に変更が入っていたらrequest bodyに画像を含める
-            if (image && isImageChanged) {
-                const downloadUrl = await uploadImage(image);
+            if (imageFile && isImageChanged) {
+                const downloadUrl = await uploadImage(imageFile);
                 req.icon = downloadUrl;
             }
             await updateUser(req, userData.uid);
@@ -685,8 +685,8 @@ const useFormCreateUpdateUser = (userData)=>{
         } finally{
             if (history === "/") {
                 setHistory("/user");
-                router.push("/home");
             }
+            router.push("/home");
             setDisabled.off();
         }
     };
@@ -775,7 +775,8 @@ firebase_storage__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.
 
 
 const useUploadImage = ()=>{
-    const { 0: image , 1: setImage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
+    const { 0: image , 1: setImage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
+    const { 0: imageFile1 , 1: setImageFile  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
     const [isImageChanged, setIsChanged] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.useBoolean)();
     const uploadImage = (imageFile)=>{
         const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.getStorage)();
@@ -788,13 +789,16 @@ const useUploadImage = ()=>{
     };
     const handleChangeImage = (e)=>{
         if (e.target.files !== null) {
-            setImage(e.target.files[0]);
+            const url = URL.createObjectURL(e.target.files[0]);
+            setImage(url);
+            setImageFile(e.target.files[0]);
             setIsChanged.on();
         }
     };
     return {
         uploadImage,
         image,
+        imageFile: imageFile1,
         handleChangeImage,
         isImageChanged
     };

@@ -944,10 +944,7 @@ const useGetUser = ()=>{
             setUser(getUser);
         };
         loadUser();
-    }, [
-        currentUser,
-        user
-    ]);
+    }, []);
     return {
         user,
         currentUser
