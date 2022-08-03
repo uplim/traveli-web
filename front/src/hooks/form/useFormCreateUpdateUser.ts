@@ -53,8 +53,8 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     } finally {
       if (history === '/') {
         setHistory('/user')
-        router.push('/home')
       }
+      router.push('/home')
       setDisabled.off()
     }
   }
