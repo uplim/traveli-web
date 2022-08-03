@@ -21,7 +21,7 @@ export const useGetUser = () => {
     }
 
     loadUser()
-  }, [currentUser, user])
+  }, [])
 
   return { user, currentUser }
 }
