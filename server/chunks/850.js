@@ -578,7 +578,7 @@ const useCreateBookmark = async (uid, traveliId, data)=>{
     const subColRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.collection)(db, "users", uid, "bookmarks"), traveliId);
     try {
         await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.setDoc)(subColRef, {
-            thumbnail: data.thumbnail,
+            thumbnail: data.thumbnail ? data.thumbnail : null,
             date: data.date,
             title: data.title,
             id: data.id,

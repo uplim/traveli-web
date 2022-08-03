@@ -114,7 +114,7 @@ const CardHome = ({ data  })=>{
             marginTop: "2.2rem",
             children: [
                 /*#__PURE__*/ jsx_runtime_.jsx(react_.Box, {
-                    bgImage: data.thumbnail,
+                    bgImage: data.thumbnail ? data.thumbnail : "",
                     bgSize: "cover",
                     bgRepeat: "no-repeat",
                     bgPosition: "center center",
