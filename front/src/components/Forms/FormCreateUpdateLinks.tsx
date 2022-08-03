@@ -112,13 +112,7 @@ export const FormCreateUpdateLinks = ({
         />
         <Box
           marginTop={'0.8rem'}
-          bgImage={
-            image
-              ? URL.createObjectURL(image)
-              : travelinkData
-              ? travelinkData.thumbnail
-              : ''
-          }
+          bgImage={image ? image : travelinkData ? travelinkData.thumbnail : ''}
           bgRepeat={'no-repeat'}
           bgSize={'cover'}
           bgPosition={'center center'}

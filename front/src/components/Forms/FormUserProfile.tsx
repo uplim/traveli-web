@@ -67,7 +67,7 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
             bgColor={'base'}
           >
             <Avatar
-              src={image ? URL.createObjectURL(image) : data.icon}
+              src={image ? image : data.icon}
               w={'12.9rem'}
               h={'12.9rem'}
               onClick={onClickButton}

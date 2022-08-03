@@ -31,7 +31,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     defaultValues: { name: userData.name }
   })
 
-  const { uploadImage, image, handleChangeImage, isImageChanged } =
+  const { uploadImage, image, imageFile, handleChangeImage, isImageChanged } =
     useUploadImage()
 
   const updateUser = useUpdateUser
@@ -42,8 +42,8 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     try {
       setDisabled.on()
       // 画像に変更が入っていたらrequest bodyに画像を含める
-      if (image && isImageChanged) {
-        const downloadUrl = await uploadImage(image)
+      if (imageFile && isImageChanged) {
+        const downloadUrl = await uploadImage(imageFile)
         req.icon = downloadUrl
       }
 

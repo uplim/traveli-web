@@ -67,7 +67,7 @@ export const useFormCreateUpdateLinks = (
     }
   })
 
-  const { uploadImage, image, handleChangeImage, isImageChanged } =
+  const { uploadImage, imageFile, image, handleChangeImage, isImageChanged } =
     useUploadImage()
 
   const createTravelink = useCreateTravelink
@@ -91,8 +91,8 @@ export const useFormCreateUpdateLinks = (
     try {
       setDisabled.on()
       // 画像に変更が入っていたらrequest bodyに画像を含める
-      if (image && isImageChanged) {
-        const downloadUrl = await uploadImage(image)
+      if (imageFile && isImageChanged) {
+        const downloadUrl = await uploadImage(imageFile)
         req.thumbnail = downloadUrl
       }
 
