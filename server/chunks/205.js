@@ -134,7 +134,7 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                     }),
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Box, {
                         marginTop: "0.8rem",
-                        bgImage: image ? URL.createObjectURL(image) : travelinkData?.thumbnail,
+                        bgImage: image ? URL.createObjectURL(image) : travelinkData ? travelinkData.thumbnail : "",
                         bgRepeat: "no-repeat",
                         bgSize: "cover",
                         bgPosition: "center center",
