@@ -11,7 +11,7 @@ export const useCreateBookmark = async (
 
   try {
     await setDoc(subColRef, {
-      thumbnail: data.thumbnail,
+      thumbnail: data.thumbnail ? data.thumbnail : null,
       date: data.date,
       title: data.title,
       id: data.id,

@@ -24,7 +24,7 @@ export const CardHome = ({ data }: CardHomeProps) => {
         marginTop={'2.2rem'}
       >
         <Box
-          bgImage={data.thumbnail}
+          bgImage={data.thumbnail ? data.thumbnail : ''}
           bgSize={'cover'}
           bgRepeat={'no-repeat'}
           bgPosition={'center center'}
