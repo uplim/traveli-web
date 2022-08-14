@@ -17,6 +17,8 @@ const schema = yup.object({
 
 export const useFormCreateUpdateUser = (userData: UserType) => {
   const router = useRouter()
+  const { isFirst } = router.query
+
   const [disabled, setDisabled] = useBoolean()
 
   const {
@@ -45,10 +47,13 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
       }
 
       await updateUser(req, userData.uid)
+
+      if (isFirst) {
+        router.push('/home')
+      }
     } catch (err) {
       console.error(err)
     } finally {
-      router.push('/home')
       setDisabled.off()
     }
   }
@@ -61,6 +66,6 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     disabled,
     handleChangeImage,
     image,
-    history
+    isFirst
   }
 }

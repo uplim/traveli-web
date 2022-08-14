@@ -30,7 +30,7 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
     disabled,
     handleChangeImage,
     image,
-    history
+    isFirst
   } = useFormCreateUpdateUser(data)
 
   const inputRef = useRef<HTMLInputElement>(null)
@@ -42,7 +42,7 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
     <>
       <Box as={'form'} height={'100vh'} position={'relative'}>
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-          {history !== '/' && (
+          {!isFirst && (
             <NextLink href={'/home'} passHref>
               <IconButton
                 aria-label="return"
