@@ -8,6 +8,7 @@ import { UserType } from '@/types/db'
 import { useRecoilState } from 'recoil'
 import { historyState } from '@/recoil/atoms'
 import { useRouter } from 'next/router'
+import { useToast } from '@chakra-ui/react'
 
 type Inputs = {
   name: string
@@ -21,6 +22,9 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   const [history, setHistory] = useRecoilState(historyState)
   const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
+
+  const toast = useToast()
+  const id = 'test'
 
   const {
     register,
@@ -46,15 +50,26 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
         const downloadUrl = await uploadImage(imageFile)
         req.icon = downloadUrl
       }
-
       await updateUser(req, userData.uid)
+      router.push('/home')
     } catch (err) {
       console.error(err)
+      if (!toast.isActive(id)) {
+        toast({
+          id,
+          title: 'Error',
+          description: 'Failed hogehoge',
+          position: 'top',
+          status: 'error',
+          duration: 3000,
+          isClosable: true
+        })
+      }
     } finally {
       if (history === '/') {
         setHistory('/user')
       }
-      router.push('/home')
+      // router.push('/home')
       setDisabled.off()
     }
   }
