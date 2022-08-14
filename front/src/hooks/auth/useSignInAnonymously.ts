@@ -3,13 +3,11 @@ import { getAuth, onAuthStateChanged, signInAnonymously } from 'firebase/auth'
 import { useSetRecoilState } from 'recoil'
 import { useBoolean } from '@chakra-ui/react'
 import { currentUserState } from '@/recoil/atoms'
-import { useCreateUser } from '@/hooks/firestore'
 
 export const useSignInAnonymously = () => {
   const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
   const setCurrentUser = useSetRecoilState(currentUserState)
-  const { createUser } = useCreateUser()
 
   const signInAnonymouslyHandler = async () => {
     setDisabled.on()
@@ -17,24 +15,23 @@ export const useSignInAnonymously = () => {
 
     try {
       if (auth.currentUser) {
-        if (!auth.currentUser.isAnonymous) {
-          router.push('/home')
-          return
-        }
+        router.push('/home')
+        return
       }
       await signInAnonymously(auth)
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
           setCurrentUser({
             uid: currentUser.uid,
-            isAnonymous: currentUser.isAnonymous
+            isAnonymous: currentUser.isAnonymous,
+            name: '',
+            icon: ''
           })
-          createUser(currentUser)
         } else {
           setCurrentUser(null)
         }
       })
-      router.push('/user')
+      router.push('/user?first=true')
     } catch (err) {
       console.error(err)
       setDisabled.off()
