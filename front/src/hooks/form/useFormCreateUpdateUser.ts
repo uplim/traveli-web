@@ -8,7 +8,7 @@ import { UserType } from '@/types/db'
 import { useRecoilState } from 'recoil'
 import { historyState } from '@/recoil/atoms'
 import { useRouter } from 'next/router'
-import { useToast } from '@chakra-ui/react'
+import { toast } from 'react-toastify'
 
 type Inputs = {
   name: string
@@ -22,9 +22,6 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   const [history, setHistory] = useRecoilState(historyState)
   const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
-
-  const toast = useToast()
-  const id = 'test'
 
   const {
     register,
@@ -44,6 +41,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     const req = data as UserType
 
     try {
+      //throw 'Error'
       setDisabled.on()
       // 画像に変更が入っていたらrequest bodyに画像を含める
       if (imageFile && isImageChanged) {
@@ -54,17 +52,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
       router.push('/home')
     } catch (err) {
       console.error(err)
-      if (!toast.isActive(id)) {
-        toast({
-          id,
-          title: 'Error',
-          description: 'Failed hogehoge',
-          position: 'top',
-          status: 'error',
-          duration: 3000,
-          isClosable: true
-        })
-      }
+      toast.error('Failed')
     } finally {
       if (history === '/') {
         setHistory('/user')
