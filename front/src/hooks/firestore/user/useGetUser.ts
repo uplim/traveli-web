@@ -20,6 +20,12 @@ export const useGetUser = () => {
       const document = await getDoc(ref)
 
       if (!document.exists()) {
+        // ユーザ未作成で/userにアクセスしようとしたとき
+        if (!isFirst) {
+          router.push('/user?isFirst=true')
+          return
+        }
+
         setUser({
           uid: currentUser.uid,
           isAnonymous: true,
