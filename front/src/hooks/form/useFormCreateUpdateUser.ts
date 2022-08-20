@@ -1,4 +1,4 @@
-import { useForm, Path, useWatch } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useBoolean } from '@chakra-ui/react'
@@ -43,13 +43,13 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   })
 
   const handleUploadFile = async (
-    event: React.ChangeEvent<HTMLInputElement>,
-    name: Path<Inputs>
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     setIsUploading.on()
     if (event.currentTarget.files) {
-      const url = (await uploadImage(event.currentTarget.files[0])) || ''
-      setValue(name, url)
+      const url =
+        (await uploadImage(event.currentTarget.files[0], 'users')) || ''
+      setValue('icon', url)
     }
     setIsUploading.off()
   }

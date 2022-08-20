@@ -90,9 +90,7 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
                 src={currentIcon}
               >
                 <VisuallyHiddenInput
-                  onChange={(e) => {
-                    handleUploadFile(e, 'icon')
-                  }}
+                  onChange={handleUploadFile}
                   id={'icon'}
                   type={'file'}
                   accept={'image/*'}
