@@ -41,7 +41,6 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     const req = data as UserType
 
     try {
-      //throw 'Error'
       setDisabled.on()
       // 画像に変更が入っていたらrequest bodyに画像を含める
       if (imageFile && isImageChanged) {
@@ -49,7 +48,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
         req.icon = downloadUrl
       }
       await updateUser(req, userData.uid)
-      router.push('/home')
+      //router.push('/home')
     } catch (err) {
       console.error(err)
       toast.error('Failed')
@@ -57,7 +56,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
       if (history === '/') {
         setHistory('/user')
       }
-      // router.push('/home')
+      router.push('/home')
       setDisabled.off()
     }
   }
