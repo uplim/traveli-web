@@ -40,13 +40,14 @@ export const useSignInGoogle = () => {
       await signInWithPopup(auth, provider)
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
-          setCurrentUser({
+          const userData = {
             uid: currentUser.uid,
             isAnonymous: currentUser.isAnonymous,
             name: currentUser.providerData[0].displayName ?? '',
             icon: currentUser.providerData[0].photoURL ?? ''
-          })
-          createUser(currentUser)
+          }
+          setCurrentUser(userData)
+          createUser(userData)
         } else {
           setCurrentUser(null)
         }

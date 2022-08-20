@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form'
+import { useForm, Path } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useBoolean } from '@chakra-ui/react'
@@ -22,33 +22,38 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   const { isFirst } = router.query
 
   const [disabled, setDisabled] = useBoolean()
+  const createUser = useCreateUser
+  const uploadImage = useUploadImage
+  const updateUser = useUpdateUser
 
   const {
     register,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors }
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
-    defaultValues: { name: userData.name }
+    defaultValues: { name: userData.name, icon: userData.icon ?? '' }
   })
 
-  const { uploadImage, image, imageFile, handleChangeImage, isImageChanged } =
-    useUploadImage()
+  const handleUploadFile = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+    name: Path<Inputs>
+  ) => {
+    if (event.currentTarget.files) {
+      const url = (await uploadImage(event.currentTarget.files[0])) || ''
+      setValue(name, url)
+    }
+  }
 
-  const updateUser = useUpdateUser
+  const { icon: currentIcon } = getValues()
 
   const onSubmit = async (data: Inputs) => {
-    const req = data as UserType
-
     try {
       setDisabled.on()
-      // 画像に変更が入っていたらrequest bodyに画像を含める
-      if (imageFile && isImageChanged) {
-        const downloadUrl = await uploadImage(imageFile)
-        req.icon = downloadUrl
-      }
 
-      await updateUser(req, userData.uid)
+      isFirst ? await create(data) : await update(data)
 
       if (isFirst) {
         router.push('/home')
@@ -60,14 +65,30 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     }
   }
 
+  const create = async (data: Inputs) => {
+    await createUser({
+      ...data,
+      uid: userData.uid,
+      isAnonymous: userData.isAnonymous
+    })
+  }
+
+  const update = async (data: Inputs) => {
+    await updateUser({
+      ...data,
+      uid: userData.uid,
+      isAnonymous: userData.isAnonymous
+    })
+  }
+
   return {
     register,
     handleSubmit,
     onSubmit,
     errors,
     disabled,
-    handleChangeImage,
-    image,
-    isFirst
+    handleUploadFile,
+    isFirst,
+    currentIcon
   }
 }

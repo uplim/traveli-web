@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import NextLink from 'next/link'
 import {
   Avatar,
@@ -28,15 +27,10 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
     onSubmit,
     errors,
     disabled,
-    handleChangeImage,
-    image,
-    isFirst
+    handleUploadFile,
+    isFirst,
+    currentIcon
   } = useFormCreateUpdateUser(data)
-
-  const inputRef = useRef<HTMLInputElement>(null)
-  const onClickButton = () => {
-    inputRef.current?.click()
-  }
 
   return (
     <>
@@ -45,8 +39,8 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
           {!isFirst && (
             <NextLink href={'/home'} passHref>
               <IconButton
-                aria-label="return"
-                size="lg"
+                aria-label={'return'}
+                size={'lg'}
                 icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
               />
             </NextLink>
@@ -67,21 +61,25 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
             bgColor={'base'}
           >
             <Avatar
-              src={image ? image : data.icon}
+              as={'label'}
               w={'12.9rem'}
               h={'12.9rem'}
-              onClick={onClickButton}
-            />
+              defaultValue={data.icon ?? ''}
+              src={currentIcon}
+            >
+              <VisuallyHiddenInput
+                onChange={(e) => {
+                  handleUploadFile(e, 'icon')
+                }}
+                id={'icon'}
+                type={'file'}
+                accept={'image/*'}
+              />
+              <VisuallyHiddenInput {...register('icon')} />
+            </Avatar>
           </Box>
         </Flex>
 
-        <VisuallyHiddenInput
-          onChange={handleChangeImage}
-          ref={inputRef}
-          id="icon"
-          type="file"
-          accept="image/*"
-        />
         <FormControl isInvalid={errors.name ? true : false}>
           <FormLabel htmlFor="name" fontSize={'md'}>
             ニックネーム

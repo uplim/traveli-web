@@ -22,7 +22,9 @@ export const useGetUser = () => {
       if (!document.exists()) {
         setUser({
           uid: currentUser.uid,
-          isAnonymous: true
+          isAnonymous: true,
+          icon: '',
+          name: ''
         })
         return
       }
