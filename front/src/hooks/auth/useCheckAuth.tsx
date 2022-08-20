@@ -9,7 +9,13 @@ type UseCheckAuthProps = {
   children: React.ReactNode
 }
 
-const accessibleBeforeSignInPages = ['/', '/signin', '/signup', '/404']
+const accessibleBeforeSignInPages = [
+  '/',
+  '/signin',
+  '/signup',
+  '/404',
+  '/goodbye'
+]
 
 export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)

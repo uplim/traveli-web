@@ -7,8 +7,10 @@ import {
   query,
   where
 } from 'firebase/firestore'
+import { useRouter } from 'next/router'
 
 export const useDeleteUser = () => {
+  const router = useRouter()
   const onClickDeleteUser = async (id: string) => {
     const db = getFirestore()
 
@@ -19,7 +21,6 @@ export const useDeleteUser = () => {
 
     try {
       await deleteDoc(usersRef)
-      console.log('削除！')
     } catch (e) {
       console.error(e)
     }
@@ -35,6 +36,7 @@ export const useDeleteUser = () => {
     } catch (e) {
       console.error(e)
     }
+    router.push('/goodbye')
   }
 
   return { onClickDeleteUser }
