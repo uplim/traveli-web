@@ -21,7 +21,7 @@ type FormUserProfileProps = {
   data: UserType
 }
 
-export const FormUserProfile = ({ data }: FormUserProfileProps) => {
+export const FormCreateUpdateUser = ({ data }: FormUserProfileProps) => {
   const {
     register,
     handleSubmit,
