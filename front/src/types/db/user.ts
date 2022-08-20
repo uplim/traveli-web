@@ -4,5 +4,5 @@ export type UserType = firestore.DocumentData & {
   uid: string
   isAnonymous: boolean
   name?: string
-  icon?: string
+  icon?: string | null
 }

@@ -15,7 +15,7 @@ export const useSignInGoogle = () => {
   const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
-  const { createUser } = useCreateUser()
+  const createUser = useCreateUser
 
   const signInGoogleHandler = async () => {
     setDisabled.on()
@@ -24,10 +24,6 @@ export const useSignInGoogle = () => {
 
     // 匿名認証済みの時は、リンクさせる
     if (auth.currentUser) {
-      // すでにgoogle連携済みの場合
-      if (!auth.currentUser.isAnonymous) {
-        router.push('/home')
-      }
       await linkWithPopup(auth.currentUser, provider)
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {

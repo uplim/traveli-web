@@ -3,16 +3,18 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useBoolean } from '@chakra-ui/react'
 import { useUploadImage } from '@/hooks/upload'
-import { useUpdateUser } from '@/hooks/firestore'
+import { useCreateUser, useUpdateUser } from '@/hooks/firestore'
 import { UserType } from '@/types/db'
 import { useRouter } from 'next/router'
 
 type Inputs = {
   name: string
+  icon: string
 }
 
 const schema = yup.object({
-  name: yup.string().required('ニックネームを入力してください')
+  name: yup.string().required('ニックネームを入力してください'),
+  icon: yup.string().nullable()
 })
 
 export const useFormCreateUpdateUser = (userData: UserType) => {
