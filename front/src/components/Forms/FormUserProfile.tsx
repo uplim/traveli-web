@@ -10,7 +10,8 @@ import {
   Spacer,
   VisuallyHiddenInput,
   IconButton,
-  FormErrorMessage
+  FormErrorMessage,
+  Spinner
 } from '@chakra-ui/react'
 import { IconReturn } from '@/components/Icons'
 import { useFormCreateUpdateUser } from '@/hooks/form'
@@ -29,7 +30,8 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
     disabled,
     handleUploadFile,
     isFirst,
-    currentIcon
+    currentIcon,
+    isUploading
   } = useFormCreateUpdateUser(data)
 
   return (
@@ -60,23 +62,44 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
             marginBottom={'2.4rem'}
             bgColor={'base'}
           >
-            <Avatar
-              as={'label'}
-              w={'12.9rem'}
-              h={'12.9rem'}
-              defaultValue={data.icon ?? ''}
-              src={currentIcon}
-            >
-              <VisuallyHiddenInput
-                onChange={(e) => {
-                  handleUploadFile(e, 'icon')
-                }}
-                id={'icon'}
-                type={'file'}
-                accept={'image/*'}
-              />
-              <VisuallyHiddenInput {...register('icon')} />
-            </Avatar>
+            {isUploading ? (
+              <Flex
+                w={'12.9rem'}
+                h={'12.9rem'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                flexDirection={'column'}
+                bg={'gray'}
+                rounded={'full'}
+              >
+                <Spinner
+                  thickness={'.4rem'}
+                  speed={'.65s'}
+                  emptyColor={'gray'}
+                  color={'brandBlue'}
+                  w={'6.4rem'}
+                  h={'6.4rem'}
+                />
+              </Flex>
+            ) : (
+              <Avatar
+                as={'label'}
+                w={'12.9rem'}
+                h={'12.9rem'}
+                defaultValue={data.icon ?? ''}
+                src={currentIcon}
+              >
+                <VisuallyHiddenInput
+                  onChange={(e) => {
+                    handleUploadFile(e, 'icon')
+                  }}
+                  id={'icon'}
+                  type={'file'}
+                  accept={'image/*'}
+                />
+                <VisuallyHiddenInput {...register('icon')} />
+              </Avatar>
+            )}
           </Box>
         </Flex>
 

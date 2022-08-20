@@ -1,4 +1,4 @@
-import { useForm, Path } from 'react-hook-form'
+import { useForm, Path, useWatch } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
 import { useBoolean } from '@chakra-ui/react'
@@ -20,7 +20,7 @@ const schema = yup.object({
 export const useFormCreateUpdateUser = (userData: UserType) => {
   const router = useRouter()
   const { isFirst } = router.query
-
+  const [isUploading, setIsUploading] = useBoolean()
   const [disabled, setDisabled] = useBoolean()
   const createUser = useCreateUser
   const uploadImage = useUploadImage
@@ -30,24 +30,29 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     register,
     handleSubmit,
     setValue,
-    getValues,
+    control,
     formState: { errors }
   } = useForm<Inputs>({
     resolver: yupResolver(schema),
     defaultValues: { name: userData.name, icon: userData.icon ?? '' }
   })
 
+  const currentIcon = useWatch({
+    control,
+    name: 'icon'
+  })
+
   const handleUploadFile = async (
     event: React.ChangeEvent<HTMLInputElement>,
     name: Path<Inputs>
   ) => {
+    setIsUploading.on()
     if (event.currentTarget.files) {
       const url = (await uploadImage(event.currentTarget.files[0])) || ''
       setValue(name, url)
     }
+    setIsUploading.off()
   }
-
-  const { icon: currentIcon } = getValues()
 
   const onSubmit = async (data: Inputs) => {
     try {
@@ -89,6 +94,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     disabled,
     handleUploadFile,
     isFirst,
+    isUploading,
     currentIcon
   }
 }
