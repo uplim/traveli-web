@@ -75,14 +75,6 @@ export const ModalQrCode = ({
               value={`https://traveli-web.vercel.app/${path}`}
               size={168}
               includeMargin={false}
-              imageSettings={{
-                src: '/images/traveli-logo.svg',
-                x: undefined,
-                y: undefined,
-                height: 32,
-                width: 32,
-                excavate: true
-              }}
             />
           </Box>
           <Text textAlign={'center'} margin={'0 auto'} w={'24rem'}>
