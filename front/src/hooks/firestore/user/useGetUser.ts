@@ -23,6 +23,8 @@ export const useGetUser = () => {
         // ユーザ未作成時は/user?isFirst=true以外アクセスできない
         if (!isFirst) {
           router.push('/user?isFirst=true')
+          // topから認証済み、ユーザ未作成で遷移した時にチラ見えするの防止
+          if (router.pathname === '/home') return
         }
 
         setUser({
