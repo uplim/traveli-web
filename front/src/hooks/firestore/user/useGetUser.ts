@@ -34,13 +34,10 @@ export const useGetUser = () => {
           name: ''
         })
         return
-      }
+      } 
 
       // ユーザ作成済みだけど初回フラグがtrueの時
-      if (isFirst) {
-        router.push('/user')
-        return
-      }
+      if (isFirst) router.push('/user')
 
       const getUser = document.data() as UserType
 
