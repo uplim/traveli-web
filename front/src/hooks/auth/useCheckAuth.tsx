@@ -55,9 +55,12 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
 
+  const isLogout = !currentUser && router.pathname === '/'
+  const isLogin = !!currentUser
+
   return (
     <>
-      {isAccessibleBeforeSignIn || (currentUser && !isLoading) ? (
+      {isAccessibleBeforeSignIn || (isLogin && !isLoading) || isLogout ? (
         <>{children}</>
       ) : (
         <Loading />
