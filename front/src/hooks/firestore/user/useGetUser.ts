@@ -20,10 +20,9 @@ export const useGetUser = () => {
       const document = await getDoc(ref)
 
       if (!document.exists()) {
-        // ユーザ未作成で/userにアクセスしようとしたとき
+        // ユーザ未作成時は/user?isFirst=true以外アクセスできない
         if (!isFirst) {
           router.push('/user?isFirst=true')
-          return
         }
 
         setUser({
