@@ -38,6 +38,7 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
             isAnonymous: currentUser.isAnonymous
           })
         } else {
+          // ログアウト
           router.push('/')
           setCurrentUser(null)
         }
