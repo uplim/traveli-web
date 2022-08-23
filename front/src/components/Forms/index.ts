@@ -1,2 +1,2 @@
-export { FormUserProfile } from '@/components/Forms/FormUserProfile'
+export { FormCreateUpdateUser } from '@/components/Forms/FormCreateUpdateUser'
 export { FormCreateUpdateLinks } from '@/components/Forms/FormCreateUpdateLinks'
