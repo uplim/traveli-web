@@ -39,10 +39,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7658);
-/* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_auth__WEBPACK_IMPORTED_MODULE_1__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__]);
-([firebase_auth__WEBPACK_IMPORTED_MODULE_1__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3125);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(1492);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_auth__WEBPACK_IMPORTED_MODULE_1__, firebase_firestore__WEBPACK_IMPORTED_MODULE_5__]);
+([firebase_auth__WEBPACK_IMPORTED_MODULE_1__, firebase_firestore__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -53,32 +53,33 @@ const useSignInAnonymously = ()=>{
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.useBoolean)();
     const setCurrentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useSetRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_4__/* .currentUserState */ .y);
-    const setHistory = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useSetRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_4__/* .historyState */ .f);
-    const { createUser  } = (0,_hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateUser */ .O2)();
     const signInAnonymouslyHandler = async ()=>{
         setDisabled.on();
         const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
         try {
-            if (auth.currentUser) {
-                if (!auth.currentUser.isAnonymous) {
-                    router.push("/home");
-                    return;
-                }
-            }
-            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInAnonymously)(auth);
-            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, (currentUser)=>{
-                if (currentUser) {
+            const res = await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInAnonymously)(auth);
+            (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, async (firebaseUser)=>{
+                if (firebaseUser) {
+                    const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_5__.getFirestore)();
+                    const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_5__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_5__.collection)(db, "users"), firebaseUser.uid);
+                    const document = await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_5__.getDoc)(ref);
+                    const isNewUser = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAdditionalUserInfo)(res)?.isNewUser;
+                    // 初回ログインで、かつuser作成済みの場合
+                    if (!isNewUser && document.exists()) {
+                        router.push("/home");
+                        return;
+                    }
                     setCurrentUser({
-                        uid: currentUser.uid,
-                        isAnonymous: currentUser.isAnonymous
+                        uid: firebaseUser.uid,
+                        isAnonymous: firebaseUser.isAnonymous,
+                        name: "",
+                        icon: ""
                     });
-                    createUser(currentUser);
                 } else {
                     setCurrentUser(null);
                 }
             });
-            setHistory("/");
-            router.push("/user");
+            router.push("/user?isFirst=true");
         } catch (err) {
             console.error(err);
             setDisabled.off();
@@ -107,7 +108,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(401);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9755);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3125);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
@@ -123,7 +124,7 @@ const useSignInGoogle = ()=>{
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_0__.useRouter)();
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.useBoolean)();
     const [currentUser1, setCurrentUser] = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
-    const { createUser  } = (0,_hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateUser */ .O2)();
+    const createUser = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateUser */ .O2;
     const signInGoogleHandler = async ()=>{
         setDisabled.on();
         const auth = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAuth)();
@@ -137,21 +138,26 @@ const useSignInGoogle = ()=>{
                         uid: currentUser.uid,
                         isAnonymous: currentUser.isAnonymous
                     });
-                    createUser(currentUser);
                 } else {
                     setCurrentUser(null);
                 }
                 router.push("/home");
             });
         } else {
-            await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithPopup)(auth, provider);
+            const res = await (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.signInWithPopup)(auth, provider);
+            const isNewUser = (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.getAdditionalUserInfo)(res)?.isNewUser;
             (0,firebase_auth__WEBPACK_IMPORTED_MODULE_1__.onAuthStateChanged)(auth, (currentUser)=>{
                 if (currentUser) {
-                    setCurrentUser({
-                        uid: currentUser.uid,
-                        isAnonymous: currentUser.isAnonymous
-                    });
-                    createUser(currentUser);
+                    if (isNewUser) {
+                        const userData = {
+                            uid: currentUser.uid,
+                            isAnonymous: currentUser.isAnonymous,
+                            name: currentUser.providerData[0].displayName ?? "",
+                            icon: currentUser.providerData[0].photoURL ?? ""
+                        };
+                        createUser(userData);
+                        setCurrentUser(userData);
+                    }
                 } else {
                     setCurrentUser(null);
                 }
@@ -183,7 +189,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(9755);
 /* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(401);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7658);
+/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3125);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_auth__WEBPACK_IMPORTED_MODULE_2__]);

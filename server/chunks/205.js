@@ -20,15 +20,13 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8930);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3970);
-/* harmony import */ var _hooks_input__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8144);
-/* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(628);
-/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(3307);
-/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2640);
-/* harmony import */ var _components_Buttons__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(2770);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_7__]);
-([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
-
+/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7658);
+/* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(628);
+/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3307);
+/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(2640);
+/* harmony import */ var _components_Buttons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2770);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__]);
+([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -42,8 +40,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hoo
 const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
     // 次へを押された時に最小化するためのstate
     const { 0: isClickNext , 1: setIsClickNext  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(travelinkData ? true : false);
-    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , image , handleChangeImage , setCategories , categories: categories1 , setValue  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_5__/* .useFormCreateUpdateLinks */ .j)(travelinkData, userData);
-    const { inputRef , onClickImage  } = (0,_hooks_input__WEBPACK_IMPORTED_MODULE_6__/* .useInputImage */ .U)();
+    const { register , handleSubmit , fields , append , remove , control , onSubmit , errors , disabled , isUploading , currentThumbnail , handleUploadFile , setCategories , categories: categories1 , setValue  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_5__/* .useFormCreateUpdateLinks */ .j)(travelinkData, userData);
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_3__.useRouter)();
     const traveliId = router.query.traveliId;
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Box, {
@@ -57,7 +54,7 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                     /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
                         href: travelinkData ? `/${traveliId}` : "/home",
                         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Link, {
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_8__/* .IconReturn */ .BK, {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_7__/* .IconReturn */ .BK, {
                                 bgColor: "none",
                                 w: "2.4rem",
                                 h: "2.4rem"
@@ -112,7 +109,7 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                         color: "#2D2D2D",
                         children: "\u65E5\u6642\uFF08\u4EFB\u610F\uFF09"
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_7__/* .InputDate */ .U, {
+                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__/* .InputDate */ .U, {
                         control: control,
                         name: "date"
                     })
@@ -126,35 +123,56 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                         color: "#2D2D2D",
                         children: "\u30B5\u30E0\u30CD\u30A4\u30EB\u753B\u50CF\uFF08\u4EFB\u610F\uFF09"
                     }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.VisuallyHiddenInput, {
-                        ref: inputRef,
-                        type: "file",
-                        accept: "image/*",
-                        onChange: handleChangeImage
-                    }),
-                    /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Box, {
-                        marginTop: "0.8rem",
-                        bgImage: image ? image : travelinkData ? travelinkData.thumbnail : "",
-                        bgRepeat: "no-repeat",
-                        bgSize: "cover",
-                        bgPosition: "center center",
-                        onClick: onClickImage,
+                    isUploading ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Flex, {
+                        w: "100%",
+                        h: "12.9rem",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        flexDirection: "column",
+                        bg: "gray",
+                        borderRadius: "1rem",
+                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Spinner, {
+                            thickness: ".4rem",
+                            speed: ".65s",
+                            emptyColor: "gray",
+                            color: "brandBlue",
+                            w: "6.4rem",
+                            h: "6.4rem"
+                        })
+                    }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Box, {
+                        as: "label",
+                        display: "block",
                         w: "100%",
                         h: "12.9rem",
                         borderRadius: "1rem",
                         bgColor: "#D2D6E1",
+                        marginTop: "0.8rem",
+                        bgRepeat: "no-repeat",
+                        bgImage: currentThumbnail ? currentThumbnail : travelinkData ? travelinkData.thumbnail : "",
+                        bgSize: "cover",
+                        bgPosition: "center center",
                         filter: "drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Flex, {
-                            h: "12.9rem",
-                            align: "center",
-                            justify: "center",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_8__/* .IconCamera */ .Lj, {
-                                zIndex: 1,
-                                w: "4.8rem",
-                                h: "4.8rem",
-                                color: "white"
+                        children: [
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Flex, {
+                                h: "12.9rem",
+                                align: "center",
+                                justify: "center",
+                                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_7__/* .IconCamera */ .Lj, {
+                                    zIndex: 1,
+                                    w: "4.8rem",
+                                    h: "4.8rem",
+                                    color: "white"
+                                })
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.VisuallyHiddenInput, {
+                                type: "file",
+                                accept: "image/*",
+                                onChange: handleUploadFile
+                            }),
+                            /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.VisuallyHiddenInput, {
+                                ...register("thumbnail")
                             })
-                        })
+                        ]
                     })
                 ]
             }),
@@ -166,7 +184,7 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
                 children: [
                     fields.map((item, index)=>{
                         return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((react__WEBPACK_IMPORTED_MODULE_1___default().Fragment), {
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Cards__WEBPACK_IMPORTED_MODULE_9__/* .CardEditWrapper */ .ak, {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Cards__WEBPACK_IMPORTED_MODULE_8__/* .CardEditWrapper */ .ak, {
                                 categories: categories1,
                                 setCategories: setCategories,
                                 label: item.label,
@@ -244,7 +262,7 @@ const FormCreateUpdateLinks = ({ travelinkData , userData , isOwner  })=>{
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__.Flex, {
                 justify: "center",
                 margin: "3rem 0 3.5rem 0",
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Buttons__WEBPACK_IMPORTED_MODULE_10__/* .Button */ .zx, {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Buttons__WEBPACK_IMPORTED_MODULE_9__/* .Button */ .zx, {
                     disabled: disabled,
                     variant: "round",
                     onClick: handleSubmit(onSubmit),
@@ -260,111 +278,125 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 1619:
+/***/ 9787:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "r": () => (/* binding */ FormUserProfile)
+/* harmony export */   "$": () => (/* binding */ FormCreateUpdateUser)
 /* harmony export */ });
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1664);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(3307);
-/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(3970);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_5__]);
-_hooks_form__WEBPACK_IMPORTED_MODULE_5__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1664);
+/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8930);
+/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3307);
+/* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7658);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_4__]);
+_hooks_form__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
 
 
 
 
-
-const FormUserProfile = ({ data  })=>{
-    const { register , handleSubmit , onSubmit , errors , disabled , handleChangeImage , image , history  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_5__/* .useFormCreateUpdateUser */ .q)(data);
-    const inputRef = (0,react__WEBPACK_IMPORTED_MODULE_1__.useRef)(null);
-    const onClickButton = ()=>{
-        inputRef.current?.click();
-    };
+const FormCreateUpdateUser = ({ data  })=>{
+    const { register , handleSubmit , onSubmit , errors , disabled , handleUploadFile , isFirst , currentIcon , isUploading  } = (0,_hooks_form__WEBPACK_IMPORTED_MODULE_4__/* .useFormCreateUpdateUser */ .q)(data);
     return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Box, {
+        children: /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
             as: "form",
             height: "100vh",
             position: "relative",
             children: [
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                     w: "100%",
                     h: "6.3rem",
                     justify: "center",
                     align: "center",
                     children: [
-                        history !== "/" && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_2___default()), {
+                        !isFirst && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_1___default()), {
                             href: "/home",
                             passHref: true,
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.IconButton, {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.IconButton, {
                                 "aria-label": "return",
                                 size: "lg",
-                                icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_4__/* .IconReturn */ .BK, {
+                                icon: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Icons__WEBPACK_IMPORTED_MODULE_3__/* .IconReturn */ .BK, {
                                     w: "2.2rem",
                                     h: "2.2rem"
                                 })
                             })
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Spacer, {}),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Box, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Spacer, {}),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
                             color: "black",
                             fontSize: "md",
                             fontWeight: "bold",
                             children: "\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB"
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Spacer, {}),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Box, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Spacer, {}),
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
                             w: "2.2rem",
                             h: "2.2rem"
                         })
                     ]
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                     align: "center",
                     justify: "center",
-                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Box, {
+                    children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Box, {
                         borderRadius: "50%",
                         filter: "drop-shadow(4px 4px 10px #E4EBEE);",
                         marginBottom: "2.4rem",
                         bgColor: "base",
-                        children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Avatar, {
-                            src: image ? image : data.icon,
+                        children: isUploading ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                             w: "12.9rem",
                             h: "12.9rem",
-                            onClick: onClickButton
+                            justifyContent: "center",
+                            alignItems: "center",
+                            flexDirection: "column",
+                            bg: "gray",
+                            rounded: "full",
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Spinner, {
+                                thickness: ".4rem",
+                                speed: ".65s",
+                                emptyColor: "gray",
+                                color: "brandBlue",
+                                w: "6.4rem",
+                                h: "6.4rem"
+                            })
+                        }) : /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Avatar, {
+                            as: "label",
+                            w: "12.9rem",
+                            h: "12.9rem",
+                            defaultValue: data.icon ?? "",
+                            src: currentIcon,
+                            children: [
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.VisuallyHiddenInput, {
+                                    onChange: handleUploadFile,
+                                    id: "icon",
+                                    type: "file",
+                                    accept: "image/*"
+                                }),
+                                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.VisuallyHiddenInput, {
+                                    ...register("icon")
+                                })
+                            ]
                         })
                     })
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.VisuallyHiddenInput, {
-                    onChange: handleChangeImage,
-                    ref: inputRef,
-                    id: "icon",
-                    type: "file",
-                    accept: "image/*"
-                }),
-                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.FormControl, {
+                /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.FormControl, {
                     isInvalid: errors.name ? true : false,
                     children: [
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.FormLabel, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.FormLabel, {
                             htmlFor: "name",
                             fontSize: "md",
                             children: "\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0"
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Flex, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Flex, {
                             align: "center",
                             justify: "center",
-                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Input, {
+                            children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Input, {
                                 variant: "filled",
                                 w: "34.4rem",
                                 h: "4.6rem",
@@ -375,12 +407,12 @@ const FormUserProfile = ({ data  })=>{
                                 ...register("name")
                             })
                         }),
-                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.FormErrorMessage, {
+                        /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.FormErrorMessage, {
                             children: errors.name && errors.name.message
                         })
                     ]
                 }),
-                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.Button, {
+                /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
                     position: "absolute",
                     bottom: "12.9rem",
                     right: "50%",
@@ -406,13 +438,13 @@ __webpack_async_result__();
 "use strict";
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "E": () => (/* reexport safe */ _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__.E),
-/* harmony export */   "r": () => (/* reexport safe */ _components_Forms_FormUserProfile__WEBPACK_IMPORTED_MODULE_0__.r)
+/* harmony export */   "$": () => (/* reexport safe */ _components_Forms_FormCreateUpdateUser__WEBPACK_IMPORTED_MODULE_0__.$),
+/* harmony export */   "E": () => (/* reexport safe */ _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__.E)
 /* harmony export */ });
-/* harmony import */ var _components_Forms_FormUserProfile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1619);
+/* harmony import */ var _components_Forms_FormCreateUpdateUser__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(9787);
 /* harmony import */ var _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1751);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_Forms_FormUserProfile__WEBPACK_IMPORTED_MODULE_0__, _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__]);
-([_components_Forms_FormUserProfile__WEBPACK_IMPORTED_MODULE_0__, _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_Forms_FormCreateUpdateUser__WEBPACK_IMPORTED_MODULE_0__, _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__]);
+([_components_Forms_FormCreateUpdateUser__WEBPACK_IMPORTED_MODULE_0__, _components_Forms_FormCreateUpdateLinks__WEBPACK_IMPORTED_MODULE_1__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -476,7 +508,7 @@ __webpack_async_result__();
 
 /***/ }),
 
-/***/ 3970:
+/***/ 7658:
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -530,6 +562,7 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([reac
 const schema = yup__WEBPACK_IMPORTED_MODULE_3__.object({
     title: yup__WEBPACK_IMPORTED_MODULE_3__.string().required("\u65C5\u306E\u540D\u524D\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
     date: yup__WEBPACK_IMPORTED_MODULE_3__.array(),
+    thumbnail: yup__WEBPACK_IMPORTED_MODULE_3__.string().nullable(),
     links: yup__WEBPACK_IMPORTED_MODULE_3__.array().of(yup__WEBPACK_IMPORTED_MODULE_3__.object().shape({
         url: yup__WEBPACK_IMPORTED_MODULE_3__.string().required("url\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")// urlの正規表現にマッチしなかったら弾く
         .matches(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/, {
@@ -540,10 +573,11 @@ const schema = yup__WEBPACK_IMPORTED_MODULE_3__.object({
 });
 const useFormCreateUpdateLinks = (travelinkData, userData)=>{
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__.useBoolean)();
+    const [isUploading, setIsUploading] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_5__.useBoolean)();
     const { 0: categories , 1: setCategories  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(travelinkData ? travelinkData.links.map((link)=>link.category
     ) : []);
     const router = (0,next_router__WEBPACK_IMPORTED_MODULE_1__.useRouter)();
-    const traveliId1 = router.query.traveliId;
+    const traveliId = router.query.traveliId;
     const formatedDate = travelinkData?.date.map((item)=>{
         return item ? item.toDate() : null;
     });
@@ -557,12 +591,24 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
             ]
         }
     });
-    const { uploadImage , imageFile , image , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_7__/* .useUploadImage */ .H)();
+    const uploadImage = _hooks_upload__WEBPACK_IMPORTED_MODULE_7__/* .useUploadImage */ .H;
     const createTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__/* .useCreateTravelink */ .h0;
     const updateTravelink = _hooks_firestore__WEBPACK_IMPORTED_MODULE_6__/* .useUpdateTravelink */ .pz;
     const { fields , append , remove  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useFieldArray)({
         name: "links",
         control: control
+    });
+    const handleUploadFile = async (event)=>{
+        setIsUploading.on();
+        if (event.currentTarget.files) {
+            const url = await uploadImage(event.currentTarget.files[0], "links") || "";
+            setValue("thumbnail", url);
+        }
+        setIsUploading.off();
+    };
+    const currentThumbnail = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_2__.useWatch)({
+        control,
+        name: "thumbnail"
     });
     const onSubmit = async (data)=>{
         const mergeCategoriesIntoLinks = data.links.map((link, index)=>{
@@ -575,12 +621,7 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
         };
         try {
             setDisabled.on();
-            // 画像に変更が入っていたらrequest bodyに画像を含める
-            if (imageFile && isImageChanged) {
-                const downloadUrl = await uploadImage(imageFile);
-                req.thumbnail = downloadUrl;
-            }
-            !travelinkData ? await create(req) : await update(req, traveliId1);
+            !travelinkData ? await create(req) : await update(req);
         } catch (err) {
             console.error(err);
         } finally{
@@ -596,7 +637,7 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
         }, userData.uid);
         router.push(`/${res}`);
     };
-    const update = async (data, traveliId)=>{
+    const update = async (data)=>{
         await updateTravelink(data, traveliId);
         router.push(`/${traveliId}`);
     };
@@ -610,11 +651,12 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
         onSubmit,
         errors,
         disabled,
-        handleChangeImage,
-        image,
+        handleUploadFile,
         categories,
         setCategories,
-        setValue
+        setValue,
+        isUploading,
+        currentThumbnail
     };
 };
 
@@ -639,11 +681,8 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8456);
 /* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(9755);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7658);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(1853);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_6__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__]);
 ([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
@@ -653,42 +692,63 @@ var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([reac
 
 
 
-
-
 const schema = yup__WEBPACK_IMPORTED_MODULE_2__.object({
-    name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044")
+    name: yup__WEBPACK_IMPORTED_MODULE_2__.string().required("\u30CB\u30C3\u30AF\u30CD\u30FC\u30E0\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044"),
+    icon: yup__WEBPACK_IMPORTED_MODULE_2__.string().nullable()
 });
 const useFormCreateUpdateUser = (userData)=>{
-    const [history, setHistory] = (0,recoil__WEBPACK_IMPORTED_MODULE_6__.useRecoilState)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_7__/* .historyState */ .f);
-    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_8__.useRouter)();
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_6__.useRouter)();
+    const { isFirst  } = router.query;
+    const [isUploading, setIsUploading] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.useBoolean)();
     const [disabled, setDisabled] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.useBoolean)();
-    const { register , handleSubmit , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.useForm)({
+    const createUser = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useCreateUser */ .O2;
+    const uploadImage = _hooks_upload__WEBPACK_IMPORTED_MODULE_4__/* .useUploadImage */ .H;
+    const updateUser = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useUpdateUser */ .Io;
+    const { register , handleSubmit , setValue , control , formState: { errors  }  } = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.useForm)({
         resolver: (0,_hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__.yupResolver)(schema),
         defaultValues: {
-            name: userData.name
+            name: userData.name,
+            icon: userData.icon ?? ""
         }
     });
-    const { uploadImage , image , imageFile , handleChangeImage , isImageChanged  } = (0,_hooks_upload__WEBPACK_IMPORTED_MODULE_4__/* .useUploadImage */ .H)();
-    const updateUser = _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__/* .useUpdateUser */ .Io;
+    const currentIcon = (0,react_hook_form__WEBPACK_IMPORTED_MODULE_0__.useWatch)({
+        control,
+        name: "icon"
+    });
+    const handleUploadFile = async (event)=>{
+        setIsUploading.on();
+        if (event.currentTarget.files) {
+            const url = await uploadImage(event.currentTarget.files[0], "users") || "";
+            setValue("icon", url);
+        }
+        setIsUploading.off();
+    };
     const onSubmit = async (data)=>{
-        const req = data;
         try {
             setDisabled.on();
-            // 画像に変更が入っていたらrequest bodyに画像を含める
-            if (imageFile && isImageChanged) {
-                const downloadUrl = await uploadImage(imageFile);
-                req.icon = downloadUrl;
+            isFirst ? await create(data) : await update(data);
+            if (isFirst) {
+                router.push("/home");
             }
-            await updateUser(req, userData.uid);
         } catch (err) {
             console.error(err);
         } finally{
-            if (history === "/") {
-                setHistory("/user");
-            }
-            router.push("/home");
             setDisabled.off();
         }
+    };
+    const create = async (data)=>{
+        await createUser({
+            ...data,
+            uid: userData.uid,
+            isAnonymous: userData.isAnonymous
+        });
+    };
+    const update = async (data)=>{
+        await updateUser({
+            ...data,
+            uid: userData.uid,
+            isAnonymous: userData.isAnonymous
+        });
     };
     return {
         register,
@@ -696,45 +756,15 @@ const useFormCreateUpdateUser = (userData)=>{
         onSubmit,
         errors,
         disabled,
-        handleChangeImage,
-        image,
-        history
+        handleUploadFile,
+        isFirst,
+        isUploading,
+        currentIcon
     };
 };
 
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
-
-/***/ }),
-
-/***/ 8144:
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-
-// EXPORTS
-__webpack_require__.d(__webpack_exports__, {
-  "U": () => (/* reexport */ useInputImage)
-});
-
-// EXTERNAL MODULE: external "react"
-var external_react_ = __webpack_require__(6689);
-;// CONCATENATED MODULE: ./src/hooks/input/useInputImage.ts
-
-const useInputImage = ()=>{
-    const inputRef = (0,external_react_.useRef)(null);
-    const onClickImage = ()=>{
-        inputRef.current?.click();
-    };
-    return {
-        inputRef,
-        onClickImage
-    };
-};
-
-;// CONCATENATED MODULE: ./src/hooks/input/index.ts
-
-
 
 /***/ }),
 
@@ -764,44 +794,18 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "H": () => (/* binding */ useUploadImage)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3392);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8930);
-/* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_storage__WEBPACK_IMPORTED_MODULE_1__]);
-firebase_storage__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(3392);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_storage__WEBPACK_IMPORTED_MODULE_0__]);
+firebase_storage__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
-
-
-const useUploadImage = ()=>{
-    const { 0: image , 1: setImage  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
-    const { 0: imageFile1 , 1: setImageFile  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)();
-    const [isImageChanged, setIsChanged] = (0,_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.useBoolean)();
-    const uploadImage = (imageFile)=>{
-        const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.getStorage)();
-        const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.ref)(firestorage, encodeURI(imageFile.name));
-        const downloadUrl = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.uploadBytes)(imageRef, imageFile).then(()=>{
-            const url = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_1__.getDownloadURL)(imageRef);
-            return url;
-        });
-        return downloadUrl;
-    };
-    const handleChangeImage = (e)=>{
-        if (e.target.files !== null) {
-            const url = URL.createObjectURL(e.target.files[0]);
-            setImage(url);
-            setImageFile(e.target.files[0]);
-            setIsChanged.on();
-        }
-    };
-    return {
-        uploadImage,
-        image,
-        imageFile: imageFile1,
-        handleChangeImage,
-        isImageChanged
-    };
+const useUploadImage = async (file, path)=>{
+    const firestorage = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_0__.getStorage)();
+    const imageRef = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_0__.ref)(firestorage, `images/${path}/${encodeURI(file.name)}`);
+    const downloadUrl = await (0,firebase_storage__WEBPACK_IMPORTED_MODULE_0__.uploadBytes)(imageRef, file).then(()=>{
+        const url = (0,firebase_storage__WEBPACK_IMPORTED_MODULE_0__.getDownloadURL)(imageRef);
+        return url;
+    });
+    return downloadUrl;
 };
 
 __webpack_async_result__();
