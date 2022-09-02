@@ -1,4 +1,4 @@
-import { Button, useDisclosure } from '@chakra-ui/react'
+import { Button, Flex, useDisclosure } from '@chakra-ui/react'
 import { ModalDeleteUser } from '@/components/Modals'
 
 type ButtonDeleteUserProps = {

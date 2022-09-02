@@ -129,6 +129,7 @@ export const Sidebar = ({ icon, name, currentUser }: SidebarProps) => {
                   h={'3.2rem'}
                   marginRight={'1.7rem'}
                 />
+                <ButtonDeleteUser id={currentUser.uid} />
               </Flex>
             ) : (
               <>
@@ -159,10 +160,10 @@ export const Sidebar = ({ icon, name, currentUser }: SidebarProps) => {
                     h={'3.2rem'}
                     marginRight={'1.7rem'}
                   />
+                  <ButtonDeleteUser id={currentUser.uid} />
                 </Flex>
               </>
             )}
-            <ButtonDeleteUser id={currentUser.uid} />
           </Box>
         </DrawerContent>
       </Drawer>
