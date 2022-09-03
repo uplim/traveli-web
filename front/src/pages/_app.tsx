@@ -4,8 +4,8 @@ import { RecoilRoot } from 'recoil'
 import { ChakraProvider } from '@chakra-ui/react'
 import { customTheme } from '@/theme'
 import { Layout } from '@/components/Layout'
+import { CheckAuth } from '@/components/Auth'
 import '@/lib/firebase'
-import { UseCheckAuth } from '@/hooks/auth/useCheckAuth'
 import '@/components/Inputs/date-picker.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
@@ -13,9 +13,9 @@ const App = ({ Component, pageProps }: AppProps) => {
     <RecoilRoot>
       <ChakraProvider theme={customTheme}>
         <Layout>
-          <UseCheckAuth>
+          <CheckAuth>
             <Component {...pageProps} />
-          </UseCheckAuth>
+          </CheckAuth>
         </Layout>
       </ChakraProvider>
     </RecoilRoot>

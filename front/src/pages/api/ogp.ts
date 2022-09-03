@@ -4,15 +4,6 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import axios from 'axios'
 import { JSDOM } from 'jsdom'
 
-/**
- * OGPタグを取得して、そのcontentをJSON形式で返す.
- * 使用例:
- *    endpoint/api/ogp?url="サイトのURL"
- *
- * @param req HTTP request
- * @param res HTTP responce
- */
-
 export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
   const url = getUrlParameter(req)
 
@@ -26,20 +17,15 @@ export default async function ogp(req: NextApiRequest, res: NextApiResponse) {
     const data = response.data
     const dom = new JSDOM(data)
 
-    const meta = dom.window.document.querySelectorAll('head > meta')
     const title = dom.window.document.title
+    const image = dom.window.document
+      .querySelector("head > meta[property='og:image']")
+      ?.getAttribute('content')
 
-    // metaからOGPを抽出し、JSON形式に変換する
-    const ogp = Array.from(meta)
-      .filter((element) => element.hasAttribute('property'))
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .reduce((pre: any, ogp) => {
-        const property = ogp.getAttribute('property')?.trim().replace('og:', '')
-        const content = ogp.getAttribute('content')
-        pre[property ? property : ''] = content
-        if (title) pre['title'] = title
-        return pre
-      }, {})
+    const ogp = {
+      title,
+      image
+    }
 
     res.status(200).json(ogp)
   } catch (e) {
