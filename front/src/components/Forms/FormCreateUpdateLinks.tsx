@@ -45,7 +45,8 @@ export const FormCreateUpdateLinks = ({
     isUploading,
     currentThumbnail,
     currentLinks,
-    handleUploadFile
+    handleUploadFile,
+    setValue
   } = useFormCreateUpdateLinks(travelinkData, userData)
   const router = useRouter()
   const traveliId = router.query.traveliId
@@ -163,6 +164,7 @@ export const FormCreateUpdateLinks = ({
         append={append}
         remove={remove}
         currentLinks={currentLinks}
+        setValue={setValue}
       />
 
       <FormControl>

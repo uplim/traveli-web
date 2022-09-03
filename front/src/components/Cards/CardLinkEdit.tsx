@@ -4,13 +4,15 @@ import {
   FormLabel,
   Input,
   FormErrorMessage,
-  Box
+  Box,
+  Spinner
 } from '@chakra-ui/react'
 import {
   UseFormRegister,
   FieldErrors,
   FieldArrayWithId,
-  UseFieldArrayRemove
+  UseFieldArrayRemove,
+  UseFormSetValue
 } from 'react-hook-form'
 import { RadioCategory } from '@/components/Radios'
 import { CardLink } from '@/components/Cards'
@@ -18,6 +20,7 @@ import { Button } from '@/components/Buttons'
 import { MenuCardLinkEdit } from '@/components/Menus'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 import { LinkType } from '@/types/db'
+import { useFetchOgp } from '@/hooks/api'
 
 type CardLinkEditProps = {
   register: UseFormRegister<Inputs>
@@ -28,6 +31,7 @@ type CardLinkEditProps = {
   remove: UseFieldArrayRemove
   currentLink: LinkType
   setIsClickNext: Dispatch<SetStateAction<boolean>>
+  setValue: UseFormSetValue<Inputs>
 }
 
 export const CardLinkEdit = ({
@@ -38,8 +42,11 @@ export const CardLinkEdit = ({
   fields,
   remove,
   setIsClickNext,
-  currentLink
+  currentLink,
+  setValue
 }: CardLinkEditProps) => {
+  const { disabled, searchOgp } = useFetchOgp(setValue, index)
+
   const [isMinimum, setIsMinimum] = useState(false)
 
   // 次へを押された時、最後の要素以外は最小化する
@@ -120,21 +127,43 @@ export const CardLinkEdit = ({
                   （任意）
                 </Box>
               </Box>
-              <Button p={'0'} color={'brandBlue'} borderRadius={'none'}>
+              <Button
+                p={'0'}
+                color={'brandBlue'}
+                borderRadius={'none'}
+                disabled={disabled}
+                onClick={() => searchOgp(currentLink.url)}
+              >
                 自動取得
               </Button>
             </FormLabel>
-            <Input
-              marginTop={'0.3rem'}
-              variant={'outline'}
-              borderColor={'#ACC1CA'}
-              w={'100%'}
-              h={'4.4rem'}
-              borderRightRadius={'10rem'}
-              borderLeftRadius={'10rem'}
-              {...register(`links.${index}.label`)}
-              placeholder={'例）宿泊先'}
-            />
+            <Box position={'relative'}>
+              <Input
+                marginTop={'0.3rem'}
+                variant={'outline'}
+                borderColor={'#ACC1CA'}
+                w={'100%'}
+                h={'4.4rem'}
+                borderRightRadius={'10rem'}
+                borderLeftRadius={'10rem'}
+                {...register(`links.${index}.label`)}
+                placeholder={disabled ? '取得中' : '例）宿泊先'}
+                opacity={disabled ? '.5' : '1'}
+              />
+              {disabled && (
+                <Spinner
+                  position={'absolute'}
+                  top={'25%'}
+                  left={'40%'}
+                  transform={'translate(-50%, -50%)'}
+                  speed={'.65s'}
+                  emptyColor={'gray'}
+                  color={'brandBlue'}
+                  width={'2.5rem'}
+                  height={'2.5rem'}
+                />
+              )}
+            </Box>
           </FormControl>
         </Box>
       )}

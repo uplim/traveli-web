@@ -4,7 +4,8 @@ import {
   FieldErrors,
   UseFormRegister,
   UseFieldArrayAppend,
-  UseFieldArrayRemove
+  UseFieldArrayRemove,
+  UseFormSetValue
 } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 import { LinkType } from '@/types/db'
@@ -18,6 +19,7 @@ type CardLinkEditListProps = {
   append: UseFieldArrayAppend<Inputs, 'links'>
   remove: UseFieldArrayRemove
   currentLinks: LinkType[]
+  setValue: UseFormSetValue<Inputs>
 }
 
 export const CardLinkEditList = ({
@@ -26,7 +28,8 @@ export const CardLinkEditList = ({
   register,
   append,
   remove,
-  currentLinks
+  currentLinks,
+  setValue
 }: CardLinkEditListProps) => {
   // リンクを追加ボタンを押すと、今開いてるeditは全部閉じたい
   const [isClickNext, setIsClickNext] = useState(false)
@@ -44,6 +47,7 @@ export const CardLinkEditList = ({
           fields={fileds}
           currentLink={currentLinks[index]}
           setIsClickNext={setIsClickNext}
+          setValue={setValue}
         />
       ))}
       <Flex
