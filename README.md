@@ -30,7 +30,7 @@ Storybook: https://traveli-dev.github.io/traveli-web/storybook
   # 起動
     docker compose up front
   # 落とす
-    docker compose down front
+    docker compose down
 ```
 
 ## 📕 Start Storybook
