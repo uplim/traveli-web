@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
-import { UserType, TravelinkRequestType } from '@/types/db'
+import { UserType, TravelinkRequestType, CategoryType } from '@/types/db'
 
 export type Inputs = {
   title: string
@@ -14,7 +14,7 @@ export type Inputs = {
   links: {
     url: string
     label: string
-    category: string
+    category: CategoryType
   }[]
   canEdit: boolean
 }
@@ -92,6 +92,10 @@ export const useFormCreateUpdateLinks = (
     control,
     name: 'thumbnail'
   })
+  const currentLinks = useWatch({
+    control,
+    name: 'links'
+  })
 
   const onSubmit = async (data: Inputs) => {
     const req = data as TravelinkRequestType
@@ -139,6 +143,7 @@ export const useFormCreateUpdateLinks = (
     handleUploadFile,
     setValue,
     isUploading,
-    currentThumbnail
+    currentThumbnail,
+    currentLinks
   }
 }

@@ -18,7 +18,7 @@ import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
-import { CardLinkEdit } from '@/components/Cards'
+import { CardLinkEditList } from '@/components/Cards'
 import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
@@ -43,6 +43,7 @@ export const FormCreateUpdateLinks = ({
     disabled,
     isUploading,
     currentThumbnail,
+    currentLinks,
     handleUploadFile
   } = useFormCreateUpdateLinks(travelinkData, userData)
   const router = useRouter()
@@ -154,7 +155,13 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
-      <CardLinkEdit fileds={fields} errors={errors.links} register={register} append={append} />
+      <CardLinkEditList
+        fileds={fields}
+        errors={errors.links}
+        register={register}
+        append={append}
+        currentLinks={currentLinks}
+      />
 
       <FormControl>
         {(isOwner || !travelinkData) && (

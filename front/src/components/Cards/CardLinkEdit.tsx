@@ -1,33 +1,56 @@
-import { FieldArrayWithId, FieldErrors, UseFormRegister, UseFieldArrayAppend } from 'react-hook-form'
-import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
-import { LinkType } from '@/types/db'
+import { useState, Dispatch, SetStateAction } from 'react'
 import {
   FormControl,
-  Box,
   FormLabel,
   Input,
   FormErrorMessage,
-  Flex
+  Box
 } from '@chakra-ui/react'
-import { Button } from '@/components/Buttons'
+import { UseFormRegister, FieldErrors, FieldArrayWithId } from 'react-hook-form'
 import { RadioCategory } from '@/components/Radios'
+import { CardLink } from '@/components/Cards'
+import { Button } from '@/components/Buttons'
+import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
+import { LinkType } from '@/types/db'
 
 type CardLinkEditProps = {
-  fileds: FieldArrayWithId<Inputs, 'links', 'id'>[]
-  errors?: FieldErrors<LinkType[]>
   register: UseFormRegister<Inputs>
-  append: UseFieldArrayAppend<Inputs, 'links'>
+  error?: FieldErrors<LinkType>
+  fields: FieldArrayWithId<Inputs, 'links', 'id'>[]
+  index: number
+  isClickNext: boolean
+  currentLink: LinkType
+  setIsClickNext: Dispatch<SetStateAction<boolean>>
 }
 
 export const CardLinkEdit = ({
-  fileds,
-  errors,
   register,
-  append
+  error,
+  index,
+  isClickNext,
+  fields,
+  setIsClickNext,
+  currentLink
 }: CardLinkEditProps) => {
+  const [isMinimum, setIsMinimum] = useState(false)
+
+  // 次へを押された時、最後の要素以外は最小化する
+  if (isClickNext && !isMinimum && fields.length !== index + 1) {
+    setIsMinimum(true)
+  }
+
+  const onClickHandler = () => {
+    setIsMinimum(false)
+    setIsClickNext(false)
+  }
+
   return (
     <>
-      {fileds.map((item, index) => (
+      {isMinimum ? (
+        <Box onClick={onClickHandler}>
+          <CardLink label={currentLink.label} category={currentLink.category} />
+        </Box>
+      ) : (
         <Box
           marginTop={'1rem'}
           padding={'1.4rem 1.6rem 1.4rem 1.6rem'}
@@ -35,7 +58,6 @@ export const CardLinkEdit = ({
           borderRadius={'1.5rem'}
           bgColor={'white'}
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
-          key={item.id}
         >
           <FormControl as={'fieldset'}>
             <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
@@ -45,8 +67,11 @@ export const CardLinkEdit = ({
               register={register}
               name={`links.${index}.category`}
             />
+            <FormErrorMessage mb={'1rem'}>
+              {error?.category && error?.category.message}
+            </FormErrorMessage>
           </FormControl>
-          <FormControl mt={'1.6rem'} isInvalid={!!errors}>
+          <FormControl mt={'1.6rem'} isInvalid={!!error}>
             <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
               URL
             </FormLabel>
@@ -58,12 +83,12 @@ export const CardLinkEdit = ({
               h={'4.4rem'}
               borderRightRadius={'10rem'}
               borderLeftRadius={'10rem'}
-              isInvalid={errors?.[index] ? true : false}
+              isInvalid={!!error?.url}
               {...register(`links.${index}.url`)}
               placeholder={'https://'}
             />
             <FormErrorMessage mb={'1rem'}>
-              {errors?.[index] && errors?.[index].url?.message}
+              {error?.url && error?.url.message}
             </FormErrorMessage>
           </FormControl>
 
@@ -97,25 +122,7 @@ export const CardLinkEdit = ({
             />
           </FormControl>
         </Box>
-      ))}
-      <Flex
-        align={'center'}
-        justify={'center'}
-        marginTop={'1.6rem'}
-        color={'brandBlue'}
-      >
-        <Box bgImage={'/images/plus.svg'} w={'2.4rem'} h={'2.4rem'} />
-        <Box
-          as={'button'}
-          fontSize={'md'}
-          type={'button'}
-          onClick={() => {
-            append({ url: '', label: '', category: 'その他' })
-          }}
-        >
-          リストの追加
-        </Box>
-      </Flex>
+      )}
     </>
   )
 }
