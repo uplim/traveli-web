@@ -6,10 +6,16 @@ import {
   FormErrorMessage,
   Box
 } from '@chakra-ui/react'
-import { UseFormRegister, FieldErrors, FieldArrayWithId } from 'react-hook-form'
+import {
+  UseFormRegister,
+  FieldErrors,
+  FieldArrayWithId,
+  UseFieldArrayRemove
+} from 'react-hook-form'
 import { RadioCategory } from '@/components/Radios'
 import { CardLink } from '@/components/Cards'
 import { Button } from '@/components/Buttons'
+import { MenuCardLinkEdit } from '@/components/Menus'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 import { LinkType } from '@/types/db'
 
@@ -19,6 +25,7 @@ type CardLinkEditProps = {
   fields: FieldArrayWithId<Inputs, 'links', 'id'>[]
   index: number
   isClickNext: boolean
+  remove: UseFieldArrayRemove
   currentLink: LinkType
   setIsClickNext: Dispatch<SetStateAction<boolean>>
 }
@@ -29,6 +36,7 @@ export const CardLinkEdit = ({
   index,
   isClickNext,
   fields,
+  remove,
   setIsClickNext,
   currentLink
 }: CardLinkEditProps) => {
@@ -62,6 +70,10 @@ export const CardLinkEdit = ({
           bgColor={'white'}
           filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
         >
+          <MenuCardLinkEdit
+            setIsMinimum={setIsMinimum}
+            remove={() => remove(index)}
+          />
           <FormControl as={'fieldset'}>
             <FormLabel fontSize={'sm'} color={'#2D2D2D'}>
               カテゴリー

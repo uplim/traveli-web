@@ -37,6 +37,7 @@ export const FormCreateUpdateLinks = ({
     handleSubmit,
     fields,
     append,
+    remove,
     control,
     onSubmit,
     errors,
@@ -160,6 +161,7 @@ export const FormCreateUpdateLinks = ({
         errors={errors.links}
         register={register}
         append={append}
+        remove={remove}
         currentLinks={currentLinks}
       />
 
