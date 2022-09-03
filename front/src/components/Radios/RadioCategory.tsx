@@ -87,9 +87,9 @@ export const RadioCategory = ({ name, register }: RadioCategoryProps) => {
 const Box = styled(ChakraBox)`
   & {
     input:checked + label {
-      background-color: #1A489D;
+      background-color: #1a489d;
       color: white;
-      border-color: #1A489D;
+      border-color: #1a489d;
     }
     input:focus + label {
       box-shadow: outline;

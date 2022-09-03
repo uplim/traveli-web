@@ -11,7 +11,10 @@ type Props<T extends FieldValues> = {
 
 registerLocale('ja', ja)
 
-export const InputDate = <T,>({ name, control }: Props<T>) => {
+export const InputDate = <T extends FieldValues>({
+  name,
+  control
+}: Props<T>) => {
   return (
     <Controller
       control={control}
