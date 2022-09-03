@@ -1,4 +1,4 @@
-import { FieldArrayWithId, FieldErrors, UseFormRegister } from 'react-hook-form'
+import { FieldArrayWithId, FieldErrors, UseFormRegister, UseFieldArrayAppend } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 import { LinkType } from '@/types/db'
 import {
@@ -6,7 +6,8 @@ import {
   Box,
   FormLabel,
   Input,
-  FormErrorMessage
+  FormErrorMessage,
+  Flex
 } from '@chakra-ui/react'
 import { Button } from '@/components/Buttons'
 import { RadioCategory } from '@/components/Radios'
@@ -15,12 +16,14 @@ type CardLinkEditProps = {
   fileds: FieldArrayWithId<Inputs, 'links', 'id'>[]
   errors?: FieldErrors<LinkType[]>
   register: UseFormRegister<Inputs>
+  append: UseFieldArrayAppend<Inputs, 'links'>
 }
 
 export const CardLinkEdit = ({
   fileds,
   errors,
-  register
+  register,
+  append
 }: CardLinkEditProps) => {
   return (
     <>
@@ -95,6 +98,24 @@ export const CardLinkEdit = ({
           </FormControl>
         </Box>
       ))}
+      <Flex
+        align={'center'}
+        justify={'center'}
+        marginTop={'1.6rem'}
+        color={'brandBlue'}
+      >
+        <Box bgImage={'/images/plus.svg'} w={'2.4rem'} h={'2.4rem'} />
+        <Box
+          as={'button'}
+          fontSize={'md'}
+          type={'button'}
+          onClick={() => {
+            append({ url: '', label: '', category: 'その他' })
+          }}
+        >
+          リストの追加
+        </Box>
+      </Flex>
     </>
   )
 }

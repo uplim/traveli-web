@@ -154,27 +154,9 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
-      <CardLinkEdit fileds={fields} errors={errors.links} register={register} />
+      <CardLinkEdit fileds={fields} errors={errors.links} register={register} append={append} />
 
       <FormControl>
-        <Flex
-          align={'center'}
-          justify={'center'}
-          marginTop={'1.6rem'}
-          color={'brandBlue'}
-        >
-          <Box bgImage={'/images/plus.svg'} w={'2.4rem'} h={'2.4rem'} />
-          <Box
-            as={'button'}
-            fontSize={'md'}
-            type={'button'}
-            onClick={() => {
-              append({ url: '', label: '', category: 'その他' })
-            }}
-          >
-            リストの追加
-          </Box>
-        </Flex>
         {(isOwner || !travelinkData) && (
           <FormControl
             display={'flex'}
