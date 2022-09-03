@@ -1,50 +1,42 @@
 import { useRouter } from 'next/router'
-import {
-  getAdditionalUserInfo,
-  getAuth,
-  onAuthStateChanged,
-  signInAnonymously
-} from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signInAnonymously } from 'firebase/auth'
 import { useSetRecoilState } from 'recoil'
 import { useBoolean } from '@chakra-ui/react'
-import { currentUserState } from '@/recoil/atoms'
-import { collection, doc, getDoc, getFirestore } from 'firebase/firestore'
+import { currentUserState, historyState } from '@/recoil/atoms'
+import { useCreateUser } from '@/hooks/firestore'
 
 export const useSignInAnonymously = () => {
   const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
   const setCurrentUser = useSetRecoilState(currentUserState)
+  const setHistory = useSetRecoilState(historyState)
+  const { createUser } = useCreateUser()
 
   const signInAnonymouslyHandler = async () => {
     setDisabled.on()
     const auth = getAuth()
+
     try {
-      const res = await signInAnonymously(auth)
-
-      onAuthStateChanged(auth, async (firebaseUser) => {
-        if (firebaseUser) {
-          const db = getFirestore()
-          const ref = doc(collection(db, 'users'), firebaseUser.uid)
-          const document = await getDoc(ref)
-          const isNewUser = getAdditionalUserInfo(res)?.isNewUser
-
-          // 初回ログインで、かつuser作成済みの場合
-          if (!isNewUser && document.exists()) {
-            router.push('/home')
-            return
-          }
-
+      if (auth.currentUser) {
+        if (!auth.currentUser.isAnonymous) {
+          router.push('/home')
+          return
+        }
+      }
+      await signInAnonymously(auth)
+      onAuthStateChanged(auth, (currentUser) => {
+        if (currentUser) {
           setCurrentUser({
-            uid: firebaseUser.uid,
-            isAnonymous: firebaseUser.isAnonymous,
-            name: '',
-            icon: ''
+            uid: currentUser.uid,
+            isAnonymous: currentUser.isAnonymous
           })
+          createUser(currentUser)
         } else {
           setCurrentUser(null)
         }
       })
-      router.push('/user?isFirst=true')
+      setHistory('/')
+      router.push('/user')
     } catch (err) {
       console.error(err)
       setDisabled.off()

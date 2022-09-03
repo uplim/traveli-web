@@ -9,6 +9,10 @@ export const colors = {
   },
   gray: '#7E7E7E',
   black: '#252525',
+  alertRed: {
+    500: '#F65A5A',
+    600: '#F65A5A'
+  },
   brandPink: {
     50: '#ffdde5',
     100: '#ffccd8',

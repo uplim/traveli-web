@@ -35,6 +35,7 @@ const Home = () => {
             <Sidebar
               icon={user.icon ? user.icon : ''}
               name={user.name ? user.name : ''}
+              currentUser={currentUser}
             />
           </Flex>
 

@@ -15,19 +15,18 @@ import NextLink from 'next/link'
 import { useSignInGoogle } from '@/hooks/auth/useSignInGoogle'
 import { Button } from '@/components/Buttons'
 import { useSignOut } from '@/hooks/auth'
+import { ButtonDeleteUser } from '../Buttons/ButtonDeleteUser'
+import { UserType } from '@/types/db'
 
 type SidebarProps = {
   icon: string
   name: string
+  currentUser: UserType
 }
 
-export const Sidebar = ({ icon, name }: SidebarProps) => {
+export const Sidebar = ({ icon, name, currentUser }: SidebarProps) => {
   const { isOpen, onClose, onOpen } = useDisclosure()
-  const {
-    signInGoogleHandler,
-    disabled: signInDisabled,
-    currentUser
-  } = useSignInGoogle()
+  const { signInGoogleHandler, disabled: signInDisabled } = useSignInGoogle()
   const { signOutHandler, disabled: signOutDisabled } = useSignOut()
 
   return (
@@ -130,14 +129,7 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                   h={'3.2rem'}
                   marginRight={'1.7rem'}
                 />
-                <Button
-                  color={'#FF4D4D'}
-                  fontSize={'md'}
-                  fontWeight={'bold'}
-                  padding={0}
-                >
-                  アカウント削除
-                </Button>
+                <ButtonDeleteUser id={currentUser.uid} />
               </Flex>
             ) : (
               <>
@@ -168,14 +160,7 @@ export const Sidebar = ({ icon, name }: SidebarProps) => {
                     h={'3.2rem'}
                     marginRight={'1.7rem'}
                   />
-                  <Button
-                    color={'#FF4D4D'}
-                    fontSize={'md'}
-                    fontWeight={'bold'}
-                    padding={0}
-                  >
-                    アカウント削除
-                  </Button>
+                  <ButtonDeleteUser id={currentUser.uid} />
                 </Flex>
               </>
             )}

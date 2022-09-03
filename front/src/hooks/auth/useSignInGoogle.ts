@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router'
 import {
-  getAdditionalUserInfo,
   getAuth,
   GoogleAuthProvider,
   linkWithPopup,
@@ -16,7 +15,7 @@ export const useSignInGoogle = () => {
   const router = useRouter()
   const [disabled, setDisabled] = useBoolean()
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
-  const createUser = useCreateUser
+  const { createUser } = useCreateUser()
 
   const signInGoogleHandler = async () => {
     setDisabled.on()
@@ -32,26 +31,21 @@ export const useSignInGoogle = () => {
             uid: currentUser.uid,
             isAnonymous: currentUser.isAnonymous
           })
+          createUser(currentUser)
         } else {
           setCurrentUser(null)
         }
         router.push('/home')
       })
     } else {
-      const res = await signInWithPopup(auth, provider)
-      const isNewUser = getAdditionalUserInfo(res)?.isNewUser
+      await signInWithPopup(auth, provider)
       onAuthStateChanged(auth, (currentUser) => {
         if (currentUser) {
-          if (isNewUser) {
-            const userData = {
-              uid: currentUser.uid,
-              isAnonymous: currentUser.isAnonymous,
-              name: currentUser.providerData[0].displayName ?? '',
-              icon: currentUser.providerData[0].photoURL ?? ''
-            }
-            createUser(userData)
-            setCurrentUser(userData)
-          }
+          setCurrentUser({
+            uid: currentUser.uid,
+            isAnonymous: currentUser.isAnonymous
+          })
+          createUser(currentUser)
         } else {
           setCurrentUser(null)
         }

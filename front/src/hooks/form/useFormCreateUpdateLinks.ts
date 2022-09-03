@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useFieldArray, useForm, useWatch } from 'react-hook-form'
+import { useFieldArray, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
@@ -11,7 +11,6 @@ import { CategoryType, UserType, TravelinkRequestType } from '@/types/db'
 export type Inputs = {
   title: string
   date: [Date | null, Date | null]
-  thumbnail: string
   links: {
     url: string
     label: string
@@ -23,7 +22,6 @@ export type Inputs = {
 const schema = yup.object({
   title: yup.string().required('旅の名前を入力してください'),
   date: yup.array(),
-  thumbnail: yup.string().nullable(),
   links: yup.array().of(
     yup.object().shape({
       url: yup
@@ -43,7 +41,6 @@ export const useFormCreateUpdateLinks = (
   userData?: UserType
 ) => {
   const [disabled, setDisabled] = useBoolean()
-  const [isUploading, setIsUploading] = useBoolean()
   const [categories, setCategories] = useState<CategoryType[]>(
     travelinkData ? travelinkData.links.map((link) => link.category) : []
   )
@@ -70,30 +67,15 @@ export const useFormCreateUpdateLinks = (
     }
   })
 
-  const uploadImage = useUploadImage
+  const { uploadImage, imageFile, image, handleChangeImage, isImageChanged } =
+    useUploadImage()
+
   const createTravelink = useCreateTravelink
   const updateTravelink = useUpdateTravelink
 
   const { fields, append, remove } = useFieldArray({
     name: 'links',
     control: control
-  })
-
-  const handleUploadFile = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setIsUploading.on()
-    if (event.currentTarget.files) {
-      const url =
-        (await uploadImage(event.currentTarget.files[0], 'links')) || ''
-      setValue('thumbnail', url)
-    }
-    setIsUploading.off()
-  }
-
-  const currentThumbnail = useWatch({
-    control,
-    name: 'thumbnail'
   })
 
   const onSubmit = async (data: Inputs) => {
@@ -108,8 +90,13 @@ export const useFormCreateUpdateLinks = (
 
     try {
       setDisabled.on()
+      // 画像に変更が入っていたらrequest bodyに画像を含める
+      if (imageFile && isImageChanged) {
+        const downloadUrl = await uploadImage(imageFile)
+        req.thumbnail = downloadUrl
+      }
 
-      !travelinkData ? await create(req) : await update(req)
+      !travelinkData ? await create(req) : await update(req, traveliId)
     } catch (err) {
       console.error(err)
     } finally {
@@ -131,7 +118,7 @@ export const useFormCreateUpdateLinks = (
     router.push(`/${res}`)
   }
 
-  const update = async (data: TravelinkRequestType) => {
+  const update = async (data: TravelinkRequestType, traveliId: string) => {
     await updateTravelink(data, traveliId)
     router.push(`/${traveliId}`)
   }
@@ -146,11 +133,10 @@ export const useFormCreateUpdateLinks = (
     onSubmit,
     errors,
     disabled,
-    handleUploadFile,
+    handleChangeImage,
+    image,
     categories,
     setCategories,
-    setValue,
-    isUploading,
-    currentThumbnail
+    setValue
   }
 }

@@ -10,11 +10,11 @@ const Index = () => {
   const { signInAnonymouslyHandler, disabled: anonymouslyDisabled } =
     useSignInAnonymously()
   const { signInGoogleHandler, disabled: googleDisabled } = useSignInGoogle()
-  const { isLoading } = useLoadImage('/images/smartphone.png')
+  const { isLoad } = useLoadImage('/images/smartphone.png')
 
   return (
     <Layout>
-      {isLoading ? (
+      {!isLoad ? (
         <Loading />
       ) : (
         <Box py={'7.7rem'}>
