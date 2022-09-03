@@ -6,13 +6,9 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { Loading } from '@/components/Loadings'
 import { useBoolean } from '@chakra-ui/react'
 
-type UseCheckAuthProps = {
-  children: React.ReactNode
-}
-
 const accessibleBeforeSignInPages = ['/signin', '/signup', '/404']
 
-export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
+export const useCheckAuth = () => {
   const [isLoading, setIsLoading] = useBoolean()
   const [currentUser, setCurrentUser] = useRecoilState(currentUserState)
   const router = useRouter()
@@ -59,13 +55,10 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
   const isLogout = !currentUser && router.pathname === '/'
   const isLogin = !!currentUser
 
-  return (
-    <>
-      {isAccessibleBeforeSignIn || (isLogin && !isLoading) || isLogout ? (
-        <>{children}</>
-      ) : (
-        <Loading />
-      )}
-    </>
-  )
+  return {
+    isAccessibleBeforeSignIn,
+    isLogin,
+    isLoading,
+    isLogout
+  }
 }
