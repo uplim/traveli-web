@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import * as yup from 'yup'
@@ -6,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
-import { CategoryType, UserType, TravelinkRequestType } from '@/types/db'
+import { UserType, TravelinkRequestType } from '@/types/db'
 
 export type Inputs = {
   title: string
@@ -26,6 +25,7 @@ const schema = yup.object({
   thumbnail: yup.string().nullable(),
   links: yup.array().of(
     yup.object().shape({
+      category: yup.string().required('カテゴリーを入力してください'),
       url: yup
         .string()
         .required('urlを入力してください')
@@ -44,9 +44,6 @@ export const useFormCreateUpdateLinks = (
 ) => {
   const [disabled, setDisabled] = useBoolean()
   const [isUploading, setIsUploading] = useBoolean()
-  const [categories, setCategories] = useState<CategoryType[]>(
-    travelinkData ? travelinkData.links.map((link) => link.category) : []
-  )
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -97,14 +94,7 @@ export const useFormCreateUpdateLinks = (
   })
 
   const onSubmit = async (data: Inputs) => {
-    const mergeCategoriesIntoLinks = data.links.map((link, index) => {
-      link.category = categories[index]
-      return link
-    })
-    const req = {
-      ...data,
-      links: mergeCategoriesIntoLinks
-    } as TravelinkRequestType
+    const req = data as TravelinkRequestType
 
     try {
       setDisabled.on()
@@ -147,8 +137,6 @@ export const useFormCreateUpdateLinks = (
     errors,
     disabled,
     handleUploadFile,
-    categories,
-    setCategories,
     setValue,
     isUploading,
     currentThumbnail

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -18,7 +18,7 @@ import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
-import { CardEditWrapper } from '@/components/Cards'
+import { CardLinkEdit } from '@/components/Cards'
 import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
@@ -32,27 +32,18 @@ export const FormCreateUpdateLinks = ({
   userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
-  // 次へを押された時に最小化するためのstate
-  const [isClickNext, setIsClickNext] = useState<boolean>(
-    travelinkData ? true : false
-  )
-
   const {
     register,
     handleSubmit,
     fields,
     append,
-    remove,
     control,
     onSubmit,
     errors,
     disabled,
     isUploading,
     currentThumbnail,
-    handleUploadFile,
-    setCategories,
-    categories,
-    setValue
+    handleUploadFile
   } = useFormCreateUpdateLinks(travelinkData, userData)
   const router = useRouter()
   const traveliId = router.query.traveliId
@@ -163,31 +154,9 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
+      <CardLinkEdit fileds={fields} errors={errors.links} register={register} />
 
       <FormControl>
-        {fields.map((item, index) => {
-          return (
-            <React.Fragment key={item.id}>
-              <CardEditWrapper
-                categories={categories}
-                setCategories={setCategories}
-                label={item.label}
-                url={item.url}
-                index={index}
-                register={register}
-                errors={errors.links}
-                setValue={setValue}
-                remove={() => {
-                  remove(index)
-                }}
-                isClickNext={isClickNext}
-                setIsClickNext={setIsClickNext}
-                isLast={fields.length === index + 1}
-              />
-            </React.Fragment>
-          )
-        })}
-
         <Flex
           align={'center'}
           justify={'center'}
@@ -200,11 +169,7 @@ export const FormCreateUpdateLinks = ({
             fontSize={'md'}
             type={'button'}
             onClick={() => {
-              // onChangeでsetStateしているので、初期値はこの段階で入れる
-              setCategories((categories) => [...categories, 'その他'])
-              // 次のやつ以外閉じる
-              setIsClickNext(true)
-              append({ url: '', label: '' })
+              append({ url: '', label: '', category: 'その他' })
             }}
           >
             リストの追加
