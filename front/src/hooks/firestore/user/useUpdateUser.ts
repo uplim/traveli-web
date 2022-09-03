@@ -1,9 +1,9 @@
 import { UserType } from '@/types/db'
 import { collection, doc, getFirestore, updateDoc } from 'firebase/firestore'
 
-export const useUpdateUser = async (data: Partial<UserType>, id: string) => {
+export const useUpdateUser = async (data: UserType) => {
   const db = getFirestore()
-  const ref = doc(collection(db, 'users'), id)
+  const ref = doc(collection(db, 'users'), data.uid)
 
   try {
     await updateDoc(ref, data)
