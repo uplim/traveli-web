@@ -5,6 +5,53 @@ exports.id = 888;
 exports.ids = [888];
 exports.modules = {
 
+/***/ 1537:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "u": () => (/* binding */ CheckAuth)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(997);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _hooks_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6671);
+/* harmony import */ var _components_Loadings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7043);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_auth__WEBPACK_IMPORTED_MODULE_1__]);
+_hooks_auth__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+
+const CheckAuth = ({ children  })=>{
+    const { isAccessibleBeforeSignIn , isLogin , isLoading , isLogout  } = (0,_hooks_auth__WEBPACK_IMPORTED_MODULE_1__/* .useCheckAuth */ .jI)();
+    return /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+        children: isAccessibleBeforeSignIn || isLogin && !isLoading || isLogout ? /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
+            children: children
+        }) : /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Loadings__WEBPACK_IMPORTED_MODULE_2__/* .Loading */ .g, {})
+    });
+};
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
+/***/ 6606:
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "u": () => (/* reexport safe */ _components_Auth_CheckAuth__WEBPACK_IMPORTED_MODULE_0__.u)
+/* harmony export */ });
+/* harmony import */ var _components_Auth_CheckAuth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1537);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_Auth_CheckAuth__WEBPACK_IMPORTED_MODULE_0__]);
+_components_Auth_CheckAuth__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+
+
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
+
+/***/ }),
+
 /***/ 2837:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -85,10 +132,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _theme__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(8040);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(2837);
-/* harmony import */ var _lib_firebase__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(4804);
-/* harmony import */ var _hooks_auth_useCheckAuth__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(7417);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_lib_firebase__WEBPACK_IMPORTED_MODULE_6__, _hooks_auth_useCheckAuth__WEBPACK_IMPORTED_MODULE_7__]);
-([_lib_firebase__WEBPACK_IMPORTED_MODULE_6__, _hooks_auth_useCheckAuth__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var _components_Auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(6606);
+/* harmony import */ var _lib_firebase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(4804);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_components_Auth__WEBPACK_IMPORTED_MODULE_6__, _lib_firebase__WEBPACK_IMPORTED_MODULE_7__]);
+([_components_Auth__WEBPACK_IMPORTED_MODULE_6__, _lib_firebase__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -103,7 +150,7 @@ const App = ({ Component , pageProps  })=>{
         children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_3__.ChakraProvider, {
             theme: _theme__WEBPACK_IMPORTED_MODULE_4__/* .customTheme */ .v,
             children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Layout__WEBPACK_IMPORTED_MODULE_5__/* .Layout */ .A, {
-                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_hooks_auth_useCheckAuth__WEBPACK_IMPORTED_MODULE_7__/* .UseCheckAuth */ .j, {
+                children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_components_Auth__WEBPACK_IMPORTED_MODULE_6__/* .CheckAuth */ .u, {
                     children: /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(Component, {
                         ...pageProps
                     })
@@ -312,7 +359,7 @@ module.exports = import("firebase/firestore");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [596,545], () => (__webpack_exec__(6505)));
+var __webpack_exports__ = __webpack_require__.X(0, [596,671], () => (__webpack_exec__(6505)));
 module.exports = __webpack_exports__;
 
 })();

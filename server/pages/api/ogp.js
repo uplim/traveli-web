@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // EXPORTS
 __webpack_require__.d(__webpack_exports__, {
-  "default": () => (/* binding */ ogp2)
+  "default": () => (/* binding */ ogp)
 });
 
 ;// CONCATENATED MODULE: external "axios"
@@ -24,14 +24,7 @@ const external_jsdom_namespaceObject = require("jsdom");
 ;// CONCATENATED MODULE: ./src/pages/api/ogp.ts
 
 
-/**
- * OGPタグを取得して、そのcontentをJSON形式で返す.
- * 使用例:
- *    endpoint/api/ogp?url="サイトのURL"
- *
- * @param req HTTP request
- * @param res HTTP responce
- */ async function ogp2(req, res) {
+async function ogp(req, res) {
     const url = getUrlParameter(req);
     if (!url) {
         return;
@@ -40,19 +33,13 @@ const external_jsdom_namespaceObject = require("jsdom");
         const response = await external_axios_default().get(url);
         const data = response.data;
         const dom = new external_jsdom_namespaceObject.JSDOM(data);
-        const meta = dom.window.document.querySelectorAll("head > meta");
         const title = dom.window.document.title;
-        // metaからOGPを抽出し、JSON形式に変換する
-        const ogp1 = Array.from(meta).filter((element)=>element.hasAttribute("property")
-        )// eslint-disable-next-line @typescript-eslint/no-explicit-any
-        .reduce((pre, ogp)=>{
-            const property = ogp.getAttribute("property")?.trim().replace("og:", "");
-            const content = ogp.getAttribute("content");
-            pre[property ? property : ""] = content;
-            if (title) pre["title"] = title;
-            return pre;
-        }, {});
-        res.status(200).json(ogp1);
+        const image = dom.window.document.querySelector("head > meta[property='og:image']")?.getAttribute("content");
+        const ogp = {
+            title,
+            image
+        };
+        res.status(200).json(ogp);
     } catch (e) {
         errorResponce(res);
     }
