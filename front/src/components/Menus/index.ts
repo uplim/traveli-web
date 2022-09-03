@@ -1,1 +1,1 @@
-export { MenuLinkCardEdit } from '@/components/Menus/MenuLinkCardEdit'
+export { MenuCardLinkEdit } from '@/components/Menus/MenuCardLinkEdit'

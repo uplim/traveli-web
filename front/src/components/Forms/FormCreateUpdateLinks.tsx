@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -18,7 +18,7 @@ import { useFormCreateUpdateLinks } from '@/hooks/form'
 import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
-import { CardEditWrapper } from '@/components/Cards'
+import { CardLinkEditList } from '@/components/Cards'
 import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
@@ -32,11 +32,6 @@ export const FormCreateUpdateLinks = ({
   userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
-  // 次へを押された時に最小化するためのstate
-  const [isClickNext, setIsClickNext] = useState<boolean>(
-    travelinkData ? true : false
-  )
-
   const {
     register,
     handleSubmit,
@@ -49,9 +44,8 @@ export const FormCreateUpdateLinks = ({
     disabled,
     isUploading,
     currentThumbnail,
+    currentLinks,
     handleUploadFile,
-    setCategories,
-    categories,
     setValue
   } = useFormCreateUpdateLinks(travelinkData, userData)
   const router = useRouter()
@@ -163,53 +157,17 @@ export const FormCreateUpdateLinks = ({
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
+      <CardLinkEditList
+        fileds={fields}
+        errors={errors.links}
+        register={register}
+        append={append}
+        remove={remove}
+        currentLinks={currentLinks}
+        setValue={setValue}
+      />
 
       <FormControl>
-        {fields.map((item, index) => {
-          return (
-            <React.Fragment key={item.id}>
-              <CardEditWrapper
-                categories={categories}
-                setCategories={setCategories}
-                label={item.label}
-                url={item.url}
-                index={index}
-                register={register}
-                errors={errors.links}
-                setValue={setValue}
-                remove={() => {
-                  remove(index)
-                }}
-                isClickNext={isClickNext}
-                setIsClickNext={setIsClickNext}
-                isLast={fields.length === index + 1}
-              />
-            </React.Fragment>
-          )
-        })}
-
-        <Flex
-          align={'center'}
-          justify={'center'}
-          marginTop={'1.6rem'}
-          color={'brandBlue'}
-        >
-          <Box bgImage={'/images/plus.svg'} w={'2.4rem'} h={'2.4rem'} />
-          <Box
-            as={'button'}
-            fontSize={'md'}
-            type={'button'}
-            onClick={() => {
-              // onChangeでsetStateしているので、初期値はこの段階で入れる
-              setCategories((categories) => [...categories, 'その他'])
-              // 次のやつ以外閉じる
-              setIsClickNext(true)
-              append({ url: '', label: '' })
-            }}
-          >
-            リストの追加
-          </Box>
-        </Flex>
         {(isOwner || !travelinkData) && (
           <FormControl
             display={'flex'}
