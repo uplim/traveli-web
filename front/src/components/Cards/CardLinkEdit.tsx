@@ -63,7 +63,10 @@ export const CardLinkEdit = ({
     <>
       {isMinimum ? (
         <FormControl onClick={onClickHandler} isInvalid={!!error}>
-          <CardLink label={currentLink.label} category={currentLink.category} />
+          <CardLink
+            label={!currentLink.label ? currentLink.url : currentLink.label}
+            category={currentLink.category}
+          />
           <FormErrorMessage pl={'1rem'}>
             {error?.url && error?.url.message}
           </FormErrorMessage>
