@@ -32,7 +32,12 @@ export const CardLinkEditList = ({
   setValue
 }: CardLinkEditListProps) => {
   // リンクを追加ボタンを押すと、今開いてるeditは全部閉じたい
-  const [isClickNext, setIsClickNext] = useState(false)
+  const [isClickNext, setIsClickNext] = useState(currentLinks ? true : false)
+  const defaultLinks = {
+    category: 'その他',
+    url: '',
+    label: ''
+  } as const
 
   return (
     <>
@@ -45,7 +50,7 @@ export const CardLinkEditList = ({
           index={index}
           isClickNext={isClickNext}
           fields={fileds}
-          currentLink={currentLinks[index]}
+          currentLink={!currentLinks ? defaultLinks : currentLinks[index]}
           setIsClickNext={setIsClickNext}
           setValue={setValue}
         />
