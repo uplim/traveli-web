@@ -1,17 +1,20 @@
 import 'react-datepicker/dist/react-datepicker.css'
 import React from 'react'
-import { Control, Controller, Path } from 'react-hook-form'
+import { Control, Controller, Path, FieldValues } from 'react-hook-form'
 import DatePicker, { registerLocale } from 'react-datepicker'
 import { ja } from 'date-fns/locale'
 
-type Props<T> = {
+type Props<T extends FieldValues> = {
   name: Path<T>
   control: Control<T>
 }
 
 registerLocale('ja', ja)
 
-export const InputDate = <T,>({ name, control }: Props<T>) => {
+export const InputDate = <T extends FieldValues>({
+  name,
+  control
+}: Props<T>) => {
   return (
     <Controller
       control={control}

@@ -1,27 +1,21 @@
 import { useBoolean } from '@chakra-ui/react'
-import { useState, Dispatch, SetStateAction } from 'react'
+import { useState } from 'react'
 import { UseFormSetValue } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
 type OgpType = {
   title: string
-  description: string
-  image: string
-  url: string
-  site_name: string
-  type: string
-  locale: string
+  image?: string | null
 }
 
 export const useFetchOgp = (
-  setCurrentLabel: Dispatch<SetStateAction<string>>,
   setValue: UseFormSetValue<Inputs>,
   index: number
 ) => {
   const [ogp, setOgp] = useState<OgpType>()
   const [disabled, setDisabled] = useBoolean()
 
-  const onClickHandler = async (url: string) => {
+  const searchOgp = async (url: string) => {
     setDisabled.on()
     if (!url) {
       alert('urlを入力してください')
@@ -47,7 +41,6 @@ export const useFetchOgp = (
         alert('リンク先のタイトルを取得できませんでした')
         return
       }
-      setCurrentLabel(json.title)
       setValue(`links.${index}.label`, json.title)
     } catch (e) {
       alert('リンク先のタイトルが取得できませんでした')
@@ -57,5 +50,5 @@ export const useFetchOgp = (
     }
   }
 
-  return { ogp, onClickHandler, disabled, setOgp }
+  return { ogp, searchOgp, disabled }
 }
