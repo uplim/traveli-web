@@ -39,6 +39,7 @@ export const useCheckAuth = () => {
           setCurrentUser(null)
         }
       })
+      setIsLoading.off()
     } catch (e) {
       typeof e === 'string' && toast.error(e)
       await router.push('/')

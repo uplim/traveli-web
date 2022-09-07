@@ -44,7 +44,6 @@ export const useFetchOgp = (
       }
       setValue(`links.${index}.label`, json.title)
     } catch (e) {
-      //alert('リンク先のタイトルが取得できませんでした')
       console.error(e)
       typeof e === 'string' && toast.error(e)
     } finally {
