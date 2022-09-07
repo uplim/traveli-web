@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NextLink from 'next/link'
 import { useRouter } from 'next/router'
 import {
@@ -11,14 +11,14 @@ import {
   Flex,
   Spacer,
   VisuallyHiddenInput,
-  Link
+  Link,
+  Spinner
 } from '@chakra-ui/react'
 import { useFormCreateUpdateLinks } from '@/hooks/form'
-import { useInputImage } from '@/hooks/input'
 import { TravelinkRequestType, UserType } from '@/types/db'
 import { InputDate } from '@/components/Inputs/InputDate'
 import { IconCamera, IconReturn } from '@/components/Icons'
-import { CardEditWrapper } from '@/components/Cards'
+import { CardLinkEditList } from '@/components/Cards'
 import { Button } from '@/components/Buttons'
 
 type FormCreateUpdateLinksProps = {
@@ -32,11 +32,6 @@ export const FormCreateUpdateLinks = ({
   userData,
   isOwner
 }: FormCreateUpdateLinksProps) => {
-  // 次へを押された時に最小化するためのstate
-  const [isClickNext, setIsClickNext] = useState<boolean>(
-    travelinkData ? true : false
-  )
-
   const {
     register,
     handleSubmit,
@@ -47,13 +42,12 @@ export const FormCreateUpdateLinks = ({
     onSubmit,
     errors,
     disabled,
-    image,
-    handleChangeImage,
-    setCategories,
-    categories,
+    isUploading,
+    currentThumbnail,
+    currentLinks,
+    handleUploadFile,
     setValue
   } = useFormCreateUpdateLinks(travelinkData, userData)
-  const { inputRef, onClickImage } = useInputImage()
   const router = useRouter()
   const traveliId = router.query.traveliId
 
@@ -104,79 +98,76 @@ export const FormCreateUpdateLinks = ({
         <FormLabel marginTop={'1.6rem'} fontSize={'sm'} color={'#2D2D2D'}>
           サムネイル画像（任意）
         </FormLabel>
-        <VisuallyHiddenInput
-          ref={inputRef}
-          type={'file'}
-          accept="image/*"
-          onChange={handleChangeImage}
-        />
-        <Box
-          marginTop={'0.8rem'}
-          bgImage={image ? image : travelinkData ? travelinkData.thumbnail : ''}
-          bgRepeat={'no-repeat'}
-          bgSize={'cover'}
-          bgPosition={'center center'}
-          onClick={onClickImage}
-          w={'100%'}
-          h={'12.9rem'}
-          borderRadius={'1rem'}
-          bgColor={'#D2D6E1'}
-          filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
-        >
-          <Flex h={'12.9rem'} align={'center'} justify={'center'}>
-            <IconCamera zIndex={1} w={'4.8rem'} h={'4.8rem'} color={'white'} />
+        {isUploading ? (
+          <Flex
+            w={'100%'}
+            h={'12.9rem'}
+            justifyContent={'center'}
+            alignItems={'center'}
+            flexDirection={'column'}
+            bg={'gray'}
+            borderRadius={'1rem'}
+          >
+            <Spinner
+              thickness={'.4rem'}
+              speed={'.65s'}
+              emptyColor={'gray'}
+              color={'brandBlue'}
+              w={'6.4rem'}
+              h={'6.4rem'}
+            />
           </Flex>
-        </Box>
+        ) : (
+          <Box
+            as={'label'}
+            display={'block'}
+            w={'100%'}
+            h={'12.9rem'}
+            borderRadius={'1rem'}
+            bgColor={'#D2D6E1'}
+            marginTop={'0.8rem'}
+            bgRepeat={'no-repeat'}
+            bgImage={
+              currentThumbnail
+                ? currentThumbnail
+                : travelinkData
+                ? travelinkData.thumbnail
+                : ''
+            }
+            bgSize={'cover'}
+            bgPosition={'center center'}
+            filter={'drop-shadow(0.4rem 0.4rem 1rem #E4EBEE)'}
+          >
+            <Flex h={'12.9rem'} align={'center'} justify={'center'}>
+              <IconCamera
+                zIndex={1}
+                w={'4.8rem'}
+                h={'4.8rem'}
+                color={'white'}
+              />
+            </Flex>
+            <VisuallyHiddenInput
+              type={'file'}
+              accept={'image/*'}
+              onChange={handleUploadFile}
+            />
+            <VisuallyHiddenInput {...register('thumbnail')} />
+          </Box>
+        )}
       </FormControl>
 
       <Box margin={'1.6rem 0 0.8rem 0'}>リンク</Box>
+      <CardLinkEditList
+        fileds={fields}
+        errors={errors.links}
+        register={register}
+        append={append}
+        remove={remove}
+        currentLinks={currentLinks}
+        setValue={setValue}
+      />
 
       <FormControl>
-        {fields.map((item, index) => {
-          return (
-            <React.Fragment key={item.id}>
-              <CardEditWrapper
-                categories={categories}
-                setCategories={setCategories}
-                label={item.label}
-                url={item.url}
-                index={index}
-                register={register}
-                errors={errors.links}
-                setValue={setValue}
-                remove={() => {
-                  remove(index)
-                }}
-                isClickNext={isClickNext}
-                setIsClickNext={setIsClickNext}
-                isLast={fields.length === index + 1}
-              />
-            </React.Fragment>
-          )
-        })}
-
-        <Flex
-          align={'center'}
-          justify={'center'}
-          marginTop={'1.6rem'}
-          color={'brandBlue'}
-        >
-          <Box bgImage={'/images/plus.svg'} w={'2.4rem'} h={'2.4rem'} />
-          <Box
-            as={'button'}
-            fontSize={'md'}
-            type="button"
-            onClick={() => {
-              // onChangeでsetStateしているので、初期値はこの段階で入れる
-              setCategories((categories) => [...categories, 'その他'])
-              // 次のやつ以外閉じる
-              setIsClickNext(true)
-              append({ url: '', label: '' })
-            }}
-          >
-            リストの追加
-          </Box>
-        </Flex>
         {(isOwner || !travelinkData) && (
           <FormControl
             display={'flex'}

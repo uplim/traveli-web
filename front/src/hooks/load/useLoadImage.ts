@@ -1,19 +1,19 @@
-import { useState, useEffect } from 'react'
+import { useBoolean } from '@chakra-ui/react'
+import { useEffect } from 'react'
 
 export const useLoadImage = (src: string) => {
-  const [isLoad, setIsLoad] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useBoolean()
 
   useEffect(() => {
-    setIsLoad(false)
-
+    setIsLoading.on()
     const image = new Image()
 
     image.onload = () => {
-      setIsLoad(true)
+      setIsLoading.off()
     }
 
     image.src = src
   }, [])
 
-  return { isLoad, setIsLoad }
+  return { isLoading }
 }

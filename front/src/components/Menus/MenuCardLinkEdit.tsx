@@ -8,21 +8,16 @@ import {
   MenuList,
   Spacer
 } from '@chakra-ui/react'
-import { CategoryType } from '@/types/db/travelink'
 
-type MenuLinkCardEditProps = {
-  setCategories: Dispatch<SetStateAction<CategoryType[]>>
+type MenuCardLinkEditProps = {
   setIsMinimum: Dispatch<SetStateAction<boolean>>
   remove: () => void
-  index: number
 }
 
-export const MenuLinkCardEdit = ({
-  setCategories,
+export const MenuCardLinkEdit = ({
   setIsMinimum,
-  remove,
-  index
-}: MenuLinkCardEditProps) => {
+  remove
+}: MenuCardLinkEditProps) => {
   return (
     <Menu>
       <Flex position={'absolute'} right={'1.2rem'} zIndex={2}>
@@ -59,13 +54,6 @@ export const MenuLinkCardEdit = ({
           display={'flex'}
           padding={0}
           onClick={() => {
-            // stateのカテゴリーも一緒に削除する
-            // TODO: これもRHFで管理する
-            setCategories((categories) => {
-              const cpCategories = categories
-              cpCategories.splice(index, 1)
-              return cpCategories
-            })
             remove()
           }}
         >

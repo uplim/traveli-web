@@ -86,7 +86,7 @@ const LinkList = () => {
               <TabPanel>
                 {travelink.links.map(({ url, label, category }, index) => (
                   <CardLink
-                    label={label}
+                    label={!label ? url : label}
                     url={url}
                     key={`all_${index}`}
                     category={category}
@@ -97,7 +97,7 @@ const LinkList = () => {
                 {filterTravelink(travelink, '食事').map(
                   ({ url, label, category }, index) => (
                     <CardLink
-                      label={label}
+                      label={!label ? url : label}
                       url={url}
                       key={`food_${index}`}
                       category={category}
@@ -109,7 +109,7 @@ const LinkList = () => {
                 {filterTravelink(travelink, '場所').map(
                   ({ url, label, category }, index) => (
                     <CardLink
-                      label={label}
+                      label={!label ? url : label}
                       url={url}
                       key={`place_${index}`}
                       category={category}
@@ -121,7 +121,7 @@ const LinkList = () => {
                 {filterTravelink(travelink, 'その他').map(
                   ({ url, label, category }, index) => (
                     <CardLink
-                      label={label}
+                      label={!label ? url : label}
                       url={url}
                       key={`other_${index}`}
                       category={category}

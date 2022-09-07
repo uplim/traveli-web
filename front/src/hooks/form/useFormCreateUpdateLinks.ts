@@ -1,21 +1,21 @@
-import { useState } from 'react'
 import { useRouter } from 'next/router'
-import { useFieldArray, useForm } from 'react-hook-form'
+import { useFieldArray, useForm, useWatch } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
-import { CategoryType, UserType, TravelinkRequestType } from '@/types/db'
+import { UserType, TravelinkRequestType, CategoryType } from '@/types/db'
 import { toast } from 'react-toastify'
 
 export type Inputs = {
   title: string
   date: [Date | null, Date | null]
+  thumbnail: string
   links: {
     url: string
     label: string
-    category: string
+    category: CategoryType
   }[]
   canEdit: boolean
 }
@@ -23,8 +23,10 @@ export type Inputs = {
 const schema = yup.object({
   title: yup.string().required('旅の名前を入力してください'),
   date: yup.array(),
+  thumbnail: yup.string().nullable(),
   links: yup.array().of(
     yup.object().shape({
+      category: yup.string().required('カテゴリーを入力してください'),
       url: yup
         .string()
         .required('urlを入力してください')
@@ -42,9 +44,7 @@ export const useFormCreateUpdateLinks = (
   userData?: UserType
 ) => {
   const [disabled, setDisabled] = useBoolean()
-  const [categories, setCategories] = useState<CategoryType[]>(
-    travelinkData ? travelinkData.links.map((link) => link.category) : []
-  )
+  const [isUploading, setIsUploading] = useBoolean()
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
@@ -68,9 +68,7 @@ export const useFormCreateUpdateLinks = (
     }
   })
 
-  const { uploadImage, imageFile, image, handleChangeImage, isImageChanged } =
-    useUploadImage()
-
+  const uploadImage = useUploadImage
   const createTravelink = useCreateTravelink
   const updateTravelink = useUpdateTravelink
 
@@ -79,25 +77,34 @@ export const useFormCreateUpdateLinks = (
     control: control
   })
 
+  const handleUploadFile = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setIsUploading.on()
+    if (event.currentTarget.files) {
+      const url =
+        (await uploadImage(event.currentTarget.files[0], 'links')) || ''
+      setValue('thumbnail', url)
+    }
+    setIsUploading.off()
+  }
+
+  const currentThumbnail = useWatch({
+    control,
+    name: 'thumbnail'
+  })
+  const currentLinks = useWatch({
+    control,
+    name: 'links'
+  })
+
   const onSubmit = async (data: Inputs) => {
-    const mergeCategoriesIntoLinks = data.links.map((link, index) => {
-      link.category = categories[index]
-      return link
-    })
-    const req = {
-      ...data,
-      links: mergeCategoriesIntoLinks
-    } as TravelinkRequestType
+    const req = data as TravelinkRequestType
 
     try {
       setDisabled.on()
-      // 画像に変更が入っていたらrequest bodyに画像を含める
-      if (imageFile && isImageChanged) {
-        const downloadUrl = await uploadImage(imageFile)
-        req.thumbnail = downloadUrl
-      }
 
-      !travelinkData ? await create(req) : await update(req, traveliId)
+      !travelinkData ? await create(req) : await update(req)
     } catch (err) {
       typeof err === 'string' && toast.error(err)
       console.error(err)
@@ -120,7 +127,7 @@ export const useFormCreateUpdateLinks = (
     router.push(`/${res}`)
   }
 
-  const update = async (data: TravelinkRequestType, traveliId: string) => {
+  const update = async (data: TravelinkRequestType) => {
     await updateTravelink(data, traveliId)
     router.push(`/${traveliId}`)
   }
@@ -135,10 +142,10 @@ export const useFormCreateUpdateLinks = (
     onSubmit,
     errors,
     disabled,
-    handleChangeImage,
-    image,
-    categories,
-    setCategories,
-    setValue
+    handleUploadFile,
+    setValue,
+    isUploading,
+    currentThumbnail,
+    currentLinks
   }
 }

@@ -1,4 +1,3 @@
-import { useRef } from 'react'
 import NextLink from 'next/link'
 import {
   Avatar,
@@ -11,7 +10,8 @@ import {
   Spacer,
   VisuallyHiddenInput,
   IconButton,
-  FormErrorMessage
+  FormErrorMessage,
+  Spinner
 } from '@chakra-ui/react'
 import { IconReturn } from '@/components/Icons'
 import { useFormCreateUpdateUser } from '@/hooks/form'
@@ -21,32 +21,28 @@ type FormUserProfileProps = {
   data: UserType
 }
 
-export const FormUserProfile = ({ data }: FormUserProfileProps) => {
+export const FormCreateUpdateUser = ({ data }: FormUserProfileProps) => {
   const {
     register,
     handleSubmit,
     onSubmit,
     errors,
     disabled,
-    handleChangeImage,
-    image,
-    history
+    handleUploadFile,
+    isFirst,
+    currentIcon,
+    isUploading
   } = useFormCreateUpdateUser(data)
-
-  const inputRef = useRef<HTMLInputElement>(null)
-  const onClickButton = () => {
-    inputRef.current?.click()
-  }
 
   return (
     <>
       <Box as={'form'} height={'100vh'} position={'relative'}>
         <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-          {history !== '/' && (
+          {!isFirst && (
             <NextLink href={'/home'} passHref>
               <IconButton
-                aria-label="return"
-                size="lg"
+                aria-label={'return'}
+                size={'lg'}
                 icon={<IconReturn w={'2.2rem'} h={'2.2rem'} />}
               />
             </NextLink>
@@ -66,22 +62,45 @@ export const FormUserProfile = ({ data }: FormUserProfileProps) => {
             marginBottom={'2.4rem'}
             bgColor={'base'}
           >
-            <Avatar
-              src={image ? image : data.icon}
-              w={'12.9rem'}
-              h={'12.9rem'}
-              onClick={onClickButton}
-            />
+            {isUploading ? (
+              <Flex
+                w={'12.9rem'}
+                h={'12.9rem'}
+                justifyContent={'center'}
+                alignItems={'center'}
+                flexDirection={'column'}
+                bg={'gray'}
+                rounded={'full'}
+              >
+                <Spinner
+                  thickness={'.4rem'}
+                  speed={'.65s'}
+                  emptyColor={'gray'}
+                  color={'brandBlue'}
+                  w={'6.4rem'}
+                  h={'6.4rem'}
+                />
+              </Flex>
+            ) : (
+              <Avatar
+                as={'label'}
+                w={'12.9rem'}
+                h={'12.9rem'}
+                defaultValue={data.icon ?? ''}
+                src={currentIcon}
+              >
+                <VisuallyHiddenInput
+                  onChange={handleUploadFile}
+                  id={'icon'}
+                  type={'file'}
+                  accept={'image/*'}
+                />
+                <VisuallyHiddenInput {...register('icon')} />
+              </Avatar>
+            )}
           </Box>
         </Flex>
 
-        <VisuallyHiddenInput
-          onChange={handleChangeImage}
-          ref={inputRef}
-          id="icon"
-          type="file"
-          accept="image/*"
-        />
         <FormControl isInvalid={errors.name ? true : false}>
           <FormLabel htmlFor="name" fontSize={'md'}>
             ニックネーム
