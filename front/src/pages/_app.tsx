@@ -16,7 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       <ChakraProvider theme={customTheme}>
         <Layout>
           <CheckAuth>
-          <BaseToastContainer />
+            <BaseToastContainer />
             <Component {...pageProps} />
           </CheckAuth>
         </Layout>
