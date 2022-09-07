@@ -8,7 +8,7 @@ import '@/lib/firebase'
 import { UseCheckAuth } from '@/hooks/auth/useCheckAuth'
 import '@/components/Inputs/date-picker.css'
 import 'react-toastify/dist/ReactToastify.css'
-import { BaseToastContainer } from '@/components/Toasts/ToastContainer'
+import { BaseToastContainer } from '@/components/Toasts/BaseToastContainer'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
