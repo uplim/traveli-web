@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import { ModalQrCode } from '@/components/Modals'
-import { assignRef, Box } from '@chakra-ui/react'
+import { Box } from '@chakra-ui/react'
 
 export default {
   title: 'components/Modals/Modal'
@@ -8,7 +8,7 @@ export default {
 
 const Template: Story = (args) => (
   <Box w={'100%'} bgColor={'base'}>
-    <Box as={'main'} w={'container.sm'} p={'1.6rem'} h={'100vh'}>
+    <Box as={'main'} maxW={'container.sm'} p={'1.6rem'} h={'100vh'}>
       <ModalQrCode
         thumbnail={''}
         title={args.title}
