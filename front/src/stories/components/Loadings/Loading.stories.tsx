@@ -4,7 +4,7 @@ import { Box } from '@chakra-ui/react'
 
 export default {
     title:'components/Loadings/Loading'
-}
+} as Meta
 
 const Template: Story = ({}) => (
     <Box w={'100%'} bgColor={'base'}>
