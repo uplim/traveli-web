@@ -4,6 +4,7 @@ import { useSetRecoilState } from 'recoil'
 import { useBoolean } from '@chakra-ui/react'
 import { currentUserState, historyState } from '@/recoil/atoms'
 import { useCreateUser } from '@/hooks/firestore'
+import { toast } from 'react-toastify'
 
 export const useSignInAnonymously = () => {
   const router = useRouter()
@@ -39,6 +40,7 @@ export const useSignInAnonymously = () => {
       router.push('/user')
     } catch (err) {
       console.error(err)
+      typeof err === 'string' && toast.error(err)
       setDisabled.off()
     }
   }

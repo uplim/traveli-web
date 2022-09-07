@@ -2,6 +2,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { useState, Dispatch, SetStateAction } from 'react'
 import { UseFormSetValue } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
+import { toast } from 'react-toastify'
 
 type OgpType = {
   title: string
@@ -50,8 +51,9 @@ export const useFetchOgp = (
       setCurrentLabel(json.title)
       setValue(`links.${index}.label`, json.title)
     } catch (e) {
-      alert('リンク先のタイトルが取得できませんでした')
+      //alert('リンク先のタイトルが取得できませんでした')
       console.error(e)
+      typeof e === 'string' && toast.error(e)
     } finally {
       setDisabled.off()
     }

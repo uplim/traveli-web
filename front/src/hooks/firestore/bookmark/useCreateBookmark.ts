@@ -1,5 +1,6 @@
 import { TravelinkRequestType } from '@/types/db'
 import { collection, doc, getFirestore, setDoc } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 export const useCreateBookmark = async (
   uid: string,
@@ -20,5 +21,6 @@ export const useCreateBookmark = async (
     })
   } catch {
     console.error('保存できませんでした')
+    toast.error('保存できませんでした')
   }
 }

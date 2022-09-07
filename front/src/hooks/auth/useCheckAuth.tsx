@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { Loading } from '@/components/Loadings'
+import { toast } from 'react-toastify'
 
 type UseCheckAuthProps = {
   children: React.ReactNode
@@ -35,7 +36,9 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
           setCurrentUser(null)
         }
       })
-    } catch {
+
+    } catch(e) {
+      typeof e === 'string' && toast.error(e)
       await router.push('/')
       setCurrentUser(null)
     }

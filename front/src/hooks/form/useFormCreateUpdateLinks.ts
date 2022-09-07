@@ -7,6 +7,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
 import { CategoryType, UserType, TravelinkRequestType } from '@/types/db'
+import { toast } from 'react-toastify'
 
 export type Inputs = {
   title: string
@@ -98,6 +99,7 @@ export const useFormCreateUpdateLinks = (
 
       !travelinkData ? await create(req) : await update(req, traveliId)
     } catch (err) {
+      typeof err === 'string' && toast.error(err)
       console.error(err)
     } finally {
       setDisabled.off()

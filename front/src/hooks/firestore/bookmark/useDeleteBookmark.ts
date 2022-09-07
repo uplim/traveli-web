@@ -1,4 +1,5 @@
 import { collection, doc, getFirestore, deleteDoc } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 export const useDeleteBookmark = async (uid: string, traveliId: string) => {
   const db = getFirestore()
@@ -8,5 +9,6 @@ export const useDeleteBookmark = async (uid: string, traveliId: string) => {
     await deleteDoc(ref)
   } catch {
     console.error('削除できませんでした')
+    toast.error('削除できませんでした')
   }
 }

@@ -51,7 +51,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
       //router.push('/home')
     } catch (err) {
       console.error(err)
-      toast.error('Failed')
+      typeof err === 'string' && toast.error(err)
     } finally {
       if (history === '/') {
         setHistory('/user')
