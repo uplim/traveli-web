@@ -7,7 +7,6 @@ export const useCopyTextToClipboard = () => {
   const [disabled, setDisabled] = useBoolean()
 
   const copyTextToClipboard = (text: string) => {
-    
     setDisabled.on()
     navigator.clipboard
       .writeText(text)

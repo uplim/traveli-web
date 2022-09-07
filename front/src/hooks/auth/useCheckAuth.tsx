@@ -36,8 +36,7 @@ export const UseCheckAuth = ({ children }: UseCheckAuthProps) => {
           setCurrentUser(null)
         }
       })
-
-    } catch(e) {
+    } catch (e) {
       typeof e === 'string' && toast.error(e)
       await router.push('/')
       setCurrentUser(null)

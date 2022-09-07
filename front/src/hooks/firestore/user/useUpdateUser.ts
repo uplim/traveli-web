@@ -10,5 +10,6 @@ export const useUpdateUser = async (data: Partial<UserType>, id: string) => {
     await updateDoc(ref, data)
   } catch (e) {
     console.error(e)
-    typeof e === 'string' && toast.error(e)  }
+    typeof e === 'string' && toast.error(e)
+  }
 }
