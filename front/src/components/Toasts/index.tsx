@@ -1,1 +1,1 @@
-export {ToastContainer}  from '@components/Toasts/ToastContainer'
+export { ToastContainer } from '@components/Toasts/ToastContainer'

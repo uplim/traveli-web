@@ -1,6 +1,5 @@
 import { ToastContainer } from 'react-toastify'
 
-
 export const BaseToastContainer = () => {
   return (
     <>
