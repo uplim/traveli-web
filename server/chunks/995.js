@@ -72,8 +72,6 @@ const CardLink = ({ label , url , category: category1  })=>{
 // EXTERNAL MODULE: ./node_modules/next/link.js
 var next_link = __webpack_require__(1664);
 var link_default = /*#__PURE__*/__webpack_require__.n(next_link);
-// EXTERNAL MODULE: external "next/router"
-var router_ = __webpack_require__(1853);
 // EXTERNAL MODULE: external "date-fns"
 var external_date_fns_ = __webpack_require__(4146);
 // EXTERNAL MODULE: ./src/components/Buttons/index.ts + 3 modules
@@ -84,11 +82,9 @@ var Buttons = __webpack_require__(2770);
 
 
 
-
 const CardHome = ({ data  })=>{
-    const router = (0,router_.useRouter)();
     return /*#__PURE__*/ jsx_runtime_.jsx((link_default()), {
-        href: router.basePath + data.id,
+        href: `/${data.id}`,
         passHref: true,
         children: /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Link, {
             display: "block",
