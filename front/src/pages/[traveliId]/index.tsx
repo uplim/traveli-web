@@ -20,11 +20,11 @@ import { CardLink } from '@/components/Cards'
 import { ModalQrCode } from '@/components/Modals'
 import { Loading } from '@/components/Loadings'
 import { useDisclosure } from '@chakra-ui/react'
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
 import { useButtonBookmark } from '@/hooks/button'
 import { useFilterTravelink } from '@/hooks/filter'
 import { useCopyTextToClipboard } from '@/hooks/copy'
+import { currentUserState } from '@/recoil/atoms'
+import { useRecoilValue } from 'recoil'
 
 const LinkList = () => {
   const currentUser = useRecoilValue(currentUserState)
@@ -132,13 +132,17 @@ const LinkList = () => {
             </TabPanels>
           </Tabs>
           <Flex w={'100%'} h={'6.3rem'} justify={'center'} align={'center'}>
-            <Link href={'/home'}>
-              <ButtonIconRound as={'a'} iconType={'return'} />
-            </Link>
-            <Spacer />
-            <Link href={`/${travelink.id}/edit`}>
-              <ButtonIconRound as={'a'} iconType={'edit'} />
-            </Link>
+            {currentUser && (
+              <>
+                <Link href={'/home'}>
+                  <ButtonIconRound as={'a'} iconType={'return'} />
+                </Link>
+                <Spacer />
+                <Link href={`/${travelink.id}/edit`}>
+                  <ButtonIconRound as={'a'} iconType={'edit'} />
+                </Link>
+              </>
+            )}
           </Flex>
           <Box>
             <Image
@@ -171,7 +175,7 @@ const LinkList = () => {
                 disabled={disabled}
                 display={'inline'}
                 h={'auto'}
-                onClick={() => onClickBookmark(currentUser, travelink)}
+                onClick={() => onClickBookmark(travelink, currentUser)}
               >
                 {!isBookmarked ? (
                   <>

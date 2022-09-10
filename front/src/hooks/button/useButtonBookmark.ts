@@ -4,7 +4,8 @@ import {
   useCreateBookmark,
   useDeleteBookmark
 } from '@/hooks/firestore'
-import { UserType, TravelinkRequestType } from '@/types/db'
+import { TravelinkRequestType } from '@/types/db'
+import type { UserType } from '@/types/db'
 
 export const useButtonBookmark = () => {
   const [disabled, setDisabled] = useBoolean()
@@ -13,10 +14,10 @@ export const useButtonBookmark = () => {
   const deleteBookmark = useDeleteBookmark
 
   const onClickBookmark = async (
-    currentUser: UserType | null | undefined,
-    travelink: TravelinkRequestType
+    travelink: TravelinkRequestType,
+    currentUser: UserType | null | undefined
   ) => {
-    if (!currentUser) return console.log('ログインしてください')
+    if (!currentUser) return
     setDisabled.on()
     if (!isBookmarked) {
       await createBookmark(currentUser.uid, travelink.id, travelink)
