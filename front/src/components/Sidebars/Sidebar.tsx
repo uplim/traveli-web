@@ -31,11 +31,7 @@ export const Sidebar = ({ isOpen, onClose, icon, name }: SidebarProps) => {
   const { signOutHandler, disabled: signOutDisabled } = useSignOut()
 
   return (
-    <Drawer
-      placement="right"
-      onClose={onClose}
-      isOpen={isOpen}
-    >
+    <Drawer placement="right" onClose={onClose} isOpen={isOpen}>
       <DrawerOverlay onClick={onClose} />
       <DrawerContent>
         <Box
