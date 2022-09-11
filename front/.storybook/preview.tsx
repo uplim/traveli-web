@@ -1,13 +1,16 @@
 import React from 'react'
-import { ChakraProvider } from "@chakra-ui/react"
+import { ChakraProvider } from '@chakra-ui/react'
 import { Story } from '@storybook/react'
-import { customTheme } from '../src/theme';
+import { customTheme } from '../src/theme'
+import { RecoilRoot } from 'recoil'
 
 const withChakra = (Story: Story) => {
   return (
-    <ChakraProvider theme={customTheme}>
-      <Story />
-    </ChakraProvider>
+    <RecoilRoot>
+      <ChakraProvider theme={customTheme}>
+        <Story />
+      </ChakraProvider>
+    </RecoilRoot>
   )
 }
 
