@@ -10,7 +10,7 @@ type CardHomeProps = {
 
 export const CardHome = ({ data }: CardHomeProps) => {
   return (
-    <NextLink href={data.id} key={data.id} passHref>
+    <NextLink href={`/${data.id}`} key={data.id} passHref>
       <Link
         display={'block'}
         w={'100%'}
