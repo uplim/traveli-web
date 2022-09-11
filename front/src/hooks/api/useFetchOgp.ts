@@ -24,7 +24,6 @@ export const useFetchOgp = (
       return
     }
     if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/)) {
-      console.log('a')
       alert('urlが正しくありません')
       setDisabled.off()
       return
@@ -39,13 +38,11 @@ export const useFetchOgp = (
       const json = (await responce.json()) as OgpType
       setOgp(json)
       if (!json.title) {
-        alert('リンク先のタイトルを取得できませんでした')
-        return
+        throw 'error'
       }
       setValue(`links.${index}.label`, json.title)
-    } catch (e) {
-      console.error(e)
-      typeof e === 'string' && toast.error(e)
+    } catch {
+      toast.error('リンク先のタイトルを取得できませんでした')
     } finally {
       setDisabled.off()
     }

@@ -64,9 +64,8 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
       if (isFirst) {
         router.push('/home')
       }
-    } catch (err) {
-      console.error(err)
-      typeof err === 'string' && toast.error(err)
+    } catch {
+      toast.error('更新に失敗しました。もう一度試してください。')
     } finally {
       setDisabled.off()
     }

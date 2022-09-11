@@ -20,7 +20,6 @@ export const useCreateBookmark = async (
       ownerName: data.ownerName
     })
   } catch {
-    console.error('保存できませんでした')
-    toast.error('保存できませんでした')
+    toast.error('保存できませんでした。もう一度試してください。')
   }
 }

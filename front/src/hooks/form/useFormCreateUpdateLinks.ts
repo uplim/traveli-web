@@ -105,9 +105,12 @@ export const useFormCreateUpdateLinks = (
       setDisabled.on()
 
       !travelinkData ? await create(req) : await update(req)
-    } catch (err) {
-      typeof err === 'string' && toast.error(err)
-      console.error(err)
+    } catch {
+      !travelinkData
+        ? toast.error(
+            'トラベリンクの作成に失敗しました。もう一度試してください。'
+          )
+        : toast.error('更新に失敗しました。もう一度試してください。')
     } finally {
       setDisabled.off()
     }

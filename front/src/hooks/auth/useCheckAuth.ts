@@ -40,8 +40,8 @@ export const useCheckAuth = () => {
         }
       })
       setIsLoading.off()
-    } catch (e) {
-      typeof e === 'string' && toast.error(e)
+    } catch {
+      toast.error('エラーが発生しました。もう一度試してください。')
       await router.push('/')
       setCurrentUser(null)
     }
