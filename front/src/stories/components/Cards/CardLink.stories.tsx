@@ -16,17 +16,17 @@ const Template: Story = (args) => (
 
 export const Others = Template.bind({})
 Others.args = {
-  label:'リンク',
+  label: 'リンク',
   category: 'その他'
 }
 
 export const Food = Template.bind({})
 Food.args = {
-  label:'リンク',
+  label: 'リンク',
   category: '食事'
 }
 export const Place = Template.bind({})
 Place.args = {
-  label:'リンク',
+  label: 'リンク',
   category: '場所'
 }
