@@ -10,7 +10,7 @@ export default {
 
 const Template: Story = () => {
   const { register, setValue } = useForm<Inputs>()
-  
+
   return (
     <Box w={'100%'} bgColor={'base'}>
       <Box as={'main'} w={'container.sm'} p={'1.6rem'} h={'100vh'}>
