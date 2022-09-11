@@ -106,11 +106,7 @@ export const useFormCreateUpdateLinks = (
 
       !travelinkData ? await create(req) : await update(req)
     } catch {
-      !travelinkData
-        ? toast.error(
-            'トラベリンクの作成に失敗しました。もう一度試してください。'
-          )
-        : toast.error('更新に失敗しました。もう一度試してください。')
+      toast.error('トラベリンクの作成に失敗しました。もう一度試してください。')
     } finally {
       setDisabled.off()
     }
