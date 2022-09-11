@@ -25,6 +25,7 @@ Food.args = {
   label: 'リンク',
   category: '食事'
 }
+
 export const Place = Template.bind({})
 Place.args = {
   label: 'リンク',
