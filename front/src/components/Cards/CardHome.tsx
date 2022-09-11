@@ -1,5 +1,4 @@
 import NextLink from 'next/link'
-import { useRouter } from 'next/router'
 import { Avatar, Box, Flex, Heading, Link } from '@chakra-ui/react'
 import { BookmarkType, TravelinkRequestType } from '@/types/db'
 import { format } from 'date-fns'
@@ -10,10 +9,8 @@ type CardHomeProps = {
 }
 
 export const CardHome = ({ data }: CardHomeProps) => {
-  const router = useRouter()
-
   return (
-    <NextLink href={router.basePath + data.id} key={data.id} passHref>
+    <NextLink href={`/${data.id}`} key={data.id} passHref>
       <Link
         display={'block'}
         w={'100%'}
