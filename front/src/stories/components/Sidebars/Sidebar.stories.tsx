@@ -11,7 +11,7 @@ const Template: Story = (args) => {
       <Box as={'main'} w={'container.sm'} p={'1.6rem'} h={'100vh'}>
         <Sidebar
           isOpen={true}
-          onClose={() => {}}
+          onClose={() => void 0}
           icon={'/images/dummy.png'}
           name={args.name}
         />

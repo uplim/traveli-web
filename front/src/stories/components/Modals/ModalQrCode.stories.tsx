@@ -15,7 +15,7 @@ const Template: Story = (args) => (
         date={[null, null]}
         path={''}
         isOpen={true}
-        onClose={function (): void {}}
+        onClose={() => void 0}
       />
     </Box>
   </Box>

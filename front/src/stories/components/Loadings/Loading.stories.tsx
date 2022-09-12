@@ -6,7 +6,7 @@ export default {
   title: 'components/Loadings/Loading'
 } as Meta
 
-const Template: Story = ({}) => (
+const Template: Story = () => (
   <Box w={'100%'} bgColor={'base'}>
     <Box as={'main'} w={'container.sm'} p={'1.6rem'} h={'100vh'}>
       <Loading />

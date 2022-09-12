@@ -1,17 +1,15 @@
-import { Box } from '@chakra-ui/react'
 import { Story, Meta } from '@storybook/react'
 import { TabHome } from '@/components/Tabs'
+import { Layout } from '@/components/Layout'
 
 export default {
   title: 'components/Tabs/TabHome'
 } as Meta
 
 const Template: Story = () => (
-  <Box w={'100%'} bgColor={'base'}>
-    <Box as={'main'} w={'container.sm'} p={'1.6rem'} h={'100vh'}>
-      <TabHome data={[]} bookmarkData={[]} />
-    </Box>
-  </Box>
+  <Layout>
+    <TabHome data={[]} bookmarkData={[]} />
+  </Layout>
 )
 
 export const Default = Template.bind({})
