@@ -19,13 +19,13 @@ const Template: Story = () => {
           fields={[]}
           index={0}
           isClickNext={false}
-          remove={function (): void {}}
+          remove={() => {}}
           currentLink={{
             url: '',
             label: '',
             category: 'その他'
           }}
-          setIsClickNext={function (): void {}}
+          setIsClickNext={() => {}}
           setValue={setValue}
         />
       </Box>

@@ -1,24 +1,22 @@
 import { Story, Meta } from '@storybook/react'
 import { ModalQrCode } from '@/components/Modals'
-import { Box } from '@chakra-ui/react'
+import { Layout } from '@/components/Layout'
 
 export default {
   title: 'components/Modals/Modal'
 } as Meta
 
 const Template: Story = (args) => (
-  <Box w={'100%'} bgColor={'base'}>
-    <Box as={'main'} maxW={'container.sm'} p={'1.6rem'} h={'100vh'}>
-      <ModalQrCode
-        thumbnail={''}
-        title={args.title}
-        date={[null, null]}
-        path={''}
-        isOpen={true}
-        onClose={function (): void {}}
-      />
-    </Box>
-  </Box>
+  <Layout>
+    <ModalQrCode
+      thumbnail={''}
+      title={args.title}
+      date={[null, null]}
+      path={''}
+      isOpen={true}
+      onClose={() => {}}
+    />
+  </Layout>
 )
 
 export const Default = Template.bind({})
