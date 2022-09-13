@@ -1,4 +1,3 @@
-import { Box } from '@chakra-ui/react'
 import { Story, Meta } from '@storybook/react'
 import { TabHome } from '@/components/Tabs'
 import { Layout } from '@/components/Layout'

@@ -3,13 +3,13 @@ import { MenuCardLinkEdit } from '@/components/Menus/MenuCardLinkEdit'
 import { Box } from '@chakra-ui/react'
 
 export default {
-  title: 'components/Menus/MenuCardLinkEdit'
+  title: 'components/Menus/MenuLinkCardEdit'
 } as Meta
 
 const Template: Story = () => (
   <Box w={'100%'} bgColor={'base'}>
     <Box as={'main'} w={'container.sm'} p={'1.6rem'} h={'100vh'}>
-      <MenuCardLinkEdit setIsMinimum={() => {}} remove={() => {}} />
+      <MenuCardLinkEdit setIsMinimum={() => void 0} remove={() => void 0} />
     </Box>
   </Box>
 )
