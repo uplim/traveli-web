@@ -33,6 +33,11 @@ Storybook: https://traveli-dev.github.io/traveli-web/storybook
     docker compose down
 ```
 
+## 📸 Update Snapshot
+```sh
+  yarn test --updateSnapshot
+```
+
 ## 📕 Start Storybook
 ```sh
   # 起動
@@ -51,4 +56,6 @@ Storybook: https://traveli-dev.github.io/traveli-web/storybook
     docker cp traveli-web-front:/home/app/node_modules/ ./front/
   # formatting
     docker compose exec front yarn format
+  # test
+    docker compose exec front yarn test
 ```

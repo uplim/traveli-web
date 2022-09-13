@@ -1,4 +1,4 @@
-name: check lint and format
+name: check lint and format, snapshot test
 
 on:
   push:
@@ -16,11 +16,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '16.15.0'
-      - name: yarn install, check lint and format
+      - name: yarn install, check lint and format, snapshot test 
         working-directory: ./front
         run: |
           yarn install --frozen-lockfile
           yarn type-check
           yarn lint
           yarn lint:warnings
+          yarn test
           yarn format-check
