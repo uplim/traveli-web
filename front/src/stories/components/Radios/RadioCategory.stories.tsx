@@ -5,7 +5,8 @@ import { useForm } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 
 export default {
-  title: 'components/Radios/RadioCategory'
+  title: 'components/Radios/RadioCategory',
+  component: RadioCategory
 } as Meta
 
 const Template: Story = () => {

@@ -3,7 +3,8 @@ import { Box } from '@chakra-ui/react'
 import { Story, Meta } from '@storybook/react'
 
 export default {
-  title: 'components/Cards/CardLink'
+  title: 'components/Cards/CardLink',
+  component: CardLink
 } as Meta
 
 const Template: Story = (args) => (

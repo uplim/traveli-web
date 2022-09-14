@@ -755,21 +755,6 @@ exports[`Storyshots components/Menus/MenuLinkCardEdit Default 1`] = `
 ]
 `;
 
-exports[`Storyshots components/Modals/Modal Default 1`] = `
-[
-  <div
-    className="css-4ta5t4"
-  >
-    <main
-      className="css-13zr4ul"
-    >
-      <span />
-    </main>
-  </div>,
-  <span />,
-]
-`;
-
 exports[`Storyshots components/Radios/RadioCategory Default 1`] = `
 [
   <div

@@ -3,7 +3,8 @@ import { TabHome } from '@/components/Tabs'
 import { Layout } from '@/components/Layout'
 
 export default {
-  title: 'components/Tabs/TabHome'
+  title: 'components/Tabs/TabHome',
+  component: TabHome
 } as Meta
 
 const Template: Story = () => (

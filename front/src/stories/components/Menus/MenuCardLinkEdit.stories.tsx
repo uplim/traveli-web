@@ -3,7 +3,8 @@ import { MenuCardLinkEdit } from '@/components/Menus/MenuCardLinkEdit'
 import { Box } from '@chakra-ui/react'
 
 export default {
-  title: 'components/Menus/MenuLinkCardEdit'
+  title: 'components/Menus/MenuLinkCardEdit',
+  component: MenuCardLinkEdit
 } as Meta
 
 const Template: Story = () => (

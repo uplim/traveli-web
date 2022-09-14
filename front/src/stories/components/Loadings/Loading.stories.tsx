@@ -3,7 +3,8 @@ import { Loading } from '@/components/Loadings'
 import { Box } from '@chakra-ui/react'
 
 export default {
-  title: 'components/Loadings/Loading'
+  title: 'components/Loadings/Loading',
+  component: Loading
 } as Meta
 
 const Template: Story = () => (

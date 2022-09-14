@@ -1,19 +1,15 @@
 import { useEffect, useState } from 'react'
 import { TravelinkRequestType } from '@/types/db'
 import { collection, getDoc, getFirestore, doc } from 'firebase/firestore'
-import { useRecoilValue } from 'recoil'
-import { currentUserState } from '@/recoil/atoms'
 import { useRouter } from 'next/router'
 
 export const useGetTravelink = () => {
-  const currentUser = useRecoilValue(currentUserState)
   const [travelink, setTravelink] = useState<TravelinkRequestType | null>(null)
   const router = useRouter()
   const traveliId = router.query.traveliId as string
 
   useEffect(() => {
-    if (!currentUser) return
-    if (!traveliId) return
+    if (!router.isReady) return
 
     const loadTravelink = async () => {
       const db = getFirestore()
@@ -30,7 +26,7 @@ export const useGetTravelink = () => {
     }
 
     loadTravelink()
-  }, [])
+  }, [router.isReady])
 
   return { travelink }
 }
