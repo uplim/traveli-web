@@ -17,7 +17,7 @@ import { format } from 'date-fns'
 import { IconCheck, IconQr } from '@/components/Icons'
 import { ButtonIconRound } from '@/components/Buttons'
 import { CardLink } from '@/components/Cards'
-import { ModalQrCode } from '@/components/Modals'
+import { ModalQrCode, ModalSignIn } from '@/components/Modals'
 import { Loading } from '@/components/Loadings'
 import { useDisclosure } from '@chakra-ui/react'
 import { useButtonBookmark } from '@/hooks/button'
@@ -29,7 +29,16 @@ import { useRecoilValue } from 'recoil'
 const LinkList = () => {
   const currentUser = useRecoilValue(currentUserState)
   const { travelink } = useGetTravelink()
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {
+    isOpen: isOpenQrCodeModal,
+    onOpen: onOpenQrCodeModal,
+    onClose: onCloseQrCodeModal
+  } = useDisclosure()
+  const {
+    isOpen: isOpenSignInModal,
+    onOpen: onOpenSignInModal,
+    onClose: onCloseSignInModal
+  } = useDisclosure()
   const { onClickBookmark, disabled, isBookmarked } = useButtonBookmark()
   const filterTravelink = useFilterTravelink
   const {
@@ -175,7 +184,11 @@ const LinkList = () => {
                 disabled={disabled}
                 display={'inline'}
                 h={'auto'}
-                onClick={() => onClickBookmark(travelink, currentUser)}
+                onClick={() =>
+                  !currentUser
+                    ? onOpenSignInModal()
+                    : onClickBookmark(travelink, currentUser)
+                }
               >
                 {!isBookmarked ? (
                   <>
@@ -201,8 +214,12 @@ const LinkList = () => {
                   </>
                 )}
               </Button>
+              <ModalSignIn
+                isOpen={isOpenSignInModal}
+                onClose={onCloseSignInModal}
+              />
               <Spacer />
-              <Button onClick={onOpen} display={'inline'} h={'auto'}>
+              <Button onClick={onOpenQrCodeModal} display={'inline'} h={'auto'}>
                 <IconQr
                   w={'2.5rem'}
                   h={'2.5rem'}
@@ -215,8 +232,8 @@ const LinkList = () => {
                 title={travelink.title}
                 date={travelink.date}
                 path={travelink.id}
-                isOpen={isOpen}
-                onClose={onClose}
+                isOpen={isOpenQrCodeModal}
+                onClose={onCloseQrCodeModal}
               />
               <Spacer />
               <Button
