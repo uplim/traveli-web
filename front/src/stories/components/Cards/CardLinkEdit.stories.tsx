@@ -5,7 +5,8 @@ import { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
 import { useForm } from 'react-hook-form'
 
 export default {
-  title: 'components/Cards/CardLinkEdit'
+  title: 'components/Cards/CardLinkEdit',
+  component: CardLinkEdit
 } as Meta
 
 const Template: Story = () => {

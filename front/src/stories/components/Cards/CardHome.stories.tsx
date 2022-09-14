@@ -4,7 +4,8 @@ import { Story, Meta } from '@storybook/react'
 import { BookmarkType } from '@/types/db'
 
 export default {
-  title: 'components/Cards/CardHome'
+  title: 'components/Cards/CardHome',
+  component: CardHome
 } as Meta
 
 const Template: Story = () => {

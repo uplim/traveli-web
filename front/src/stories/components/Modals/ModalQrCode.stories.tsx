@@ -3,7 +3,8 @@ import { ModalQrCode } from '@/components/Modals'
 import { Box } from '@chakra-ui/react'
 
 export default {
-  title: 'components/Modals/Modal'
+  title: 'components/Modals/ModalQrCode',
+  component: ModalQrCode
 } as Meta
 
 const Template: Story = (args) => (
