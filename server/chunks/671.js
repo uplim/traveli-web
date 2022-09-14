@@ -52,8 +52,6 @@ firebase_auth__WEBPACK_IMPORTED_MODULE_4__ = (__webpack_async_dependencies__.the
 
 
 const accessibleBeforeSignInPages = [
-    "/signin",
-    "/signup",
     "/404"
 ];
 const useCheckAuth = ()=>{
@@ -77,9 +75,11 @@ const useCheckAuth = ()=>{
                         uid: currentUser.uid,
                         isAnonymous: currentUser.isAnonymous
                     });
-                } else {
+                } else if (router.pathname !== "/[traveliId]") {
                     // ログアウト
                     router.push("/");
+                    setCurrentUser(null);
+                } else {
                     setCurrentUser(null);
                 }
             });
@@ -95,7 +95,7 @@ const useCheckAuth = ()=>{
     }, [
         router.pathname
     ]);
-    const isLogout = !currentUser1 && router.pathname === "/";
+    const isLogout = !currentUser1 && (router.pathname === "/" || router.pathname === "/[traveliId]");
     const isLogin = !!currentUser1;
     return {
         isAccessibleBeforeSignIn,

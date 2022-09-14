@@ -88,7 +88,7 @@ const ButtonIconRound = (0,react_.forwardRef)(({ iconType , ...props }, ref)=>{
 
 
 
-const ButtonSignIn = (0,react_.forwardRef)(({ iconType , ...props }, ref)=>{
+const ButtonSignIn = (0,react_.forwardRef)(({ iconType , bgColor ="white" , text , h ="4.6rem" , isShadow =true , ...props }, ref)=>{
     return /*#__PURE__*/ (0,jsx_runtime_.jsxs)(Button, {
         ...props,
         w: "100%",
@@ -97,35 +97,42 @@ const ButtonSignIn = (0,react_.forwardRef)(({ iconType , ...props }, ref)=>{
         _disabled: {
             opacity: ".7"
         },
-        h: "4.6rem",
-        bgColor: "white",
+        h: h,
+        bgColor: bgColor,
         borderRadius: "10rem",
         ref: ref,
-        boxShadow: "0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)",
-        filter: "drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))",
+        boxShadow: isShadow ? "0 0.1rem 0.3rem 0.1rem rgba(101, 119, 134, 0.25)" : "",
+        filter: isShadow ? "drop-shadow(0 0 0.8rem rgba(101, 119, 134, 0.20))" : "",
         alignItems: "center",
         justifyContent: iconType === "google" ? "left" : "center",
         children: [
-            iconType === "google" && /*#__PURE__*/ (0,jsx_runtime_.jsxs)(jsx_runtime_.Fragment, {
+            iconType === "google" && /*#__PURE__*/ (0,jsx_runtime_.jsxs)(react_.Flex, {
+                position: "relative",
+                w: "100%",
                 children: [
                     /*#__PURE__*/ jsx_runtime_.jsx(react_.Image, {
                         src: "/images/icons/google.svg",
                         alt: "",
                         w: "1.8rem",
                         h: "1.8rem",
-                        ml: "2.1rem"
+                        position: "absolute",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        left: "2.1rem"
                     }),
                     /*#__PURE__*/ jsx_runtime_.jsx(react_.Text, {
+                        position: "absolute",
                         fontSize: "sm",
-                        ml: "6.3rem",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
                         children: "Google\u3067\u30B5\u30A4\u30F3\u30A4\u30F3"
                     })
                 ]
             }),
             iconType === "anonymous" && /*#__PURE__*/ jsx_runtime_.jsx(react_.Text, {
-                textAlign: "left",
                 fontSize: "sm",
-                children: "\u767B\u9332\u305B\u305A\u306B\u306F\u3058\u3081\u308B"
+                children: text ?? "\u767B\u9332\u305B\u305A\u306B\u306F\u3058\u3081\u308B"
             })
         ]
     });
@@ -755,26 +762,19 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(6689);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1492);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9755);
-/* harmony import */ var recoil__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(recoil__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _recoil_atoms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(3125);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1853);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(1853);
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([firebase_firestore__WEBPACK_IMPORTED_MODULE_1__]);
 firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 
 
 
-
-
 const useGetTravelink = ()=>{
-    const currentUser = (0,recoil__WEBPACK_IMPORTED_MODULE_2__.useRecoilValue)(_recoil_atoms__WEBPACK_IMPORTED_MODULE_3__/* .currentUserState */ .y);
     const { 0: travelink , 1: setTravelink  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(null);
-    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_4__.useRouter)();
+    const router = (0,next_router__WEBPACK_IMPORTED_MODULE_2__.useRouter)();
     const traveliId = router.query.traveliId;
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(()=>{
-        if (!currentUser) return;
-        if (!traveliId) return;
+        if (!router.isReady) return;
         const loadTravelink = async ()=>{
             const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.getFirestore)();
             const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_1__.collection)(db, "travelinks"), traveliId);
@@ -787,7 +787,9 @@ const useGetTravelink = ()=>{
             setTravelink(getTravelink);
         };
         loadTravelink();
-    }, []);
+    }, [
+        router.isReady
+    ]);
     return {
         travelink
     };
