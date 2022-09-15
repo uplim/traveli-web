@@ -1,0 +1,1434 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/Buttons/Button Round 1`] = `
+[
+  <button
+    className="chakra-button css-12mb13l"
+    type="button"
+  >
+    ぼたんだよ
+  </button>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Buttons/ButtonIconRound Edit 1`] = `
+[
+  <div
+    className="css-iuk5lk"
+  >
+    <button
+      className="chakra-button css-bzv8zt"
+      type="button"
+    >
+      <div
+        className="css-1gs64om"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Buttons/ButtonIconRound Menu 1`] = `
+[
+  <div
+    className="css-iuk5lk"
+  >
+    <button
+      className="chakra-button css-bzv8zt"
+      type="button"
+    >
+      <div
+        className="css-2r6fv9"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Buttons/ButtonIconRound Plus 1`] = `
+[
+  <div
+    className="css-iuk5lk"
+  >
+    <button
+      className="chakra-button css-1xc44us"
+      type="button"
+    >
+      <div
+        className="css-b5ld99"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={3}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 4v16m8-8H4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Buttons/ButtonIconRound Return 1`] = `
+[
+  <div
+    className="css-iuk5lk"
+  >
+    <button
+      className="chakra-button css-bzv8zt"
+      type="button"
+    >
+      <div
+        className="css-1wfkmha"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 19l-7-7 7-7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </button>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Cards/CardHome Default 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <a
+        className="chakra-link css-1ql98mx"
+        href="/"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        <div
+          className="css-1ihpuns"
+        />
+        <div
+          className="css-gg4vpm"
+        >
+          <div
+            className="css-1345nk8"
+          >
+            <div
+              className="css-0"
+            >
+              <h2
+                className="chakra-heading css-10b84fl"
+              >
+                旅行
+              </h2>
+            </div>
+            <div
+              className="css-3ag5c5"
+            >
+              <div
+                className="css-k008qs"
+              >
+                <span
+                  className="chakra-avatar css-4dk45i"
+                >
+                  <svg
+                    aria-label=" avatar"
+                    className="chakra-avatar__svg css-16ite8i"
+                    role="img"
+                    viewBox="0 0 128 128"
+                  >
+                    <path
+                      d="M103,102.1388 C93.094,111.92 79.3504,118 64.1638,118 C48.8056,118 34.9294,111.768 25,101.7892 L25,95.2 C25,86.8096 31.981,80 40.6,80 L87.4,80 C96.019,80 103,86.8096 103,95.2 L103,102.1388 Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M63.9961647,24 C51.2938136,24 41,34.2938136 41,46.9961647 C41,59.7061864 51.2938136,70 63.9961647,70 C76.6985159,70 87,59.7061864 87,46.9961647 C87,34.2938136 76.6985159,24 63.9961647,24"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <div
+                  className="css-1xdi3gg"
+                >
+                  Piyo
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            className="chakra-button css-7qifli"
+            type="button"
+          >
+            <div
+              className="css-1dgj55b"
+            >
+              <div
+                className="css-1mx6b8x"
+              />
+            </div>
+          </button>
+        </div>
+      </a>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Cards/CardLink Food 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="css-zz7c5y"
+        onClick={[Function]}
+      >
+        <div
+          className="css-2praw"
+        >
+          <img
+            alt=""
+            className="chakra-image css-0"
+            src="/images/icons/food.svg"
+          />
+        </div>
+        <p
+          className="chakra-text css-1jl861r"
+        >
+          リンク
+        </p>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Cards/CardLink Others 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="css-zz7c5y"
+        onClick={[Function]}
+      >
+        <div
+          className="css-2praw"
+        >
+          <img
+            alt=""
+            className="chakra-image css-0"
+            src="/images/icons/other.svg"
+          />
+        </div>
+        <p
+          className="chakra-text css-1jl861r"
+        >
+          リンク
+        </p>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Cards/CardLink Place 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="css-zz7c5y"
+        onClick={[Function]}
+      >
+        <div
+          className="css-2praw"
+        >
+          <img
+            alt=""
+            className="chakra-image css-0"
+            src="/images/icons/place.svg"
+          />
+        </div>
+        <p
+          className="chakra-text css-1jl861r"
+        >
+          リンク
+        </p>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Cards/CardLinkEdit Default 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="css-ksbfjv"
+      >
+        <div
+          className="css-1bq0lbk"
+        >
+          <div
+            className="css-17xejub"
+          />
+          <button
+            aria-controls="menu-list-1"
+            aria-expanded={false}
+            aria-haspopup="menu"
+            className="chakra-menu__menu-button css-kjvu41"
+            id="menu-button-1"
+            onClick={[Function]}
+            onKeyDown={[Function]}
+          >
+            <span
+              className="css-xl71ch"
+            >
+              <div
+                className="css-1dgj55b"
+              >
+                <div
+                  className="css-pkk7qk"
+                />
+              </div>
+            </span>
+          </button>
+        </div>
+        <div
+          className="css-r6z5ec"
+          style={
+            {
+              "inset": "0 auto auto 0",
+              "minWidth": "max-content",
+              "position": "absolute",
+              "visibility": "hidden",
+            }
+          }
+        >
+          <div
+            aria-orientation="vertical"
+            className="chakra-menu__menu-list css-ishqgk"
+            id="menu-list-1"
+            onKeyDown={[Function]}
+            role="menu"
+            style={
+              {
+                "opacity": 0,
+                "transform": "scale(0.8) translateZ(0)",
+                "transformOrigin": "var(--popper-transform-origin)",
+                "visibility": "hidden",
+              }
+            }
+            tabIndex={-1}
+          >
+            <button
+              className="chakra-menu__menuitem css-154pl1y"
+              id="menu-list-1-menuitem-1"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseMove={[Function]}
+              role="menuitem"
+              tabIndex={0}
+              type="button"
+            >
+              <div
+                className="css-1iytp3o"
+              />
+              <div
+                className="css-itvw0n"
+              >
+                表示を最小化
+              </div>
+            </button>
+            <button
+              className="chakra-menu__menuitem css-9qpjn9"
+              id="menu-list-1-menuitem-1"
+              onClick={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
+              onMouseMove={[Function]}
+              role="menuitem"
+              tabIndex={0}
+              type="button"
+            >
+              <div
+                className="css-iu8h3p"
+              />
+              <div
+                className="css-4nvlko"
+              >
+                削除する
+              </div>
+            </button>
+          </div>
+        </div>
+        <fieldset
+          className="chakra-form-control css-1kxonj9"
+          role="group"
+        >
+          <label
+            className="chakra-form__label css-10e62ah"
+            htmlFor="field-1"
+            id="field-1-label"
+          >
+            カテゴリー
+          </label>
+          <div
+            className="chakra-stack css-84zodg"
+          >
+            <div
+              className="css-1kjfo8z"
+            >
+              <input
+                className="css-f8n5zr"
+                id="links.0.category.place"
+                name="links.0.category"
+                onBlur={[Function]}
+                onChange={[Function]}
+                type="radio"
+                value="場所"
+              />
+              <label
+                className="chakra-form__label css-1c8op7w"
+                htmlFor="links.0.category.place"
+                id="field-1-label"
+              >
+                場所
+              </label>
+            </div>
+            <div
+              className="css-1kjfo8z"
+            >
+              <input
+                className="css-f8n5zr"
+                id="links.0.category.food"
+                name="links.0.category"
+                onBlur={[Function]}
+                onChange={[Function]}
+                type="radio"
+                value="食事"
+              />
+              <label
+                className="chakra-form__label css-1c8op7w"
+                htmlFor="links.0.category.food"
+                id="field-1-label"
+              >
+                食事
+              </label>
+            </div>
+            <div
+              className="css-1kjfo8z"
+            >
+              <input
+                className="css-f8n5zr"
+                id="links.0.category.other"
+                name="links.0.category"
+                onBlur={[Function]}
+                onChange={[Function]}
+                type="radio"
+                value="その他"
+              />
+              <label
+                className="chakra-form__label css-1c8op7w"
+                htmlFor="links.0.category.other"
+                id="field-1-label"
+              >
+                その他
+              </label>
+            </div>
+          </div>
+        </fieldset>
+        <div
+          className="chakra-form-control css-necndc"
+          role="group"
+        >
+          <label
+            className="chakra-form__label css-10e62ah"
+            htmlFor="field-1"
+            id="field-1-label"
+          >
+            URL
+          </label>
+          <input
+            className="chakra-input css-16cksvx"
+            disabled={false}
+            id="field-1"
+            name="links.0.url"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            placeholder="https://"
+            readOnly={false}
+            required={false}
+          />
+        </div>
+        <div
+          className="chakra-form-control css-necndc"
+          role="group"
+        >
+          <label
+            className="chakra-form__label css-xc675g"
+            htmlFor="field-1"
+            id="field-1-label"
+          >
+            <div
+              className="css-6n7j50"
+            >
+              ラベル
+               
+              <span
+                className="css-1xb8dar"
+              >
+                （任意）
+              </span>
+            </div>
+            <button
+              className="chakra-button css-1ymuwck"
+              onClick={[Function]}
+              type="button"
+            >
+              自動取得
+            </button>
+          </label>
+          <div
+            className="css-79elbk"
+          >
+            <input
+              className="chakra-input css-q0frcm"
+              disabled={false}
+              id="field-1"
+              name="links.0.label"
+              onBlur={[Function]}
+              onChange={[Function]}
+              onFocus={[Function]}
+              placeholder="例）宿泊先"
+              readOnly={false}
+              required={false}
+            />
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Inputs/Input Default 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-vqoudg"
+    >
+      <div
+        className="chakra-input__group css-9hf7ru"
+      >
+        <label
+          className="chakra-form__label css-1ite2v5"
+        >
+          ニックネーム
+        </label>
+        <input
+          className="chakra-input css-1ed8ep3"
+          onBlur={[Function]}
+          onFocus={[Function]}
+          placeholder="やまだ　たろう"
+        />
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Loadings/Loading Default 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="css-90q3wx"
+      >
+        <div
+          className="chakra-spinner css-1vxokgu"
+        >
+          <span
+            className="css-f8n5zr"
+          >
+            Loading...
+          </span>
+        </div>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Menus/MenuLinkCardEdit Default 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="css-1bq0lbk"
+      >
+        <div
+          className="css-17xejub"
+        />
+        <button
+          aria-controls="menu-list-1"
+          aria-expanded={false}
+          aria-haspopup="menu"
+          className="chakra-menu__menu-button css-kjvu41"
+          id="menu-button-1"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+        >
+          <span
+            className="css-xl71ch"
+          >
+            <div
+              className="css-1dgj55b"
+            >
+              <div
+                className="css-pkk7qk"
+              />
+            </div>
+          </span>
+        </button>
+      </div>
+      <div
+        className="css-r6z5ec"
+        style={
+          {
+            "inset": "0 auto auto 0",
+            "minWidth": "max-content",
+            "position": "absolute",
+            "visibility": "hidden",
+          }
+        }
+      >
+        <div
+          aria-orientation="vertical"
+          className="chakra-menu__menu-list css-ishqgk"
+          id="menu-list-1"
+          onKeyDown={[Function]}
+          role="menu"
+          style={
+            {
+              "opacity": 0,
+              "transform": "scale(0.8) translateZ(0)",
+              "transformOrigin": "var(--popper-transform-origin)",
+              "visibility": "hidden",
+            }
+          }
+          tabIndex={-1}
+        >
+          <button
+            className="chakra-menu__menuitem css-154pl1y"
+            id="menu-list-1-menuitem-1"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseMove={[Function]}
+            role="menuitem"
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              className="css-1iytp3o"
+            />
+            <div
+              className="css-itvw0n"
+            >
+              表示を最小化
+            </div>
+          </button>
+          <button
+            className="chakra-menu__menuitem css-9qpjn9"
+            id="menu-list-1-menuitem-1"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            onMouseMove={[Function]}
+            role="menuitem"
+            tabIndex={0}
+            type="button"
+          >
+            <div
+              className="css-iu8h3p"
+            />
+            <div
+              className="css-4nvlko"
+            >
+              削除する
+            </div>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Radios/RadioCategory Default 1`] = `
+[
+  <div
+    className="css-4ta5t4"
+  >
+    <main
+      className="css-x2shd6"
+    >
+      <div
+        className="chakra-stack css-84zodg"
+      >
+        <div
+          className="css-1kjfo8z"
+        >
+          <input
+            className="css-f8n5zr"
+            id="title.place"
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="場所"
+          />
+          <label
+            className="chakra-form__label css-1c8op7w"
+            htmlFor="title.place"
+          >
+            場所
+          </label>
+        </div>
+        <div
+          className="css-1kjfo8z"
+        >
+          <input
+            className="css-f8n5zr"
+            id="title.food"
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="食事"
+          />
+          <label
+            className="chakra-form__label css-1c8op7w"
+            htmlFor="title.food"
+          >
+            食事
+          </label>
+        </div>
+        <div
+          className="css-1kjfo8z"
+        >
+          <input
+            className="css-f8n5zr"
+            id="title.other"
+            name="title"
+            onBlur={[Function]}
+            onChange={[Function]}
+            type="radio"
+            value="その他"
+          />
+          <label
+            className="chakra-form__label css-1c8op7w"
+            htmlFor="title.other"
+          >
+            その他
+          </label>
+        </div>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots components/Tabs/TabHome Default 1`] = `
+[
+  <div
+    className="css-22sd4g"
+  >
+    <main
+      className="chakra-container css-1wvxda1"
+    >
+      <div
+        className="chakra-tabs css-1suaibq"
+      >
+        <div
+          aria-orientation="horizontal"
+          className="chakra-tabs__tablist css-1ewe9lh"
+          onKeyDown={[Function]}
+          role="tablist"
+        >
+          <button
+            aria-controls="tabs-1--tabpanel--1"
+            aria-selected={false}
+            className="chakra-tabs__tab css-ipjt28"
+            id="tabs-1--tab--1"
+            onClick={[Function]}
+            onFocus={[Function]}
+            role="tab"
+            tabIndex={-1}
+            type="button"
+          >
+            全て
+          </button>
+          <button
+            aria-controls="tabs-1--tabpanel--1"
+            aria-selected={false}
+            className="chakra-tabs__tab css-ipjt28"
+            id="tabs-1--tab--1"
+            onClick={[Function]}
+            onFocus={[Function]}
+            role="tab"
+            tabIndex={-1}
+            type="button"
+          >
+            保存済み
+          </button>
+        </div>
+        <div
+          className="chakra-tabs__tab-panels css-8atqhb"
+        >
+          <div
+            aria-labelledby="tabs-1--tab-0"
+            className="chakra-tabs__tab-panel css-a5mhaz"
+            hidden={false}
+            id="tabs-1--tabpanel-0"
+            role="tabpanel"
+            tabIndex={0}
+          >
+            <div
+              className="css-1sn2p20"
+            >
+              <div
+                className="css-8atqhb"
+              >
+                <div
+                  className="css-1l4w6pd"
+                >
+                  <div
+                    className="css-cm8zw6"
+                  />
+                </div>
+                <div
+                  className="css-1l4w6pd"
+                >
+                  <p
+                    className="chakra-text css-gm1rm0"
+                  >
+                    まだトラべリンクはありません。
+                  </p>
+                </div>
+                <div
+                  className="css-1l4w6pd"
+                >
+                  <p
+                    className="chakra-text css-8j93y0"
+                  >
+                    右下の＋ボタンから旅先で参照したい情報をまとめたトラべリンクを作ってみよう！
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            aria-labelledby="tabs-1--tab-1"
+            className="chakra-tabs__tab-panel css-a5mhaz"
+            hidden={true}
+            id="tabs-1--tabpanel-1"
+            role="tabpanel"
+            tabIndex={0}
+          >
+            <div
+              className="css-1sn2p20"
+            >
+              <div
+                className="css-8atqhb"
+              >
+                <div
+                  className="css-1l4w6pd"
+                >
+                  <div
+                    className="css-cm8zw6"
+                  />
+                </div>
+                <div
+                  className="css-1l4w6pd"
+                >
+                  <p
+                    className="chakra-text css-gm1rm0"
+                  >
+                    まだ保存したトラべリンクはありません。
+                  </p>
+                </div>
+                <div
+                  className="css-1l4w6pd"
+                >
+                  <p
+                    className="chakra-text css-8j93y0"
+                  >
+                    共有してもらったトラべリンクの保存ボタンを押そう！
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots utility/ColorPalette Default 1`] = `
+[
+  <div
+    className="css-1vunpsv"
+  >
+    <div
+      className="css-i51og3"
+    >
+      <div
+        className="css-1cfm8fa"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        white
+      </p>
+    </div>
+    <div
+      className="css-i51og3"
+    >
+      <div
+        className="css-1jytgw3"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        base
+      </p>
+    </div>
+    <div
+      className="css-i51og3"
+    >
+      <div
+        className="css-1c1od5c"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        logoBlack
+      </p>
+    </div>
+    <div
+      className="css-i51og3"
+    >
+      <div
+        className="css-170gkc"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        brandBlue
+      </p>
+    </div>
+    <div
+      className="css-i51og3"
+    >
+      <div
+        className="css-169i6ur"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        gray
+      </p>
+    </div>
+    <div
+      className="css-i51og3"
+    >
+      <div
+        className="css-hvzg8g"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        black
+      </p>
+    </div>
+  </div>,
+  <span />,
+]
+`;
+
+exports[`Storyshots utility/Icons Default 1`] = `
+[
+  <div
+    className="css-1yqc5tr"
+  >
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconCamera
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconEdit
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        Iconhelp
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M12.586 4.586a2 2 0 112.828 2.828l-3 3a2 2 0 01-2.828 0 1 1 0 00-1.414 1.414 4 4 0 005.656 0l3-3a4 4 0 00-5.656-5.656l-1.5 1.5a1 1 0 101.414 1.414l1.5-1.5zm-5 5a2 2 0 012.828 0 1 1 0 101.414-1.414 4 4 0 00-5.656 0l-3 3a4 4 0 105.656 5.656l1.5-1.5a1 1 0 10-1.414-1.414l-1.5 1.5a2 2 0 11-2.828-2.828l3-3z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconLink
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6h16M4 12h16M4 18h16"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconMenu
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={3}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M12 4v16m8-8H4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconPlus
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M3 4a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm2 2V5h1v1H5zM3 13a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1H4a1 1 0 01-1-1v-3zm2 2v-1h1v1H5zM13 3a1 1 0 00-1 1v3a1 1 0 001 1h3a1 1 0 001-1V4a1 1 0 00-1-1h-3zm1 2v1h1V5h-1z"
+            fillRule="evenodd"
+          />
+          <path
+            d="M11 4a1 1 0 10-2 0v1a1 1 0 002 0V4zM10 7a1 1 0 011 1v1h2a1 1 0 110 2h-3a1 1 0 01-1-1V8a1 1 0 011-1zM16 9a1 1 0 100 2 1 1 0 000-2zM9 13a1 1 0 011-1h1a1 1 0 110 2v2a1 1 0 11-2 0v-3zM7 11a1 1 0 100-2H4a1 1 0 100 2h3zM17 13a1 1 0 01-1 1h-2a1 1 0 110-2h2a1 1 0 011 1zM16 17a1 1 0 100-2h-3a1 1 0 100 2h3z"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconQr
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 19l-7-7 7-7"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconReturn
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconSave
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconChare
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconSignOut
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconUser
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            clipRule="evenodd"
+            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+            fillRule="evenodd"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconViewList
+      </p>
+    </div>
+    <div
+      className="css-1sqoy9a"
+    >
+      <div
+        className="css-15fj47z"
+      >
+        <svg
+          className="h-5 w-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+          />
+        </svg>
+      </div>
+      <p
+        className="chakra-text css-0"
+      >
+        IconGrid
+      </p>
+    </div>
+  </div>,
+  <span />,
+]
+`;

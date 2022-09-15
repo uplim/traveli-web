@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Box, Flex, Spacer } from '@chakra-ui/react'
+import { Avatar, Box, Flex, Spacer, useDisclosure } from '@chakra-ui/react'
 import {
   useGetTravelinkList,
   useGetUser,
@@ -14,6 +14,7 @@ const Home = () => {
   const { travelinkList } = useGetTravelinkList()
   const { bookmarkList } = useGetBookmarkList()
   const { user, currentUser } = useGetUser()
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
     <>
@@ -21,6 +22,12 @@ const Home = () => {
         <Loading />
       ) : (
         <>
+          <Sidebar
+            isOpen={isOpen}
+            onClose={onClose}
+            icon={user.icon ? user.icon : ''}
+            name={user.name ? user.name : ''}
+          />
           <Flex marginTop={'1.2rem'}>
             <Box w={'4rem'} />
             <Spacer />
@@ -31,10 +38,11 @@ const Home = () => {
               h={'1.8rem'}
             />
             <Spacer />
-
-            <Sidebar
-              icon={user.icon ? user.icon : ''}
-              name={user.name ? user.name : ''}
+            <Avatar
+              w={'4rem'}
+              h={'4rem'}
+              src={user.icon ? user.icon : ''}
+              onClick={onOpen}
             />
           </Flex>
 
