@@ -18,7 +18,7 @@ export const useCopyTextToClipboard = () => {
         }, 1000)
       })
       .catch(() => {
-        toast.error('コピーに失敗しました')
+        toast.error('取得に失敗しました。')
         setCopied(false)
         setDisabled.off()
       })

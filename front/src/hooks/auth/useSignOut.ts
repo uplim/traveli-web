@@ -23,7 +23,7 @@ export const useSignOut = () => {
       setDisabled.off()
       router.push('/')
     } catch {
-      toast.error('サインアウトに失敗しました。もう一度試してください。')
+      toast.error('サインアウトに失敗しました。')
       setDisabled.off()
     }
   }

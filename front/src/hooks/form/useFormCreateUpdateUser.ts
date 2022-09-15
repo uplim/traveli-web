@@ -56,19 +56,16 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   }
 
   const onSubmit = async (data: Inputs) => {
-    try {
-      setDisabled.on()
+    setDisabled.on()
 
-      isFirst ? await create(data) : await update(data)
+    isFirst ? await create(data) : await update(data)
 
-      if (isFirst) {
-        router.push('/home')
-      }
-    } catch {
-      toast.error('更新に失敗しました。もう一度試してください。')
-    } finally {
-      setDisabled.off()
+    if (isFirst) {
+      router.push('/home')
     }
+    toast.success('プロフィールを保存しました。')
+
+    setDisabled.off()
   }
 
   const create = async (data: Inputs) => {

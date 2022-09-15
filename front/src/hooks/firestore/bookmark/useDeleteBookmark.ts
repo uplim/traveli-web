@@ -8,6 +8,6 @@ export const useDeleteBookmark = async (uid: string, traveliId: string) => {
   try {
     await deleteDoc(ref)
   } catch {
-    toast.error('削除できませんでした。もう一度試してください。')
+    toast.error('保存の取り消しに失敗しました。')
   }
 }

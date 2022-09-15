@@ -9,6 +9,6 @@ export const useUpdateUser = async (data: UserType) => {
   try {
     await updateDoc(ref, data)
   } catch {
-    toast.error('更新に失敗しました。もう一度試してください。')
+    toast.error('プロフィールの保存に失敗しました。')
   }
 }

@@ -47,7 +47,7 @@ export const useSignInAnonymously = () => {
       })
       router.push('/user?isFirst=true')
     } catch {
-      toast.error('エラーが発生しました。もう一度試してください。')
+      toast.error('ユーザ登録に失敗しました。')
       setDisabled.off()
     }
   }

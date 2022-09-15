@@ -20,6 +20,6 @@ export const useCreateBookmark = async (
       ownerName: data.ownerName
     })
   } catch {
-    toast.error('保存できませんでした。もう一度試してください。')
+    toast.error('トラベリンクの保存に失敗しました。')
   }
 }

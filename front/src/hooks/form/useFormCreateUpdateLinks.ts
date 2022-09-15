@@ -6,7 +6,6 @@ import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
 import { UserType, TravelinkRequestType, CategoryType } from '@/types/db'
-import { toast } from 'react-toastify'
 
 export type Inputs = {
   title: string
@@ -101,15 +100,9 @@ export const useFormCreateUpdateLinks = (
   const onSubmit = async (data: Inputs) => {
     const req = data as TravelinkRequestType
 
-    try {
-      setDisabled.on()
-
-      !travelinkData ? await create(req) : await update(req)
-    } catch {
-      toast.error('トラベリンクの作成に失敗しました。もう一度試してください。')
-    } finally {
-      setDisabled.off()
-    }
+    setDisabled.on()
+    !travelinkData ? await create(req) : await update(req)
+    setDisabled.off()
   }
 
   const create = async (data: TravelinkRequestType) => {
