@@ -7,6 +7,7 @@ import { Layout } from '@/components/Layout'
 import { CheckAuth } from '@/components/Auth'
 import '@/lib/firebase'
 import '@/components/Inputs/date-picker.css'
+import '@/components/Toasts/BaseToastContainer.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { BaseToastContainer } from '@/components/Toasts/BaseToastContainer'
 
