@@ -6,7 +6,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useBoolean } from '@chakra-ui/react'
 import { toast } from 'react-toastify'
 
-const accessibleBeforeSignInPages = ['/signin', '/signup', '/404']
+const accessibleBeforeSignInPages = ['/404']
 
 export const useCheckAuth = () => {
   const [isLoading, setIsLoading] = useBoolean()
@@ -33,9 +33,11 @@ export const useCheckAuth = () => {
             uid: currentUser.uid,
             isAnonymous: currentUser.isAnonymous
           })
-        } else {
+        } else if (router.pathname !== '/[traveliId]') {
           // ログアウト
           router.push('/')
+          setCurrentUser(null)
+        } else {
           setCurrentUser(null)
         }
       })
@@ -53,7 +55,9 @@ export const useCheckAuth = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.pathname])
 
-  const isLogout = !currentUser && router.pathname === '/'
+  const isLogout =
+    !currentUser &&
+    (router.pathname === '/' || router.pathname === '/[traveliId]')
   const isLogin = !!currentUser
 
   return {
