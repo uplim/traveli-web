@@ -13,6 +13,7 @@ export const useDeleteTravelink = () => {
     } catch (e) {
       console.error(e)
     }
+    // TODO: リロード→ぐるぐるにしてDBから再フェッチ
     router.reload()
   }
   return { onClickDeleteTravelink }

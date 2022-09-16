@@ -74,6 +74,7 @@ export const CardHome = ({ data }: CardHomeProps) => {
               </Flex>
             </Flex>
           </Box>
+          {/* TODO: 一番下のCardHomeが＋ボタンで隠れてるのをどうにかする */}
           <Box marginTop={'1.9rem'} marginRight={'2.1rem'}>
             <MenuOpenDeleteTravelink onOpen={onOpenDeleteTravelinkModal} />
           </Box>
