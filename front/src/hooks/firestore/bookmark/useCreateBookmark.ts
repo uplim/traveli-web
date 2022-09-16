@@ -1,6 +1,5 @@
 import { TravelinkRequestType } from '@/types/db'
 import { collection, doc, getFirestore, setDoc } from 'firebase/firestore'
-import { toast } from 'react-toastify'
 
 export const useCreateBookmark = async (
   uid: string,
@@ -10,16 +9,12 @@ export const useCreateBookmark = async (
   const db = getFirestore()
   const subColRef = doc(collection(db, 'users', uid, 'bookmarks'), traveliId)
 
-  try {
-    await setDoc(subColRef, {
-      thumbnail: data.thumbnail ? data.thumbnail : null,
-      date: data.date,
-      title: data.title,
-      id: data.id,
-      ownerIcon: data.ownerIcon,
-      ownerName: data.ownerName
-    })
-  } catch {
-    toast.error('トラベリンクの保存に失敗しました。')
-  }
+  await setDoc(subColRef, {
+    thumbnail: data.thumbnail ? data.thumbnail : null,
+    date: data.date,
+    title: data.title,
+    id: data.id,
+    ownerIcon: data.ownerIcon,
+    ownerName: data.ownerName
+  })
 }

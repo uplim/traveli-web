@@ -6,6 +6,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
 import { UserType, TravelinkRequestType, CategoryType } from '@/types/db'
+import { toast } from 'react-toastify'
 
 export type Inputs = {
   title: string
@@ -107,21 +108,28 @@ export const useFormCreateUpdateLinks = (
 
   const create = async (data: TravelinkRequestType) => {
     if (!userData) return
-
-    const res = await createTravelink(
-      {
-        ...data,
-        ownerIcon: userData.icon ? userData.icon : '',
-        ownerName: userData.name ? userData.name : ''
-      },
-      userData.uid
-    )
-    router.push(`/${res}`)
+    try {
+      const res = await createTravelink(
+        {
+          ...data,
+          ownerIcon: userData.icon ? userData.icon : '',
+          ownerName: userData.name ? userData.name : ''
+        },
+        userData.uid
+      )
+      router.push(`/${res}`)
+    } catch {
+      toast.error('トラベリンクの作成に失敗しました。')
+    }
   }
 
   const update = async (data: TravelinkRequestType) => {
-    await updateTravelink(data, traveliId)
-    router.push(`/${traveliId}`)
+    try {
+      await updateTravelink(data, traveliId)
+      router.push(`/${traveliId}`)
+    } catch {
+      toast.error('変更内容の保存に失敗しました。')
+    }
   }
 
   return {

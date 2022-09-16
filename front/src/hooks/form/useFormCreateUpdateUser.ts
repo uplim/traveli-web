@@ -63,7 +63,6 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     if (isFirst) {
       router.push('/home')
     }
-    toast.success('プロフィールを保存しました。')
 
     setDisabled.off()
   }

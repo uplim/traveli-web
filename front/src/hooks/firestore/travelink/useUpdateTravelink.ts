@@ -6,7 +6,6 @@ import {
   serverTimestamp,
   Timestamp
 } from 'firebase/firestore'
-import { toast } from 'react-toastify'
 
 type Inputs = Partial<{
   title: string
@@ -22,12 +21,8 @@ type Inputs = Partial<{
 export const useUpdateTravelink = async (data: Inputs, id: string) => {
   const db = getFirestore()
   const ref = doc(collection(db, 'travelinks'), id)
-  try {
-    await updateDoc(ref, {
-      ...data,
-      updatedAt: serverTimestamp()
-    })
-  } catch {
-    toast.error('変更内容の保存に失敗しました。')
-  }
+  await updateDoc(ref, {
+    ...data,
+    updatedAt: serverTimestamp()
+  })
 }

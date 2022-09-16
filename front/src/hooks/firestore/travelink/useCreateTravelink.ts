@@ -6,7 +6,6 @@ import {
   serverTimestamp,
   Timestamp
 } from 'firebase/firestore'
-import { toast } from 'react-toastify'
 
 type Inputs = {
   title: string
@@ -25,17 +24,13 @@ export const useCreateTravelink = async (data: Inputs, uid: string) => {
   const db = getFirestore()
   const ref = doc(collection(db, 'travelinks'))
 
-  try {
-    await setDoc(ref, {
-      ...data,
-      id: ref.id,
-      ownerId: uid,
-      createdAt: serverTimestamp(),
-      updatedAt: serverTimestamp()
-    })
-  } catch {
-    toast.error('トラベリンクの作成に失敗しました。')
-  }
+  await setDoc(ref, {
+    ...data,
+    id: ref.id,
+    ownerId: uid,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp()
+  })
 
   return ref.id
 }
