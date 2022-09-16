@@ -47,12 +47,12 @@ export const ModalDeleteTravelknk = ({ isOpen, onClose, id }: Props) => {
           </Box>
         </ModalBody>
         <ModalFooter>
-          <Button variant={'outline'} size="md" mr={3} onClick={onClose}>
+          <Button variant={'outline'} size={'md'} mr={3} onClick={onClose}>
             キャンセル
           </Button>
           <Button
-            colorScheme="alertRed"
-            size="md"
+            colorScheme={'alertRed'}
+            size={'md'}
             w={'5rem'}
             h={'3rem'}
             onClick={() => {
