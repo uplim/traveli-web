@@ -1,7 +1,7 @@
 /* common */
 :root {
   /* --toastify-toast-width: 280px !important; */
-  --toastify-toast-min-height: 48px !important;
+  --toastify-toast-min-height: 4.8rem !important;
   --toastify-font-family: 'M PLUS 1p' !important;
   --toastify-color-success: #F7FCF5 !important;
   --toastify-color-error: #FEF8F8 !important;
@@ -12,29 +12,29 @@
 }
 
 .Toastify__toast {
-  margin: 9px 16px !important;
-  border-radius: 16px !important;
+  margin: 0.9rem 1.6rem !important;
+  border-radius: 1.6rem !important;
   padding: 0 !important;
   box-shadow: none !important;
 }
 
 .Toastify__toast-body > div:last-child {
-  margin-left: 5px;
+  margin-left: 0.5rem;
 }
 
 .Toastify__toast-body {
-  font-size: 15px;
-  line-height: 20px;
+  font-size: 1.5rem;
+  line-height: 2.0rem;
   padding: 0 !important;
   margin: 0 !important;
   width: 100%;
   font-weight: 500;
-  margin-left: 10px !important;
+  margin-left: 1rem !important;
 }
 
 /* Error */
 .Toastify__toast--error {
-  border: 2px solid #f56c6c;
+  border: 0.2rem solid #f56c6c;
   background: linear-gradient(
       0deg,
       rgba(245, 108, 108, 0.05),
@@ -49,12 +49,12 @@
 
 .Toastify__toast--error::before {
   content: url('/images/error.svg') !important;
-  width: 28px;
-  height: 28px;
+  width: 2.8rem;
+  height: 2.8rem;
   position: absolute;
   z-index: 100000;
-  left: 15px;
-  top: 8px;
+  left: 1.5rem;
+  top: 0.8rem;
 }
 .Toastify__toast--error > .Toastify__toast-body {
   color: #f56c6c;
@@ -62,9 +62,9 @@
 
 /* Success */
 .Toastify__toast--success {
-  width: 270px !important;
-  margin-left:52.5px !important;
-  border: 2px solid #67c23a;
+  width: 27rem !important;
+  margin-left:5.25rem !important;
+  border: 0.2rem solid #67c23a;
   background: linear-gradient(
       0deg,
       rgba(103, 194, 58, 0.05),
@@ -74,12 +74,12 @@
 }
 .Toastify__toast--success::before {
   content: url('/images/success.svg') !important;
-  width: 28px;
-  height: 28px;
+  width: 2.8rem;
+  height: 2.8rem;
   position: absolute;
   z-index: 100000;
-  left: 12px;
-  top: 8px;
+  left: 1.2rem;
+  top: 0.8rem;
 }
 
 .Toastify__toast--success > .Toastify__toast-body {
