@@ -1,9 +1,14 @@
 /* common */
 :root {
+  /* --toastify-toast-width: 280px !important; */
   --toastify-toast-min-height: 48px !important;
   --toastify-font-family: 'M PLUS 1p' !important;
   --toastify-color-success: #F7FCF5 !important;
   --toastify-color-error: #FEF8F8 !important;
+}
+
+.Toastify__toast-container {
+
 }
 
 .Toastify__toast {
@@ -14,7 +19,7 @@
 }
 
 .Toastify__toast-body > div:last-child {
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .Toastify__toast-body {
@@ -24,7 +29,7 @@
   margin: 0 !important;
   width: 100%;
   font-weight: 500;
-  margin-left: 1rem !important;
+  margin-left: 10px !important;
 }
 
 /* Error */
@@ -57,6 +62,8 @@
 
 /* Success */
 .Toastify__toast--success {
+  width: 270px !important;
+  margin-left:52.5px !important;
   border: 2px solid #67c23a;
   background: linear-gradient(
       0deg,
@@ -71,7 +78,7 @@
   height: 28px;
   position: absolute;
   z-index: 100000;
-  left: 15px;
+  left: 12px;
   top: 8px;
 }
 
