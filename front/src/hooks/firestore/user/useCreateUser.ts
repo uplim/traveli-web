@@ -1,6 +1,5 @@
 import { doc, collection, getFirestore, setDoc } from 'firebase/firestore'
 import { UserType } from '@/types/db'
-import { toast } from 'react-toastify'
 
 export const useCreateUser = async (user: UserType) => {
   const db = getFirestore()
