@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Flex,
-  Heading,
-  Link,
-  useDisclosure
-} from '@chakra-ui/react'
+import { Avatar, Box, Flex, Heading, useDisclosure } from '@chakra-ui/react'
 import { BookmarkType, TravelinkRequestType } from '@/types/db'
 import { format } from 'date-fns'
 import { ModalDeleteTravelknk } from '@/components/Modals'
@@ -28,9 +21,6 @@ export const CardHome = ({ data }: CardHomeProps) => {
         onClose={onCloseDeleteTravelinkModal}
         id={data.id}
       />
-      {/* TODO:タイトル、画像をaタグにする */}
-      {/* TODO:削除処理Hook書く */}
-      {/* <NextLink href={`/${data.id}`} key={data.id} passHref> */}
       <Box
         display={'block'}
         w={'100%'}
@@ -89,7 +79,6 @@ export const CardHome = ({ data }: CardHomeProps) => {
           </Box>
         </Flex>
       </Box>
-      {/* </NextLink> */}
     </>
   )
 }
