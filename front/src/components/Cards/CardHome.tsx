@@ -30,17 +30,18 @@ export const CardHome = ({ data }: CardHomeProps) => {
         bgColor={'white'}
         marginTop={'2.2rem'}
       >
-        <a href={`/${data.id}`}>
-          <Box
-            bgImage={data.thumbnail ? data.thumbnail : ''}
-            bgSize={'cover'}
-            bgRepeat={'no-repeat'}
-            bgPosition={'center center'}
-            w={'100%'}
-            h={'12.9rem'}
-            borderTopRadius={'10'}
-          />
-        </a>
+
+        <Box
+          bgImage={
+            data.thumbnail ? data.thumbnail : '/images/noImage_icon_lg.png'
+          }
+          bgSize={'cover'}
+          bgRepeat={'no-repeat'}
+          bgPosition={'center center'}
+          w={'100%'}
+          h={'12.9rem'}
+          borderTopRadius={'10'}
+        />
 
         <Flex justify={'space-between'}>
           <Box

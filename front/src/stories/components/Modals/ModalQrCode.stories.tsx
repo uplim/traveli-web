@@ -11,7 +11,7 @@ const Template: Story = (args) => (
   <Box w={'100%'} bgColor={'base'}>
     <Box as={'main'} maxW={'container.sm'} p={'1.6rem'} h={'100vh'}>
       <ModalQrCode
-        thumbnail={''}
+        thumbnail={'/images/dummy.png'}
         title={args.title}
         date={[null, null]}
         path={''}
