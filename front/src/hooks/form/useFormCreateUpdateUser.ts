@@ -6,6 +6,7 @@ import { useUploadImage } from '@/hooks/upload'
 import { useCreateUser, useUpdateUser } from '@/hooks/firestore'
 import { UserType } from '@/types/db'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 type Inputs = {
   name: string
@@ -56,14 +57,16 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
 
   const onSubmit = async (data: Inputs) => {
     setDisabled.on()
-
+    
     isFirst ? await create(data) : await update(data)
 
     if (isFirst) {
       router.push('/home')
     }
-
+ 
     setDisabled.off()
+    toast.success('プロフィールを保存しました。')
+
   }
 
   const create = async (data: Inputs) => {
