@@ -5,6 +5,7 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { customTheme } from '@/theme'
 import { Layout } from '@/components/Layout'
 import { CheckAuth } from '@/components/Auth'
+import { DefaultSeo } from '@/components/SEOs'
 import '@/lib/firebase'
 import '@/components/Inputs/date-picker.css'
 import '@/components/Toasts/BaseToastContainer.css'
@@ -15,6 +16,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <RecoilRoot>
       <ChakraProvider theme={customTheme}>
+        <DefaultSeo />
         <Layout>
           <CheckAuth>
             <BaseToastContainer />
