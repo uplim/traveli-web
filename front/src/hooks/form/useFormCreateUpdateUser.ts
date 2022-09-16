@@ -65,7 +65,6 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
     }
 
     setDisabled.off()
-    toast.success('プロフィールを保存しました。')
   }
 
   const create = async (data: Inputs) => {
