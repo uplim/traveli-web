@@ -1,17 +1,37 @@
 import NextLink from 'next/link'
-import { Avatar, Box, Flex, Heading, Link } from '@chakra-ui/react'
+import {
+  Avatar,
+  Box,
+  Flex,
+  Heading,
+  Link,
+  useDisclosure
+} from '@chakra-ui/react'
 import { BookmarkType, TravelinkRequestType } from '@/types/db'
 import { format } from 'date-fns'
-import { Button } from '@/components/Buttons'
+import { ModalDeleteTravelknk } from '@/components/Modals'
+import { MenuOpenDeleteTravelink } from '@/components/Menus'
 
 type CardHomeProps = {
   data: BookmarkType | TravelinkRequestType
 }
 
 export const CardHome = ({ data }: CardHomeProps) => {
+  const {
+    isOpen: isOpenDeleteTravelinkModal,
+    onOpen: onOpenDeleteTravelinkModal,
+    onClose: onCloseDeleteTravelinkModal
+  } = useDisclosure()
   return (
-    <NextLink href={`/${data.id}`} key={data.id} passHref>
-      <Link
+    <>
+      <ModalDeleteTravelknk
+        isOpen={isOpenDeleteTravelinkModal}
+        onClose={onCloseDeleteTravelinkModal}
+      />
+      {/* TODO:タイトル、画像をaタグにする */}
+      {/* TODO:削除処理Hook書く */}
+      {/* <NextLink href={`/${data.id}`} key={data.id} passHref> */}
+      <Box
         display={'block'}
         w={'100%'}
         h={'23.9rem'}
@@ -20,15 +40,17 @@ export const CardHome = ({ data }: CardHomeProps) => {
         bgColor={'white'}
         marginTop={'2.2rem'}
       >
-        <Box
-          bgImage={data.thumbnail ? data.thumbnail : ''}
-          bgSize={'cover'}
-          bgRepeat={'no-repeat'}
-          bgPosition={'center center'}
-          w={'100%'}
-          h={'12.9rem'}
-          borderTopRadius={'10'}
-        />
+        <a href={`/${data.id}`}>
+          <Box
+            bgImage={data.thumbnail ? data.thumbnail : ''}
+            bgSize={'cover'}
+            bgRepeat={'no-repeat'}
+            bgPosition={'center center'}
+            w={'100%'}
+            h={'12.9rem'}
+            borderTopRadius={'10'}
+          />
+        </a>
 
         <Flex justify={'space-between'}>
           <Box
@@ -49,7 +71,7 @@ export const CardHome = ({ data }: CardHomeProps) => {
                 paddingBottom={'1.4rem'}
                 fontSize={'lg'}
               >
-                {data.title}
+                <a href={`/${data.id}`}>{data.title}</a>
               </Heading>
             </Box>
             <Flex alignContent={'baseline'}>
@@ -62,17 +84,13 @@ export const CardHome = ({ data }: CardHomeProps) => {
               </Flex>
             </Flex>
           </Box>
-          <Button mt={'1.6rem'}>
-            <Flex w={'3.6rem'} h={'3.6rem'} align={'center'} justify={'center'}>
-              <Box
-                bgImage={'/images/icons/homeMenu.svg'}
-                w={'2.4rem'}
-                h={'2.4rem'}
-              />
-            </Flex>
-          </Button>
+          <Box marginTop={'1.9rem'} marginRight={'2.1rem'}>
+            
+              <MenuOpenDeleteTravelink onOpen={onOpenDeleteTravelinkModal} />
+          </Box>
         </Flex>
-      </Link>
-    </NextLink>
+      </Box>
+      {/* </NextLink> */}
+    </>
   )
 }
