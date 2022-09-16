@@ -26,9 +26,6 @@
   font-weight: 500;
   margin-left: 1rem !important;
 }
-.Toastify__progress-bar {
-  display: none;
-}
 
 /* Error */
 .Toastify__toast--error {
