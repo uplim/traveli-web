@@ -4,7 +4,6 @@ const toPath = (_path) => path.join(process.cwd(), _path);
 
 module.exports = {
   stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
-  staticDirs: ['../public'],
   addons: ["@storybook/addon-essentials"],
   typescript: {
     reactDocgen: false,
