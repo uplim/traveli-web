@@ -14,7 +14,7 @@
     "format-check": "prettier --check \"src/**/*.{js,jsx,ts,tsx}\"",
     "export": "next export",
     "storybook": "start-storybook -p 6006",
-    "build:storybook": "build-storybook -o ./build/storybook/",
+    "build:storybook": "build-storybook -s ./public -o ./build/storybook/",
     "test": "jest"
   },
   "dependencies": {
