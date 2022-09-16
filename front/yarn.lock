@@ -12803,6 +12803,11 @@ netmask@^2.0.2:
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-2.0.2.tgz#8b01a07644065d536383835823bc52004ebac5e7"
   integrity sha512-dBpDMdxv9Irdq66304OLfEmQ9tbNRFnFTuZiLo+bD+r332bBmMJ8GBLXklIXXgxd3+v9+KUnZaUR5PJMa75Gsg==
 
+next-seo@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.5.0.tgz#12bdfce60a6ae098f49617357a166c2d44dbc29e"
+  integrity sha512-5ouBHFtx8YrSDW44lj0qIEQ+oMcz6stgoITB+SqHUZbhgizoJsyLmq73gJ0lxtEKpcN8vG2QgRIJfdb8OAPChw==
+
 next-tick@1, next-tick@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.1.0.tgz#1836ee30ad56d67ef281b22bd199f709449b35eb"
