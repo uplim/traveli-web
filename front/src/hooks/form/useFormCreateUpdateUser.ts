@@ -68,19 +68,28 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   }
 
   const create = async (data: Inputs) => {
-    await createUser({
-      ...data,
-      uid: userData.uid,
-      isAnonymous: userData.isAnonymous
-    })
+    try {
+      await createUser({
+        ...data,
+        uid: userData.uid,
+        isAnonymous: userData.isAnonymous
+      })
+    } catch {
+      toast.error('プロフィールの作成に失敗しました。')
+    }
   }
 
   const update = async (data: Inputs) => {
-    await updateUser({
-      ...data,
-      uid: userData.uid,
-      isAnonymous: userData.isAnonymous
-    })
+    try {
+      await updateUser({
+        ...data,
+        uid: userData.uid,
+        isAnonymous: userData.isAnonymous
+      })
+      toast.success('プロフィールを保存しました。')
+    } catch {
+      toast.error('プロフィールの保存に失敗しました。')
+    }
   }
 
   return {

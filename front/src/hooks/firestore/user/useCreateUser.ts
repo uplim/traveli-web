@@ -7,14 +7,10 @@ export const useCreateUser = async (user: UserType) => {
   const ref = doc(collection(db, 'users'), user.uid)
 
   // フォームからユーザ生成する場合
-  try {
-    await setDoc(ref, {
-      uid: user.uid,
-      isAnonymous: user.isAnonymous,
-      name: user.name,
-      icon: user.icon
-    })
-  } catch {
-    toast.error('プロフィールの作成に失敗しました。')
-  }
+  await setDoc(ref, {
+    uid: user.uid,
+    isAnonymous: user.isAnonymous,
+    name: user.name,
+    icon: user.icon
+  })
 }
