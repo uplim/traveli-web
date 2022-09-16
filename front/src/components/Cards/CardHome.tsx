@@ -27,6 +27,7 @@ export const CardHome = ({ data }: CardHomeProps) => {
       <ModalDeleteTravelknk
         isOpen={isOpenDeleteTravelinkModal}
         onClose={onCloseDeleteTravelinkModal}
+        id={data.id}
       />
       {/* TODO:タイトル、画像をaタグにする */}
       {/* TODO:削除処理Hook書く */}
@@ -85,8 +86,7 @@ export const CardHome = ({ data }: CardHomeProps) => {
             </Flex>
           </Box>
           <Box marginTop={'1.9rem'} marginRight={'2.1rem'}>
-            
-              <MenuOpenDeleteTravelink onOpen={onOpenDeleteTravelinkModal} />
+            <MenuOpenDeleteTravelink onOpen={onOpenDeleteTravelinkModal} />
           </Box>
         </Flex>
       </Box>
