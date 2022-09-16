@@ -33,7 +33,6 @@ export const ModalDeleteTravelknk = ({ isOpen, onClose, id }: Props) => {
         padding={'1.5rem'}
       >
         <ModalHeader textAlign={'center'}>トラベリンク削除</ModalHeader>
-        {/* <ModalCloseButton margin={'1rem'} /> */}
         <ModalBody>
           <Text>削除すると以下の情報がすべて失われます</Text>
           <Box

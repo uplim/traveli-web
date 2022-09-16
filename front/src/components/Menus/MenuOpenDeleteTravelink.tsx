@@ -1,12 +1,10 @@
 import {
   Box,
-  ButtonProps,
   Flex,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
-  Spacer
 } from '@chakra-ui/react'
 import { IconMenuButton } from '@/components/Icons'
 

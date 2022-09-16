@@ -1,4 +1,3 @@
-import NextLink from 'next/link'
 import {
   Avatar,
   Box,
