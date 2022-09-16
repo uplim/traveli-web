@@ -6,7 +6,6 @@ import { useUploadImage } from '@/hooks/upload'
 import { useCreateUser, useUpdateUser } from '@/hooks/firestore'
 import { UserType } from '@/types/db'
 import { useRouter } from 'next/router'
-import { toast } from 'react-toastify'
 
 type Inputs = {
   name: string
