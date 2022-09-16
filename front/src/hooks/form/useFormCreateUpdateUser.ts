@@ -60,10 +60,6 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
 
     isFirst ? await create(data) : await update(data)
 
-    if (isFirst) {
-      router.push('/home')
-    }
-
     setDisabled.off()
   }
 
@@ -74,6 +70,7 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
         uid: userData.uid,
         isAnonymous: userData.isAnonymous
       })
+      router.push('/home')
     } catch {
       toast.error('プロフィールの作成に失敗しました。')
     }
