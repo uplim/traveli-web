@@ -4,7 +4,7 @@ import {
   Menu,
   MenuButton,
   MenuItem,
-  MenuList,
+  MenuList
 } from '@chakra-ui/react'
 import { IconMenuButton } from '@/components/Icons'
 
