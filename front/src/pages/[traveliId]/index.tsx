@@ -61,7 +61,9 @@ const LinkList = () => {
             top={'0'}
             left={'0'}
             w={'100vw'}
-            bgImage={travelink.thumbnail?  travelink.thumbnail : '/images/noImage.png'}
+            bgImage={
+              travelink.thumbnail ? travelink.thumbnail : '/images/noImage.png'
+            }
             h={'24rem'}
           />
           <Box
@@ -157,7 +159,11 @@ const LinkList = () => {
             <Image
               borderRadius={'full'}
               boxSize={'12rem'}
-              src={travelink.thumbnail?  travelink.thumbnail : '/images/noImage_icon.png'}
+              src={
+                travelink.thumbnail
+                  ? travelink.thumbnail
+                  : '/images/noImage_icon.png'
+              }
               alt={'img'}
               margin={'6rem auto 0 auto'}
               border={'solid white 0.4rem'}
