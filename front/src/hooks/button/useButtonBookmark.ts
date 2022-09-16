@@ -4,6 +4,7 @@ import {
   useCreateBookmark,
   useDeleteBookmark
 } from '@/hooks/firestore'
+import { toast } from 'react-toastify'
 import { TravelinkRequestType } from '@/types/db'
 import type { UserType } from '@/types/db'
 
@@ -20,11 +21,19 @@ export const useButtonBookmark = () => {
     if (!currentUser) return
     setDisabled.on()
     if (!isBookmarked) {
-      await createBookmark(currentUser.uid, travelink.id, travelink)
-      setIsBookmarked.on()
+      try {
+        await createBookmark(currentUser.uid, travelink.id, travelink)
+        setIsBookmarked.on()
+      } catch {
+        toast.error('トラベリンクの保存に失敗しました。')
+      }
     } else {
-      await deleteBookmark(currentUser.uid, travelink.id)
-      setIsBookmarked.off()
+      try {
+        await deleteBookmark(currentUser.uid, travelink.id)
+        setIsBookmarked.off()
+      } catch {
+        toast.error('保存の取り消しに失敗しました。')
+      }
     }
     setDisabled.off()
   }

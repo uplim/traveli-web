@@ -6,6 +6,7 @@ import { useUploadImage } from '@/hooks/upload'
 import { useCreateUser, useUpdateUser } from '@/hooks/firestore'
 import { UserType } from '@/types/db'
 import { useRouter } from 'next/router'
+import { toast } from 'react-toastify'
 
 type Inputs = {
   name: string
@@ -55,35 +56,37 @@ export const useFormCreateUpdateUser = (userData: UserType) => {
   }
 
   const onSubmit = async (data: Inputs) => {
-    try {
-      setDisabled.on()
+    setDisabled.on()
 
-      isFirst ? await create(data) : await update(data)
+    isFirst ? await create(data) : await update(data)
 
-      if (isFirst) {
-        router.push('/home')
-      }
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setDisabled.off()
-    }
+    setDisabled.off()
   }
 
   const create = async (data: Inputs) => {
-    await createUser({
-      ...data,
-      uid: userData.uid,
-      isAnonymous: userData.isAnonymous
-    })
+    try {
+      await createUser({
+        ...data,
+        uid: userData.uid,
+        isAnonymous: userData.isAnonymous
+      })
+      router.push('/home')
+    } catch {
+      toast.error('プロフィールの作成に失敗しました。')
+    }
   }
 
   const update = async (data: Inputs) => {
-    await updateUser({
-      ...data,
-      uid: userData.uid,
-      isAnonymous: userData.isAnonymous
-    })
+    try {
+      await updateUser({
+        ...data,
+        uid: userData.uid,
+        isAnonymous: userData.isAnonymous
+      })
+      toast.success('プロフィールを保存しました。')
+    } catch {
+      toast.error('プロフィールの保存に失敗しました。')
+    }
   }
 
   return {

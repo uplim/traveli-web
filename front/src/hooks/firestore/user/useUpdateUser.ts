@@ -5,9 +5,5 @@ export const useUpdateUser = async (data: UserType) => {
   const db = getFirestore()
   const ref = doc(collection(db, 'users'), data.uid)
 
-  try {
-    await updateDoc(ref, data)
-  } catch (e) {
-    console.error(e)
-  }
+  await updateDoc(ref, data)
 }

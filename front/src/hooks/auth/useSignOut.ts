@@ -3,6 +3,7 @@ import { useSetRecoilState } from 'recoil'
 import { getAuth } from 'firebase/auth'
 import { currentUserState } from '@/recoil/atoms'
 import { useBoolean } from '@chakra-ui/react'
+import { toast } from 'react-toastify'
 
 export const useSignOut = () => {
   const router = useRouter()
@@ -21,8 +22,8 @@ export const useSignOut = () => {
       setCurrentUser(null)
       setDisabled.off()
       router.push('/')
-    } catch (err) {
-      console.error(err)
+    } catch {
+      toast.error('サインアウトに失敗しました。')
       setDisabled.off()
     }
   }

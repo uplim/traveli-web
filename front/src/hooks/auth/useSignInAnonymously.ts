@@ -9,6 +9,7 @@ import { useSetRecoilState } from 'recoil'
 import { useBoolean } from '@chakra-ui/react'
 import { currentUserState } from '@/recoil/atoms'
 import { collection, doc, getDoc, getFirestore } from 'firebase/firestore'
+import { toast } from 'react-toastify'
 
 export const useSignInAnonymously = () => {
   const router = useRouter()
@@ -45,8 +46,8 @@ export const useSignInAnonymously = () => {
         }
       })
       router.push('/user?isFirst=true')
-    } catch (err) {
-      console.error(err)
+    } catch {
+      toast.error('ユーザ登録に失敗しました。')
       setDisabled.off()
     }
   }

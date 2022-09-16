@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useBoolean } from '@chakra-ui/react'
+import { toast } from 'react-toastify'
 
 export const useCopyTextToClipboard = () => {
   const [copied, setCopied] = useState<boolean>(false)
@@ -17,6 +18,7 @@ export const useCopyTextToClipboard = () => {
         }, 1000)
       })
       .catch(() => {
+        toast.error('リンクのコピーに失敗しました。')
         setCopied(false)
         setDisabled.off()
       })

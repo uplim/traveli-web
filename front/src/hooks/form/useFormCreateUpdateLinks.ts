@@ -6,6 +6,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { useCreateTravelink, useUpdateTravelink } from '@/hooks/firestore'
 import { useUploadImage } from '@/hooks/upload'
 import { UserType, TravelinkRequestType, CategoryType } from '@/types/db'
+import { toast } from 'react-toastify'
 
 export type Inputs = {
   title: string
@@ -100,34 +101,35 @@ export const useFormCreateUpdateLinks = (
   const onSubmit = async (data: Inputs) => {
     const req = data as TravelinkRequestType
 
-    try {
-      setDisabled.on()
-
-      !travelinkData ? await create(req) : await update(req)
-    } catch (err) {
-      console.error(err)
-    } finally {
-      setDisabled.off()
-    }
+    setDisabled.on()
+    !travelinkData ? await create(req) : await update(req)
+    setDisabled.off()
   }
 
   const create = async (data: TravelinkRequestType) => {
     if (!userData) return
-
-    const res = await createTravelink(
-      {
-        ...data,
-        ownerIcon: userData.icon ? userData.icon : '',
-        ownerName: userData.name ? userData.name : ''
-      },
-      userData.uid
-    )
-    router.push(`/${res}`)
+    try {
+      const res = await createTravelink(
+        {
+          ...data,
+          ownerIcon: userData.icon ? userData.icon : '',
+          ownerName: userData.name ? userData.name : ''
+        },
+        userData.uid
+      )
+      router.push(`/${res}`)
+    } catch {
+      toast.error('トラベリンクの作成に失敗しました。')
+    }
   }
 
   const update = async (data: TravelinkRequestType) => {
-    await updateTravelink(data, traveliId)
-    router.push(`/${traveliId}`)
+    try {
+      await updateTravelink(data, traveliId)
+      router.push(`/${traveliId}`)
+    } catch {
+      toast.error('変更内容の保存に失敗しました。')
+    }
   }
 
   return {

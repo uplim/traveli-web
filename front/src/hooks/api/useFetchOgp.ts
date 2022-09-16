@@ -2,6 +2,7 @@ import { useBoolean } from '@chakra-ui/react'
 import { useState } from 'react'
 import { UseFormSetValue } from 'react-hook-form'
 import type { Inputs } from '@/hooks/form/useFormCreateUpdateLinks'
+import { toast } from 'react-toastify'
 
 type OgpType = {
   title: string
@@ -23,7 +24,6 @@ export const useFetchOgp = (
       return
     }
     if (!url.match(/^(https?|ftp)(:\/\/[-_.!~*'()a-zA-Z0-9;/?:@&=+$,%#]+)/)) {
-      console.log('a')
       alert('urlが正しくありません')
       setDisabled.off()
       return
@@ -38,13 +38,11 @@ export const useFetchOgp = (
       const json = (await responce.json()) as OgpType
       setOgp(json)
       if (!json.title) {
-        alert('リンク先のタイトルを取得できませんでした')
-        return
+        throw 'error'
       }
       setValue(`links.${index}.label`, json.title)
-    } catch (e) {
-      alert('リンク先のタイトルが取得できませんでした')
-      console.error(e)
+    } catch {
+      toast.error('取得に失敗しました。')
     } finally {
       setDisabled.off()
     }

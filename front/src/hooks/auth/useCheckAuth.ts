@@ -4,6 +4,7 @@ import { useRecoilState } from 'recoil'
 import { currentUserState } from '@/recoil/atoms'
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { useBoolean } from '@chakra-ui/react'
+import { toast } from 'react-toastify'
 
 const accessibleBeforeSignInPages = ['/404']
 
@@ -42,6 +43,7 @@ export const useCheckAuth = () => {
       })
       setIsLoading.off()
     } catch {
+      toast.error('エラーが発生しました。')
       await router.push('/')
       setCurrentUser(null)
     }
