@@ -336,7 +336,7 @@ const CardLinkEdit = ({ register , error , index , isClickNext , fields , remove
                                 disabled && /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_2__.Spinner, {
                                     position: "absolute",
                                     top: "25%",
-                                    left: "40%",
+                                    left: "50%",
                                     transform: "translate(-50%, -50%)",
                                     speed: ".65s",
                                     emptyColor: "gray",
