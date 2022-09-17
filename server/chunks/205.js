@@ -23,10 +23,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _hooks_form__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(7658);
 /* harmony import */ var _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(628);
 /* harmony import */ var _components_Icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3307);
-/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(6995);
+/* harmony import */ var _components_Cards__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(3340);
 /* harmony import */ var _components_Buttons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(2770);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__]);
-([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__, _components_Cards__WEBPACK_IMPORTED_MODULE_8__]);
+([_hooks_form__WEBPACK_IMPORTED_MODULE_5__, _components_Inputs_InputDate__WEBPACK_IMPORTED_MODULE_6__, _components_Cards__WEBPACK_IMPORTED_MODULE_8__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
 
 
 
@@ -499,8 +499,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _chakra_ui_react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_chakra_ui_react__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
 /* harmony import */ var _hooks_upload__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(8456);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_6__]);
-([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_6__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3590);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_6__, react_toastify__WEBPACK_IMPORTED_MODULE_7__]);
+([react_hook_form__WEBPACK_IMPORTED_MODULE_1__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_3__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, _hooks_upload__WEBPACK_IMPORTED_MODULE_6__, react_toastify__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -564,27 +566,30 @@ const useFormCreateUpdateLinks = (travelinkData, userData)=>{
     });
     const onSubmit = async (data)=>{
         const req = data;
-        try {
-            setDisabled.on();
-            !travelinkData ? await create(req) : await update(req);
-        } catch (err) {
-            console.error(err);
-        } finally{
-            setDisabled.off();
-        }
+        setDisabled.on();
+        !travelinkData ? await create(req) : await update(req);
+        setDisabled.off();
     };
     const create = async (data)=>{
         if (!userData) return;
-        const res = await createTravelink({
-            ...data,
-            ownerIcon: userData.icon ? userData.icon : "",
-            ownerName: userData.name ? userData.name : ""
-        }, userData.uid);
-        router.push(`/${res}`);
+        try {
+            const res = await createTravelink({
+                ...data,
+                ownerIcon: userData.icon ? userData.icon : "",
+                ownerName: userData.name ? userData.name : ""
+            }, userData.uid);
+            router.push(`/${res}`);
+        } catch  {
+            react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.error("\u30C8\u30E9\u30D9\u30EA\u30F3\u30AF\u306E\u4F5C\u6210\u306B\u5931\u6557\u3057\u307E\u3057\u305F\u3002");
+        }
     };
     const update = async (data)=>{
-        await updateTravelink(data, traveliId);
-        router.push(`/${traveliId}`);
+        try {
+            await updateTravelink(data, traveliId);
+            router.push(`/${traveliId}`);
+        } catch  {
+            react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.error("\u5909\u66F4\u5185\u5BB9\u306E\u4FDD\u5B58\u306B\u5931\u6557\u3057\u307E\u3057\u305F\u3002");
+        }
     };
     return {
         register,
@@ -627,8 +632,10 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8697);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(1853);
 /* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_6__);
-var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__]);
-([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+/* harmony import */ var react_toastify__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(3590);
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, react_toastify__WEBPACK_IMPORTED_MODULE_7__]);
+([react_hook_form__WEBPACK_IMPORTED_MODULE_0__, _hookform_resolvers_yup__WEBPACK_IMPORTED_MODULE_1__, _hooks_upload__WEBPACK_IMPORTED_MODULE_4__, _hooks_firestore__WEBPACK_IMPORTED_MODULE_5__, react_toastify__WEBPACK_IMPORTED_MODULE_7__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);
+
 
 
 
@@ -668,31 +675,33 @@ const useFormCreateUpdateUser = (userData)=>{
         setIsUploading.off();
     };
     const onSubmit = async (data)=>{
-        try {
-            setDisabled.on();
-            isFirst ? await create(data) : await update(data);
-            if (isFirst) {
-                router.push("/home");
-            }
-        } catch (err) {
-            console.error(err);
-        } finally{
-            setDisabled.off();
-        }
+        setDisabled.on();
+        isFirst ? await create(data) : await update(data);
+        setDisabled.off();
     };
     const create = async (data)=>{
-        await createUser({
-            ...data,
-            uid: userData.uid,
-            isAnonymous: userData.isAnonymous
-        });
+        try {
+            await createUser({
+                ...data,
+                uid: userData.uid,
+                isAnonymous: userData.isAnonymous
+            });
+            router.push("/home");
+        } catch  {
+            react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.error("\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u306E\u4F5C\u6210\u306B\u5931\u6557\u3057\u307E\u3057\u305F\u3002");
+        }
     };
     const update = async (data)=>{
-        await updateUser({
-            ...data,
-            uid: userData.uid,
-            isAnonymous: userData.isAnonymous
-        });
+        try {
+            await updateUser({
+                ...data,
+                uid: userData.uid,
+                isAnonymous: userData.isAnonymous
+            });
+            react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.success("\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u3092\u4FDD\u5B58\u3057\u307E\u3057\u305F\u3002");
+        } catch  {
+            react_toastify__WEBPACK_IMPORTED_MODULE_7__.toast.error("\u30D7\u30ED\u30D5\u30A3\u30FC\u30EB\u306E\u4FDD\u5B58\u306B\u5931\u6557\u3057\u307E\u3057\u305F\u3002");
+        }
     };
     return {
         register,

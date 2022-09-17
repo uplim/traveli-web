@@ -583,18 +583,14 @@ firebase_firestore__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies_
 const useCreateBookmark = async (uid, traveliId, data)=>{
     const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.getFirestore)();
     const subColRef = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.collection)(db, "users", uid, "bookmarks"), traveliId);
-    try {
-        await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.setDoc)(subColRef, {
-            thumbnail: data.thumbnail ? data.thumbnail : null,
-            date: data.date,
-            title: data.title,
-            id: data.id,
-            ownerIcon: data.ownerIcon,
-            ownerName: data.ownerName
-        });
-    } catch  {
-        console.error("\u4FDD\u5B58\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F");
-    }
+    await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.setDoc)(subColRef, {
+        thumbnail: data.thumbnail ? data.thumbnail : null,
+        date: data.date,
+        title: data.title,
+        id: data.id,
+        ownerIcon: data.ownerIcon,
+        ownerName: data.ownerName
+    });
 };
 
 __webpack_async_result__();
@@ -616,11 +612,7 @@ firebase_firestore__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies_
 const useDeleteBookmark = async (uid, traveliId)=>{
     const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.getFirestore)();
     const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.collection)(db, "users", uid, "bookmarks"), traveliId);
-    try {
-        await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.deleteDoc)(ref);
-    } catch  {
-        console.error("\u524A\u9664\u3067\u304D\u307E\u305B\u3093\u3067\u3057\u305F");
-    }
+    await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.deleteDoc)(ref);
 };
 
 __webpack_async_result__();
@@ -979,11 +971,7 @@ firebase_firestore__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies_
 const useUpdateUser = async (data)=>{
     const db = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.getFirestore)();
     const ref = (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.doc)((0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.collection)(db, "users"), data.uid);
-    try {
-        await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.updateDoc)(ref, data);
-    } catch (e) {
-        console.error(e);
-    }
+    await (0,firebase_firestore__WEBPACK_IMPORTED_MODULE_0__.updateDoc)(ref, data);
 };
 
 __webpack_async_result__();
