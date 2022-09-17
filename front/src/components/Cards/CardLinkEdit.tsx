@@ -157,7 +157,7 @@ export const CardLinkEdit = ({
                 <Spinner
                   position={'absolute'}
                   top={'25%'}
-                  left={'40%'}
+                  left={'50%'}
                   transform={'translate(-50%, -50%)'}
                   speed={'.65s'}
                   emptyColor={'gray'}
