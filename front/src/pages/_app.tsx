@@ -8,7 +8,7 @@ import { CheckAuth } from '@/components/Auth'
 import { DefaultSeo } from '@/components/SEOs'
 import '@/lib/firebase'
 import '@/components/Inputs/date-picker.css'
-import '@/components/Toasts/BaseToastContainer.css'
+import '@/components/Toasts/baseToastContainer.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { BaseToastContainer } from '@/components/Toasts'
 
