@@ -150,12 +150,12 @@ const LinkList = () => {
                 </Link>
                 <Spacer />
                 {/* ownerもしくはcanEditがTrueの時だけ編集ボタンをつける */}
-                {currentUser.uid === travelink.ownerId ||
-                  (travelink.canEdit && (
-                    <Link href={`/${travelink.id}/edit`}>
-                      <ButtonIconRound as={'a'} iconType={'edit'} />
-                    </Link>
-                  ))}
+                {(currentUser.uid === travelink.ownerId ||
+                  travelink.canEdit) && (
+                  <Link href={`/${travelink.id}/edit`}>
+                    <ButtonIconRound as={'a'} iconType={'edit'} />
+                  </Link>
+                )}
               </>
             )}
           </Flex>
