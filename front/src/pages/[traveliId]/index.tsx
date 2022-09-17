@@ -149,9 +149,13 @@ const LinkList = () => {
                   <ButtonIconRound as={'a'} iconType={'return'} />
                 </Link>
                 <Spacer />
-                <Link href={`/${travelink.id}/edit`}>
-                  <ButtonIconRound as={'a'} iconType={'edit'} />
-                </Link>
+                {/* ownerもしくはcanEditがTrueの時だけ編集ボタンをつける */}
+                {currentUser.uid === travelink.ownerId ||
+                  (travelink.canEdit && (
+                    <Link href={`/${travelink.id}/edit`}>
+                      <ButtonIconRound as={'a'} iconType={'edit'} />
+                    </Link>
+                  ))}
               </>
             )}
           </Flex>
