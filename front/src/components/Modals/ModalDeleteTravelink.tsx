@@ -19,7 +19,7 @@ type Props = {
   id: string
 }
 
-export const ModalDeleteTravelknk = ({ isOpen, onClose, id }: Props) => {
+export const ModalDeleteTravelink = ({ isOpen, onClose, id }: Props) => {
   const { onClickDeleteTravelink } = useDeleteTravelink()
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

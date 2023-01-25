@@ -1,7 +1,7 @@
 import { Avatar, Box, Flex, Heading, useDisclosure } from '@chakra-ui/react'
 import { BookmarkType, TravelinkRequestType } from '@/types/db'
 import { format } from 'date-fns'
-import { ModalDeleteTravelknk } from '@/components/Modals'
+import { ModalDeleteTravelink } from '@/components/Modals'
 import { MenuOpenDeleteTravelink } from '@/components/Menus'
 
 type CardHomeProps = {
@@ -16,7 +16,7 @@ export const CardHome = ({ data }: CardHomeProps) => {
   } = useDisclosure()
   return (
     <>
-      <ModalDeleteTravelknk
+      <ModalDeleteTravelink
         isOpen={isOpenDeleteTravelinkModal}
         onClose={onCloseDeleteTravelinkModal}
         id={data.id}
