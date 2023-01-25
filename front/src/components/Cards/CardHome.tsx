@@ -30,7 +30,6 @@ export const CardHome = ({ data }: CardHomeProps) => {
         bgColor={'white'}
         marginTop={'2.2rem'}
       >
-
         <Box
           bgImage={
             data.thumbnail ? data.thumbnail : '/images/noImage_icon_lg.png'
