@@ -1,5 +1,5 @@
 {
   "redirects": [
-    { "source": "https://traveli-web.vercel.app/", "destination": "https://www.traveli.app/", "permanent": true }
+    { "source": "/", "destination": "https://www.traveli.app/", "permanent": true }
   ]
 }
