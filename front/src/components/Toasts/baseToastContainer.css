@@ -8,8 +8,19 @@
 }
 
 .Toastify__toast-container {
-
+  top: 0 !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
 }
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    width: 32rem !important;
+    padding: 0.4rem !important;
+    top: 0 !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+  }}
 
 .Toastify__toast {
   margin: 0.9rem 1.6rem !important;
@@ -63,7 +74,6 @@
 /* Success */
 .Toastify__toast--success {
   width: 27rem !important;
-  margin-left:5.25rem !important;
   border: 0.2rem solid #67c23a;
   background: linear-gradient(
       0deg,
